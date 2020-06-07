@@ -4,9 +4,15 @@ using namespace std;
 #define pii pair<int, int>
 #define pll pair<ll, ll>
 #define vi vector<int>
-#define vl vector<ll>
 #define vvi vector<vector<int>>
+#define vl vector<ll>
 #define vvl vector<vector<ll>>
+#define vc vector<char>
+#define vvc vector<vector<char>>
+#define vs vector<string>
+#define vvs vector<vector<string>>
+#define vp vector<pii>
+#define vvp vector<vector<pii>>
 
 const int INF = 1e9 + 7;
 const int dy[] = { 0, 0, 1, -1 };
