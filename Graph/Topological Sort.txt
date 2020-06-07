@@ -1,0 +1,23 @@
+void topological_sort() {
+    for (int i = 1; i <= N; i++) {
+        if (!visited[i]) dfs(i);
+    }
+
+    if (isCycle) cout << 0;
+    else {
+        while (!sort.empty()) {
+            cout << sort.top() << '\n';
+            sort.pop();
+        }
+    }
+}
+
+void dfs(int v) {
+    visited[v] = true;
+    for (int next : adj[v]) {
+        if (!visited[next]) dfs(next);
+        else if (!finish[next]) isCycle = true;
+    }
+    finish[v] = true;
+    sort.push(v);
+}​
