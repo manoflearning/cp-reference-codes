@@ -10,17 +10,12 @@ Email : <jungchallenge444@gmail.com>
 # Contents
 1. [Data Structure](https://github.com/manoflearning/PS-Reference-Codes/tree/master/Reference%20Codes/1.%20Data%20Structure) <br/>
 1.1. [Segment Tree](https://github.com/manoflearning/PS-Reference-Codes/tree/master/Reference%20Codes/1.%20Data%20Structure/1.1.%20Segment%20Tree) <br/>
-1.1.1. [Segment Tree](https://github.com/manoflearning/PS-Reference-Codes/blob/master/Reference%20Codes/1.%20Data%20Structure/1.1.%20Segment%20Tree/1.1.1.%20Segment%20Tree.txt) <br/>
-1.1.2. [Segment Tree with Lazy Propagation](https://github.com/manoflearning/PS-Reference-Codes/blob/master/Reference%20Codes/1.%20Data%20Structure/1.1.%20Segment%20Tree/1.1.2.%20Segment%20Tree%20with%20Lazy%20Propagation.txt) <br/>
-1.1.3. [Iterative Segment Tree](https://github.com/manoflearning/PS-Reference-Codes/blob/master/Reference%20Codes/1.%20Data%20Structure/1.1.%20Segment%20Tree/1.1.3.%20Iterative%20Segment%20Tree.txt) <br/>
 1.2. [Union Find](https://github.com/manoflearning/PS-Reference-Codes/blob/master/Reference%20Codes/1.%20Data%20Structure/1.2.%20Union%20Find.txt) <br/>
 2. [Graph](https://github.com/manoflearning/PS-Reference-Codes/tree/master/Reference%20Codes/2.%20Graph) <br/>
 2.1. [Dijkstra's Algorithm](https://github.com/manoflearning/PS-Reference-Codes/blob/master/Reference%20Codes/2.%20Graph/2.1.%20Dijkstra's%20Algorithm.txt) <br/>
 2.2. [Bellman-Ford Algorithm](https://github.com/manoflearning/PS-Reference-Codes/blob/master/Reference%20Codes/2.%20Graph/2.2.%20Bellman-Ford%20Algorithm.txt) <br/>
 2.3. [Floyd-Warshall Algorithm](https://github.com/manoflearning/PS-Reference-Codes/blob/master/Reference%20Codes/2.%20Graph/2.3.%20Floyd-Warshall%20Algorithm.txt) <br/>
 2.4. [Topological Sort](https://github.com/manoflearning/PS-Reference-Codes/tree/master/Reference%20Codes/2.%20Graph/2.4.%20Topological%20Sort) <br/>
-2.4.1. [Topological Sort - DFS](https://github.com/manoflearning/PS-Reference-Codes/blob/master/Reference%20Codes/2.%20Graph/2.4.%20Topological%20Sort/2.4.1.%20Topological%20Sort%20-%20DFS.txt) <br/>
-2.4.2. [Topological Sort - indegree](https://github.com/manoflearning/PS-Reference-Codes/blob/master/Reference%20Codes/2.%20Graph/2.4.%20Topological%20Sort/2.4.2.%20Topological%20Sort%20-%20indegree.txt) <br/>
 2.5. [Euler Circuit](https://github.com/manoflearning/PS-Reference-Codes/blob/master/Reference%20Codes/2.%20Graph/2.5.%20Euler%20Circuit.txt) <br/>
 2.6. [Lowest Common Ancestor](https://github.com/manoflearning/PS-Reference-Codes/blob/master/Reference%20Codes/2.%20Graph/2.6.%20Lowest%20Common%20Ancestor.txt) <br/>
 2.7. [2-SAT](https://github.com/manoflearning/PS-Reference-Codes/blob/master/Reference%20Codes/2.%20Graph/2.7.%202-SAT.txt) <br/>
@@ -28,16 +23,12 @@ Email : <jungchallenge444@gmail.com>
 2.9. [BCC](https://github.com/manoflearning/PS-Reference-Codes/blob/master/Reference%20Codes/2.%20Graph/2.9.%20BCC.txt) <br/>
 3. [Maximum Flow](https://github.com/manoflearning/PS-Reference-Codes/tree/master/Reference%20Codes/3.%20Maximum%20Flow) <br/>
 3.1. [Network Flow](https://github.com/manoflearning/PS-Reference-Codes/tree/master/Reference%20Codes/3.%20Maximum%20Flow/3.1.%20Network%20Flow) <br/>
-3.1.1. [Network Flow](https://github.com/manoflearning/PS-Reference-Codes/blob/master/Reference%20Codes/3.%20Maximum%20Flow/3.1.%20Network%20Flow/3.1.1.%20Network%20Flow.txt) <br/>
-3.1.2. [Network Flow - edge struct](https://github.com/manoflearning/PS-Reference-Codes/blob/master/Reference%20Codes/3.%20Maximum%20Flow/3.1.%20Network%20Flow/3.1.2.%20Network%20Flow%20-%20edge%20struct.txt) <br/>
 3.2. [Dinic's Algorithm](https://github.com/manoflearning/PS-Reference-Codes/blob/master/Reference%20Codes/3.%20Maximum%20Flow/3.2.%20Dinic's%20Algorithm.txt) <br/>
 3.3. [Bipartite Matching](https://github.com/manoflearning/PS-Reference-Codes/blob/master/Reference%20Codes/3.%20Maximum%20Flow/3.3.%20Bipartite%20Matching.txt) <br/>
 3.4. [Hopcroft-Karp Algorithm](https://github.com/manoflearning/PS-Reference-Codes/blob/master/Reference%20Codes/3.%20Maximum%20Flow/3.4.%20Hopcroft-Karp%20Algorithm.txt) <br/>
 3.5. [MCMF](https://github.com/manoflearning/PS-Reference-Codes/blob/master/Reference%20Codes/3.%20Maximum%20Flow/3.5.%20MCMF.txt) <br/>
 4. [String](https://github.com/manoflearning/PS-Reference-Codes/tree/master/Reference%20Codes/4.%20String) <br/>
 4.1. [Rabin-Karp Algorithm](https://github.com/manoflearning/PS-Reference-Codes/tree/master/Reference%20Codes/4.%20String/4.1.%20Rabin-Karp%20Algorithm) <br/>
-4.1.1. [Rabin-Karp Algorithm](https://github.com/manoflearning/PS-Reference-Codes/blob/master/Reference%20Codes/4.%20String/4.1.%20Rabin-Karp%20Algorithm/4.1.1.%20Rabin-Karp%20Algorithm.txt) <br/>
-4.1.2. [Rabin-Karp Algortihm - 2 Modular Value](https://github.com/manoflearning/PS-Reference-Codes/blob/master/Reference%20Codes/4.%20String/4.1.%20Rabin-Karp%20Algorithm/4.1.2.%20Rabin-Karp%20Algortihm%20-%202%20Modular%20Value.txt) <br/>
 4.2. [KMP Algorithm](https://github.com/manoflearning/PS-Reference-Codes/blob/master/Reference%20Codes/4.%20String/4.2.%20KMP%20Algorithm.txt) <br/>
 5. [Geometry](https://github.com/manoflearning/PS-Reference-Codes/tree/master/Reference%20Codes/5.%20Geometry) <br/>
 5.1. [CCW Algorithm](https://github.com/manoflearning/PS-Reference-Codes/blob/master/Reference%20Codes/5.%20Geometry/5.1.%20CCW%20Algorithm.txt) <br/>
