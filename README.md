@@ -7,7 +7,7 @@
 
 Email : <jungchallenge444@gmail.com>
 
-# Link
+# Contents
 1. [Data Structure](https://github.com/manoflearning/PS-Reference-Codes/tree/master/Reference%20Codes/1.%20Data%20Structure)        
 1.1. [Segment Tree](https://github.com/manoflearning/PS-Reference-Codes/tree/master/Reference%20Codes/1.%20Data%20Structure/1.1.%20Segment%20Tree)          
 1.2. [Union Find](https://github.com/manoflearning/PS-Reference-Codes/blob/master/Reference%20Codes/1.%20Data%20Structure/1.2.%20Union%20Find.txt)        
