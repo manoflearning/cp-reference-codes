@@ -2,6 +2,7 @@
 #include <algorithm>
 using namespace std;
 
+const char st = 'a';
 const int MAXC = 'z' - 'a' + 1;
 
 struct trie {
@@ -20,7 +21,7 @@ struct trie {
 	void insert(const string& s, int key = 0) {
 		if (s.size() == key) term = true;
 		else {
-			int next = s[key] - 'a';
+			int next = s[key] - st;
 			if (!child[next]) child[next] = new trie;
 			child[next]->insert(s, key + 1);
 		}
@@ -29,7 +30,7 @@ struct trie {
 	bool find(const string& s, int key = 0) {
 		if (s.size() == key) return term;
 		else {
-			int next = s[key] - 'a';
+			int next = s[key] - st;
 			if (!child[next]) return false;
 			else return child[next]->find(s, key + 1);
 		}
