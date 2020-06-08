@@ -30,6 +30,7 @@ Email : <jungchallenge444@gmail.com>
 4. [String](https://github.com/manoflearning/PS-Reference-Codes/tree/master/Reference%20Codes/4.%20String) <br/>
 4.1. [Rabin-Karp Algorithm](https://github.com/manoflearning/PS-Reference-Codes/tree/master/Reference%20Codes/4.%20String/4.1.%20Rabin-Karp%20Algorithm) <br/>
 4.2. [KMP Algorithm](https://github.com/manoflearning/PS-Reference-Codes/blob/master/Reference%20Codes/4.%20String/4.2.%20KMP%20Algorithm.txt) <br/>
+4.3. [Trie](https://github.com/manoflearning/PS-Reference-Codes/tree/master/Reference%20Codes/4.%20String/4.3.%20Trie) <br/>
 5. [Geometry](https://github.com/manoflearning/PS-Reference-Codes/tree/master/Reference%20Codes/5.%20Geometry) <br/>
 5.1. [CCW Algorithm](https://github.com/manoflearning/PS-Reference-Codes/blob/master/Reference%20Codes/5.%20Geometry/5.1.%20CCW%20Algorithm.txt) <br/>
 5.2. [Convex Hull](https://github.com/manoflearning/PS-Reference-Codes/blob/master/Reference%20Codes/5.%20Geometry/5.2.%20Convex%20Hull.txt) <br/>
