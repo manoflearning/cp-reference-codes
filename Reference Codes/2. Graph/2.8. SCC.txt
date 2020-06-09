@@ -1,22 +1,34 @@
-int N;
-vector<int> adj[MAXV + 5];
-int label[MAXV + 5];
+#include <iostream>
+#include <stack>
+#include <vector>
+#include <cstring>
+#include <algorithm>
+using namespace std;
 
-void Tarjan_Algorithm() {
-    memset(label, -1, sizeof(label));
-    //DFS 스패닝 트리
-    for (int v = 0; v < N; v++)
-        if (label[v] == -1) DFS(v);
+const int MAXV = 1e5;
+
+int N, label[MAXV + 5], labelCnt;
+int SCCnum[MAXV + 5], SCCcnt;
+vector<int> adj[MAXV + 5];
+bool finished[MAXV + 5];
+stack<int> S;
+vector<vector<int>> SCC;
+
+void getSCC() {
+	memset(label, -1, sizeof(label));
+
+	for (int v = 0; v < N; v++)
+		if (label[v] == -1) dfs(v);
 }
 
-int DFS(int v) {
+int dfs(int v) {
     label[v] = labelCnt++;
     S.push(v);
 
     int ret = label[v];
     for (int next : adj[v]) {
-        //방문하지 않은 
-        if (label[next] == -1) ret = min(ret, DFS(next));
+        //방문하지 않은 정점
+        if (label[next] == -1) ret = min(ret, dfs(next));
         //방문은 했으나 아직 SCC로 분류되지 않은 정점
         else if (!finished[next]) ret = min(ret, label[next]);
     }
@@ -39,4 +51,4 @@ int DFS(int v) {
     }
 
     return ret;
-}​
+}
