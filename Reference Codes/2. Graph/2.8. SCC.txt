@@ -1,4 +1,9 @@
+int N;
+vector<int> adj[MAXV + 5];
+int label[MAXV + 5];
+
 void Tarjan_Algorithm() {
+    memset(label, -1, sizeof(label));
     //DFS 스패닝 트리
     for (int v = 0; v < N; v++)
         if (label[v] == -1) DFS(v);
@@ -25,7 +30,7 @@ int DFS(int v) {
             vSCC.push_back(t);
             SCCnum[t] = SCCcnt;
             finished[t] = true;
-            
+
             if (t == v) break;
         }
 
