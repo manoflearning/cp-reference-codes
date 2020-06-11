@@ -5,6 +5,7 @@ using namespace std;
 #define pll pair<ll, ll>
 #define vi vector<int>
 #define vl vector<ll>
+#define vb vector<bool>
 #define vd vector<double>
 #define vc vector<char>
 #define vs vector<string>
@@ -12,6 +13,7 @@ using namespace std;
 #define vpl vector<pll>
 #define vvi vector<vector<int>>
 #define vvl vector<vector<ll>>
+#define vvb vector<vector<bool>>
 #define vvd vector<vector<double>>
 #define vvc vector<vector<char>>
 #define vvs vector<vector<string>>
