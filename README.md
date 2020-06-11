@@ -35,4 +35,5 @@ Email : <jungchallenge444@gmail.com>
 5.1. [CCW Algorithm](https://github.com/manoflearning/PS-Reference-Codes/blob/master/Reference%20Codes/5.%20Geometry/5.1.%20CCW%20Algorithm.txt) <br/>
 5.2. [Convex Hull](https://github.com/manoflearning/PS-Reference-Codes/blob/master/Reference%20Codes/5.%20Geometry/5.2.%20Convex%20Hull.txt) <br/>
 6. [Math](https://github.com/manoflearning/PS-Reference-Codes/tree/master/Reference%20Codes/6.%20Math) <br/>
-6.1. [GCD, LCM](https://github.com/manoflearning/PS-Reference-Codes/blob/master/Reference%20Codes/6.%20Math/6.1.%20GCD,%20LCM.txt) <br/>
+6.1. [Sieve of Eratosthenes](https://github.com/manoflearning/PS-Reference-Codes/blob/master/Reference%20Codes/6.%20Math/6.1.%20Sieve%20of%20Eratosthenes.txt) <br/>
+6.2. [GCD, LCM](https://github.com/manoflearning/PS-Reference-Codes/blob/master/Reference%20Codes/6.%20Math/6.2.%20GCD,%20LCM.txt) <br/>
