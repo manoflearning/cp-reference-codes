@@ -1,6 +1,6 @@
 #include <iostream>
-#define ll long long
 using namespace std;
+#define ll long long
 
 const int MAXN = 1e5;  // limit for array size
 
