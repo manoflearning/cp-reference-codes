@@ -1,3 +1,7 @@
+#include <iostream>
+#include <algorithm>
+using namespace std;
+
 struct point {
 	int x, y;
 };

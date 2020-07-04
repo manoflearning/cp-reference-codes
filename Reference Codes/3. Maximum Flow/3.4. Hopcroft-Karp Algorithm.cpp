@@ -17,69 +17,69 @@ void bfs();
 bool dfs(int a);
 
 int main() {
-    cin.tie(NULL); cout.tie(NULL);
-    ios_base::sync_with_stdio(false);
+	cin.tie(NULL); cout.tie(NULL);
+	ios_base::sync_with_stdio(false);
 
-    input();
+	input();
 
-    int total = hopcroft();
-    cout << total << '\n';
+	int total = hopcroft();
+	cout << total << '\n';
 
-    return 0;
+	return 0;
 }
 
 void input() {
-    //생략
+	//생략
 }
 
 int hopcroft() {
-    memset(A, -1, sizeof(A));
-    memset(B, -1, sizeof(B));
+	memset(A, -1, sizeof(A));
+	memset(B, -1, sizeof(B));
 
-    int ret = 0;
-    while (true) {
-        bfs();
+	int ret = 0;
+	while (true) {
+		bfs();
 
-        int flow = 0;
-        for (int i = 0; i < N; i++)
-            if (!used[i] && dfs(i)) flow++;
+		int flow = 0;
+		for (int i = 0; i < N; i++)
+			if (!used[i] && dfs(i)) flow++;
 
-        if (flow == 0) break;
-        ret += flow;
-    }
-    return ret;
+		if (flow == 0) break;
+		ret += flow;
+	}
+	return ret;
 }
 
 void bfs() {
-    queue<int> q;
-    for (int i = 0; i < N; i++) {
-        if (!used[i]) {
-            dist[i] = 0;
-            q.push(i);
-        }
-        else dist[i] = INF;
-    }
+	queue<int> q;
+	for (int i = 0; i < N; i++) {
+		if (!used[i]) {
+			dist[i] = 0;
+			q.push(i);
+		}
+		else dist[i] = INF;
+	}
 
-    while (!q.empty()) {
-        int a = q.front();
-        q.pop();
-        for (int b : adj[a]) {
-            if (B[b] != -1 && dist[B[b]] == INF) {
-                dist[B[b]] = dist[a] + 1;
-                q.push(B[b]);
-            }
-        }
-    }
+	while (!q.empty()) {
+		int a = q.front();
+		q.pop();
+		for (int b : adj[a]) {
+			if (B[b] != -1 && dist[B[b]] == INF) {
+				dist[B[b]] = dist[a] + 1;
+				q.push(B[b]);
+			}
+		}
+	}
 }
 
 bool dfs(int a) {
-    for (int b : adj[a]) {
-        if (B[b] == -1 || (dist[B[b]] == dist[a] + 1 && dfs(B[b]))) {
-            used[a] = true;
-            A[a] = b;
-            B[b] = a;
-            return true;
-        }
-    }
-    return false;
+	for (int b : adj[a]) {
+		if (B[b] == -1 || (dist[B[b]] == dist[a] + 1 && dfs(B[b]))) {
+			used[a] = true;
+			A[a] = b;
+			B[b] = a;
+			return true;
+		}
+	}
+	return false;
 }
