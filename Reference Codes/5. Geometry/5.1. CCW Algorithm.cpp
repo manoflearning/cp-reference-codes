@@ -2,23 +2,23 @@ struct point {
 	int x, y;
 };
 
-//ccw ì•Œê³ ë¦¬ì¦˜
+//ccw ¾Ë°í¸®Áò
 ll ccw(point a, point b, point c) {
-	//ì–‘ìˆ˜ë¥¼ ë°˜í™˜í•˜ë©´ ccw, ìŒìˆ˜ë¥¼ ë°˜í™˜í•˜ë©´ cw, 0ì„ ë°˜í™˜í•˜ë©´ a, b, cëŠ” í•œ ì§ì„  ìœ„ì— ìˆë‹¤.
+	//¾ç¼ö¸¦ ¹İÈ¯ÇÏ¸é ccw, À½¼ö¸¦ ¹İÈ¯ÇÏ¸é cw, 0À» ¹İÈ¯ÇÏ¸é a, b, c´Â ÇÑ Á÷¼± À§¿¡ ÀÖ´Ù.
 	return (b.x - a.x) * (c.y - a.y) - (c.x - a.x) * (b.y - a.y);
 }
 
-//ë‘ ì„ ë¶„ abì™€ cdê°€ êµì°¨í•˜ëŠ”ê°€?
+//µÎ ¼±ºĞ ab¿Í cd°¡ ±³Â÷ÇÏ´Â°¡?
 bool isCross(point a, point b, point c, point d) {
 	ll ab = ccw(a, b, c) * ccw(a, b, d);
 	ll cd = ccw(c, d, a) * ccw(c, d, b);
-	//ë„¤ ì ì´ í•œ ì§ì„  ìœ„ì— ìˆì„ ê²½ìš°
+	//³× Á¡ÀÌ ÇÑ Á÷¼± À§¿¡ ÀÖÀ» °æ¿ì
 	if (ab == 0 && cd == 0) {
 		pii A = { a.x, a.y }, B = { b.x, b.y }, C = { c.x, c.y }, D = { d.x, d.y };
 		if (A > B) swap(A, B);
 		if (C > D) swap(C, D);
 		return (A <= D && C <= B);
 	}
-	//ê·¸ë ‡ì§€ ì•Šì„ ê²½ìš°
+	//±×·¸Áö ¾ÊÀ» °æ¿ì
 	else return (ab <= 0 && cd <= 0);
 }

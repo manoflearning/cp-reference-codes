@@ -5,7 +5,7 @@
 using namespace std;
 
 struct point {
-	ll x, y, px, py; //px, pyëŠ” ê¸°ì¤€ì ì—ì„œì˜ ìƒëŒ€ì ì¸ ìœ„ì¹˜
+	ll x, y, px, py; //px, py´Â ±âÁØÁ¡¿¡¼­ÀÇ »ó´ëÀûÀÎ À§Ä¡
 	point() : point(0, 0, 0, 0) {}
 	point(int sx, int sy) : point(sx, sy, 0, 0) {}
 	point(int sx, int sy, int spx, int spy) : x(sx), y(sy), px(spx), py(spy) {}

@@ -30,7 +30,7 @@ int main() {
 }
 
 void input() {
-    //ìƒëµ
+    //»ı·«
 }
 
 int dinic() {

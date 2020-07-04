@@ -33,7 +33,7 @@ int main() {
 }
 
 void input() {
-    //ìƒëµ
+    //»ı·«
 }
 
 void mcmf() {
@@ -85,4 +85,4 @@ void flow() {
         f[i][prv[i]] -= block;
     }
     mFlow += block;
-}â€‹
+}

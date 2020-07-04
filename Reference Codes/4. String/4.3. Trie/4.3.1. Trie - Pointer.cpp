@@ -7,7 +7,7 @@ const int MAXC = 'z' - 'a' + 1;
 
 struct trie {
 	trie* child[MAXC];
-	bool term; //ì´ ë…¸ë“œê°€ ì¢…ë£Œ ë…¸ë“œì¸ê°€?
+	bool term; //ÀÌ ³ëµå°¡ Á¾·á ³ëµåÀÎ°¡?
 
 	trie() {
 		fill(child, child + MAXC, nullptr);

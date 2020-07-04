@@ -4,12 +4,12 @@ using namespace std;
 
 const char st = '0';
 const int MAXC = '9' - '0' + 1;
-//ì£¼ì–´ì§€ëŠ” ë¬¸ìì—´ì˜ ê¸¸ì´ê°€ ìµœëŒ€ 100ì¼ ë•Œ, íŠ¸ë¼ì´ì˜ ë…¸ë“œ ê°œìˆ˜
+//ÁÖ¾îÁö´Â ¹®ÀÚ¿­ÀÇ ±æÀÌ°¡ ÃÖ´ë 100ÀÏ ¶§, Æ®¶óÀÌÀÇ ³ëµå °³¼ö
 const int MAXN = 100 * 100 * MAXC + 1; 
 
 struct trie {
 	int cnt, t[MAXN][MAXC];
-	bool term[MAXN]; //term[i]ì€ ië²ˆì§¸ ë…¸ë“œê°€ ì¢…ë£Œ ë…¸ë“œì¸ê°€?ë¥¼ ì˜ë¯¸í•¨
+	bool term[MAXN]; //term[i]Àº i¹øÂ° ³ëµå°¡ Á¾·á ³ëµåÀÎ°¡?¸¦ ÀÇ¹ÌÇÔ
 
 	void clear() {
 		memset(t, 0, sizeof(t));

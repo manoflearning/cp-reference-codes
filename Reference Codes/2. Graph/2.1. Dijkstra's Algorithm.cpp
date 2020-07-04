@@ -53,7 +53,7 @@ void input() {
 
 void dijkstra(int st) {
 	priority_queue<dv, vector<dv>, cmp> pq;
-	
+
 	pq.push({ 0, st });
 	dist[st] = 0;
 

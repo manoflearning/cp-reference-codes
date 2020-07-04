@@ -29,7 +29,7 @@ int main() {
 }
 
 void input() {
-    //ìƒëµ
+    //»ı·«
 }
 
 int hopcroft() {
@@ -82,4 +82,4 @@ bool dfs(int a) {
         }
     }
     return false;
-}â€‹
+}

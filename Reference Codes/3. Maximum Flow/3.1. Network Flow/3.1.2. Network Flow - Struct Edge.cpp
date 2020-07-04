@@ -9,7 +9,7 @@ const int INF = 1e9 + 7;
 
 struct edge {
     int v, c, f;
-    edge* dual; //ì—­ë°©í–¥ ê°„ì„ ì„ ê°€ë¦¬í‚¤ëŠ” í¬ì¸í„°
+    edge* dual; //¿ª¹æÇâ °£¼±À» °¡¸®Å°´Â Æ÷ÀÎÅÍ
     edge() : edge(-1, 0) {}
     edge(int v1, int c1) : v(v1), c(c1), f(0), dual(nullptr) {}
     int residual() {
@@ -27,7 +27,7 @@ int prv[MAXV + 5];
 edge* path[MAXV + 5];
 int st, en;
 
-void scan();
+void input();
 int max_flow();
 void BFS(int st, int en);
 int flow(int st, int en);
@@ -36,7 +36,7 @@ int main() {
     cin.tie(NULL); cout.tie(NULL);
     ios_base::sync_with_stdio(false);
 
-    scan();
+    input();
 
     st = 1, en = N;
     int total = max_flow();
@@ -46,7 +46,7 @@ int main() {
     return 0;
 }
 
-void scan() {
+void input() {
     cin >> N;
 
     for (int i = 0; i < N; i++) {
