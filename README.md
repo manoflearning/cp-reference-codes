@@ -9,6 +9,7 @@ Email : <jungchallenge444@gmail.com>
 1.2. [Union Find](https://github.com/manoflearning/PS-Reference-Codes/blob/master/Reference%20Codes/1.%20Data%20Structure/1.2.%20Union%20Find.cpp) <br/>
 2. [Graph](https://github.com/manoflearning/PS-Reference-Codes/tree/master/Reference%20Codes/2.%20Graph) <br/>
 2.1. [Dijkstra's Algorithm](https://github.com/manoflearning/PS-Reference-Codes/blob/master/Reference%20Codes/2.%20Graph/2.1.%20Dijkstra's%20Algorithm.cpp) <br/>
+2.10. [Heavy-Light Decomposition](https://github.com/manoflearning/PS-Reference-Codes/tree/master/Reference%20Codes/2.%20Graph/2.10.%20Heavy-Light%20Decomposition) <br/>
 2.2. [Bellman-Ford Algorithm](https://github.com/manoflearning/PS-Reference-Codes/blob/master/Reference%20Codes/2.%20Graph/2.2.%20Bellman-Ford%20Algorithm.cpp) <br/>
 2.3. [Floyd-Warshall Algorithm](https://github.com/manoflearning/PS-Reference-Codes/blob/master/Reference%20Codes/2.%20Graph/2.3.%20Floyd-Warshall%20Algorithm.cpp) <br/>
 2.4. [Topological Sort](https://github.com/manoflearning/PS-Reference-Codes/tree/master/Reference%20Codes/2.%20Graph/2.4.%20Topological%20Sort) <br/>
