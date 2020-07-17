@@ -12,11 +12,11 @@ struct Seg {
 		t.resize(2 * flag);
 		lazy.resize(2 * flag);
 
-		for (int i = 0; i < N; i++) cin >> t[flag + i];
+		for (int i = flag; i < flag + N; i++) cin >> t[i];
 		for (int i = flag - 1; i >= 1; i--) t[i] = t[i << 1] + t[i << 1 | 1];
 	}
 	void modify(int L, int R, int value) {
-		return modify(L, R, 1, 0, flag - 1, value);
+		return modify(L, R, 1, 1, flag, value);
 	}
 	// add a value to all elements in interval [L, R]
 	void modify(int L, int R, int n, int nL, int nR, int value) {
@@ -36,7 +36,7 @@ struct Seg {
 		t[n] = t[n << 1] + t[n << 1 | 1];
 	}
 	ll query(int L, int R) {
-		return query(L, R, 1, 0, flag - 1);
+		return query(L, R, 1, 1, flag);
 	}
 	ll query(int L, int R, int n, int nL, int nR) {  // sum on interval [L, R]
 		propagate(n, nL, nR);
@@ -67,7 +67,7 @@ int main() {
 
 	seg.build(N);
 
-	seg.modify(0, 0, 1);
+	seg.modify(1, 1, 1);
 	cout << seg.query(3, 11) << '\n';
 
 	return 0;
