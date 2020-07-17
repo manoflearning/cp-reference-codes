@@ -8,7 +8,8 @@ struct Seg {
 	int N;  // array size
 	ll t[2 * MAXN];
 
-	void build(int N) {
+	void build() {
+		cin >> N;
 		for (int i = 0; i < N; i++) cin >> t[N + i];
 		for (int i = N - 1; i >= 1; i--) t[i] = t[i << 1] + t[i << 1 | 1];
 	}
@@ -28,10 +29,8 @@ struct Seg {
 int main() {
 	cin.tie(NULL); cout.tie(NULL);
 	ios_base::sync_with_stdio(false);
-	
-	int N; cin >> N;
 
-	seg.build(N);
+	seg.build();
 
 	seg.modify(0, 1);
 	cout << seg.query(3, 11);
