@@ -17,6 +17,7 @@ Email : <jungchallenge444@gmail.com>
 2.7. [2-SAT](https://github.com/manoflearning/PS-Reference-Codes/blob/master/Reference%20Codes/2.%20Graph/2.7.%202-SAT.cpp) <br/>
 2.8. [SCC](https://github.com/manoflearning/PS-Reference-Codes/blob/master/Reference%20Codes/2.%20Graph/2.8.%20SCC.cpp) <br/>
 2.9. [BCC](https://github.com/manoflearning/PS-Reference-Codes/blob/master/Reference%20Codes/2.%20Graph/2.9.%20BCC.cpp) <br/>
+2.10. [Heavy-Light Decomposition](https://github.com/manoflearning/PS-Reference-Codes/tree/master/Reference%20Codes/2.%20Graph/2.10.%20Heavy-Light%20Decomposition) <br/>
 3. [Maximum Flow](https://github.com/manoflearning/PS-Reference-Codes/tree/master/Reference%20Codes/3.%20Maximum%20Flow) <br/>
 3.1. [Network Flow](https://github.com/manoflearning/PS-Reference-Codes/tree/master/Reference%20Codes/3.%20Maximum%20Flow/3.1.%20Network%20Flow) <br/>
 3.2. [Dinic's Algorithm](https://github.com/manoflearning/PS-Reference-Codes/blob/master/Reference%20Codes/3.%20Maximum%20Flow/3.2.%20Dinic's%20Algorithm.cpp) <br/>
