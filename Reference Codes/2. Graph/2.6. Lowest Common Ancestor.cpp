@@ -1,9 +1,14 @@
-const int MAX = 40000, MAXD = 15;
+#include <iostream>
+#include <vector>
+using namespace std;
+
+const int MAX = 1e5, MAXD = 16;
 
 vector<int> adj[MAX + 5];
-int N, depth[MAX + 5], par[MAX + 5][MAXD + 5];
+int N, dep[MAX + 5], par[MAX + 5][MAXD + 5];
 
 void dfs(int now, int prv);
+int lca(int u, int v);
 
 int main() {
 	cin.tie(NULL); cout.tie(NULL);
@@ -20,43 +25,38 @@ int main() {
 
 	int Q; cin >> Q;
 	while (Q--) {
-		//두 정점 u와 v가 주어질 때, lca 구하기
 		int u, v;
 		cin >> u >> v;
 
-		if (depth[u] > depth[v]) swap(u, v);
-
-		//두 노드의 깊이를 같게
-		int diff = depth[v] - depth[u];
-		for (int i = MAXD; i >= 0; i--) {
-			if (diff & (1 << i)) {
-				v = par[v][i];
-				diff -= (1 << i);
-			}
-		}
-
-		if (u != v) {
-			for (int i = MAXD; i >= 0; i--) {
-				if (par[u][i] != par[v][i]) {
-					su = par[u][i];
-					sv = par[v][i];
-				}
-			}
-			u = par[u][0];
-		}
-
-		int lca = u;
-		cout << lca << '\n';
+		cout << lca(u, v) << '\n';
 	}
 
 	return 0;
 }
 
 void dfs(int now, int prv) {
-	for (int next : adj[now]) {
-		if (next == prv) continue;
-		depth[next] = depth[now] + 1;
-		par[next][0] = next;
-		dfs(next, now);
+	par[now][0] = prv;
+	dep[now] = dep[prv] + 1;
+	for (int i : adj[now]) {
+		if (i == prv) continue;
+		dfs(i, now);
 	}
+}
+
+int lca(int u, int v) {
+	if (dep[u] < dep[v]) swap(u, v);
+
+	int diff = dep[u] - dep[v];
+	for (int i = MAXD; i >= 0; i--)
+		if (diff & (1 << i)) u = par[u][i];
+
+	if (u == v) return u;
+
+	for (int i = MAXD; i >= 0; i--) {
+		if (par[u][i] ^ par[v][i]) {
+			u = par[u][i];
+			v = par[v][i];
+		}
+	}
+	return par[u][0];
 }
