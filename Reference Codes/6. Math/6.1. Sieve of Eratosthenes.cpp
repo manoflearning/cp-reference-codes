@@ -1,6 +1,7 @@
 #include <iostream>
 #include <algorithm>
 using namespace std;
+#define ll long long
 
 const int MAX = 1e6;
 
