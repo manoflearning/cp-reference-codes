@@ -16,7 +16,6 @@ int main() {
 
 	dfs(1, 0);
 
-	//Á¡È­½Ä
 	for (int i = 1; i <= MAXD; i++) {
 		for (int v = 1; v <= N; v++) {
 			par[v][i] = par[par[v][i - 1]][i - 1];
