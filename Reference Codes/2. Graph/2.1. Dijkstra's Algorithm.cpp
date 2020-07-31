@@ -8,10 +8,11 @@ const int INF = 1e9 + 7;
 
 struct dv {
 	int d, v;
-	bool operator<(dv& rhs) {
-		return d < rhs.d;
-	}
 };
+
+bool operator<(dv a, dv b) {
+	return a.d > b.d;
+}
 
 int N, st;
 vector<dv> adj[MAXV + 5];
@@ -36,14 +37,14 @@ void dijkstra(int st) {
 	dist[st] = 0;
 
 	while (!pq.empty()) {
-		int now = pq.top().v, d = -pq.top().d;
+		int now = pq.top().v, d = pq.top().d;
 		pq.pop();
 
 		for (auto& e : adj[now]) {
 			int next = e.v;
-			if (dist[next] > dist[now] + e.d) {
-				dist[next] = dist[now] + e.d;
-				pq.push({ -dist[next], next });
+			if (dist[next] > d + e.d) {
+				dist[next] = d + e.d;
+				pq.push({ dist[next], next });
 			}
 		}
 	}
