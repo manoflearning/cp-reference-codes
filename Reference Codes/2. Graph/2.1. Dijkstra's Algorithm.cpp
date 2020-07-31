@@ -8,15 +8,12 @@ const int INF = 1e9 + 7;
 
 struct dv {
 	int d, v;
-};
-
-struct cmp {
-	bool operator() (dv a, dv b) {
-		return a.d > b.d;
+	bool operator<(dv& rhs) {
+		return d < rhs.d;
 	}
 };
 
-int V, st;
+int N, st;
 vector<dv> adj[MAXV + 5];
 vector<int> dist(MAXV + 5, INF);
 
@@ -31,8 +28,8 @@ int main() {
 
 	dijkstra(st);
 
-	for (int i = 1; i <= V; i++) {
-		if (dist[i] == INF) cout << "INF\n";
+	for (int i = 1; i <= N; i++) {
+		if (dist[i] == INF) cout << "can't go\n";
 		else cout << dist[i] << '\n';
 	}
 
@@ -41,7 +38,7 @@ int main() {
 
 void input() {
 	int E;
-	cin >> V >> E >> st;
+	cin >> N >> E >> st;
 
 	for (int i = 0; i < E; i++) {
 		int u, v, d;
@@ -52,20 +49,20 @@ void input() {
 }
 
 void dijkstra(int st) {
-	priority_queue<dv, vector<dv>, cmp> pq;
+	priority_queue<dv> pq;
 
 	pq.push({ 0, st });
 	dist[st] = 0;
 
 	while (!pq.empty()) {
-		int now = pq.top().v, d = pq.top().d;
+		int now = pq.top().v, d = -pq.top().d;
 		pq.pop();
 
 		for (auto& e : adj[now]) {
 			int next = e.v;
 			if (dist[next] > dist[now] + e.d) {
 				dist[next] = dist[now] + e.d;
-				pq.push({ dist[next], next });
+				pq.push({ -dist[next], next });
 			}
 		}
 	}
