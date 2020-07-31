@@ -17,25 +17,6 @@ int N, st;
 vector<dv> adj[MAXV + 5];
 vector<int> dist(MAXV + 5, INF);
 
-void input();
-void dijkstra(int st);
-
-int main() {
-	cin.tie(NULL); cout.tie(NULL);
-	ios_base::sync_with_stdio(false);
-
-	input();
-
-	dijkstra(st);
-
-	for (int i = 1; i <= N; i++) {
-		if (dist[i] == INF) cout << "can't go\n";
-		else cout << dist[i] << '\n';
-	}
-
-	return 0;
-}
-
 void input() {
 	int E;
 	cin >> N >> E >> st;
@@ -66,4 +47,20 @@ void dijkstra(int st) {
 			}
 		}
 	}
+}
+
+int main() {
+	cin.tie(NULL); cout.tie(NULL);
+	ios_base::sync_with_stdio(false);
+
+	input();
+
+	dijkstra(st);
+
+	for (int i = 1; i <= N; i++) {
+		if (dist[i] == INF) cout << "can't go\n";
+		else cout << dist[i] << '\n';
+	}
+
+	return 0;
 }
