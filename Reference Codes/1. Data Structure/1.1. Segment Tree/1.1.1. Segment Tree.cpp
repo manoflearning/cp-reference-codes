@@ -17,15 +17,15 @@ struct Seg {
 	void modify(int p, int value) {  // set value at position p
 		for (t[p += flag - 1] = value; p > 1; p >>= 1) t[p >> 1] = t[p] + t[p ^ 1];
 	}
-	ll query(int L, int R) {
-		return query(L, R, 1, 1, flag);
+	ll query(int l, int r) {
+		return query(l, r, 1, 1, flag);
 	}
-	ll query(int L, int R, int n, int nL, int nR) {  // sum on interval [L, R]
-		if (R < nL || nR < L) return 0;
-		if (L <= nL && nR <= R) return t[n];
+	ll query(int l, int r, int n, int nl, int nr) {  // sum on interval [l, r]
+		if (r < nl || nr < l) return 0;
+		if (l <= nl && nr <= r) return t[n];
 
-		int mid = (nL + nR) / 2;
-		return query(L, R, n << 1, nL, mid) + query(L, R, n << 1 | 1, mid + 1, nR);
+		int mid = (nl + nr) / 2;
+		return query(l, r, n << 1, nl, mid) + query(l, r, n << 1 | 1, mid + 1, nr);
 	}
 }seg;
 

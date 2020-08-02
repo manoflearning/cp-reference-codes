@@ -16,11 +16,11 @@ struct Seg {
 	void modify(int p, int value) {  // set value at position p
 		for (t[p += N] = value; p > 1; p >>= 1) t[p >> 1] = t[p] + t[p ^ 1];
 	}
-	ll query(int L, int R) {  // sum on interval [L, R)
+	ll query(int l, int r) {  // sum on interval [l, r)
 		ll ret = 0;
-		for (L += N, R += N; L < R; L >>= 1, R >>= 1) {
-			if (L & 1) ret += t[L++];
-			if (R & 1) ret += t[--R];
+		for (l += N, r += N; l < r; l >>= 1, r >>= 1) {
+			if (l & 1) ret += t[l++];
+			if (r & 1) ret += t[--r];
 		}
 		return ret;
 	}

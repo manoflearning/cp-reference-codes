@@ -15,45 +15,45 @@ struct Seg {
 		for (int i = flag; i < flag + N; i++) cin >> t[i];
 		for (int i = flag - 1; i >= 1; i--) t[i] = t[i << 1] + t[i << 1 | 1];
 	}
-	void modify(int L, int R, int value) {
-		return modify(L, R, 1, 1, flag, value);
+	void modify(int l, int r, int value) {
+		return modify(l, r, 1, 1, flag, value);
 	}
-	// add a value to all elements in interval [L, R]
-	void modify(int L, int R, int n, int nL, int nR, int value) {
-		propagate(n, nL, nR);
+	// add a value to all elements in interval [l, r]
+	void modify(int l, int r, int n, int nl, int nr, int value) {
+		propagate(n, nl, nr);
 
-		if (R < nL || nR < L) return;
-		if (L <= nL && nR <= R) {
+		if (r < nl || nr < l) return;
+		if (l <= nl && nr <= r) {
 			lazy[n] += value;
-			propagate(n, nL, nR);
+			propagate(n, nl, nr);
 			return;
 		}
 
-		int mid = (nL + nR) / 2;
-		modify(L, R, n << 1, nL, mid, value);
-		modify(L, R, n << 1 | 1, mid + 1, nR, value);
+		int mid = (nl + nr) >> 1;
+		modify(l, r, n << 1, nl, mid, value);
+		modify(l, r, n << 1 | 1, mid + 1, nr, value);
 
 		t[n] = t[n << 1] + t[n << 1 | 1];
 	}
-	ll query(int L, int R) {
-		return query(L, R, 1, 1, flag);
+	ll query(int l, int r) {
+		return query(l, r, 1, 1, flag);
 	}
-	ll query(int L, int R, int n, int nL, int nR) {  // sum on interval [L, R]
-		propagate(n, nL, nR);
+	ll query(int l, int r, int n, int nl, int nr) {  // sum on interval [l, r]
+		propagate(n, nl, nr);
 
-		if (R < nL || nR < L) return 0;
-		if (L <= nL && nR <= R) return t[n];
+		if (r < nl || nr < l) return 0;
+		if (l <= nl && nr <= r) return t[n];
 
-		int mid = (nL + nR) / 2;
-		return query(L, R, n << 1, nL, mid) + query(L, R, n << 1 | 1, mid + 1, nR);
+		int mid = (nl + nr) / 2;
+		return query(l, r, n << 1, nl, mid) + query(l, r, n << 1 | 1, mid + 1, nr);
 	}
-	void propagate(int n, int nL, int nR) {
+	void propagate(int n, int nl, int nr) {
 		if (lazy[n] != 0) {
 			if (n < flag) {
 				lazy[n << 1] += lazy[n];
 				lazy[n << 1 | 1] += lazy[n];
 			}
-			t[n] += lazy[n] * (nR - nL + 1);
+			t[n] += lazy[n] * (nr - nl + 1);
 			lazy[n] = 0;
 		}
 	}
