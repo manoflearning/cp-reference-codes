@@ -1,5 +1,5 @@
 # PS-Reference-Codes
-알고리즘 대회를 목적으로 다양한 알고리즘의 레퍼런스 코드를 정리해놓은 자료입니다.
+This repository is a collection of reference codes of various algorithms for the purpose of competitive programming.
 
 Email : <jungchallenge444@gmail.com>
 
