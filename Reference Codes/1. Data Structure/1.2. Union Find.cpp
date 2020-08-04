@@ -7,8 +7,17 @@ const int MAX = 1000000;
 int N;
 vector<int> p(MAX + 1, -1);
 
-int find(int x);
-void merge(int b, int c);
+int find(int x) {
+	if (p[x] < 0) return x;
+	return p[x] = find(p[x]);
+}
+
+void merge(int a, int b) {
+	int A = find(a), B = find(b);
+	if (A == B) return;
+	p[A] += p[B];
+	p[B] = A;
+}
 
 int main() {
 	cin.tie(NULL); cout.tie(NULL);
@@ -29,17 +38,4 @@ int main() {
 	}
 
 	return 0;
-}
-
-int find(int x) {
-	if (p[x] < 0) return x;
-	p[x] = find(p[x]);
-	return p[x];
-}
-
-void merge(int a, int b) {
-	int A = find(a), B = find(b);
-	if (A == B) return;
-	p[A] += p[B];
-	p[B] = A;
 }
