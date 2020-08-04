@@ -1,5 +1,5 @@
 # PS-Reference-Codes
-This repository is a collection of reference codes of various algorithms for the purpose of algorithm competitions.
+This repository is a collection of reference codes of various algorithms for the purpose of competitive programming.
 
 Email : <jungchallenge444@gmail.com>
 
