@@ -52,3 +52,14 @@ kth 세그 <br/>
 볼록 컷 트리 <br/>
 fft <br/>
 중국인의 나머지 정리 <br/>
+lr flow <br/>
+sqrt decomposition <br/>
+mo <br/>
+뫼비우스 함수 <br/>
+slope trick <br/>
+선인장 <br/>
+alien trick <br/>
+berlekamp-massey <br/>
+offline incremental SCC <br/>
+dual of planar graph <br/>
+tree compression <br/>
