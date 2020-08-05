@@ -38,17 +38,17 @@ Email : <jungchallenge444@gmail.com>
 7.2. [GCD, LCM](https://github.com/manoflearning/PS-Reference-Codes/blob/master/Reference%20Codes/7.%20Math/7.2.%20GCD,%20LCM.cpp) <br/>
 
 # Algorithms to Add
-pst
-머지 소트 트리
-세그비츠
-동적 세그
-2d 세그
-kth 세그
-스플레이 트리
-fft
-중국인의 나머지 정리
-링컷 트리
-볼록 컷 트리
-컨벡스 헐 트릭
-서큘레이션
-확장 유클리드 알고리즘
+pst <br/>
+머지 소트 트리 <br/>
+세그비츠 <br/>
+동적 세그 <br/>
+2d 세그 <br/>
+kth 세그 <br/>
+스플레이 트리 <br/>
+fft <br/>
+중국인의 나머지 정리 <br/>
+링컷 트리 <br/>
+볼록 컷 트리 <br/>
+컨벡스 헐 트릭 <br/>
+서큘레이션 <br/>
+확장 유클리드 알고리즘 <br/>
