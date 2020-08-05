@@ -14,6 +14,6 @@ const int dx[] = { 1, -1, 0, 0 };
 int main() {
 	cin.tie(NULL); cout.tie(NULL);
 	ios_base::sync_with_stdio(false);
-
+	
 	return 0;
 }
