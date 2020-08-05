@@ -36,3 +36,19 @@ Email : <jungchallenge444@gmail.com>
 7. [Math](https://github.com/manoflearning/PS-Reference-Codes/tree/master/Reference%20Codes/7.%20Math) <br/>
 7.1. [Sieve of Eratosthenes](https://github.com/manoflearning/PS-Reference-Codes/blob/master/Reference%20Codes/7.%20Math/7.1.%20Sieve%20of%20Eratosthenes.cpp) <br/>
 7.2. [GCD, LCM](https://github.com/manoflearning/PS-Reference-Codes/blob/master/Reference%20Codes/7.%20Math/7.2.%20GCD,%20LCM.cpp) <br/>
+
+# Algorithms to Add
+pst
+머지 소트 트리
+세그비츠
+동적 세그
+2d 세그
+kth 세그
+스플레이 트리
+fft
+중국인의 나머지 정리
+링컷 트리
+볼록 컷 트리
+컨벡스 헐 트릭
+서큘레이션
+확장 유클리드 알고리즘
