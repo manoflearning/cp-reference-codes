@@ -1,5 +1,5 @@
 # PS-Reference-Codes
-This repository is a collection of reference codes of various algorithms for the purpose of competitive programming.
+알고리즘 대회를 목적으로 다양한 알고리즘의 레퍼런스 코드를 모아놓은 자료입니다.
 
 Email : <jungchallenge444@gmail.com>
 
@@ -36,3 +36,30 @@ Email : <jungchallenge444@gmail.com>
 7. [Math](https://github.com/manoflearning/PS-Reference-Codes/tree/master/Reference%20Codes/7.%20Math) <br/>
 7.1. [Sieve of Eratosthenes](https://github.com/manoflearning/PS-Reference-Codes/blob/master/Reference%20Codes/7.%20Math/7.1.%20Sieve%20of%20Eratosthenes.cpp) <br/>
 7.2. [GCD, LCM](https://github.com/manoflearning/PS-Reference-Codes/blob/master/Reference%20Codes/7.%20Math/7.2.%20GCD,%20LCM.cpp) <br/>
+
+# Algorithms to Add
+pst <br/>
+머지 소트 트리 <br/>
+세그비츠 <br/>
+동적 세그 <br/>
+2d 세그 <br/>
+kth 세그 <br/>
+스플레이 트리 <br/>
+링컷 트리 <br/>
+확장 유클리드 알고리즘 <br/>
+서큘레이션 <br/>
+컨벡스 헐 트릭 <br/>
+볼록 컷 트리 <br/>
+fft <br/>
+중국인의 나머지 정리 <br/>
+lr flow <br/>
+sqrt decomposition <br/>
+mo <br/>
+뫼비우스 함수 <br/>
+slope trick <br/>
+선인장 <br/>
+alien trick <br/>
+berlekamp-massey <br/>
+offline incremental SCC <br/>
+dual of planar graph <br/>
+tree compression <br/>
