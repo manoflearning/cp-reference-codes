@@ -12,7 +12,7 @@ int isFileOrDir(_finddata_t fd);
 void stringProcess(string s, string path, const int& checkDirFile);
 
 int main() {
-	string path = "D:\\0JWK\\0GitHub\\PS-Reference-Codes\\Reference Codes";
+	string path = "D:\\0JWK\\0programming\\PS-Reference-Codes\\Reference Codes";
 	searchingDir(path, 0);
 	cout << Contents << '\n';
 }
