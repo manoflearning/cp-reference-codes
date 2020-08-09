@@ -33,7 +33,7 @@ void searchingDir(string path, int depth) {
 
 	do {
 		checkDirFile = isFileOrDir(fd);
-		if ((checkDirFile == 0 || checkDirFile == 1) && fd.name[0] != '.') {
+		if (fd.name[0] != '.') {
 			stringProcess(fd.name, path, checkDirFile);
 
 			if (checkDirFile == 0) searchingDir(path + "\\" + fd.name, depth + 1);
