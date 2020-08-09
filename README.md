@@ -1,8 +1,6 @@
 # PS-Reference-Codes
 알고리즘 대회를 목적으로 다양한 알고리즘의 레퍼런스 코드를 모아놓은 자료입니다.
 
-Email : <jungchallenge444@gmail.com>
-
 # Contents
 1. [Data Structure](https://github.com/manoflearning/PS-Reference-Codes/tree/master/Reference%20Codes/1.%20Data%20Structure) <br/>
 1.1. [Segment Tree](https://github.com/manoflearning/PS-Reference-Codes/tree/master/Reference%20Codes/1.%20Data%20Structure/1.1.%20Segment%20Tree) <br/>
