@@ -36,6 +36,7 @@
 7.2. [GCD, LCM](https://github.com/manoflearning/PS-Reference-Codes/blob/master/Reference%20Codes/7.%20Math/7.2.%20GCD,%20LCM.cpp) <br/>
 
 # Algorithms to Add
+mst <br/>
 pst <br/>
 머지 소트 트리 <br/>
 세그비츠 <br/>
