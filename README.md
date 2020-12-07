@@ -35,8 +35,8 @@
 7.1. [Sieve of Eratosthenes](https://github.com/manoflearning/PS-Reference-Codes/blob/master/Reference%20Codes/7.%20Math/7.1.%20Sieve%20of%20Eratosthenes.cpp) <br/>
 7.2. [GCD, LCM](https://github.com/manoflearning/PS-Reference-Codes/blob/master/Reference%20Codes/7.%20Math/7.2.%20GCD,%20LCM.cpp) <br/>
 
-# 수정사항
-4. 네트워크 플로우, 4.1. 맥시멈 플로우.
+# 수정할 사항
+이름 바뀜. 4. 네트워크 플로우, 4.1. 맥시멈 플로우.
 
 # 추가할 알고리즘
 mst <br/>
