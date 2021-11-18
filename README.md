@@ -18,12 +18,12 @@
 3.1. [Lowest Common Ancestor](https://github.com/manoflearning/PS-Reference-Codes/blob/master/Reference%20Codes/3.%20Tree/3.1.%20Lowest%20Common%20Ancestor.cpp) <br/>
 3.2. [Heavy-Light Decomposition](https://github.com/manoflearning/PS-Reference-Codes/tree/master/Reference%20Codes/3.%20Tree/3.2.%20Heavy-Light%20Decomposition) <br/>
 3.3. [Centroid Decomposition](https://github.com/manoflearning/PS-Reference-Codes/blob/master/Reference%20Codes/3.%20Tree/3.3.%20Centroid%20Decomposition.cpp) <br/>
-4. [Maximum Flow](https://github.com/manoflearning/PS-Reference-Codes/tree/master/Reference%20Codes/4.%20Maximum%20Flow) <br/>
-4.1. [Network Flow](https://github.com/manoflearning/PS-Reference-Codes/tree/master/Reference%20Codes/4.%20Maximum%20Flow/4.1.%20Network%20Flow) <br/>
-4.2. [Dinic's Algorithm](https://github.com/manoflearning/PS-Reference-Codes/blob/master/Reference%20Codes/4.%20Maximum%20Flow/4.2.%20Dinic's%20Algorithm.cpp) <br/>
-4.3. [Bipartite Matching](https://github.com/manoflearning/PS-Reference-Codes/blob/master/Reference%20Codes/4.%20Maximum%20Flow/4.3.%20Bipartite%20Matching.cpp) <br/>
-4.4. [Hopcroft-Karp Algorithm](https://github.com/manoflearning/PS-Reference-Codes/blob/master/Reference%20Codes/4.%20Maximum%20Flow/4.4.%20Hopcroft-Karp%20Algorithm.cpp) <br/>
-4.5. [MCMF](https://github.com/manoflearning/PS-Reference-Codes/blob/master/Reference%20Codes/4.%20Maximum%20Flow/4.5.%20MCMF.cpp) <br/>
+4. [Network Flow](https://github.com/manoflearning/PS-Reference-Codes/tree/master/Reference%20Codes/4.%20Network%20Flow) <br/>
+4.1. [Maximum Flow](https://github.com/manoflearning/PS-Reference-Codes/tree/master/Reference%20Codes/4.%20Network%20Flow/4.1.%20Maximum%20Flow) <br/>
+4.2. [Dinic's Algorithm](https://github.com/manoflearning/PS-Reference-Codes/blob/master/Reference%20Codes/4.%20Network%20Flow/4.2.%20Dinic's%20Algorithm.cpp) <br/>
+4.3. [Bipartite Matching](https://github.com/manoflearning/PS-Reference-Codes/blob/master/Reference%20Codes/4.%20Network%20Flow/4.3.%20Bipartite%20Matching.cpp) <br/>
+4.4. [Hopcroft-Karp Algorithm](https://github.com/manoflearning/PS-Reference-Codes/blob/master/Reference%20Codes/4.%20Network%20Flow/4.4.%20Hopcroft-Karp%20Algorithm.cpp) <br/>
+4.5. [MCMF](https://github.com/manoflearning/PS-Reference-Codes/blob/master/Reference%20Codes/4.%20Network%20Flow/4.5.%20MCMF.cpp) <br/>
 5. [String](https://github.com/manoflearning/PS-Reference-Codes/tree/master/Reference%20Codes/5.%20String) <br/>
 5.1. [Rabin-Karp Algorithm](https://github.com/manoflearning/PS-Reference-Codes/tree/master/Reference%20Codes/5.%20String/5.1.%20Rabin-Karp%20Algorithm) <br/>
 5.2. [KMP Algorithm](https://github.com/manoflearning/PS-Reference-Codes/blob/master/Reference%20Codes/5.%20String/5.2.%20KMP%20Algorithm.cpp) <br/>
