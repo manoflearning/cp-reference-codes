@@ -36,7 +36,7 @@
 7.2. [GCD, LCM](https://github.com/manoflearning/PS-Reference-Codes/blob/master/Reference%20Codes/7.%20Math/7.2.%20GCD,%20LCM.cpp) <br/>
 
 # 수정할 사항
-dfs, bfs 
+dfs, bfs 추가하기
 
 # 추가할 알고리즘
 mst <br/>
