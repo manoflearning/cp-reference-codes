@@ -5,6 +5,8 @@ using namespace std;
 #define ll long long
 #define pii pair<int, int>
 #define pll pair<ll, ll>
+#define vi vector<int>
+#define vvi vector<vector<int>>
 
 const int INF = 1e9 + 7;
 const int MOD = 1e9 + 7;
