@@ -7,6 +7,8 @@ using namespace std;
 #define pll pair<ll, ll>
 #define vi vector<int>
 #define vvi vector<vector<int>>
+#define vl vector<ll>
+#define vvl vector<vector<ll>>
 
 const int INF = 1e9 + 7;
 const int MOD = 1e9 + 7;
