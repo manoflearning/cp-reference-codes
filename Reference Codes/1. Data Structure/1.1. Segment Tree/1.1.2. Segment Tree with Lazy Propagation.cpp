@@ -15,11 +15,11 @@ struct Seg {
 		for (int i = flag; i < flag + N; i++) cin >> t[i];
 		for (int i = flag - 1; i >= 1; i--) t[i] = t[i << 1] + t[i << 1 | 1];
 	}
-	void modify(int l, int r, int value) {
+	void modify(int l, int r, ll value) {
 		return modify(l, r, 1, 1, flag, value);
 	}
 	// add a value to all elements in interval [l, r]
-	void modify(int l, int r, int n, int nl, int nr, int value) {
+	void modify(int l, int r, int n, int nl, int nr, ll value) {
 		propagate(n, nl, nr);
 
 		if (r < nl || nr < l) return;
