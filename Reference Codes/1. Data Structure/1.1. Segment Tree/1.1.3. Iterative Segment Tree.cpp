@@ -13,7 +13,7 @@ struct Seg {
 		for (int i = 0; i < N; i++) cin >> t[N + i];
 		for (int i = N - 1; i >= 1; i--) t[i] = t[i << 1] + t[i << 1 | 1];
 	}
-	void modify(int p, int value) {  // set value at position p
+	void modify(int p, ll value) {  // set value at position p
 		for (t[p += N] = value; p > 1; p >>= 1) t[p >> 1] = t[p] + t[p ^ 1];
 	}
 	ll query(int l, int r) {  // sum on interval [l, r)
