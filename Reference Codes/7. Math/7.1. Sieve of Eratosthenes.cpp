@@ -9,13 +9,13 @@ bool isPrime[MAX + 1];
 vector<int> prime(1, 2);
 
 void getPrime() {
-	fill(isPrime, isPrime + MAX + 1, true);
+	fill(isPrime, isPrime + MAX + 1, 1);
 
 	for (ll i = 4; i <= MAX; i += 2)
-		isPrime[i] = false;
+		isPrime[i] = 0;
 	for (ll i = 3; i <= MAX; i++) {
 		if (isPrime[i]) prime.push_back(i);
 		for (ll j = i * i; j <= MAX; j += i * 2)
-			isPrime[j] = false;
+			isPrime[j] = 0;
 	}
 }
