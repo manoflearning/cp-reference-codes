@@ -9,6 +9,8 @@ using namespace std;
 #define vvi vector<vector<int>>
 #define vl vector<ll>
 #define vvl vector<vector<ll>>
+#define vs vector<string>
+#define vvs vector<vector<string>>
 
 const int INF = 1e9 + 7;
 const int MOD = 1e9 + 7;
