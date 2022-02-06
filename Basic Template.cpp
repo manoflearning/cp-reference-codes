@@ -3,6 +3,8 @@
 #include <cassert>
 using namespace std;
 #define ll long long
+#define fr first
+#define sc second
 #define pii pair<int, int>
 #define pll pair<ll, ll>
 #define vi vector<int>
