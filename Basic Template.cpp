@@ -16,8 +16,8 @@ using namespace std;
 
 const int INF = 1e9 + 7;
 const int MOD = 1e9 + 7;
-const int dy[] = { 0, 0, 1, -1 };
-const int dx[] = { 1, -1, 0, 0 };
+const int dy[] = { 0, 0, 1, -1, 1, 1, -1, -1 };
+const int dx[] = { 1, -1, 0, 0, 1, -1, 1, -1 };
 
 int main() {
 	cin.tie(NULL); cout.tie(NULL);
