@@ -1,5 +1,5 @@
 # PS-Reference-Codes
-알고리즘 대회를 목적으로 다양한 자료구조와 알고리즘의 레퍼런스 코드를 모아놓은 자료입니다.
+프로그래밍 대회를 목적으로 다양한 자료구조와 알고리즘의 레퍼런스 코드를 모아놓은 자료입니다.
 
 # Contents
 1. [Data Structure](https://github.com/manoflearning/PS-Reference-Codes/tree/master/Reference%20Codes/1.%20Data%20Structure) <br/>
@@ -37,20 +37,17 @@
 7.1. [Sieve of Eratosthenes](https://github.com/manoflearning/PS-Reference-Codes/blob/master/Reference%20Codes/7.%20Math/7.1.%20Sieve%20of%20Eratosthenes.cpp) <br/>
 7.2. [GCD, LCM](https://github.com/manoflearning/PS-Reference-Codes/blob/master/Reference%20Codes/7.%20Math/7.2.%20GCD,%20LCM.cpp) <br/>
 
-# 수정할 사항
-dfs, bfs 추가하기
-
 # 추가할 알고리즘
 mst <br/>
+kth 세그 <br/>
+확장 유클리드 알고리즘 <br/>
 pst <br/>
 머지 소트 트리 <br/>
 세그비츠 <br/>
 동적 세그 <br/>
 2d 세그 <br/>
-kth 세그 <br/>
 스플레이 트리 <br/>
 링컷 트리 <br/>
-확장 유클리드 알고리즘 <br/>
 서큘레이션 <br/>
 컨벡스 헐 트릭 <br/>
 볼록 컷 트리 <br/>
