@@ -39,31 +39,3 @@
 7.2. [GCD, LCM](https://github.com/manoflearning/PS-Reference-Codes/blob/master/Reference%20Codes/7.%20Math/7.2.%20GCD,%20LCM.cpp) <br/>
 8. [Etc](https://github.com/manoflearning/PS-Reference-Codes/tree/master/Reference%20Codes/8.%20Etc) <br/>
 8.1. [Coordinate Compression](https://github.com/manoflearning/PS-Reference-Codes/blob/master/Reference%20Codes/8.%20Etc/8.1.%20Coordinate%20Compression.cpp)
-
-# 추가할 알고리즘
-mst <br/>
-kth 세그 <br/>
-확장 유클리드 알고리즘 <br/>
-pst <br/>
-머지 소트 트리 <br/>
-세그비츠 <br/>
-동적 세그 <br/>
-2d 세그 <br/>
-스플레이 트리 <br/>
-링컷 트리 <br/>
-서큘레이션 <br/>
-컨벡스 헐 트릭 <br/>
-볼록 컷 트리 <br/>
-fft <br/>
-중국인의 나머지 정리 <br/>
-lr flow <br/>
-sqrt decomposition <br/>
-mo <br/>
-뫼비우스 함수 <br/>
-slope trick <br/>
-선인장 <br/>
-alien trick <br/>
-berlekamp-massey <br/>
-offline incremental SCC <br/>
-dual of planar graph <br/>
-tree compression <br/>
