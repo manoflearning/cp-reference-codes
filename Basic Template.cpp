@@ -3,8 +3,6 @@
 #include <cassert>
 using namespace std;
 #define ll long long
-#define fr first
-#define sc second
 #define pii pair<int, int>
 #define pll pair<ll, ll>
 #define vi vector<int>
@@ -13,6 +11,8 @@ using namespace std;
 #define vvl vector<vector<ll>>
 #define vs vector<string>
 #define vvs vector<vector<string>>
+#define fr first
+#define sc second
 
 const int INF = 1e9 + 7;
 const int MOD = 1e9 + 7;
