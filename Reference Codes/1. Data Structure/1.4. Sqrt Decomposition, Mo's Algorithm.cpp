@@ -12,7 +12,7 @@ vector<se> q;
 vector<int> ans;
 
 void input() {
-	// TODO: receive input | resize q, ans | calculate sq 
+	// TODO: 1. receive input 2. resize q, ans 3. calculate sq 
 }
 
 void add(int idx) {
