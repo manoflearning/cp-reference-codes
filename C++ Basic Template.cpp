@@ -9,7 +9,6 @@ using namespace std;
 #define fr first
 #define sc second
 #define vt vector
-#define pb push_back
 #define all(c) (c).begin(), (c).end()
 #define sz(x) (int)(x).size()
 
