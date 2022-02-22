@@ -9,7 +9,7 @@ bool isPrime[MAX + 1];
 vector<int> prime(1, 2);
 
 void getPrime() {
-	fill(isPrime, isPrime + MAX + 1, 1);
+	fill(isPrime + 2, isPrime + MAX + 1, 1);
 
 	for (ll i = 4; i <= MAX; i += 2)
 		isPrime[i] = 0;
