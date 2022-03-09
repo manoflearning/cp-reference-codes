@@ -1,5 +1,5 @@
 # PS-Reference-Codes
-프로그래밍 대회를 목적으로 다양한 자료구조와 알고리즘의 레퍼런스 코드를 모아놓은 자료입니다.
+Various data structures and algorithms for problem solving, competitive programming purposes.
 
 # Contents
 0. [Basic Template](https://github.com/manoflearning/PS-Reference-Codes/tree/master/Reference%20Codes/0.%20Basic%20Template) <br/>
