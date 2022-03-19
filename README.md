@@ -1,5 +1,5 @@
 # CP-Reference-Codes
-Various data structures and algorithms for problem solving, competitive programming.
+Various data structures and algorithms for competitive programming.
 
 # Contents
 0. [Basic Template](https://github.com/manoflearning/PS-Reference-Codes/tree/master/Reference%20Codes/0.%20Basic%20Template) <br/>
