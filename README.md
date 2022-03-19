@@ -1,4 +1,4 @@
-# PS-Reference-Codes
+# CP-Reference-Codes
 Various data structures and algorithms for problem solving, competitive programming.
 
 # Contents
