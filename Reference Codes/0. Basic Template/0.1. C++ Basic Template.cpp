@@ -23,6 +23,7 @@ using namespace std;
 #define FOR(...) EXPAND( F_ORC(__VA_ARGS__ )(__VA_ARGS__) )
 #define EACH(x, a) for (auto& x : a)
 
+const double EPS = 1e-9;
 const int INF = 1e9 + 7;
 const int MOD = 1e9 + 7;
 const int dy[] = { 0, 0, 1, -1, 1, 1, -1, -1 };
