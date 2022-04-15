@@ -3,6 +3,7 @@
 #include <cassert>
 using namespace std;
 #define ll long long
+#define ull unsigned long long
 #define ld long double
 #define pii pair<int, int>
 #define pll pair<ll, ll>
