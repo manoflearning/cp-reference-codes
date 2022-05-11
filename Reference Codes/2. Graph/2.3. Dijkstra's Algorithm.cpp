@@ -2,49 +2,50 @@
 #include <vector>
 #include <queue>
 using namespace std;
+#define ll long long
 
-const int MAXV = 2 * 1e5;
+const int MAX = 202020;
 const int INF = 1e9 + 7;
 
-struct dv {
-	int d, v;
+struct wv {
+	ll w;
+	int v;
+	bool operator<(const wv& rhs) const {
+		return w > rhs.w;
+	}
 };
 
-bool operator<(dv a, dv b) {
-	return a.d > b.d;
-}
-
-int N, st;
-vector<dv> adj[MAXV + 5];
-vector<int> dist(MAXV + 5, INF);
+int n, m, st;
+vector<wv> adj[MAX];
+vector<ll> dist(MAX, INF);
 
 void input() {
-	int E;
-	cin >> N >> E >> st;
+	cin >> n >> m >> st;
 
-	for (int i = 0; i < E; i++) {
-		int u, v, d;
-		cin >> u >> v >> d;
-		adj[u].push_back({ d, v });
-		adj[v].push_back({ d, u });
+	for (int i = 0; i < m; i++) {
+		int u, v, w;
+		cin >> u >> v >> w;
+		adj[u].push_back({ w, v });
+		adj[v].push_back({ w, u });
 	}
 }
 
 void dijkstra(int st) {
-	priority_queue<dv> pq;
+	priority_queue<wv> pq;
 
 	pq.push({ 0, st });
 	dist[st] = 0;
 
 	while (!pq.empty()) {
-		int now = pq.top().v, d = pq.top().d;
+		int v = pq.top().v, w = pq.top().w;
 		pq.pop();
 
-		for (auto& e : adj[now]) {
-			int next = e.v;
-			if (dist[next] > d + e.d) {
-				dist[next] = d + e.d;
-				pq.push({ dist[next], next });
+		if (w > dist[v]) continue;
+
+		for (auto& i : adj[v]) {
+			if (dist[i.v] > w + i.w) {
+				dist[i.v] = w + i.w;
+				pq.push({ w + i.w, i.v });
 			}
 		}
 	}
@@ -58,7 +59,7 @@ int main() {
 
 	dijkstra(st);
 
-	for (int i = 1; i <= N; i++) {
+	for (int i = 1; i <= n; i++) {
 		if (dist[i] == INF) cout << "can't go\n";
 		else cout << dist[i] << '\n';
 	}
