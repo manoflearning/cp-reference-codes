@@ -1,6 +1,15 @@
 {
     "files.associations": {
         "iterator": "cpp",
-        "random": "cpp"
+        "random": "cpp",
+        "vector": "cpp",
+        "__split_buffer": "cpp",
+        "deque": "cpp",
+        "list": "cpp",
+        "string": "cpp",
+        "algorithm": "cpp",
+        "chrono": "cpp",
+        "limits": "cpp",
+        "valarray": "cpp"
     }
 }

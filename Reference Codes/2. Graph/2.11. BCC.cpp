@@ -21,19 +21,19 @@ int dfs(int now, int prv) {
 	int ret = dfsn[now] = ++dCnt;
 
 	for (int next : adj[now]) {
-		//ºÎ¸ð ³ëµå ½ºÅµ
+		//ï¿½Î¸ï¿½ ï¿½ï¿½ï¿½ ï¿½ï¿½Åµ
 		if (next == prv) continue;
 
-		//¾ÆÁ÷ ¹æ¹®ÇÏÁö ¾ÊÀº 
+		//ï¿½ï¿½ï¿½ï¿½ ï¿½æ¹®ï¿½ï¿½ï¿½ï¿½ ï¿½ï¿½ï¿½ï¿½ 
 		if (dfsn[now] > dfsn[next]) stk.push({ now, next });
-		//¿ª¹æÇâ °£¼±
+		//ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ ï¿½ï¿½ï¿½ï¿½
 		if (dfsn[next] != -1) ret = min(ret, dfsn[next]);
-		//Æ®¸® °£¼±
+		//Æ®ï¿½ï¿½ ï¿½ï¿½ï¿½ï¿½
 		else {
 			int tmp = dfs(next, now);
 			ret = min(ret, tmp);
             
-			//ÀÚ¼Õ ³ëµå¿¡¼­ ÇöÀç ³ëµåÀÇ Á¶»ó ³ëµå·Î °¥ ¼ö ÀÖ´Â °æ·Î°¡ ¾øÀ½
+			//ï¿½Ú¼ï¿½ ï¿½ï¿½å¿¡ï¿½ï¿½ ï¿½ï¿½ï¿½ï¿½ ï¿½ï¿½ï¿½ï¿½ï¿½ ï¿½ï¿½ï¿½ï¿½ ï¿½ï¿½ï¿½ï¿½ ï¿½ï¿½ ï¿½ï¿½ ï¿½Ö´ï¿½ ï¿½ï¿½Î°ï¿½ ï¿½ï¿½ï¿½ï¿½
 			if (tmp >= dfsn[now]) {
 				vector<pair<int, int>> nowBCC;
 				while (true) {
