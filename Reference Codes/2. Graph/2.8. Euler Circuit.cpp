@@ -1,3 +1,4 @@
+// Hierholzer's Algorithm
 #include <iostream>
 #include <vector>
 using namespace std;
@@ -8,13 +9,11 @@ int N, adj[MAXV + 5][MAXV + 5];
 vector<int> euler_circult;
 
 void dfs(int now) {
-	//인접행렬
 	for(int next = 1; next <= N; next++)
 		if (adj[now][next]) {
 			adj[now][next]--;
 			adj[next][now]--;
 			dfs(next);
 		}
-	//경로의 역순으로 배열이 구성된다.
 	euler_circult.push_back(now);
 }
