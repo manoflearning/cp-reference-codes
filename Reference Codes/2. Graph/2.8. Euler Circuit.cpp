@@ -3,18 +3,63 @@
 #include <vector>
 using namespace std;
 
-const int MAXV = 5 * 1e4;
+const int MAXV = 1010;
 
-int N, adj[MAXV + 5][MAXV + 5];
-vector<int> euler_circult;
+int n, adj[MAXV][MAXV], nxt[MAXV];
+vector<int> eulerCircult;
 
-void dfs(int now) {
-	for(int next = 1; next <= N; next++) {
-		if (adj[now][next]) {
-			adj[now][next]--;
-			adj[next][now]--;
-			dfs(next);
+void input() {
+	cin >> n;
+	for (int i = 1; i <= n; i++) {
+		for (int j = 1; j <= n; j++) {
+			cin >> adj[i][j];
 		}
 	}
-	euler_circult.push_back(now);
+}
+
+int eulerCircuitExist() {
+	// If the degree of all nodes in the graph is even, then an euler circuit exists.
+	// Otherwise, the euler circuit does not exist.
+	// We can do similar way to determine the existence of euler path. 
+	// If only two vertices have odd degree, than an eular path exists. Otherwise, the euler path does not exist.
+	for (int i = 1; i <= n; i++) {
+		int deg = 0;
+		for (int j = 1; j <= n; j++) {
+			deg += adj[i][j];
+		}
+		if (deg & 1) return 0;
+	}
+	return 1;
+}
+
+void dfs(int now) {
+	for (int& x = nxt[now]; x <= n; x++) {
+		while (x <= n && adj[now][x]) {
+			adj[now][x]--;
+			adj[x][now]--;
+			dfs(x);
+		}
+	}
+	eulerCircult.push_back(now);
+}
+
+int main() {
+	cin.tie(NULL); cout.tie(NULL);
+	ios_base::sync_with_stdio(false);
+
+	input();
+
+	if (!eulerCircuitExist()) {
+		cout << "Euler Circuit does not exist";
+		return 0;
+	}
+
+	for (int i = 1; i <= n; i++) nxt[i] = 1;
+
+	dfs(1);
+
+	for (auto i : eulerCircult) 
+		cout << i << ' ';
+
+	return 0;
 }
