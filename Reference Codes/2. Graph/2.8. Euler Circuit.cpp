@@ -17,7 +17,7 @@ void input() {
 	}
 }
 
-int eulerCircuitExist() {
+int doesEulerCircuitExist() {
 	// If the degree of all nodes in the graph is even, then an euler circuit exists.
 	// Otherwise, the euler circuit does not exist.
 	// We can do similar way to determine the existence of euler path. 
@@ -49,7 +49,7 @@ int main() {
 
 	input();
 
-	if (!eulerCircuitExist()) {
+	if (!doesEulerCircuitExist()) {
 		cout << "Euler Circuit does not exist";
 		return 0;
 	}
