@@ -30,19 +30,19 @@ int dfs(int v) {
 	for (int next : adj[v]) {
 		// unvisited vertex
 		if (label[next] == -1) ret = min(ret, dfs(next));
-		// visited but not yet classified as SCC
+		// visited but not yet classified as SCC. in other words, edge { v, next } is back edge.
 		else if (!finished[next]) ret = min(ret, label[next]);
 	}
 
 	if (ret == label[v]) {
 		vector<int> vSCC;
-		while (true) {
+		while (1) {
 			int t = S.top();
 			S.pop();
 
 			vSCC.push_back(t);
 			SCCnum[t] = SCCcnt;
-			finished[t] = true;
+			finished[t] = 1;
 
 			if (t == v) break;
 		}
