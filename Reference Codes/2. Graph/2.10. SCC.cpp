@@ -1,3 +1,4 @@
+// Tarjan's strongly connected components algorithm
 #include <iostream>
 #include <stack>
 #include <vector>
@@ -27,9 +28,9 @@ int dfs(int v) {
 
 	int ret = label[v];
 	for (int next : adj[v]) {
-		//¹æ¹®ÇÏÁö ¾ÊÀº Á¤Á¡
+		//ï¿½æ¹®ï¿½ï¿½ï¿½ï¿½ ï¿½ï¿½ï¿½ï¿½ ï¿½ï¿½ï¿½ï¿½
 		if (label[next] == -1) ret = min(ret, dfs(next));
-		//¹æ¹®Àº ÇßÀ¸³ª ¾ÆÁ÷ SCC·Î ºÐ·ùµÇÁö ¾ÊÀº Á¤Á¡
+		//ï¿½æ¹®ï¿½ï¿½ ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ ï¿½ï¿½ï¿½ï¿½ SCCï¿½ï¿½ ï¿½Ð·ï¿½ï¿½ï¿½ï¿½ï¿½ ï¿½ï¿½ï¿½ï¿½ ï¿½ï¿½ï¿½ï¿½
 		else if (!finished[next]) ret = min(ret, label[next]);
 	}
 
