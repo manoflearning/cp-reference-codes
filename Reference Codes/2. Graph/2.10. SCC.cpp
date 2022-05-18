@@ -28,9 +28,9 @@ int dfs(int v) {
 
 	int ret = label[v];
 	for (int next : adj[v]) {
-		//�湮���� ���� ����
+		// unvisited vertex
 		if (label[next] == -1) ret = min(ret, dfs(next));
-		//�湮�� ������ ���� SCC�� �з����� ���� ����
+		// visited but not yet classified as SCC
 		else if (!finished[next]) ret = min(ret, label[next]);
 	}
 
