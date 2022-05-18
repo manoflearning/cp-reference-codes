@@ -8,37 +8,39 @@ using namespace std;
 
 const int MAXV = 101010;
 
-int N, label[MAXV], labelCnt;
-int SCCnum[MAXV], SCCcnt;
+int n, m, label[MAXV], labelCnt;
+int SCCnum[MAXV], SCCcnt, finished[MAXV];
 vector<int> adj[MAXV];
-bool finished[MAXV];
-stack<int> S;
+stack<int> stk;
 vector<vector<int>> SCC;
 
-void getSCC() {
-	memset(label, -1, sizeof(label));
-
-	for (int v = 0; v < N; v++)
-		if (label[v] == -1) dfs(v);
+void input() {
+	cin >> n >> m;
+	for (int i = 0; i < m; i++) {
+		int u, v;
+		cin >> u >> v;
+		adj[u].push_back(v);
+	}
 }
 
 int dfs(int v) {
 	label[v] = labelCnt++;
-	S.push(v);
+	stk.push(v);
 
 	int ret = label[v];
 	for (int next : adj[v]) {
-		// unvisited vertex
+		// Unvisited node.
 		if (label[next] == -1) ret = min(ret, dfs(next));
-		// visited but not yet classified as SCC. in other words, edge { v, next } is back edge.
+		// Visited but not yet classified as SCC. In other words, edge { v, next } is back edge.
 		else if (!finished[next]) ret = min(ret, label[next]);
 	}
-
+	
+	// If there is no edge to the ancestor node among itself and its descendants, find scc.
 	if (ret == label[v]) {
 		vector<int> vSCC;
 		while (1) {
-			int t = S.top();
-			S.pop();
+			int t = stk.top();
+			stk.pop();
 
 			vSCC.push_back(t);
 			SCCnum[t] = SCCcnt;
@@ -52,4 +54,22 @@ int dfs(int v) {
 	}
 
 	return ret;
+}
+
+void getSCC() {
+	memset(label, -1, sizeof(label));
+
+	for (int v = 1; v <= n; v++)
+		if (label[v] == -1) dfs(v);
+}
+
+int main() {
+	cin.tie(NULL); cout.tie(NULL);
+	ios_base::sync_with_stdio(false);
+	
+	input();
+
+	getSCC();
+
+	return 0;
 }
