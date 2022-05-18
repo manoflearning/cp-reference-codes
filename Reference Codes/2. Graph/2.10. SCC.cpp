@@ -6,12 +6,12 @@
 #include <algorithm>
 using namespace std;
 
-const int MAXV = 1e5;
+const int MAXV = 101010;
 
-int N, label[MAXV + 5], labelCnt;
-int SCCnum[MAXV + 5], SCCcnt;
-vector<int> adj[MAXV + 5];
-bool finished[MAXV + 5];
+int N, label[MAXV], labelCnt;
+int SCCnum[MAXV], SCCcnt;
+vector<int> adj[MAXV];
+bool finished[MAXV];
 stack<int> S;
 vector<vector<int>> SCC;
 
