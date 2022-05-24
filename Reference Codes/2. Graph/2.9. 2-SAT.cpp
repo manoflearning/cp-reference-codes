@@ -20,7 +20,18 @@ pii p[MAXV];
 int ans[MAXV / 2];
 
 inline int trans(int x) {
+	// negative number -x indicates ¬x.
 	return (x > 0) ? 2 * (x - 1) : 2 * (-x - 1) + 1;
+}
+
+void buildGraph() {
+	for (int i = 0; i < m; i++) {
+		int a, b;
+		cin >> a >> b;
+		// (a ∨ b) iff (¬a → b) iff (¬b → a)
+		adj[trans(-a)].push_back(trans(b));
+		adj[trans(-b)].push_back(trans(a));
+	}
 }
 
 int dfs(int now) {
@@ -90,14 +101,7 @@ int main() {
 
 	cin >> n >> m;
 
-	// graph modeling
-	for (int i = 0; i < m; i++) {
-		int a, b;
-		cin >> a >> b;
-		// negative number -a indicates the negation of the variable a.
-		adj[trans(-a)].push_back(trans(b));
-		adj[trans(-b)].push_back(trans(a));
-	}
+	buildGraph();
 
 	// finding scc
 	for (int v = 0; v < 2 * n; v++)
