@@ -20,7 +20,7 @@ pii p[MAXV];
 int ans[MAXV / 2];
 
 inline int trans(int x) {
-	// negative number x indicates ¬(-x).
+	// negative number -a indicates ¬a.
 	return (x > 0) ? 2 * (x - 1) : 2 * (-x - 1) + 1;
 }
 
