@@ -1,34 +1,20 @@
+// all edges have a capacity of 1
+// O(VE)
 #include <iostream>
 #include <vector>
 #include <cstring>
 using namespace std;
 
-const int MAX = 1e3;
+const int MAXV = 1010;
 
-int N, M, A[MAX + 5], B[MAX + 5];
-vector<int> adj[MAX + 5];
-bool visited[MAX + 5];
-
-void input();
-int bMatch();
-bool dfs(int a);
-
-int main() {
-	cin.tie(NULL); cout.tie(NULL);
-	ios_base::sync_with_stdio(false);
-
-	input();
-
-	int ans = bMatch();
-	cout << ans << '\n';
-
-	return 0;
-}
+int n, m, A[MAXV], B[MAXV];
+vector<int> adj[MAXV];
+bool visited[MAXV];
 
 void input() {
-	cin >> N >> M;
+	cin >> n >> m;
 
-	for (int i = 1; i <= N; i++) {
+	for (int i = 1; i <= n; i++) {
 		int cnt; cin >> cnt;
 		while (cnt--) {
 			int x; cin >> x;
@@ -38,12 +24,24 @@ void input() {
 	}
 }
 
-int bMatch() {
+bool dfs(int a) {
+	visited[a] = 1;
+	for (int b : adj[a]) {
+		if (B[b] == -1 || (!visited[B[b]] && dfs(B[b]))) {
+			A[a] = b;
+			B[b] = a;
+			return 1;
+		}
+	}
+	return 0;
+}
+
+int bipartiteMatch() {
 	memset(A, -1, sizeof(A));
 	memset(B, -1, sizeof(B));
 
 	int ret = 0;
-	for (int i = 1; i <= N; i++) {
+	for (int i = 1; i <= n; i++) {
 		memset(visited, 0, sizeof(visited));
 		if (dfs(i)) ret++;
 	}
@@ -51,14 +49,14 @@ int bMatch() {
 	return ret;
 }
 
-bool dfs(int a) {
-	visited[a] = true;
-	for (int b : adj[a]) {
-		if (B[b] == -1 || (!visited[B[b]] && dfs(B[b]))) {
-			A[a] = b;
-			B[b] = a;
-			return true;
-		}
-	}
-	return false;
+int main() {
+	cin.tie(NULL); cout.tie(NULL);
+	ios_base::sync_with_stdio(false);
+
+	input();
+
+	int ans = bipartiteMatch();
+	cout << ans << '\n';
+
+	return 0;
 }
