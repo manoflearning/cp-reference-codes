@@ -1,3 +1,5 @@
+// Edmonds-Karp algorithm
+// time complexity : O(V * E^2)
 #include <iostream>
 #include <queue>
 #include <vector>
