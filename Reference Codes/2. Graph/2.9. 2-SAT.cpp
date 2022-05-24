@@ -6,50 +6,12 @@
 #include <algorithm>
 using namespace std;
 
-const int MAXV = 2 * 1e4;
+const int MAXV = 2020;
 
-int dfsn[MAXV + 5], dCnt, sNum[MAXV + 5], sCnt;
-bool finished[MAXV + 5];
-vector<int> adj[MAXV + 5];
+int dfsn[MAXV], dCnt, sNum[MAXV], sCnt;
+bool finished[MAXV];
+vector<int> adj[MAXV];
 stack<int> stk;
-
-inline int trans(int x);
-int dfs(int now);
-
-int main() {
-	cin.tie(NULL); cout.tie(NULL);
-	ios_base::sync_with_stdio(false);
-
-	memset(dfsn, -1, sizeof(dfsn));
-
-	int N, M;
-	cin >> N >> M;
-
-	for (int i = 0; i < M; i++) {
-		int a, b;
-		cin >> a >> b;
-		adj[trans(-a)].push_back(trans(b));
-		adj[trans(-b)].push_back(trans(a));
-	}
-
-	//dfs 트리
-	for (int v = 0; v < 2 * N; v++)
-		if (dfsn[v] == -1) dfs(v);
-
-	//x_i와 ~x_i가 같은 scc에 있다면 0 출력, 그렇지 않다면 1 출력
-	bool yes = true;
-	for (int v = 0; v < 2 * N; v += 2) {
-		if (sNum[v] == sNum[v + 1]) {
-			yes = false;
-			break;
-		}
-	}
-
-	if (yes) cout << 1;
-	else cout << 0;
-
-	return 0;
-}
 
 inline int trans(int x) {
 	return (x > 0) ? 2 * (x - 1) : 2 * (-x - 1) + 1;
@@ -79,4 +41,41 @@ int dfs(int now) {
 	}
 
 	return ret;
+}
+
+int main() {
+	cin.tie(NULL); cout.tie(NULL);
+	ios_base::sync_with_stdio(false);
+
+	memset(dfsn, -1, sizeof(dfsn));
+
+	int n, m;
+	cin >> n >> m;
+
+	// graph modeling
+	for (int i = 0; i < m; i++) {
+		int a, b;
+		cin >> a >> b;
+		adj[trans(-a)].push_back(trans(b));
+		adj[trans(-b)].push_back(trans(a));
+	}
+
+	// scc (dfs tree)
+	for (int v = 0; v < 2 * n; v++)
+		if (dfsn[v] == -1) dfs(v);
+
+	// determining satisfiability 
+	int isS = 1;
+	for (int v = 0; v < 2 * n; v += 2) {
+		// if v and (v + 1) is in same scc, then the proposition is not satisfiable
+		if (sNum[v] == sNum[v + 1]) {
+			isS = 0;
+			break;
+		}
+	}
+
+	if (isS) cout << 1;
+	else cout << 0;
+
+	return 0;
 }
