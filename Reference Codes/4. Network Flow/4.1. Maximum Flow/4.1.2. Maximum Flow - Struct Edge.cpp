@@ -3,16 +3,18 @@
 #include <vector>
 #include <algorithm>
 using namespace std;
+#define ll long long
 
-const int MAXV = 1e3;
+const int MAXV = 1010;
 const int INF = 1e9 + 7;
 
 struct edge {
-	int v, c, f;
-	edge* dual; //역방향 간선을 가리키는 포인터
+	int v;
+	ll c, f;
+	edge* dual; // pointer to reverse edge
 	edge() : edge(-1, 0) {}
-	edge(int v1, int c1) : v(v1), c(c1), f(0), dual(nullptr) {}
-	int residual() {
+	edge(int v1, ll c1) : v(v1), c(c1), f(0), dual(nullptr) {}
+	ll residual() {
 		return c - f;
 	}
 	void addFlow(int f1) {
@@ -21,35 +23,15 @@ struct edge {
 	}
 };
 
-int N;
+int n;
 vector<edge*> adj[MAXV + 5];
 int prv[MAXV + 5];
 edge* path[MAXV + 5];
-int st, en;
-
-void input();
-int max_flow();
-void BFS(int st, int en);
-int flow(int st, int en);
-
-int main() {
-	cin.tie(NULL); cout.tie(NULL);
-	ios_base::sync_with_stdio(false);
-
-	input();
-
-	st = 1, en = N;
-	int total = max_flow();
-
-	cout << total << endl;
-
-	return 0;
-}
 
 void input() {
-	cin >> N;
+	cin >> n;
 
-	for (int i = 0; i < N; i++) {
+	for (int i = 0; i < n; i++) {
 		int n1, n2, cap;
 		cin >> n1 >> n2 >> cap;
 
@@ -60,19 +42,7 @@ void input() {
 	}
 }
 
-int max_flow() {
-	int ret = 0;
-	while (true) {
-		BFS(st, en);
-
-		if (prv[en] == -1) break;
-
-		ret += flow(st, en);
-	}
-	return ret;
-}
-
-void BFS(int st, int en) {
+void bfs(int st, int en) {
 	memset(prv, -1, sizeof(prv));
 
 	queue<int> q;
@@ -94,8 +64,8 @@ void BFS(int st, int en) {
 	}
 }
 
-int flow(int st, int en) {
-	int n = en, block = INF;
+ll flow(int st, int en) {
+	ll block = INF;
 	for (int i = en; i != st; i = prv[i]) {
 		block = min(block, path[i]->residual());
 	}
@@ -103,4 +73,26 @@ int flow(int st, int en) {
 		path[i]->addFlow(block);
 	}
 	return block;
+}
+
+ll maxFlow(int st, int en) {
+	ll ret = 0;
+	while (1) {
+		bfs(st, en);
+		if (prv[en] == -1) break;
+		ret += flow(st, en);
+	}
+	return ret;
+}
+
+int main() {
+	cin.tie(NULL); cout.tie(NULL);
+	ios_base::sync_with_stdio(false);
+
+	input();
+
+	ll total = maxFlow(1, n);
+	cout << total << '\n';
+
+	return 0;
 }
