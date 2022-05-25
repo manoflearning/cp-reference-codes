@@ -19,18 +19,23 @@ stack<int> stk;
 pii p[MAXV];
 int ans[MAXV / 2];
 
-inline int trans(int x) {
+inline int inv(int x) {
 	// negative number -a indicates ¬a.
 	return (x > 0) ? 2 * (x - 1) : 2 * (-x - 1) + 1;
 }
 
+void cnf(int a, int b) {
+	// (a ∨ b) iff (¬a → b) iff (¬b → a)
+	adj[inv(-a)].push_back(inv(b));
+	adj[inv(-b)].push_back(inv(a));
+}
+
 void buildGraph() {
+	cin >> n >> m;
 	for (int i = 0; i < m; i++) {
 		int a, b;
 		cin >> a >> b;
-		// (a ∨ b) iff (¬a → b) iff (¬b → a)
-		adj[trans(-a)].push_back(trans(b));
-		adj[trans(-b)].push_back(trans(a));
+		cnf(a, b);
 	}
 }
 
@@ -98,8 +103,6 @@ int main() {
 
 	memset(dfsn, -1, sizeof(dfsn));
 	memset(ans, -1, sizeof(ans));
-
-	cin >> n >> m;
 
 	buildGraph();
 
