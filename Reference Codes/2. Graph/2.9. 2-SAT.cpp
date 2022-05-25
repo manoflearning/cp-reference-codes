@@ -24,7 +24,7 @@ inline int inv(int x) {
 	return (x > 0) ? 2 * (x - 1) : 2 * (-x - 1) + 1;
 }
 
-void cnf(int a, int b) {
+void twoCnf(int a, int b) {
 	// (a ∨ b) iff (¬a → b) iff (¬b → a)
 	adj[inv(-a)].push_back(inv(b));
 	adj[inv(-b)].push_back(inv(a));
@@ -35,7 +35,7 @@ void buildGraph() {
 	for (int i = 0; i < m; i++) {
 		int a, b;
 		cin >> a >> b;
-		cnf(a, b);
+		twoCnf(a, b);
 	}
 }
 
@@ -111,10 +111,10 @@ int main() {
 		if (dfsn[v] == -1) dfs(v);
 
 	if (isSatisfiable()) {
-		cout << "is satisfiable" << '\n';
+		cout << 1 << '\n';
 		findValueOfEachVariable();
 	}
-	else cout << "is not satisfiable";
+	else cout << 0;
 
 	return 0;
 }
