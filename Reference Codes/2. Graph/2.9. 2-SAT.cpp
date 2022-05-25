@@ -69,7 +69,7 @@ int isSatisfiable() {
 	// determining satisfiability 
 	int isS = 1;
 	for (int v = 0; v < 2 * n; v += 2) {
-		// if v and (v + 1) is in same scc, then the proposition is not satisfiable
+		// if x and ¬x is in same scc, then the proposition is not satisfiable
 		if (sNum[v] == sNum[v + 1]) {
 			isS = 0;
 			break;
