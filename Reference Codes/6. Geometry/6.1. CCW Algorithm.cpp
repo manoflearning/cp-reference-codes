@@ -1,28 +1,30 @@
 #include <iostream>
 #include <algorithm>
 using namespace std;
+#define ll long long
 
 struct point {
 	int x, y;
 };
 
-//ccw ¾Ë°í¸®Áò
+//ccw ï¿½Ë°ï¿½ï¿½ï¿½ï¿½ï¿½
 ll ccw(point a, point b, point c) {
-	//¾ç¼ö¸¦ ¹ÝÈ¯ÇÏ¸é ccw, À½¼ö¸¦ ¹ÝÈ¯ÇÏ¸é cw, 0À» ¹ÝÈ¯ÇÏ¸é a, b, c´Â ÇÑ Á÷¼± À§¿¡ ÀÖ´Ù.
-	return (b.x - a.x) * (c.y - a.y) - (c.x - a.x) * (b.y - a.y);
+	//ï¿½ï¿½ï¿½ï¿½ï¿½ ï¿½ï¿½È¯ï¿½Ï¸ï¿½ ccw, ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ ï¿½ï¿½È¯ï¿½Ï¸ï¿½ cw, 0ï¿½ï¿½ ï¿½ï¿½È¯ï¿½Ï¸ï¿½ a, b, cï¿½ï¿½ ï¿½ï¿½ ï¿½ï¿½ï¿½ï¿½ ï¿½ï¿½ï¿½ï¿½ ï¿½Ö´ï¿½.
+	ll res = (b.x - a.x) * (c.y - a.y) - (c.x - a.x) * (b.y - a.y);
+	return (res > 0 ? 1 : (res < 0 ? -1 : 0));
 }
 
-//µÎ ¼±ºÐ ab¿Í cd°¡ ±³Â÷ÇÏ´Â°¡?
+//ï¿½ï¿½ ï¿½ï¿½ï¿½ï¿½ abï¿½ï¿½ cdï¿½ï¿½ ï¿½ï¿½ï¿½ï¿½ï¿½Ï´Â°ï¿½?
 bool isCross(point a, point b, point c, point d) {
 	ll ab = ccw(a, b, c) * ccw(a, b, d);
 	ll cd = ccw(c, d, a) * ccw(c, d, b);
-	//³× Á¡ÀÌ ÇÑ Á÷¼± À§¿¡ ÀÖÀ» °æ¿ì
+	//ï¿½ï¿½ ï¿½ï¿½ï¿½ï¿½ ï¿½ï¿½ ï¿½ï¿½ï¿½ï¿½ ï¿½ï¿½ï¿½ï¿½ ï¿½ï¿½ï¿½ï¿½ ï¿½ï¿½ï¿½
 	if (ab == 0 && cd == 0) {
 		pii A = { a.x, a.y }, B = { b.x, b.y }, C = { c.x, c.y }, D = { d.x, d.y };
 		if (A > B) swap(A, B);
 		if (C > D) swap(C, D);
 		return (A <= D && C <= B);
 	}
-	//±×·¸Áö ¾ÊÀ» °æ¿ì
+	//ï¿½×·ï¿½ï¿½ï¿½ ï¿½ï¿½ï¿½ï¿½ ï¿½ï¿½ï¿½
 	else return (ab <= 0 && cd <= 0);
 }
