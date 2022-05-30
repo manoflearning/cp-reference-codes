@@ -5,7 +5,7 @@ using namespace std;
 #define pii pair<int, int>
 
 struct point {
-	int x, y;
+	ll x, y;
 };
 
 //ccw �˰�����
