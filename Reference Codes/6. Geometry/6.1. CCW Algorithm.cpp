@@ -2,6 +2,7 @@
 #include <algorithm>
 using namespace std;
 #define ll long long
+#define pii pair<int, int>
 
 struct point {
 	int x, y;
