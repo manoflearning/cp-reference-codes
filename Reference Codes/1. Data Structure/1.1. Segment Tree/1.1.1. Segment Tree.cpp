@@ -1,26 +1,25 @@
+// BOJ 2042 AC Code
+// https://www.acmicpc.net/problem/2042
 #include <iostream>
 #include <vector>
 using namespace std;
 #define ll long long
 
-struct Seg { // 1-based
-	int flag;  // array size
+int flag;  // array size
+struct Seg {  // 1-based
 	vector<ll> t;
 
-	void build(int N) {
-		for (flag = 1; flag < N; flag <<= 1);
+	void build(int n) {
+		for (flag = 1; flag < n; flag <<= 1);
 		t.resize(2 * flag);
 
-		for (int i = flag; i < flag + N; i++) cin >> t[i];
+		for (int i = flag; i < flag + n; i++) cin >> t[i];
 		for (int i = flag - 1; i >= 1; i--) t[i] = t[i << 1] + t[i << 1 | 1];
 	}
 	void modify(int p, ll value) {  // set value at position p
 		for (t[p += flag - 1] = value; p > 1; p >>= 1) t[p >> 1] = t[p] + t[p ^ 1];
 	}
-	ll query(int l, int r) {
-		return query(l, r, 1, 1, flag);
-	}
-	ll query(int l, int r, int n, int nl, int nr) {  // sum on interval [l, r]
+	ll query(int l, int r, int n = 1, int nl = 1, int nr = flag) {  // sum on interval [l, r]
 		if (r < nl || nr < l) return 0;
 		if (l <= nl && nr <= r) return t[n];
 
@@ -33,12 +32,17 @@ int main() {
 	cin.tie(NULL); cout.tie(NULL);
 	ios_base::sync_with_stdio(false);
 
-	int N; cin >> N;
+	int n, m, k; 
+	cin >> n >> m >> k;
 
-	seg.build(N);
+	seg.build(n);
 
-	seg.modify(1, 1);
-	cout << seg.query(3, 11) << '\n';
+	for (int i = 0; i < m + k; i++) {
+		ll op, x, y;
+		cin >> op >> x >> y;
+		if (op == 1) seg.modify(x, y);
+		if (op == 2) cout << seg.query(x, y) << '\n';
+	}
 
 	return 0;
 }

@@ -1,25 +1,24 @@
+// BOJ 10999 AC Code
+// https://www.acmicpc.net/problem/10999
 #include <iostream>
 #include <vector>
 using namespace std;
 #define ll long long
 
-struct Seg { // 1-based
-	int flag;  // array size
+int flag;  // array size
+struct Seg {  // 1-based
 	vector<ll> t, lazy;
 
-	void build(int N) {
-		for (flag = 1; flag < N; flag <<= 1);
+	void build(int n) {
+		for (flag = 1; flag < n; flag <<= 1);
 		t.resize(2 * flag);
 		lazy.resize(2 * flag);
 
-		for (int i = flag; i < flag + N; i++) cin >> t[i];
+		for (int i = flag; i < flag + n; i++) cin >> t[i];
 		for (int i = flag - 1; i >= 1; i--) t[i] = t[i << 1] + t[i << 1 | 1];
 	}
-	void modify(int l, int r, ll value) {
-		return modify(l, r, 1, 1, flag, value);
-	}
 	// add a value to all elements in interval [l, r]
-	void modify(int l, int r, int n, int nl, int nr, ll value) {
+	void modify(int l, int r, ll value, int n = 1, int nl = 1, int nr = flag) {
 		propagate(n, nl, nr);
 
 		if (r < nl || nr < l) return;
@@ -30,15 +29,12 @@ struct Seg { // 1-based
 		}
 
 		int mid = (nl + nr) >> 1;
-		modify(l, r, n << 1, nl, mid, value);
-		modify(l, r, n << 1 | 1, mid + 1, nr, value);
+		modify(l, r, value, n << 1, nl, mid);
+		modify(l, r, value, n << 1 | 1, mid + 1, nr);
 
 		t[n] = t[n << 1] + t[n << 1 | 1];
 	}
-	ll query(int l, int r) {
-		return query(l, r, 1, 1, flag);
-	}
-	ll query(int l, int r, int n, int nl, int nr) {  // sum on interval [l, r]
+	ll query(int l, int r, int n = 1, int nl = 1, int nr = flag) {  // sum on interval [l, r]
 		propagate(n, nl, nr);
 
 		if (r < nl || nr < l) return 0;
@@ -63,12 +59,20 @@ int main() {
 	cin.tie(NULL); cout.tie(NULL);
 	ios_base::sync_with_stdio(false);
 
-	int N; cin >> N;
+	int n, m, k;
+	cin >> n >> m >> k;
+	
+	seg.build(n);
 
-	seg.build(N);
-
-	seg.modify(1, 1, 1);
-	cout << seg.query(3, 11) << '\n';
+	for (int i = 0; i < m + k; i++) {
+		ll op, x, y, z;
+		cin >> op >> x >> y;
+		if (op == 1) {
+			cin >> z;
+			seg.modify(x, y, z);
+		}
+		if (op == 2) cout << seg.query(x, y) << '\n';
+	}
 
 	return 0;
 }
