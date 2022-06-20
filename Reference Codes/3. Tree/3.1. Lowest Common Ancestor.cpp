@@ -1,44 +1,38 @@
+// BOJ 11438 AC Code
+// https://www.acmicpc.net/problem/11438
 #include <iostream>
 #include <vector>
 using namespace std;
 
-const int MAX = 1e5, MAXD = 16;
+const int MAX = 101010, MAXD = 16;  // 2^MAXD = 65536
 
-vector<int> adj[MAX + 5];
-int N, dep[MAX + 5], par[MAX + 5][MAXD + 5];
+vector<int> adj[MAX];
+int n, dep[MAX], par[MAX][MAXD + 1];
 
-void dfs(int now, int prv);
-int lca(int u, int v);
-
-int main() {
-	cin.tie(NULL); cout.tie(NULL);
-	ios_base::sync_with_stdio(false);
-
-	dfs(1, 0);
-
-	for (int i = 1; i <= MAXD; i++) {
-		for (int v = 1; v <= N; v++) {
-			par[v][i] = par[par[v][i - 1]][i - 1];
-		}
-	}
-
-	int Q; cin >> Q;
-	while (Q--) {
+void input() {
+	cin >> n;
+	for (int i = 0; i < n - 1; i++) {
 		int u, v;
 		cin >> u >> v;
-
-		cout << lca(u, v) << '\n';
+		adj[u].push_back(v);
+		adj[v].push_back(u);
 	}
-
-	return 0;
 }
 
 void dfs(int now, int prv) {
 	par[now][0] = prv;
 	dep[now] = dep[prv] + 1;
-	for (int i : adj[now]) {
+	for (auto i : adj[now]) {
 		if (i == prv) continue;
 		dfs(i, now);
+	}
+}
+
+void buildSparseTable() {
+	for (int i = 1; i <= MAXD; i++) {
+		for (int v = 1; v <= n; v++) {
+			par[v][i] = par[par[v][i - 1]][i - 1];
+		}
 	}
 }
 
@@ -57,5 +51,27 @@ int lca(int u, int v) {
 			v = par[v][i];
 		}
 	}
+	
 	return par[u][0];
+}
+
+int main() {
+	cin.tie(NULL); cout.tie(NULL);
+	ios_base::sync_with_stdio(false);
+	
+	input();
+
+	dfs(1, 0);
+
+	buildSparseTable();
+
+	int Q; cin >> Q;
+	while (Q--) {
+		int u, v;
+		cin >> u >> v;
+
+		cout << lca(u, v) << '\n';
+	}
+
+	return 0;
 }
