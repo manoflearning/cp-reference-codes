@@ -3,7 +3,7 @@
 using namespace std;
 #define ll long long
 
-struct Seg {
+struct Seg { // 1-based
 	int flag;  // array size
 	vector<ll> t, lazy;
 

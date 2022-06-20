@@ -4,7 +4,7 @@ using namespace std;
 
 const int MAXN = 1e5;  // limit for array size
 
-struct Seg {
+struct Seg { // 0-based
 	int N;  // array size
 	ll t[2 * MAXN];
 
