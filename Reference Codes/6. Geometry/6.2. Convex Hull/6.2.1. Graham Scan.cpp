@@ -18,7 +18,9 @@ struct point {
 	}
 };
 
+int N;
 vector<point> p;
+vector<int> st;
 
 ll ccw(point& a, point& b, point& c) {
 	// res > 0 -> ccw, res < 0 -> cw, res = 0 -> colinear
@@ -30,7 +32,7 @@ int main() {
 	cin.tie(NULL); cout.tie(NULL);
 	ios_base::sync_with_stdio(false);
 
-	int N; cin >> N;
+	cin >> N;
 
 	for (int i = 0; i < N; i++) {
 		int x, y;
@@ -47,7 +49,6 @@ int main() {
 
 	sort(p.begin() + 1, p.end());
 
-	vector<int> st;
 	st.push_back(0);
 	st.push_back(1);
 	for (int next = 2; next < N; next++) {
@@ -63,7 +64,7 @@ int main() {
 		st.push_back(next);
 	}
 
-	cout << st.size() << '\n';
+	cout << st.size();
 
 	return 0;
 }
