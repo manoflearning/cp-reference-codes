@@ -45,3 +45,7 @@ Various data structures and algorithms for competitive programming.
 8. [Etc](https://github.com/manoflearning/PS-Reference-Codes/tree/master/Reference%20Codes/8.%20Etc) <br/>
 8.1. [Coordinate Compression](https://github.com/manoflearning/PS-Reference-Codes/blob/master/Reference%20Codes/8.%20Etc/8.1.%20Coordinate%20Compression.cpp) <br/>
 8.2. [2D Prefix Sum](https://github.com/manoflearning/PS-Reference-Codes/blob/master/Reference%20Codes/8.%20Etc/8.2.%202D%20Prefix%20Sum.cpp) <br/>
+
+# Contents
+minimum vertex cover 추가하기
+alternating path까지 (https://www.youtube.com/watch?v=C09tLeawgs0)
