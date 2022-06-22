@@ -28,10 +28,7 @@ ll ccw(point& a, point& b, point& c) {
 	return (res > 0 ? 1 : (res < 0 ? -1 : 0));
 }
 
-int main() {
-	cin.tie(NULL); cout.tie(NULL);
-	ios_base::sync_with_stdio(false);
-
+void input() {
 	cin >> N;
 
 	for (int i = 0; i < N; i++) {
@@ -39,7 +36,9 @@ int main() {
 		cin >> x >> y;
 		p.push_back(point(x, y));
 	}
+}
 
+void grahamScan() {
 	sort(p.begin(), p.end());
 
 	for (int i = 1; i < N; i++) {
@@ -63,6 +62,15 @@ int main() {
 		}
 		st.push_back(next);
 	}
+}
+
+int main() {
+	cin.tie(NULL); cout.tie(NULL);
+	ios_base::sync_with_stdio(false);
+
+	input();
+
+	grahamScan();	
 
 	cout << st.size();
 
