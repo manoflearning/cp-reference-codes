@@ -1,3 +1,5 @@
+// Dinic's Algorithm
+// time complexity : O(V^2 * E)
 #include <iostream>
 #include <vector>
 #include <queue>
@@ -30,7 +32,7 @@ int main() {
 }
 
 void input() {
-	//»ý·«
+	//ï¿½ï¿½ï¿½ï¿½
 }
 
 int dinic() {
