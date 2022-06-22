@@ -1,3 +1,5 @@
+// BOJ 1708 AC Code
+// https://www.acmicpc.net/problem/1708
 #include <iostream>
 #include <vector>
 #include <algorithm>
@@ -5,7 +7,7 @@
 using namespace std;
 
 struct point {
-	ll x, y, px, py; //px, py는 기준점에서의 상대적인 위치
+	ll x, y, px, py; // (px, py) is the relative coordinate value at the reference point
 	point() : point(0, 0, 0, 0) {}
 	point(int sx, int sy) : point(sx, sy, 0, 0) {}
 	point(int sx, int sy, int spx, int spy) : x(sx), y(sy), px(spx), py(spy) {}
@@ -18,7 +20,11 @@ struct point {
 
 vector<point> p;
 
-ll ccw(point& a, point& b, point& c);
+ll ccw(point& a, point& b, point& c) {
+	// res > 0 -> ccw, res < 0 -> cw, res = 0 -> colinear
+	ll res = (b.x - a.x) * (c.y - a.y) - (c.x - a.x) * (b.y - a.y);
+	return (res > 0 ? 1 : (res < 0 ? -1 : 0));
+}
 
 int main() {
 	cin.tie(NULL); cout.tie(NULL);
@@ -60,8 +66,4 @@ int main() {
 	cout << st.size() << '\n';
 
 	return 0;
-}
-
-ll ccw(point& a, point& b, point& c) {
-	return (b.x - a.x) * (c.y - a.y) - (c.x - a.x) * (b.y - a.y);
 }
