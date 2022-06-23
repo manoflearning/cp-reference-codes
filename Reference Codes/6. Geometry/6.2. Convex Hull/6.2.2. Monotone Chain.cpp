@@ -19,7 +19,7 @@ int N;
 vector<point> p;
 vector<int> dh, uh;
 
-ll ccw(point& a, point& b, point& c) {
+ll ccw(const point& a, const point& b, const point& c) {
 	// res > 0 -> ccw, res < 0 -> cw, res = 0 -> colinear
 	ll res = (b.x - a.x) * (c.y - a.y) - (c.x - a.x) * (b.y - a.y);
 	return (res > 0 ? 1 : (res < 0 ? -1 : 0));
