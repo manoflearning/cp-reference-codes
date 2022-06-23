@@ -11,10 +11,10 @@ struct point {
 	point() : point(0, 0, 0, 0) {}
 	point(int sx, int sy) : point(sx, sy, 0, 0) {}
 	point(int sx, int sy, int spx, int spy) : x(sx), y(sy), px(spx), py(spy) {}
-	bool operator <(point& O) {
-		if (O.px * py != px * O.py) return O.px * py < px * O.py;
-		if (y != O.y) return y < O.y;
-		return x < O.x;
+	bool operator<(const point& rhs) const {
+		if (rhs.px * py != px * rhs.py) return rhs.px * py < px * rhs.py;
+		if (y != rhs.y) return y < rhs.y;
+		return x < rhs.x;
 	}
 };
 
