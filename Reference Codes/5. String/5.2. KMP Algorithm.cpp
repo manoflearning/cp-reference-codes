@@ -9,11 +9,11 @@ using namespace std;
 
 vector<int> getpi(const string& P) {
 	vector<int> pi(sz(P));
-    for (int i = 1, j = 0; i < sz(P); i++) {
-        while (j > 0 && P[i] != P[j]) j = pi[j - 1];
+	for (int i = 1, j = 0; i < sz(P); i++) {
+		while (j > 0 && P[i] != P[j]) j = pi[j - 1];
 
-        if (P[i] == P[j]) pi[i] = ++j;
-    }
+		if (P[i] == P[j]) pi[i] = ++j;
+	}
 	return pi;
 }
 
