@@ -9,10 +9,10 @@ using namespace std;
 
 struct point {
 	ll x, y;
-    bool operator<(const point& rhs) const {
-        if (x != rhs.x) return x < rhs.x;
+	bool operator<(const point& rhs) const {
+		if (x != rhs.x) return x < rhs.x;
 		else return y < rhs.y;
-    }
+	}
 };
 
 int N;
@@ -26,7 +26,7 @@ ll ccw(const point& a, const point& b, const point& c) {
 }
 
 void input() {
-    cin >> N;
+	cin >> N;
 
 	for (int i = 0; i < N; i++) {
 		int x, y;
@@ -36,9 +36,9 @@ void input() {
 }
 
 void monotoneChain() {
-    sort(p.begin(), p.end());
+	sort(p.begin(), p.end());
 
-    // calculate lower hull
+	// calculate lower hull
 	dh.push_back(0);
 	dh.push_back(1);
 	for (int next = 2; next < N; next++) {
@@ -55,9 +55,9 @@ void monotoneChain() {
 	}
 
     // calculate upper hull
-    uh.push_back(N - 1);
-    uh.push_back(N - 2);
-    for (int next = N - 3; next >= 0; next--) {
+	uh.push_back(N - 1);
+	uh.push_back(N - 2);
+	for (int next = N - 3; next >= 0; next--) {
 		while (uh.size() >= 2) {
 			int first = uh.back();
 			uh.pop_back();
