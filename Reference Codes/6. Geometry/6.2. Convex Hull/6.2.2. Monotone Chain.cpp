@@ -54,7 +54,7 @@ void monotoneChain() {
 		dh.push_back(next);
 	}
 
-    // calculate upper hull
+	// calculate upper hull
 	uh.push_back(N - 1);
 	uh.push_back(N - 2);
 	for (int next = N - 3; next >= 0; next--) {
