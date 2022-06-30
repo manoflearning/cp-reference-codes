@@ -7,12 +7,8 @@
 using namespace std;
 
 struct point {
-	ll x, y, px, py; // (px, py) is the relative coordinate value at the reference point
-	point() : point(0, 0, 0, 0) {}
-	point(int sx, int sy) : point(sx, sy, 0, 0) {}
-	point(int sx, int sy, int spx, int spy) : x(sx), y(sy), px(spx), py(spy) {}
+	ll x, y;
 	bool operator<(const point& rhs) const {
-		if (rhs.px * py != px * rhs.py) return rhs.px * py < px * rhs.py;
 		if (y != rhs.y) return y < rhs.y;
 		return x < rhs.x;
 	}
@@ -34,19 +30,22 @@ void input() {
 	for (int i = 0; i < N; i++) {
 		int x, y;
 		cin >> x >> y;
-		p.push_back(point(x, y));
+		p.push_back({ x, y });
 	}
+}
+
+ll dist(const point& p1, const point& p2) {
+    return (p1.x - p2.x) * (p1.x - p2.x) + (p1.y - p2.y) * (p1.y - p2.y);
+}
+
+bool cmp(const point& p1, const point& p2) {
+    return (ccw(p[0], p1, p2) > 0 || (ccw(p[0], p1, p2) == 0 && dist(p[0], p1) < dist(p[0], p2)));
 }
 
 void grahamScan() {
 	sort(p.begin(), p.end());
 
-	for (int i = 1; i < N; i++) {
-		p[i].px = p[i].x - p[0].x;
-		p[i].py = p[i].y - p[0].y;
-	}
-
-	sort(p.begin() + 1, p.end());
+	sort(p.begin() + 1, p.end(), cmp);
 
 	st.push_back(0);
 	st.push_back(1);
