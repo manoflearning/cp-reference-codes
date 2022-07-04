@@ -56,5 +56,7 @@ int main() {
 		else cout << "Is not exist.\n";
 	}
 
+	delete root;
+
 	return 0;
 }
