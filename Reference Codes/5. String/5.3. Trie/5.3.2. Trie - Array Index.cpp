@@ -4,12 +4,11 @@ using namespace std;
 
 const char st = '0';
 const int MAXC = '9' - '0' + 1;
-//주어지는 문자열의 길이가 최대 100일 때, 트라이의 노드 개수
 const int MAXN = 100 * 100 * MAXC + 1; 
 
 struct trie {
 	int cnt, t[MAXN][MAXC];
-	bool term[MAXN]; //term[i]은 i번째 노드가 종료 노드인가?를 의미함
+	bool term[MAXN];
 
 	void clear() {
 		memset(t, 0, sizeof(t));

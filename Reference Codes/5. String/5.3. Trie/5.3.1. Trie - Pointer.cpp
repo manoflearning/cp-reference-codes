@@ -7,7 +7,7 @@ const int MAXC = 'z' - 'a' + 1;
 
 struct trie {
 	trie* child[MAXC];
-	bool term; //이 노드가 종료 노드인가?
+	bool term;
 
 	trie() {
 		fill(child, child + MAXC, nullptr);
