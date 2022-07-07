@@ -10,22 +10,22 @@ using namespace std;
 const int MAX = 1 << 17;
 
 struct MergeSortTree {
-    vector<int> tree[MAX << 1];
+    vector<int> t[MAX << 1];
 
     void build(const vector<int>& arr) {
         for (int i = 0; i < sz(arr); i++) 
-            tree[i + 1 + MAX].push_back(arr[i]);
+            t[i + 1 + MAX].push_back(arr[i]);
 
         for (int i = MAX - 1; i >= 1; i--) {
-            tree[i].resize(sz(tree[i << 1]) + sz(tree[i << 1 | 1]));
-            merge(all(tree[i << 1]), all(tree[i << 1 | 1]), tree[i].begin());
+            t[i].resize(sz(t[i << 1]) + sz(t[i << 1 | 1]));
+            merge(all(t[i << 1]), all(t[i << 1 | 1]), t[i].begin());
         }
     }
 
     int query(int l, int r, int k, int n = 1, int nl = 0, int nr = MAX - 1) { // 0-indexed, query on interval [l, r]
         if (nr < l || r < nl) return 0;
         if (l <= nl && nr <= r)
-            return tree[n].end() - upper_bound(all(tree[n]), k);
+            return t[n].end() - upper_bound(all(t[n]), k);
 
         int mid = (nl + nr) >> 1;
         return query(l, r, k, n << 1, nl, mid) + query(l, r, k, n << 1 | 1, mid + 1, nr);

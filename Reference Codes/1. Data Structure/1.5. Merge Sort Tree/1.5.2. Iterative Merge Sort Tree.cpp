@@ -10,15 +10,15 @@ using namespace std;
 const int MAX = 1 << 17;
 
 struct MergeSortTree {
-    vector<int> tree[MAX << 1];
+    vector<int> t[MAX << 1];
 
     void build(const vector<int>& arr) {
         for (int i = 0; i < sz(arr); i++) 
-            tree[i + 1 + MAX].push_back(arr[i]);
+            t[i + 1 + MAX].push_back(arr[i]);
 
         for (int i = MAX - 1; i >= 1; i--) {
-            tree[i].resize(sz(tree[i << 1]) + sz(tree[i << 1 | 1]));
-            merge(all(tree[i << 1]), all(tree[i << 1 | 1]), tree[i].begin());
+            t[i].resize(sz(t[i << 1]) + sz(t[i << 1 | 1]));
+            merge(all(t[i << 1]), all(t[i << 1 | 1]), t[i].begin());
         }
     }
 
@@ -26,8 +26,8 @@ struct MergeSortTree {
         l += MAX, r += MAX;
         int ret = 0;
         while (l <= r) {
-            if (l & 1) ret += tree[l].end() - upper_bound(all(tree[l]), k), l++;
-            if (~r & 1) ret += tree[r].end() - upper_bound(all(tree[r]), k), r--;
+            if (l & 1) ret += t[l].end() - upper_bound(all(t[l]), k), l++;
+            if (~r & 1) ret += t[r].end() - upper_bound(all(t[r]), k), r--;
             l >>= 1, r >>= 1;
         }
         return ret;
