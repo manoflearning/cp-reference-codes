@@ -22,15 +22,13 @@ struct MergeSortTree {
         }
     }
 
-    int query(int l, int r, int k) { // 1-indexed, query on interval [l, r]
-        l += MAX, r += MAX;
-        int ret = 0;
-        while (l <= r) {
-            if (l & 1) ret += tree[l].end() - upper_bound(all(tree[l]), k), l++;
-            if (~r & 1) ret += tree[r].end() - upper_bound(all(tree[r]), k), r--;
-            l >>= 1, r >>= 1;
-        }
-        return ret;
+    int query(int l, int r, int k, int n = 1, int nl = 0, int nr = MAX - 1) { // 0-indexed, query on interval [l, r]
+        if (nr < l || r < nl) return 0;
+        if (l <= nl && nr <= r)
+            return tree[n].end() - upper_bound(all(tree[n]), k);
+
+        int mid = (nl + nr) >> 1;
+        return query(l, r, k, n << 1, nl, mid) + query(l, r, k, n << 1 | 1, mid + 1, nr);
     }
 }mstree;
 

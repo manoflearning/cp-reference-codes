@@ -9,6 +9,7 @@ Various data structures and algorithms for competitive programming.
 1.2. [Union Find](https://github.com/manoflearning/PS-Reference-Codes/blob/master/Reference%20Codes/1.%20Data%20Structure/1.2.%20Union%20Find.cpp) <br/>
 1.3. [Sparse Table](https://github.com/manoflearning/PS-Reference-Codes/blob/master/Reference%20Codes/1.%20Data%20Structure/1.3.%20Sparse%20Table.cpp) <br/>
 1.4. [Sqrt Decomposition, Mo's Algorithm](https://github.com/manoflearning/PS-Reference-Codes/blob/master/Reference%20Codes/1.%20Data%20Structure/1.4.%20Sqrt%20Decomposition%2C%20Mo's%20Algorithm.cpp) <br/>
+1.5. [Merge Sort Tree](https://github.com/manoflearning/PS-Reference-Codes/tree/master/Reference%20Codes/1.%20Data%20Structure/1.5.%20Merge%20Sort%20Tree) <br/>
 2. [Graph](https://github.com/manoflearning/PS-Reference-Codes/tree/master/Reference%20Codes/2.%20Graph) <br/>
 2.1. [Depth-first Search](https://github.com/manoflearning/PS-Reference-Codes/blob/master/Reference%20Codes/2.%20Graph/2.1.%20Depth-first%20Search.cpp) <br/>
 2.2. [Breadth-first Search](https://github.com/manoflearning/PS-Reference-Codes/blob/master/Reference%20Codes/2.%20Graph/2.2.%20Breadth-first%20Search.cpp) <br/>
