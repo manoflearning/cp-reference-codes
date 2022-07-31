@@ -52,11 +52,12 @@ Various data structures and algorithms for competitive programming.
 8.2. [2D Prefix Sum](https://github.com/manoflearning/PS-Reference-Codes/blob/master/Reference%20Codes/8.%20Etc/8.2.%202D%20Prefix%20Sum.cpp) <br/>
 
 # Guidelines
-1. 가급적이면 헤더 파일은 <bits/stdc++.h>만을 사용한다. <br/>
-2. 가급적이면 변수 이름, 함수 이름 등은 아래와 같은 형식을 사용한다. <br/>
-2.1. rotatingCalipers (O), rotating_calipers (X) <br/>
-3. 주석은 최대한 많이 작성한다. 주석은 영어로 작성한다. <br/>
-4. 가급적이면 레퍼런스 문제를 남긴다. 예를 들어 세그먼트 트리 알고리즘을 작성할 때, https://www.acmicpc.net/problem/2042 를 래퍼런스 문제로 사용한다.
+1. 코드는 간결하고 알아보기 쉬워야 한다.
+2. 가급적이면 헤더 파일은 <bits/stdc++.h>만을 사용한다. <br/>
+3. 가급적이면 변수 이름, 함수 이름 등은 아래와 같은 형식을 사용한다. <br/>
+3.1. rotatingCalipers (O), rotating_calipers (X) <br/>
+4. 주석은 최대한 많이 작성한다. 주석은 영어로 작성한다. <br/>
+5. 가급적이면 레퍼런스 문제를 남긴다. 예를 들어 세그먼트 트리 알고리즘을 작성할 때, https://www.acmicpc.net/problem/2042 를 래퍼런스 문제로 사용한다.
 
 # Todo
 minimum vertex cover 추가하기 <br/>
