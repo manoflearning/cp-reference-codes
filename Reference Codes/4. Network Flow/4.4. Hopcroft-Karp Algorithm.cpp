@@ -1,60 +1,22 @@
 // Bipartite Matching Algorithm
 // time complexity : O(E * sqrt(V))
-#include <iostream>
-#include <vector>
-#include <queue>
-#include <cstring>
+#include <bits/stdc++.h>
 using namespace std;
 
 const int INF = 1e9 + 7;
-const int MAXV = 1e4;
+const int MAXV = 10101;
 
-int N, A[MAXV + 5], B[MAXV + 5], dist[MAXV + 5];
-bool used[MAXV + 5];
-vector<int> adj[MAXV + 5];
-
-void input();
-int hopcroft();
-void bfs();
-bool dfs(int a);
-
-int main() {
-	cin.tie(NULL); cout.tie(NULL);
-	ios_base::sync_with_stdio(false);
-
-	input();
-
-	int total = hopcroft();
-	cout << total << '\n';
-
-	return 0;
-}
+int n, A[MAXV], B[MAXV], dist[MAXV];
+bool used[MAXV];
+vector<int> adj[MAXV];
 
 void input() {
-	//����
-}
-
-int hopcroft() {
-	memset(A, -1, sizeof(A));
-	memset(B, -1, sizeof(B));
-
-	int ret = 0;
-	while (true) {
-		bfs();
-
-		int flow = 0;
-		for (int i = 0; i < N; i++)
-			if (!used[i] && dfs(i)) flow++;
-
-		if (flow == 0) break;
-		ret += flow;
-	}
-	return ret;
+	// TODO
 }
 
 void bfs() {
 	queue<int> q;
-	for (int i = 0; i < N; i++) {
+	for (int i = 0; i < n; i++) {
 		if (!used[i]) {
 			dist[i] = 0;
 			q.push(i);
@@ -84,4 +46,34 @@ bool dfs(int a) {
 		}
 	}
 	return false;
+}
+
+int hopcroft() {
+	memset(A, -1, sizeof(A));
+	memset(B, -1, sizeof(B));
+
+	int ret = 0;
+	while (true) {
+		bfs();
+
+		int flow = 0;
+		for (int i = 0; i < n; i++)
+			if (!used[i] && dfs(i)) flow++;
+
+		if (flow == 0) break;
+		ret += flow;
+	}
+	return ret;
+}
+
+int main() {
+	cin.tie(NULL); cout.tie(NULL);
+	ios_base::sync_with_stdio(false);
+
+	input();
+
+	int total = hopcroft();
+	cout << total << '\n';
+
+	return 0;
 }

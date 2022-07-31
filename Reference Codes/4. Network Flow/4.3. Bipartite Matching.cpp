@@ -1,8 +1,6 @@
 // all edges have a capacity of 1
 // O(VE)
-#include <iostream>
-#include <vector>
-#include <cstring>
+#include <bits/stdc++.h>
 using namespace std;
 
 const int MAXV = 1010;

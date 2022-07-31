@@ -1,9 +1,6 @@
 // Edmonds-Karp algorithm
 // time complexity : O(V * E^2)
-#include <iostream>
-#include <queue>
-#include <vector>
-#include <algorithm>
+#include <bits/stdc++.h>
 using namespace std;
 #define ll long long
 
