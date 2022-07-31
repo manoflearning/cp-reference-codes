@@ -51,7 +51,7 @@ Various data structures and algorithms for competitive programming.
 8.1. [Coordinate Compression](https://github.com/manoflearning/PS-Reference-Codes/blob/master/Reference%20Codes/8.%20Etc/8.1.%20Coordinate%20Compression.cpp) <br/>
 8.2. [2D Prefix Sum](https://github.com/manoflearning/PS-Reference-Codes/blob/master/Reference%20Codes/8.%20Etc/8.2.%202D%20Prefix%20Sum.cpp) <br/>
 
-# Guide Lines
+# Guidelines
 1. 가급적이면 헤더 파일은 <bits/stdc++.h>만을 사용한다. <br/>
 2. 가급적이면 변수 이름, 함수 이름 등은 아래와 같은 형식을 사용한다. <br/>
 2.1. rotatingCalipers (O), rotating_calipers (X) <br/>
