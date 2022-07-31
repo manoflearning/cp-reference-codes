@@ -1,12 +1,11 @@
 // BOJ 10999 AC Code
 // https://www.acmicpc.net/problem/10999
-#include <iostream>
-#include <vector>
+#include <bits/stdc++.h>
 using namespace std;
 #define ll long long
 
 int flag;  // array size
-struct Seg {  // 1-based
+struct Seg {  // 1-indexed
 	vector<ll> t, lazy;
 
 	void build(int n) {

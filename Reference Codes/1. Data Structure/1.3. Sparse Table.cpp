@@ -1,3 +1,6 @@
+#include <bits/stdc++.h>
+using namespace std;
+
 const int MAX = 1e5, MAXD = 17;
 
 int sp[MAX][MAXD];
@@ -6,7 +9,7 @@ int main() {
 	cin.tie(NULL); cout.tie(NULL);
 	ios_base::sync_with_stdio(false);
   
-  	//initialize
+  	// initialize
 	for (int i = 0; i < MAX; i++) cin >> sp[i][0];
 
 	for (int i = 0; i < MAX; i++) {
@@ -15,7 +18,7 @@ int main() {
 		}
 	}
   
-  	//query
+  	// query
 	int q; cin >> q;
 
 	for (int i = 0; i < q; i++) {

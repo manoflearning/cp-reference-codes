@@ -1,7 +1,6 @@
 // BOJ 2042 AC Code
 // https://www.acmicpc.net/problem/2042
-#include <iostream>
-#include <vector>
+#include <bits/stdc++.h>
 using namespace std;
 #define ll long long
 #define sz(x) (int)(x).size()

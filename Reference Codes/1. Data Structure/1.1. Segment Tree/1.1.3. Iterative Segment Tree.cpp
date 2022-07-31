@@ -1,12 +1,12 @@
 // BOJ 2042 AC Code
 // https://www.acmicpc.net/problem/2042
-#include <iostream>
+#include <bits/stdc++.h>
 using namespace std;
 #define ll long long
 
 const int MAXN = 1010101;  // limit for array size
 
-struct Seg {  // 0-based
+struct Seg {  // 0-indexed
 	int n;  // array size
 	ll t[2 * MAXN];
 

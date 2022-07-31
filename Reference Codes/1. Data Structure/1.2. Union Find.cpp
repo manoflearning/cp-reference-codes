@@ -1,11 +1,12 @@
-#include <iostream>
-#include <vector>
+// BOJ 1717 AC Code
+// https://www.acmicpc.net/problem/1717
+#include <bits/stdc++.h>
 using namespace std;
 
-const int MAX = 1000000;
+const int MAX = 1010101;
 
-int N;
-vector<int> p(MAX + 1, -1);
+int n;
+vector<int> p(MAX, -1);
 
 int find(int x) {
 	if (p[x] < 0) return x;
@@ -23,16 +24,16 @@ int main() {
 	cin.tie(NULL); cout.tie(NULL);
 	ios_base::sync_with_stdio(false);
 
-	cin >> N;
+	cin >> n;
 
-	int Q; cin >> Q;
-	while (Q--) {
-		int q, a, b;
-		cin >> q >> a >> b;
+	int q; cin >> q;
+	while (q--) {
+		int op, u, v;
+		cin >> op >> u >> v;
 
-		if (q == 0) merge(a, b);
-		if (q == 1) {
-			if (find(a) == find(b)) cout << "YES\n";
+		if (op == 0) merge(u, v);
+		if (op == 1) {
+			if (find(u) == find(v)) cout << "YES\n";
 			else cout << "NO\n";
 		}
 	}

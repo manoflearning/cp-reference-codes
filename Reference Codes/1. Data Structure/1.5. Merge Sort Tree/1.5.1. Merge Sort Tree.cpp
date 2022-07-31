@@ -1,8 +1,6 @@
 // BOJ 13537 AC Code
 // https://www.acmicpc.net/problem/13537
-#include <iostream>
-#include <vector>
-#include <algorithm>
+#include <bits/stdc++.h>
 using namespace std;
 #define sz(x) (int)(x).size()
 #define all(c) (c).begin(), (c).end()
