@@ -1,8 +1,6 @@
 // BOJ 10254 AC Code
 // https://www.acmicpc.net/problem/10254
-#include <iostream>
-#include <vector>
-#include <algorithm>
+#include <bits/stdc++.h>
 using namespace std;
 #define ll long long
 

@@ -1,11 +1,8 @@
 // BOJ 1708 AC Code
 // https://www.acmicpc.net/problem/1708
-#include <iostream>
-#include <set>
-#include <vector>
-#include <algorithm>
-#define ll long long
+#include <bits/stdc++.h>
 using namespace std;
+#define ll long long
 
 struct point {
 	ll x, y;
