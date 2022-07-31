@@ -1,7 +1,6 @@
 // BOJ 11438 AC Code
 // https://www.acmicpc.net/problem/11438
-#include <iostream>
-#include <vector>
+#include <bits/stdc++.h>
 using namespace std;
 
 const int MAX = 101010, MAXD = 16;  // 2^MAXD = 65536

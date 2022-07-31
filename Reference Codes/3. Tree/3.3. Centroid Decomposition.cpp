@@ -1,16 +1,38 @@
-#include <iostream>
-#include <vector>
+#include <bits/stdc++.h>
 using namespace std;
 
-const int MAXV = 2 * 1e5;
+const int MAXV = 202020;
 
-vector<int> adj[MAXV + 5];
-bool used[MAXV + 5];
-int sz[MAXV + 5], dep[MAXV + 5], cdtree[MAXV + 5];
+vector<int> adj[MAXV];
+int used[MAXV], siz[MAXV], dep[MAXV], cdtree[MAXV];
 
-void cd(int now, int prv);
-int getSize(int now, int prv);
-int getCent(int now, int prv, int cnt);
+int getSize(int now, int prv) {
+	siz[now] = 1;
+	for (auto i : adj[now]) {
+		if (used[i] || prv == i) continue;
+		siz[now] += getSize(i, now);
+	}
+	return siz[now];
+}
+
+int getCent(int now, int prv, int cnt) {
+	for (auto& i : adj[now]) {
+		if (used[i] || i == prv) continue;
+		if (siz[i] > cnt / 2) return getCent(i, now, cnt);
+	}
+	return now;
+}
+
+void cd(int now, int prv) {
+	int cnt = getSize(now, prv);
+	int cent = getCent(now, prv, cnt);
+	
+	cdtree[now] = prv;
+	used[cent] = 1;
+
+	for (auto i : adj[cent])
+		if (!used[i]) cd(i, cent);
+}
 
 int main() {
 	cin.tie(NULL); cout.tie(NULL);
@@ -19,32 +41,4 @@ int main() {
 	cd(0, -1);
 
 	return 0;
-}
-
-void cd(int now, int prv) {
-	int cnt = getSize(now, prv);
-	int cent = getCent(now, prv, cnt);
-	
-	cdtree[now] = prv; //센트로이드 트리 상에서 루트 노드의 조상은 -1로 표시됨
-	used[cent] = true;
-
-	for (auto i : adj[cent])
-		if (!used[i]) cd(i, cent);
-}
-
-int getSize(int now, int prv) {
-	sz[now] = 1;
-	for (auto i : adj[now]) {
-		if (used[i] || prv == i) continue;
-		sz[now] += getSize(i, now);
-	}
-	return sz[now];
-}
-
-int getCent(int now, int prv, int cnt) {
-	for (auto& i : adj[now]) {
-		if (used[i] || i == prv) continue;
-		if (sz[i] > cnt / 2) return getCent(i, now, cnt);
-	}
-	return now;
 }
