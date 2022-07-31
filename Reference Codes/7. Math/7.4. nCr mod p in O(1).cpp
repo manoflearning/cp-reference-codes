@@ -1,6 +1,6 @@
 // C++ program to answer queries
 // of nCr in O(1) time.
-#include <iostream>
+#include <bits/stdc++.h>
 using namespace std;
 #define ll long long
 
