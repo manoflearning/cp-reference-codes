@@ -1,9 +1,5 @@
 // Tarjan's strongly connected components algorithm
-#include <iostream>
-#include <stack>
-#include <vector>
-#include <cstring>
-#include <algorithm>
+#include <bits/stdc++.h>
 using namespace std;
 
 const int MAXV = 101010;

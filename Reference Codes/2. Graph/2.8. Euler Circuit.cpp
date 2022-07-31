@@ -1,6 +1,5 @@
 // Hierholzer's Algorithm
-#include <iostream>
-#include <vector>
+#include <bits/stdc++.h>
 using namespace std;
 
 const int MAXV = 1010;

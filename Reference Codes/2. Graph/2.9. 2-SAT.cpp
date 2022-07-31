@@ -1,9 +1,4 @@
-#include <iostream>
-#include <vector>
-#include <cmath>
-#include <cstring>
-#include <stack>
-#include <algorithm>
+#include <bits/stdc++.h>
 using namespace std;
 #define pii pair<int, int>
 #define fr first

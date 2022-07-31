@@ -1,40 +1,61 @@
-#include <iostream>
-#include <queue>
-#include <vector>
+// BOJ 2252 AC Code
+// https://www.acmicpc.net/problem/2252
+#include <bits/stdc++.h>
 using namespace std;
 
-const int MAX = 1e5;
+const int MAX = 101010;
 
-int N;
-vector<int> arr;
-bool isCycle;
+int n, m;
+vector<int> adj[MAX], ts;
+int ind[MAX], isCycle;
 
-void topological_sort() {
+void input() {
+	cin >> n >> m;
+	for (int i = 0; i < m; i++) {
+		int u, v;
+		cin >> u >> v;
+		adj[u].push_back(v);
+		ind[v]++;
+	}
+}
+
+void topologicalSort() {
 	queue<int> q;
 
-	for (int i = 1; i <= N; i++)
-		if (indegree[i] == 0) q.push(i);
+	for (int i = 1; i <= n; i++)
+		if (ind[i] == 0) q.push(i);
 
-	for (int i = 0; i < N; i++) {
+	for (int i = 0; i < n; i++) {
 		if (q.empty()) {
-			isCycle = true;
+			isCycle = 1;
 			break;
 		}
 
 		int v = q.front();
 		q.pop();
 
-		arr.push_back(v);
+		ts.push_back(v);
         
 		for (int next : adj[v]) {
-			indegree[next]--;
-			if (indegree[next] == 0) q.push(next);
+			ind[next]--;
+			if (ind[next] == 0) q.push(next);
 		}
 	}
 
 	if (isCycle) cout << 0;
 	else {
-		for (int i = 0; i < arr.size(); i++)
-			cout << arr[i] << '\n';
+		for (int i = 0; i < ts.size(); i++)
+			cout << ts[i] << ' ';
 	}
+}
+
+int main() {
+	cin.tie(NULL); cout.tie(NULL);
+	ios_base::sync_with_stdio(false);
+
+	input();
+
+	topologicalSort();
+
+	return 0;
 }

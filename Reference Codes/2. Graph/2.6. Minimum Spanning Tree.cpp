@@ -1,13 +1,11 @@
-#define _USE_MATH_DEFINES
 #include <bits/stdc++.h>
-#include <cassert>
 using namespace std;
 #define ll long long
 
 const int MAX = 202020;
 
 // Union find
-vector<int> p(MAX + 1, -1);
+vector<int> p(MAX, -1);
 
 int find(int x) {
 	if (p[x] < 0) return x;
@@ -23,13 +21,11 @@ void merge(int a, int b) {
 
 // Kruskal's algorithm
 struct wv {
-	ll w;
-	int v;
+	ll w; int v;
 };
 
 struct wuv {
-	ll w;
-	int u, v;
+	ll w; int u, v;
 	bool operator<(const wuv& rhs) const {
 		return w < rhs.w;
 	}
@@ -43,7 +39,7 @@ void input() {
 	cin >> n >> m;
 	a.resize(m);
 	for (auto& i : a) 
-	cin >> i.u >> i.v >> i.w;
+		cin >> i.u >> i.v >> i.w;
 }
 
 void makingMST() {

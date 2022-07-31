@@ -1,16 +1,13 @@
-#include <iostream>
-#include <stack>
-#include <vector>
-#include <cstring>
-#include <algorithm>
+#include <bits/stdc++.h>
 using namespace std;
+#define pii pair<int, int>
 
 const int MAXV = 101010;
 
 int n, m, dfsn[MAXV + 5], dCnt;
 vector<int> adj[MAXV + 5];
-stack<pair<int, int>> stk;
-vector<vector<pair<int, int>>> bcc;
+stack<pii> stk;
+vector<vector<pii>> bcc;
 
 void input() {
 	cin >> n >> m;

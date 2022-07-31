@@ -1,15 +1,14 @@
-#include <iostream>
-#include <vector>
-#include <queue>
+// BOJ 1753 AC Code
+// https://www.acmicpc.net/problem/1753
+#include <bits/stdc++.h>
 using namespace std;
 #define ll long long
 
+const ll INF = 1e18;
 const int MAX = 202020;
-const int INF = 1e9 + 7;
 
 struct wv {
-	ll w;
-	int v;
+	ll w; int v;
 	bool operator<(const wv& rhs) const {
 		return w > rhs.w;
 	}
@@ -26,7 +25,6 @@ void input() {
 		int u, v, w;
 		cin >> u >> v >> w;
 		adj[u].push_back({ w, v });
-		adj[v].push_back({ w, u });
 	}
 }
 
@@ -61,7 +59,7 @@ int main() {
 	dijkstra(st);
 
 	for (int i = 1; i <= n; i++) {
-		if (dist[i] == INF) cout << "can't go\n";
+		if (dist[i] == INF) cout << "INF\n";
 		else cout << dist[i] << '\n';
 	}
 
