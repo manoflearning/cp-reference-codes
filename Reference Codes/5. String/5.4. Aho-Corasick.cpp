@@ -1,8 +1,6 @@
 // BOJ 9250 AC Code
 // https://www.acmicpc.net/problem/9250
-#include <iostream>
-#include <queue>
-#include <algorithm>
+#include <bits/stdc++.h>
 using namespace std;
 
 const char st = 'a';

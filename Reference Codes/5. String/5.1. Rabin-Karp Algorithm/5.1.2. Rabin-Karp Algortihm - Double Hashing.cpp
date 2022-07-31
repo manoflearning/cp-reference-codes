@@ -1,10 +1,8 @@
 // BOJ 1786 AC Code
 // https://www.acmicpc.net/problem/1786
-#include <iostream>
-#include <string>
-#include <vector>
-#define ll long long
+#include <bits/stdc++.h>
 using namespace std;
+#define ll long long
 #define sz(x) (int)(x).size()
 
 const int MAX = 1010101;

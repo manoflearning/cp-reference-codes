@@ -1,11 +1,9 @@
 // BOJ 1786 TLE Code
 // https://www.acmicpc.net/problem/1786
 // The basic Rabin-Karp Algorithm works on average in O(N + M), but in the worst case it works on O(NM)
-#include <iostream>
-#include <string>
-#include <vector>
-#define ll long long
+#include <bits/stdc++.h>
 using namespace std;
+#define ll long long
 #define sz(x) (int)(x).size()
 
 const int MAX = 1010101;

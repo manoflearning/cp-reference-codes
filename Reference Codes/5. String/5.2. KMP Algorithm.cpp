@@ -1,9 +1,7 @@
 // BOJ 1786 AC Code
 // https://www.acmicpc.net/problem/1786
 // implementation 1
-#include <iostream>
-#include <vector>
-#include <string>
+#include <bits/stdc++.h>
 using namespace std;
 #define sz(x) (int)(x).size()
 
@@ -56,9 +54,7 @@ int main() {
 // BOJ 1786 AC Code
 // https://www.acmicpc.net/problem/1786
 // implementation 2
-#include <iostream>
-#include <vector>
-#include <string>
+#include <bits/stdc++.h>
 using namespace std;
 #define sz(x) (int)(x).size()
 

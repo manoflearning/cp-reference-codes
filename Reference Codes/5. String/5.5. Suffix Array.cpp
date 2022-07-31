@@ -5,9 +5,7 @@
 // Time Conplexity: O(nlog^2n)
 // Kasai's Algorithm for LCP(Longest Common Prefix)
 // Time Complexity: O(n)
-#include <iostream>
-#include <vector>
-#include <algorithm>
+#include <bits/stdc++.h>
 using namespace std;
 #define sz(x) (int)(x).size()
 
@@ -66,8 +64,7 @@ int main() {
 // Time Conplexity: O(nlogn)
 // Kasai's Algorithm for LCP(Longest Common Prefix)
 // Time Complexity: O(n)
-#include <iostream>
-#include <vector>
+#include <bits/stdc++.h>
 using namespace std;
 #define sz(x) (int)(x).size()
 
