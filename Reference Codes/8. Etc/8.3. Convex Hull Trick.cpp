@@ -43,8 +43,8 @@ void convexHullTrick() {
             if (a[i] < ch[mid].s) r = mid - 1;
             else l = mid;
         }
-        int fpos = l;
 
+        int fpos = l;
         dp[i] = ch[fpos].p * a[i] + ch[fpos].q;
     }
 }
