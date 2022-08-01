@@ -53,7 +53,7 @@ Various data structures and algorithms for competitive programming.
 8.3. [Convex Hull Trick](https://github.com/manoflearning/PS-Reference-Codes/blob/master/Reference%20Codes/8.%20Etc/8.3.%20Convex%20Hull%20Trick.cpp) <br/>
 
 # Guidelines
-1. 코드는 간결하고 알아보기 쉬워야 한다.
+1. 코드는 간결하고 알아보기 쉬워야 한다. <br/>
 2. 가급적이면 헤더 파일은 <bits/stdc++.h>만을 사용한다. <br/>
 3. 가급적이면 변수 이름, 함수 이름 등은 다음과 같은 형식을 사용한다. ex) unionFind (O), union_find (X) <br/>
 3.1. 단 구조체, 클래스의 이름은 첫 글자를 대문자로 한다. ex) UnionFind (O)
