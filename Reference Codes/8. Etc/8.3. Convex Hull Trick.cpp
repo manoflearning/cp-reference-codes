@@ -37,7 +37,7 @@ void convexHullTrick() {
         }
         ch[top++] = g;
 
-        int l = 0, r = top - 1;
+        int l = 1, r = top - 1;
         while (l < r) {
             int mid = (l + r + 1) >> 1;
             if (a[i] < ch[mid].s) r = mid - 1;
