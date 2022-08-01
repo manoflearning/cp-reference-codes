@@ -37,18 +37,15 @@ void convexHullTrick() {
         }
         ch[top++] = g;
 
-        ll x = a[i];
-        int fpos = top - 1;
-        if (x < ch[top - 1].s) {
-            int l = 0, r = top - 1;
-            while (l < r) {
-                int mid = (l + r + 1) >> 1;
-                if (x < ch[mid].s) r = mid - 1;
-                else l = mid;
-            }
-            fpos = l;
+        int l = 0, r = top - 1;
+        while (l < r) {
+            int mid = (l + r + 1) >> 1;
+            if (a[i] < ch[mid].s) r = mid - 1;
+            else l = mid;
         }
-        dp[i] = ch[fpos].p * x + ch[fpos].q;
+        int fpos = l;
+
+        dp[i] = ch[fpos].p * a[i] + ch[fpos].q;
     }
 }
 
