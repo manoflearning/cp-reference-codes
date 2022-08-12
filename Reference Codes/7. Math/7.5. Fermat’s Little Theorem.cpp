@@ -17,18 +17,18 @@ ll modInv(ll x, ll y) {
 }
 
 int main() {
-	cin.tie(NULL); cout.tie(NULL);
-	ios_base::sync_with_stdio(false);
+    cin.tie(NULL); cout.tie(NULL);
+    ios_base::sync_with_stdio(false);
 
     ll fac[4040404] = { 1, };
     for (int i = 1; i < 4040404; i++)
         fac[i] = i * fac[i - 1] % MOD;
 
     int n, r;
-	cin >> n >> r;
+    cin >> n >> r;
 
     // print nCr (mod 1e9+7)
     cout << fac[n] * modInv(fac[r], MOD - 2) % MOD * modInv(fac[n - r], MOD - 2) % MOD;
 
-	return 0;
+    return 0;
 }
