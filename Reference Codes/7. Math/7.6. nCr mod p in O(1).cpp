@@ -1,76 +1,41 @@
-// C++ program to answer queries
-// of nCr in O(1) time.
+// BOJ 13977 AC Code
+// https://www.acmicpc.net/problem/13977
 #include <bits/stdc++.h>
 using namespace std;
 #define ll long long
 
-const int N = 1000001;
+const int MOD = 1e9 + 7;
+const int MAXN = 4040404;
 
-// array to store inverse of 1 to N
-ll factorialNumInverse[N + 1];
+ll fac[MAXN], inv[MAXN], facInv[MAXN];
 
-// array to precompute inverse of 1! to N!
-ll naturalNumInverse[N + 1];
-
-// array to store factorial of first N numbers
-ll fact[N + 1];
-
-// Function to precompute inverse of numbers
-void InverseofNumber(ll p) {
-	naturalNumInverse[0] = naturalNumInverse[1] = 1;
-	for (int i = 2; i <= N; i++)
-		naturalNumInverse[i] = naturalNumInverse[p % i] * (p - p / i) % p;
-}
-// Function to precompute inverse of factorials
-void InverseofFactorial(ll p) {
-	factorialNumInverse[0] = factorialNumInverse[1] = 1;
-
-	// precompute inverse of natural numbers
-	for (int i = 2; i <= N; i++)
-		factorialNumInverse[i] = (naturalNumInverse[i] * factorialNumInverse[i - 1]) % p;
+ll binom(int n, int r) {
+	return fac[n] * facInv[r] % MOD * facInv[n - r] % MOD;
 }
 
-// Function to calculate factorial of 1 to N
-void factorial(ll p) {
-	fact[0] = 1;
-
-	// precompute factorials
-	for (int i = 1; i <= N; i++) {
-		fact[i] = (fact[i - 1] * i) % p;
-	}
-}
-
-// Function to return nCr % p in O(1) time
-ll Binomial(ll N, ll R, ll p) {
-	// n C r = n!*inverse(r!)*inverse((n-r)!)
-	ll ans = ((fact[N] * factorialNumInverse[R])
-			% p * factorialNumInverse[N - R])
-			% p;
-	return ans;
-}
-
-// Driver Code
 int main() {
-	cin.tie(NULL); cout.tie(NULL);
+    cin.tie(NULL); cout.tie(NULL);
 	ios_base::sync_with_stdio(false);
 
-	// Calling functions to precompute the
-	// required arrays which will be required
-	// to answer every query in O(1)
-	ll p = 1000000007;
-	InverseofNumber(p);
-	InverseofFactorial(p);
-	factorial(p);
+	// Preprocessing in O(N)
+	fac[0] = fac[1] = inv[1] = 1;
+    facInv[0] = facInv[1] = 1;
+	for (int i = 2; i < MAXN; i++) {
+		fac[i] = i * fac[i - 1] % MOD;
 
-	// 1st query
-	ll N = 15;
-	ll R = 4;
-	cout << Binomial(N, R, p) << '\n';
+		inv[i] = -(MOD / i) * inv[MOD % i] % MOD;
+        if (inv[i] < 0) inv[i] += MOD;
+        facInv[i] = facInv[i - 1] * inv[i] % MOD;
+	}
 
-	// 2nd query
-	N = 20;
-	R = 3;
-	cout << Binomial(N, R, p) << '\n';
+	// Answer each query in O(1)
+	int q; cin >> q;
+	while (q--) { 
+		int n, r;
+		cin >> n >> r;
+
+		cout << binom(n, r) << '\n';
+	}
 
 	return 0;
 }
