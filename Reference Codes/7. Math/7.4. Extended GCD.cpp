@@ -14,7 +14,7 @@ using namespace std;
 
 // If the integers x1 and y1 satisfy a * x1 + b * y1 = d,
 // x2 := x1 + k * b / gcd(a, b) and
-// y2 := y1 - k * a / gcd(a, b) also satisfy a * x2 + b * y2 = d.
+// y2 := y1 - k * a / gcd(a, b) also satisfy a * x2 + b * y2 = d for some integer k.
 
 pair<pll, ll> egcd(ll a, ll b) { // time complexity: O(max(loga, logb))
     ll s = 0, olds = 1;
