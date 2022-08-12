@@ -46,7 +46,7 @@ Various data structures and algorithms for competitive programming.
 7.2. [Linear Sieve](https://github.com/manoflearning/PS-Reference-Codes/blob/master/Reference%20Codes/7.%20Math/7.2.%20Linear%20Sieve.cpp) <br/>
 7.3. [GCD, LCM](https://github.com/manoflearning/PS-Reference-Codes/blob/master/Reference%20Codes/7.%20Math/7.3.%20GCD,%20LCM.cpp) <br/>
 7.4. [Extended GCD](https://github.com/manoflearning/PS-Reference-Codes/blob/master/Reference%20Codes/7.%20Math/7.4.%20Extended%20GCD.cpp) <br/>
-7.5. [Fermat's Little Theorem](https://github.com/manoflearning/PS-Reference-Codes/blob/master/Reference%20Codes/7.%20Math/7.5.%20Fermat's%20Little%20Theorem.cpp) <br/>
+7.5. [Fermat's Little Theorem](https://github.com/manoflearning/CP-Reference-Codes/blob/master/Reference%20Codes/7.%20Math/7.5.%20Fermat%E2%80%99s%20Little%20Theorem.cpp) <br/>
 7.6. [nCr mod p in O(1)](https://github.com/manoflearning/PS-Reference-Codes/blob/master/Reference%20Codes/7.%20Math/7.6.%20nCr%20mod%20p%20in%20O(1).cpp) <br/>
 7.7. [Matrix](https://github.com/manoflearning/PS-Reference-Codes/blob/master/Reference%20Codes/7.%20Math/7.7.%20Matrix.cpp) <br/>
 8. [Etc](https://github.com/manoflearning/PS-Reference-Codes/tree/master/Reference%20Codes/8.%20Etc) <br/>
