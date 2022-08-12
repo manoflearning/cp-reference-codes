@@ -9,8 +9,12 @@ using namespace std;
 
 // Bézout's identity
 // Let a and b be integers with greatest common divisor d.
-// Then there exist integers x and y such that ax + by = d. 
+// Then there exist integers x and y such that ax + by = d.
 // Moreover, the integers of the form az + bt are exactly the multiples of d.
+
+// If the integers x1 and y1 satisfy a * x1 + b * y1 = d,
+// x2 := x1 + k * b / gcd(a, b) and
+// y2 := y1 - k * a / gcd(a, b) also satisfy a * x2 + b * y2 = d.
 
 pair<pll, ll> egcd(ll a, ll b) { // time complexity: O(max(loga, logb))
     ll s = 0, olds = 1;
@@ -35,8 +39,9 @@ pair<pll, ll> egcd(ll a, ll b) { // time complexity: O(max(loga, logb))
     return { { olds, oldt }, oldr };
 }
 
-ll modInv(ll a, ll p) { // find x such that ax = 1 (mod p)
+ll modInv(ll a, ll p) { // Find x such that ax = 1 (mod p).
     pair<pll, ll> res = egcd(a, p);
+    // Modular inverse exists iff gcd(a, p) = 1.
     if (res.sc == 1) return (res.fr.fr + p) % p;
     else return -1;
 }
