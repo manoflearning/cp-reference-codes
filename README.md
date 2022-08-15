@@ -66,4 +66,3 @@ Various data structures and algorithms for competitive programming.
 # Todo
 minimum vertex cover 추가하기 <br/>
 alternating path까지 (https://www.youtube.com/watch?v=C09tLeawgs0) <br/>
-카탈란 수 <br/>
