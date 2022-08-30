@@ -13,12 +13,10 @@ string s;
 int n, p[MAXS];
 // n: length of string
 // p[i]: the radius of the palindrome at the current position i
-int r = -1, c = -1;
-// r: end of palindrome
-// c: center of palindrome
 
 void manacher() {
     // Preprocessing for determining even-length pelindromes
+
     n = sz(s);
     s.resize(n << 1 | 1);
 
@@ -30,6 +28,11 @@ void manacher() {
     s[n++] = '#';
 
     // Processing
+
+    int r = -1, c = -1;
+    // r: end of palindrome
+    // c: center of palindrome
+
     for (int i = 0; i < n; i++) {
         if (i < r) p[i] = min(r - i, p[c * 2 - i]);
         else p[i] = 0;
@@ -56,6 +59,7 @@ int main() {
     manacher();
 
     // Get answer
+    
     int ans = 0;
     for (int i = 0; i < n; i++) {
         ans = max(ans, p[i]);
