@@ -20,7 +20,7 @@ int r = -1, c = -1;
 void manacher() {
     // Preprocessing for determining even-length pelindromes
     n = sz(s);
-    s.resize(MAXS);
+    s.resize(n << 1 | 1);
 
     for (int i = n - 1; i >= 0; i--) {
         s[i << 1 | 1] = s[i];
