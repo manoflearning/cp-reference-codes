@@ -17,14 +17,9 @@ int r = -1, c = -1;
 // r: end of palindrome
 // c: center of palindrome
 
-int main() {
-    cin.tie(NULL); cout.tie(NULL);
-    ios_base::sync_with_stdio(false);
-
-    cin >> s;
-    n = sz(s);
-
+void manacher() {
     // Preprocessing for determining even-length pelindromes
+    n = sz(s);
     s.resize(MAXS);
 
     for (int i = n - 1; i >= 0; i--) {
@@ -36,7 +31,7 @@ int main() {
 
     // Processing
     for (int i = 0; i < n; i++) {
-        if (r >= i) p[i] = min(r - i, p[c * 2 - i]);
+        if (i < r) p[i] = min(r - i, p[c * 2 - i]);
         else p[i] = 0;
 
         while (1) {
@@ -50,6 +45,15 @@ int main() {
             r = i + p[i], c = i;
         }
     }
+}
+
+int main() {
+    cin.tie(NULL); cout.tie(NULL);
+    ios_base::sync_with_stdio(false);
+
+    cin >> s;
+
+    manacher();
 
     // Get answer
     int ans = 0;
