@@ -1,24 +1,22 @@
-// Manacher's Algorithm
-// Find all palindromes in string in O(N)
-
 // BOJ 14444 AC Code
 // https://www.acmicpc.net/problem/14444
+
+// Manacher's Algorithm
+// Find all palindromes in string in O(N)
 #include <bits/stdc++.h>
 using namespace std;
 #define sz(x) (x).size()
 
-const int MAXS = 101010 * 2;
-
+int n; // n: length of string
 string s;
-int n, p[MAXS];
-// n: length of string
-// p[i]: the radius of the palindrome at the current position i
+vector<int> p; // p[i]: the radius of the palindrome at the current position i
 
 void manacher() {
     // Preprocessing for determining even-length pelindromes
 
     n = sz(s);
     s.resize(n << 1 | 1);
+    p.resize(n << 1 | 1);
 
     for (int i = n - 1; i >= 0; i--) {
         s[i << 1 | 1] = s[i];
