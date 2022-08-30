@@ -4,6 +4,7 @@ Various data structures and algorithms for competitive programming.
 # Contents
 0. [Basic Template](https://github.com/manoflearning/PS-Reference-Codes/tree/master/Reference%20Codes/0.%20Basic%20Template) <br/>
 0.1. [C++ Basic Template](https://github.com/manoflearning/PS-Reference-Codes/blob/master/Reference%20Codes/0.%20Basic%20Template/0.1.%20C%2B%2B%20Basic%20Template.cpp) <br/>
+0.2. [#pragma GCC optimize](https://github.com/manoflearning/PS-Reference-Codes/blob/master/Reference%20Codes/0.%20Basic%20Template/0.2.%20#pragma%20GCC%20optimize.cpp) <br/>
 1. [Data Structure](https://github.com/manoflearning/PS-Reference-Codes/tree/master/Reference%20Codes/1.%20Data%20Structure) <br/>
 1.1. [Segment Tree](https://github.com/manoflearning/PS-Reference-Codes/tree/master/Reference%20Codes/1.%20Data%20Structure/1.1.%20Segment%20Tree) <br/>
 1.2. [Union Find](https://github.com/manoflearning/PS-Reference-Codes/blob/master/Reference%20Codes/1.%20Data%20Structure/1.2.%20Union%20Find.cpp) <br/>
@@ -56,7 +57,6 @@ Various data structures and algorithms for competitive programming.
 8.1. [Coordinate Compression](https://github.com/manoflearning/PS-Reference-Codes/blob/master/Reference%20Codes/8.%20Etc/8.1.%20Coordinate%20Compression.cpp) <br/>
 8.2. [2D Prefix Sum](https://github.com/manoflearning/PS-Reference-Codes/blob/master/Reference%20Codes/8.%20Etc/8.2.%202D%20Prefix%20Sum.cpp) <br/>
 8.3. [Convex Hull Trick](https://github.com/manoflearning/PS-Reference-Codes/blob/master/Reference%20Codes/8.%20Etc/8.3.%20Convex%20Hull%20Trick.cpp) <br/>
-8.4. [#pragma GCC optimize](https://github.com/manoflearning/PS-Reference-Codes/blob/master/Reference%20Codes/8.%20Etc/8.4.%20#pragma%20GCC%20optimize.cpp) <br/>
 
 # Guidelines
 1. 코드는 간결하고 알아보기 쉬워야 한다. <br/>
