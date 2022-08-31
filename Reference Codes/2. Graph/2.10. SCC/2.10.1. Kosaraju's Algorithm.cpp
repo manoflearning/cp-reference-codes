@@ -36,12 +36,6 @@ void dfs(int v) {
 	p[num] = v;
 }
 
-void ordering() {
-	for (int v = 1; v <= n; v++) {
-		if (!in[v]) dfs(v);
-	}
-}
-
 void flood(int v) {
 	scc[cnt].push_back(v);
 	vi[v] = cnt;
@@ -51,7 +45,9 @@ void flood(int v) {
 }
 
 void kosaraju() {
-	ordering();
+	for (int v = 1; v <= n; v++) {
+		if (!in[v]) dfs(v);
+	}
 
 	for (int v = 2 * n; v >= 1; v--) {
 		if (!p[v]) continue;
