@@ -21,7 +21,7 @@ Various data structures and algorithms for competitive programming.
 2.7. [Topological Sort](https://github.com/manoflearning/PS-Reference-Codes/tree/master/Reference%20Codes/2.%20Graph/2.7.%20Topological%20Sort) <br/>
 2.8. [Euler Circuit](https://github.com/manoflearning/PS-Reference-Codes/blob/master/Reference%20Codes/2.%20Graph/2.8.%20Euler%20Circuit.cpp) <br/>
 2.9. [2-SAT](https://github.com/manoflearning/PS-Reference-Codes/blob/master/Reference%20Codes/2.%20Graph/2.9.%202-SAT.cpp) <br/>
-2.10. [SCC](https://github.com/manoflearning/PS-Reference-Codes/blob/master/Reference%20Codes/2.%20Graph/2.10.%20SCC.cpp) <br/>
+2.10. [SCC](https://github.com/manoflearning/PS-Reference-Codes/blob/master/Reference%20Codes/2.%20Graph/2.10.%20SCC) <br/>
 2.11. [BCC](https://github.com/manoflearning/PS-Reference-Codes/blob/master/Reference%20Codes/2.%20Graph/2.11.%20BCC.cpp) <br/>
 3. [Tree](https://github.com/manoflearning/PS-Reference-Codes/tree/master/Reference%20Codes/3.%20Tree) <br/>
 3.1. [Lowest Common Ancestor](https://github.com/manoflearning/PS-Reference-Codes/blob/master/Reference%20Codes/3.%20Tree/3.1.%20Lowest%20Common%20Ancestor.cpp) <br/>
