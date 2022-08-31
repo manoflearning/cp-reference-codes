@@ -32,12 +32,11 @@ void manacher() {
     // c: center of palindrome
 
     for (int i = 0; i < n; i++) {
-        if (i < r) p[i] = min(r - i, p[c * 2 - i]);
+        if (i <= r) p[i] = min(r - i, p[c * 2 - i]);
         else p[i] = 0;
 
         while (1) {
-            if (i - p[i] - 1 < 0) break;
-            if (i + p[i] + 1 >= n) break;
+            if (i - p[i] - 1 < 0 || i + p[i] + 1 >= n) break;
             if (s[i + p[i] + 1] != s[i - p[i] - 1]) break;
             p[i]++;
         }
