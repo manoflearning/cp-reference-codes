@@ -5,9 +5,9 @@ int sq;
 
 struct se {
 	int s, e, idx;
-	bool operator<(se a) {
-		if (s / sq != a.s / sq) return s / sq < a.s / sq;
-		return e < a.e;
+	bool operator<(const se& rhs) const {
+		if (s / sq != rhs.s / sq) return s / sq < rhs.s / sq;
+		return e < rhs.e;
 	}
 };
 
