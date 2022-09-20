@@ -26,7 +26,7 @@ void linearSieve() {
 
 // factorization in O(log x)
 void factorization(int x) {
-    while (x > 1) {
+	while (x > 1) {
 		cout << sp[x] << ' ';
 		x /= sp[x];
 	}
