@@ -43,6 +43,7 @@ Various data structures and algorithms for competitive programming.
 6. [Geometry](https://github.com/manoflearning/PS-Reference-Codes/tree/master/Reference%20Codes/6.%20Geometry) <br/>
 6.1. [CCW Algorithm](https://github.com/manoflearning/PS-Reference-Codes/blob/master/Reference%20Codes/6.%20Geometry/6.1.%20CCW%20Algorithm.cpp) <br/>
 6.2. [Convex Hull](https://github.com/manoflearning/PS-Reference-Codes/blob/master/Reference%20Codes/6.%20Geometry/6.2.%20Convex%20Hull) <br/>
+6.3. [Ray Casting](https://github.com/manoflearning/PS-Reference-Codes/blob/master/Reference%20Codes/6.%20Geometry/6.3.%20Ray%20Casting.cpp) <br/>
 7. [Math](https://github.com/manoflearning/PS-Reference-Codes/tree/master/Reference%20Codes/7.%20Math) <br/>
 7.1. [Sieve of Eratosthenes](https://github.com/manoflearning/PS-Reference-Codes/blob/master/Reference%20Codes/7.%20Math/7.1.%20Sieve%20of%20Eratosthenes.cpp) <br/>
 7.2. [Linear Sieve](https://github.com/manoflearning/PS-Reference-Codes/blob/master/Reference%20Codes/7.%20Math/7.2.%20Linear%20Sieve.cpp) <br/>
