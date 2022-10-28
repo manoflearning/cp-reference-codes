@@ -40,6 +40,7 @@ Various data structures and algorithms for competitive programming.
 5.4. [Aho-Corasick](https://github.com/manoflearning/PS-Reference-Codes/tree/master/Reference%20Codes/5.%20String/5.4.%20Aho-Corasick.cpp) <br/>
 5.5. [Suffix Array](https://github.com/manoflearning/PS-Reference-Codes/tree/master/Reference%20Codes/5.%20String/5.5.%20Suffix%20Array.cpp) <br/>
 5.6. [Manacher's Algorithm](https://github.com/manoflearning/PS-Reference-Codes/tree/master/Reference%20Codes/5.%20String/5.6.%20Manacher's%20Algorithm.cpp) <br/>
+5.7. [Z Algorithm](https://github.com/manoflearning/PS-Reference-Codes/tree/master/Reference%20Codes/5.%20String/5.7.%20Z%20Algorithm.cpp) <br/>
 6. [Geometry](https://github.com/manoflearning/PS-Reference-Codes/tree/master/Reference%20Codes/6.%20Geometry) <br/>
 6.1. [CCW Algorithm](https://github.com/manoflearning/PS-Reference-Codes/blob/master/Reference%20Codes/6.%20Geometry/6.1.%20CCW%20Algorithm.cpp) <br/>
 6.2. [Convex Hull](https://github.com/manoflearning/PS-Reference-Codes/blob/master/Reference%20Codes/6.%20Geometry/6.2.%20Convex%20Hull) <br/>
