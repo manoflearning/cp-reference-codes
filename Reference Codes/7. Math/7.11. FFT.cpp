@@ -2,8 +2,8 @@ typedef complex<double> base;
 
 void fft(vector<base> &a, bool inv){
 	int n = a.size(), j = 0;
-    vector<base> roots(n / 2);
-    for (int i = 1; i < n; i++){
+	vector<base> roots(n / 2);
+	for (int i = 1; i < n; i++){
 		int bit = (n >> 1);
 		while (j >= bit) {
 			j -= bit;
@@ -12,7 +12,7 @@ void fft(vector<base> &a, bool inv){
 		j += bit;
 		if (i < j) swap(a[i], a[j]);
 	}
-    double ang = 2 * acos(-1) / n * (inv ? -1 : 1);
+	double ang = 2 * acos(-1) / n * (inv ? -1 : 1);
 	for (int i = 0; i < n / 2; i++){
 		roots[i] = base(cos(ang * i), sin(ang * i));
 	}
