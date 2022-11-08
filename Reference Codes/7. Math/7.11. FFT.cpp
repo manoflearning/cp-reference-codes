@@ -1,6 +1,6 @@
 typedef complex<double> base;
 
-void fft(vector<base> &a, bool inv){
+void fft(vector<base> &a, bool inv) {
 	int n = a.size(), j = 0;
 	vector<base> roots(n / 2);
 	for (int i = 1; i < n; i++){
@@ -29,7 +29,7 @@ void fft(vector<base> &a, bool inv){
 	if (inv) for (int i = 0; i < n; i++) a[i] /= n; // skip for OR convolution.
 }
 
-vector<ll> multiply(vector<ll> &v, vector<ll> &w){
+vector<ll> multiply(const vector<ll> &v, const vector<ll> &w) {
 	vector<base> fv(v.begin(), v.end()), fw(w.begin(), w.end());
 	int n = 2; while (n < v.size() + w.size()) n <<= 1;
 	fv.resize(n); fw.resize(n);
