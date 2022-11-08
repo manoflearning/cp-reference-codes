@@ -29,14 +29,13 @@ void fft(vector<base> &a, bool inv) {
 	if (inv) for (int i = 0; i < n; i++) a[i] /= n; // skip for OR convolution.
 }
 
-vector<ll> multiply(const vector<ll> &v, const vector<ll> &w) {
+void multiply(const vector<ll> &v, const vector<ll> &w, vector<ll>& res) {
 	vector<base> fv(v.begin(), v.end()), fw(w.begin(), w.end());
 	int n = 2; while (n < v.size() + w.size()) n <<= 1;
 	fv.resize(n); fw.resize(n);
 	fft(fv, 0); fft(fw, 0);
 	for (int i = 0; i < n; i++) fv[i] *= fw[i];
 	fft(fv, 1);
-	vector<ll> ret(n);
-	for (int i = 0; i < n; i++) ret[i] = (ll)round(fv[i].real());
-	return ret;
+	res.resize(n);
+	for (int i = 0; i < n; i++) res[i] = (ll)round(fv[i].real());
 }
