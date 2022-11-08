@@ -26,7 +26,7 @@ void fft(vector<base> &a, bool inv) {
 			}
 		}
 	}
-	if (inv) for (int i = 0; i < n; i++) a[i] /= n; // skip for OR convolution.
+	if (inv) for (int i = 0; i < n; i++) a[i] /= n;
 }
 
 void multiply(const vector<ll> &v, const vector<ll> &w, vector<ll>& res) {
