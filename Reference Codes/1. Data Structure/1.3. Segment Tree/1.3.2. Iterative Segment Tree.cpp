@@ -3,13 +3,10 @@
 #include <bits/stdc++.h>
 using namespace std;
 #define ll long long
-
 const int MAXN = 1010101;  // limit for array size
-
 struct Seg {  // 0-indexed
 	int n;  // array size
 	ll t[2 * MAXN];
-
 	void build(int N) {
 		n = N;
 		for (int i = 0; i < n; i++) cin >> t[n + i];
@@ -27,22 +24,17 @@ struct Seg {  // 0-indexed
 		return ret;
 	}
 }seg;
-
 int main() {
 	cin.tie(NULL); cout.tie(NULL);
 	ios_base::sync_with_stdio(false);
-
 	int n, m, k;
 	cin >> n >> m >> k;
-
 	seg.build(n);
-
 	for (int i = 0; i < m + k; i++) {
 		ll op, x, y;
 		cin >> op >> x >> y;
 		if (op == 1) seg.modify(x - 1, y);
 		if (op == 2) cout << seg.query(x - 1, y) << '\n';
 	}
-
 	return 0;
 }
