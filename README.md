@@ -57,7 +57,7 @@ Various data structures and algorithms for competitive programming.
 8.1. [Coordinate Compression](https://github.com/manoflearning/PS-Reference-Codes/blob/master/Reference%20Codes/8.%20Misc/8.1.%20Coordinate%20Compression.cpp) <br/>
 8.2. [2D Prefix Sum](https://github.com/manoflearning/PS-Reference-Codes/blob/master/Reference%20Codes/8.%20Misc/8.2.%202D%20Prefix%20Sum.cpp) <br/>
 8.3. [Convex Hull Trick](https://github.com/manoflearning/PS-Reference-Codes/blob/master/Reference%20Codes/8.%20Misc/8.3.%20Convex%20Hull%20Trick.cpp) <br/>
-8.4. [DP Opts](https://github.com/manoflearning/PS-Reference-Codes/blob/master/Reference%20Codes/8.%20Misc/8.4.%20DP%20Opts.cpp) <br/>
+8.4. [DP Opt](https://github.com/manoflearning/PS-Reference-Codes/blob/master/Reference%20Codes/8.%20Misc/8.4.%20DP%20Opt.cpp) <br/>
 8.5. [Sqrt Decomposition, Mo's Algorithm](https://github.com/manoflearning/CP-Reference-Codes/blob/master/Reference%20Codes/8.%20Misc/8.5.%20Sqrt%20Decomposition%2C%20Mo's%20Algorithm.cpp) <br/>
 
 # Guidelines
