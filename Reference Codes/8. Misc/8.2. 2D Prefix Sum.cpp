@@ -1,7 +1,5 @@
 const int MAX = 1010;
-
 ll arr[MAX][MAX], psum[MAX][MAX];
-
 void buildPsum() {
       FOR(i, 1, MAX) {
             FOR(j, 1, MAX) {

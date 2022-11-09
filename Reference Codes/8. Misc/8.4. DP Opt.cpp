@@ -13,16 +13,12 @@
 #include <bits/stdc++.h>
 using namespace std;
 #define ll long long
-
 const ll INF = 1e18;
-
 int n, opt[5050][5050];
 ll a[5050], DP[5050][5050], psum[5050];
-
 int main() {
     cin.tie(NULL); cout.tie(NULL);
     ios_base::sync_with_stdio(false);
-
     int tc; cin >> tc;
     while (tc--) {
         cin >> n;
@@ -30,12 +26,10 @@ int main() {
             cin >> a[i];
             psum[i] = a[i] + psum[i - 1];
         }
-
         for (int i = 1; i <= n; i++) {
             DP[i][i] = 0;
             opt[i][i] = i;
         }
-
         for (int i = n - 1; i >= 1; i--) {
             for (int j = i + 1; j <= n; j++) {
                 ll mn = INF, mnk = -1;
@@ -46,14 +40,11 @@ int main() {
                         mnk = k;
                     }
                 }
-
                 DP[i][j] = mn;
                 opt[i][j] = mnk;
             }
         }
-
         cout << DP[1][n] << '\n';
     }
-
     return 0;
 }

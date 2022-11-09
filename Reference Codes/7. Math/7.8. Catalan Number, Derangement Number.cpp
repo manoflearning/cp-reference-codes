@@ -34,6 +34,7 @@ int main() {
 // Counting derangements of a set amounts to the hat-check problem, 
 // in which one considers the number of ways in which n hats
 // can be returned to n people such that no hat makes it back to its owner.
+
 // Recurrence relation: 
 // f1 = 0, f2 = 1.
 // fi = (i - 1) * (f{i-1} + f{i-2}) (i >= 3)
