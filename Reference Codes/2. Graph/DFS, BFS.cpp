@@ -2,11 +2,20 @@
 using namespace std;
 #define ll long long
 
-const int MAXN = 1e5 + 5;
+const int MAXN = 101010;
 
-int dist[MAXN];
+int vi[MAXN], dist[MAXN];
 vector<int> adj[MAXN];
 
+// DFS
+void dfs(int v) {
+    vi[v] = 1;
+    for (auto& u : adj[v]) {
+        if (!vi[u]) dfs(u);
+    }
+}
+
+// BFS
 void bfs(int st) {
     memset(dist, -1, sizeof(dist));
 
