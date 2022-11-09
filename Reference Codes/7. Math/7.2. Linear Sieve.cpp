@@ -3,12 +3,9 @@
 #include <bits/stdc++.h>
 using namespace std;
 #define ll long long
-
 const int MAXN = 5000000;
-
 vector<int> sp(MAXN + 1);
 vector<ll> prime;
-
 // Determine prime numbers between 1 and MAXN in O(MAXN) 
 void linearSieve() {
 	for (int i = 2;i <= MAXN; i++) {
@@ -23,7 +20,6 @@ void linearSieve() {
 		}
 	}
 }
-
 // factorization in O(log x)
 void factorization(int x) {
 	while (x > 1) {
@@ -32,18 +28,14 @@ void factorization(int x) {
 	}
 	cout << '\n';
 }
-
 int main() {
 	cin.tie(NULL); cout.tie(NULL);
 	ios_base::sync_with_stdio(false);
-
 	linearSieve();
-
 	int n; cin >> n;
 	while (n--) {
 		int x; cin >> x;
 		factorization(x);
 	}
-
 	return 0;
 }

@@ -1,8 +1,6 @@
 // Unverified code, many features to be added
 #define sz(x) (int)(x).size()
-
 const int MOD = 1e9 + 7;
-
 struct Matrix {
 	vector<vector<ll>> a;
 	Matrix operator*(const Matrix& rhs) const {
