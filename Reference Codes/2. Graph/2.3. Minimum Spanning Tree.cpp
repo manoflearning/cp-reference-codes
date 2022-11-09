@@ -34,7 +34,7 @@ void input() {
 		cin >> i.u >> i.v >> i.w;
 }
 void makingMST() {
-    sort(a.begin(), a.end());
+	sort(a.begin(), a.end());
 	for (auto& i : a) {
 		if (find(i.u) == find(i.v)) continue;
 		merge(i.u, i.v);
