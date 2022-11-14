@@ -2,15 +2,15 @@
 Various data structures and algorithms for competitive programming.
 
 # Contents
-0. [Basic Template](https://github.com/manoflearning/PS-Reference-Codes/tree/master/Reference%20Codes/0.%20Basic%20Template) <br/>
-0.1. [C++ Basic Template](https://github.com/manoflearning/PS-Reference-Codes/blob/master/Reference%20Codes/0.%20Basic%20Template/0.1.%20C%2B%2B%20Basic%20Template.cpp) <br/>
+0. [Basic Template](https://github.com/manoflearning/CP-Reference-Codes/tree/master/Reference%20Codes/0.%20Basic%20Template) <br/>
+0.1. [C++ Basic Template](https://github.com/manoflearning/CP-Reference-Codes/blob/master/Reference%20Codes/0.%20Basic%20Template/0.1.%20C%2B%2B%20Basic%20Template.cpp) <br/>
 0.2. [#pragma GCC optimize](https://github.com/manoflearning/CP-Reference-Codes/blob/master/Reference%20Codes/0.%20Basic%20Template/0.2.%20%23pragma%20GCC%20optimize.cpp) <br/>
-1. [Data Structure](https://github.com/manoflearning/PS-Reference-Codes/tree/master/Reference%20Codes/1.%20Data%20Structure) <br/>
-1.1. [Union Find](https://github.com/manoflearning/PS-Reference-Codes/blob/master/Reference%20Codes/1.%20Data%20Structure/1.1.%20Union%20Find.cpp) <br/>
-1.2. [Sparse Table](https://github.com/manoflearning/PS-Reference-Codes/blob/master/Reference%20Codes/1.%20Data%20Structure/1.2.%20Sparse%20Table.cpp) <br/>
-1.3. [Segment Tree](https://github.com/manoflearning/PS-Reference-Codes/tree/master/Reference%20Codes/1.%20Data%20Structure/1.3.%20Segment%20Tree) <br/>
-1.4. [Merge Sort Tree](https://github.com/manoflearning/PS-Reference-Codes/tree/master/Reference%20Codes/1.%20Data%20Structure/1.4.%20Merge%20Sort%20Tree) <br/>
-2. [Graph](https://github.com/manoflearning/PS-Reference-Codes/tree/master/Reference%20Codes/2.%20Graph) <br/>
+1. [Data Structure](https://github.com/manoflearning/CP-Reference-Codes/tree/master/Reference%20Codes/1.%20Data%20Structure) <br/>
+1.1. [Union Find](https://github.com/manoflearning/CP-Reference-Codes/blob/master/Reference%20Codes/1.%20Data%20Structure/1.1.%20Union%20Find.cpp) <br/>
+1.2. [Sparse Table](https://github.com/manoflearning/CP-Reference-Codes/blob/master/Reference%20Codes/1.%20Data%20Structure/1.2.%20Sparse%20Table.cpp) <br/>
+1.3. [Segment Tree](https://github.com/manoflearning/CP-Reference-Codes/tree/master/Reference%20Codes/1.%20Data%20Structure/1.3.%20Segment%20Tree) <br/>
+1.4. [Merge Sort Tree](https://github.com/manoflearning/CP-Reference-Codes/tree/master/Reference%20Codes/1.%20Data%20Structure/1.4.%20Merge%20Sort%20Tree) <br/>
+2. [Graph](https://github.com/manoflearning/CP-Reference-Codes/tree/master/Reference%20Codes/2.%20Graph) <br/>
 2.1. [DFS, BFS](https://github.com/manoflearning/CP-Reference-Codes/blob/master/Reference%20Codes/2.%20Graph/2.1.%20DFS%2C%20BFS.cpp) <br/>
 2.2. [Dijkstra's, Bellman-Ford, Floyd-Warshall](https://github.com/manoflearning/CP-Reference-Codes/blob/master/Reference%20Codes/2.%20Graph/2.2.%20Dijkstra's%2C%20Bellman-Ford%2C%20Floyd-Warshall.cpp) <br/>
 2.3. [Minimum Spanning Tree](https://github.com/manoflearning/PS-Reference-Codes/tree/master/Reference%20Codes/2.%20Graph/2.3.%20Minimum%20Spanning%20Tree.cpp) <br/>
