@@ -48,7 +48,7 @@ int main() {
     cin.tie(NULL); cout.tie(NULL);
     ios_base::sync_with_stdio(false);
     dp[1] = 0, dp[2] = 1;
-    for (int i = 2; i < MAX; i++) {
+    for (int i = 3; i < MAX; i++) {
         dp[i] = (i - 1) * (dp[i - 1] + dp[i - 2]) % MOD;
     }
     int n; cin >> n;
