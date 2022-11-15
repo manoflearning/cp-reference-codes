@@ -64,8 +64,8 @@ ll w[MAX], dp[MAX][MAX], psum[MAX];
 struct wv {
     ll w; int v;
     bool operator<(const wv& rhs) const {
-		return w > rhs.w;
-	}
+        return w > rhs.w;
+    }
 };
 vector<wv> adj[MAX], radj[MAX];
 void input() {
@@ -79,35 +79,35 @@ void input() {
 }
 vector<ll> dist(MAX, INF), rdist(MAX, INF);
 void dijkstra() {
-	priority_queue<wv> pq;
-	pq.push({ 0, b + 1 });
-	dist[b + 1] = 0;
-	while (!pq.empty()) {
-		int v = pq.top().v;
-		ll w = pq.top().w;
-		pq.pop();
-		if (w > dist[v]) continue;
-		for (auto& i : adj[v]) {
-			if (dist[i.v] > w + i.w) {
-				dist[i.v] = w + i.w;
-				pq.push({ w + i.w, i.v });
-			}
-		}
-	}
+    priority_queue<wv> pq;
+    pq.push({ 0, b + 1 });
+    dist[b + 1] = 0;
+    while (!pq.empty()) {
+        int v = pq.top().v;
+        ll w = pq.top().w;
+        pq.pop();
+        if (w > dist[v]) continue;
+        for (auto& i : adj[v]) {
+            if (dist[i.v] > w + i.w) {
+                dist[i.v] = w + i.w;
+                pq.push({ w + i.w, i.v });
+            }
+        }
+    }
     pq.push({ 0, b + 1 });
     rdist[b + 1] = 0;
     while (!pq.empty()) {
-		int v = pq.top().v;
-		ll w = pq.top().w;
-		pq.pop();
-		if (w > rdist[v]) continue;
-		for (auto& i : radj[v]) {
-			if (rdist[i.v] > w + i.w) {
-				rdist[i.v] = w + i.w;
-				pq.push({ w + i.w, i.v });
-			}
-		}
-	}
+        int v = pq.top().v;
+        ll w = pq.top().w;
+        pq.pop();
+        if (w > rdist[v]) continue;
+        for (auto& i : radj[v]) {
+            if (rdist[i.v] > w + i.w) {
+                rdist[i.v] = w + i.w;
+                pq.push({ w + i.w, i.v });
+            }
+        }
+    }
 }
 void f(int gr, int l, int r, int nl, int nr) {
     int mid = (l + r) >> 1, idx = -1;
@@ -125,9 +125,9 @@ void f(int gr, int l, int r, int nl, int nr) {
     }
 }
 int main() {
-	cin.tie(NULL); cout.tie(NULL);
-	ios_base::sync_with_stdio(false);
-	input();
+    cin.tie(NULL); cout.tie(NULL);
+    ios_base::sync_with_stdio(false);
+    input();
     dijkstra();
     for (int i = 1; i <= b; i++) {
         w[i] = dist[i] + rdist[i];
@@ -143,5 +143,5 @@ int main() {
         f(i, i, b, 0, b);
     }
     cout << dp[s][b];
-	return 0;
+    return 0;
 }
