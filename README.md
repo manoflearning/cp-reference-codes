@@ -53,6 +53,7 @@ Various data structures and algorithms for competitive programming.
 7.8. [Catalan Number, Derangement Number](https://github.com/manoflearning/CP-Reference-Codes/blob/master/Reference%20Codes/7.%20Math/7.8.%20Catalan%20Number%2C%20Derangement%20Number.cpp) <br/>
 7.9. [Euler's Phi Function](https://github.com/manoflearning/PS-Reference-Codes/blob/master/Reference%20Codes/7.%20Math/7.9.%20Euler's%20Phi%20Function.cpp) <br/>
 7.10. [FFT](https://github.com/manoflearning/PS-Reference-Codes/blob/master/Reference%20Codes/7.%20Math/7.10.%20FFT.cpp) <br/>
+7.11. [Gauss-Jordan Elimination](https://github.com/manoflearning/PS-Reference-Codes/blob/master/Reference%20Codes/7.%20Math/7.11.%20Gauss-Jordan%20Elimination.cpp)
 8. [Misc](https://github.com/manoflearning/PS-Reference-Codes/tree/master/Reference%20Codes/8.%20Misc) <br/>
 8.1. [Coordinate Compression](https://github.com/manoflearning/PS-Reference-Codes/blob/master/Reference%20Codes/8.%20Misc/8.1.%20Coordinate%20Compression.cpp) <br/>
 8.2. [2D Prefix Sum](https://github.com/manoflearning/PS-Reference-Codes/blob/master/Reference%20Codes/8.%20Misc/8.2.%202D%20Prefix%20Sum.cpp) <br/>
