@@ -11,14 +11,11 @@ void inverse_matrix(vector<vector<double>> &a){
             if(a[p][c] < a[i][c])
                 p = i;
         if(a[p][c] == 0){ puts("no inverse"); return; }; 
-
         for(int j = 0; j < m; ++j)
             swap(a[p][j], a[r][j]);
-
         double t = a[r][c];
         for(int j = 0; j < m; ++j)
             a[r][j] /= t;
-
         for(int i = 0; i < n; ++i) if(i != r){
             double t = a[i][c];
             for(int j = c; j < m; ++j)
