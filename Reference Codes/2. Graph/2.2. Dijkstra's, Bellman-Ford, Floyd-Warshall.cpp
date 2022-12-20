@@ -28,8 +28,7 @@ void dijkstra(int st) {
 	pq.push({ 0, st });
 	dist[st] = 0;
 	while (!pq.empty()) {
-		int v = pq.top().v;
-		ll w = pq.top().w;
+		auto [w, v] = pq.top();
 		pq.pop();
 		if (w > dist[v]) continue;
 		for (auto& i : adj[v]) {
