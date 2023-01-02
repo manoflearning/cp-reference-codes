@@ -2,7 +2,7 @@
 // Given the query (a b c) or (a b c d)
 // If a = 1, add d to the elements in the interval [b, c].
 // If a = 2, find the sum of the elements in the interval [b, c].
-// OUTPUT: Given the query 2 b c, output the sum of elements in the interval [b, c].
+// OUTPUT: Given the query (2 b c), output the sum of elements in the interval [b, c].
 // TIME COMPLEXITY: O(nlogn) for initialize segment tree, O(logn) for each query.
 
 // BOJ 10999 AC Code
