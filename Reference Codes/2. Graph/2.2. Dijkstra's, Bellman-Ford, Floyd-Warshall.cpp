@@ -1,7 +1,9 @@
 // Dijkstra's Algorithm
+
+// Time Complexity: O(ElogV)
+
 // BOJ 1753 AC Code
 // https://www.acmicpc.net/problem/1753
-// Time Complexity: O(ElogV)
 #include <bits/stdc++.h>
 using namespace std;
 #define ll long long

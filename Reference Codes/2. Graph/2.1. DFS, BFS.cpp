@@ -1,3 +1,5 @@
+// Depth-first Search
+
 // INPUT: Given a undirected graph.
 // OUTPUT: Output a number of connected components.
 // TIME COMPLEXITY: O(n + m)
@@ -41,6 +43,8 @@ int main() {
     
     return 0;
 }
+
+// Breadth-first Search
 
 // INPUT: Given a undirected graph.
 // OUTPUT: Output a number of connected components.
