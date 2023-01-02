@@ -4,7 +4,6 @@ Various data structures and algorithms for competitive programming.
 # Contents
 0. [Basic Template](https://github.com/manoflearning/CP-Reference-Codes/tree/master/Reference%20Codes/0.%20Basic%20Template) <br/>
 0.1. [C++ Basic Template](https://github.com/manoflearning/CP-Reference-Codes/blob/master/Reference%20Codes/0.%20Basic%20Template/0.1.%20C%2B%2B%20Basic%20Template.cpp) <br/>
-0.2. [#pragma GCC optimize](https://github.com/manoflearning/CP-Reference-Codes/blob/master/Reference%20Codes/0.%20Basic%20Template/0.2.%20%23pragma%20GCC%20optimize.cpp) <br/>
 1. [Data Structure](https://github.com/manoflearning/CP-Reference-Codes/tree/master/Reference%20Codes/1.%20Data%20Structure) <br/>
 1.1. [Union Find](https://github.com/manoflearning/CP-Reference-Codes/blob/master/Reference%20Codes/1.%20Data%20Structure/1.1.%20Union%20Find.cpp) <br/>
 1.2. [Sparse Table](https://github.com/manoflearning/CP-Reference-Codes/blob/master/Reference%20Codes/1.%20Data%20Structure/1.2.%20Sparse%20Table.cpp) <br/>
