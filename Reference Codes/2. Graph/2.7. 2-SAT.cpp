@@ -1,4 +1,4 @@
-// INPUT: A 2-CNF is given. 2-CNF is a bullion expression in the form (x ∨ y) ∧ (￢ y ∨ z) ∧ (x ￢ z) ∧ (z ∨ y).
+// INPUT: A 2-CNF is given. 2-CNF is a boolean expression in the form (x ∨ y) ∧ (￢ y ∨ z) ∧ (x ￢ z) ∧ (z ∨ y).
 // OUTPUT: Determine whether there exists a case where a given 2-CNF expression can be true. (2-Satisfiability Problem)
 // TIME COMPLEXITY: O(n + m) = O(n) (m = 2n)
 
