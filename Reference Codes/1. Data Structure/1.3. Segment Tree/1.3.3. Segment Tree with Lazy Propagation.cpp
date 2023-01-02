@@ -1,8 +1,17 @@
+// INPUT: Given an array of integers of size N.
+// Given the query (a b c) or (a b c d)
+// If a = 1, add d to the elements in the interval [b, c].
+// If a = 2, find the sum of the elements in the interval [b, c].
+// OUTPUT: Given the query 2 b c, output the sum of elements in the interval [b, c].
+// TIME COMPLEXITY: O(nlogn) for initialize segment tree, O(logn) for each query.
+
 // BOJ 10999 AC Code
 // https://www.acmicpc.net/problem/10999
+
 #include <bits/stdc++.h>
 using namespace std;
 #define ll long long
+
 int flag;  // array size
 struct Seg {  // 1-indexed
 	vector<ll> t, lazy;
@@ -45,12 +54,16 @@ struct Seg {  // 1-indexed
 		}
 	}
 }seg;
+
 int main() {
 	cin.tie(NULL); cout.tie(NULL);
 	ios_base::sync_with_stdio(false);
+	
 	int n, m, k;
 	cin >> n >> m >> k;
+	
 	seg.build(n);
+	
 	for (int i = 0; i < m + k; i++) {
 		ll op, x, y, z;
 		cin >> op >> x >> y;
@@ -60,5 +73,6 @@ int main() {
 		}
 		if (op == 2) cout << seg.query(x, y) << '\n';
 	}
+
 	return 0;
 }
