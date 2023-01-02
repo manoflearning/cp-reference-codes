@@ -1,6 +1,6 @@
-// INPUT: 
-// OUTPUT:
-// TIME COMPLEXITY: 
+// INPUT: Given a undirected graph.
+// OUTPUT: Decompose this graph into BCCs.
+// TIME COMPLEXITY: O(V + E)
 
 #include <bits/stdc++.h>
 using namespace std;
