@@ -1,6 +1,6 @@
 // Kosaraju's Algorithm
 // INPUT: Given a directed graph.
-// OUTPUT: Output the SCCs on the graph.
+// OUTPUT: Decompose this graph into SCCs and print them in lexicographical order.
 // TIME COMPLEXITY: O(V + E)
 
 // BOJ 2150 AC Code

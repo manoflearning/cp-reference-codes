@@ -1,11 +1,18 @@
+// INPUT: 
+// OUTPUT:
+// TIME COMPLEXITY: 
+
 #include <bits/stdc++.h>
 using namespace std;
 #define pii pair<int, int>
+
 const int MAXV = 101010;
+
 int n, m, dfsn[MAXV + 5], dCnt;
 vector<int> adj[MAXV + 5];
 stack<pii> stk;
 vector<vector<pii>> bcc;
+
 void input() {
 	cin >> n >> m;
 	for (int i = 0; i < m; i++) {
@@ -15,6 +22,7 @@ void input() {
 		adj[v].push_back(u);
 	} 
 }
+
 int dfs(int now, int prv) {
 	int ret = dfsn[now] = ++dCnt;
 	for (int next : adj[now]) {
@@ -42,15 +50,19 @@ int dfs(int now, int prv) {
 	}
 	return ret;
 }
+
 void getBCC() {
 	memset(dfsn, -1, sizeof(dfsn));
 	for (int v = 1; v <= n; v++)
 		if (dfsn[v] == -1) dfs(v, 0);
 }
+
 int main() {
 	cin.tie(NULL); cout.tie(NULL);
 	ios_base::sync_with_stdio(false);
+
 	input();
 	getBCC();
+
 	return 0;
 }
