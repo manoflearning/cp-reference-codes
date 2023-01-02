@@ -1,5 +1,6 @@
 // Input: Given n+1 sets {0}, {1}, ..., {n}.
-// Two types of operations are given. 0 a b is the union operation. 1 a b is an operation that checks whether a and b are in the same set.
+// Two types of operations are given. 0 a b is the union operation.
+// 1 a b is an operation that checks whether a and b are in the same set.
 // Output: For inputs starting with 1, the result is output as YES/NO.
 // Time Complexity: O(α(n)) (α is inverse Ackermann function)
 
