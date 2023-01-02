@@ -27,19 +27,11 @@ void merge(int a, int b) {
 }
 
 // Kruskal's algorithm
-struct wv {
-	ll w; int v;
-};
-
-struct wuv {
-	ll w; int u, v;
-	bool operator<(const wuv& rhs) const {
-		return w < rhs.w;
-	}
-};
+struct wv { ll w; int v; };
+struct Edge { ll w; int u, v; };
 
 int n, m;
-vector<wuv> a;
+vector<Edge> a;
 vector<wv> adj[MAX];
 
 void input() {
@@ -51,7 +43,9 @@ void input() {
 
 ll buildMST() {
 	ll ret = 0;
-	sort(a.begin(), a.end());
+	sort(a.begin(), a.end(), [&](const Edge& lhs, const Edge& rhs) {
+		return lhs.w < rhs.w;
+	});
 	for (auto& i : a) {
 		if (find(i.u) == find(i.v)) continue;
 		merge(i.u, i.v);
