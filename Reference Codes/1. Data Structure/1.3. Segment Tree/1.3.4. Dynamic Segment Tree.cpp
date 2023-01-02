@@ -1,13 +1,24 @@
+// INPUT: Given an array of integers of size N.
+// Given the query a b c
+// If a = 1, change the value of the bth element to c,
+// If a = 2, find the sum of the elements in the interval [b, c].
+// OUTPUT: Given the query 2 b c, output the sum of elements in the interval [b, c].
+// TIME COMPLEXITY: O(nlogn) for initialize segment tree, O(logn) for each query.
+
 // BOJ 2042 AC Code
 // https://www.acmicpc.net/problem/2042
+
 #include <bits/stdc++.h>
 using namespace std;
 #define ll long long
 #define sz(x) (int)(x).size()
+
 const int MAXL = 1, MAXR = 1000000;
+
 struct Node {
     ll x; int l, r;
 };
+
 struct Dyseg {
     vector<Node> t = { { 0, -1, -1 }, { 0, -1, -1 } };
     void modify(int p, ll x, int n = 1, int nl = MAXL, int nr = MAXR) {
@@ -53,16 +64,21 @@ struct Dyseg {
         return ret;
     }
 }dyseg;
+
 ll a[1010101];
+
 int main() {
     cin.tie(NULL); cout.tie(NULL);
     ios_base::sync_with_stdio(false);
+
     int n, m, k;
     cin >> n >> m >> k;
+
     for (int i = 1; i <= n; i++) {
         cin >> a[i];
         dyseg.modify(i, a[i]);
     }
+
     for (int i = 0; i < m + k; i++) {
         int op; ll x, y;
         cin >> op >> x >> y;
@@ -72,5 +88,6 @@ int main() {
         }
         if (op == 2) cout << dyseg.query(x, y) << '\n';
     }
+ 
     return 0;
 }
