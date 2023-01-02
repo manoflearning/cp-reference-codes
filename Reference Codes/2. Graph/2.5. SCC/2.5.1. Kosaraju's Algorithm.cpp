@@ -1,15 +1,23 @@
 // Kosaraju's Algorithm
+// INPUT: Given a directed graph.
+// OUTPUT: Output the SCCs on the graph.
+// TIME COMPLEXITY: O(V + E)
+
 // BOJ 2150 AC Code
 // https://www.acmicpc.net/problem/2150
+
 #include <bits/stdc++.h>
 using namespace std;
 #define sz(x) (int)(x).size()
+
 const int MAXV = 10101;
+
 int n, m;
 vector<int> adj[MAXV], radj[MAXV];
 int in[MAXV], out[MAXV], num, p[2 * MAXV];
 int vi[MAXV], cnt;
 vector<vector<int>> scc;
+
 void input() {
 	cin >> n >> m;
 	for (int i = 0; i < m; i++) {
@@ -19,6 +27,7 @@ void input() {
 		radj[v].push_back(u);
 	}
 }
+
 void dfs(int v) {
 	in[v] = ++num;
 	for (auto& i : radj[v]) {
@@ -27,6 +36,7 @@ void dfs(int v) {
 	out[v] = ++num;
 	p[num] = v;
 }
+
 void flood(int v) {
 	scc[cnt].push_back(v);
 	vi[v] = cnt;
@@ -34,6 +44,7 @@ void flood(int v) {
 		if (!vi[i]) flood(i);
 	}
 }
+
 void kosaraju() {
 	for (int v = 1; v <= n; v++) {
 		if (!in[v]) dfs(v);
@@ -46,6 +57,7 @@ void kosaraju() {
 		flood(p[v]);
 	}
 }
+
 void print() {
 	for (auto& i : scc)
 		sort(i.begin(), i.end());
@@ -57,11 +69,14 @@ void print() {
 		cout << -1 << '\n';
 	}
 }
+
 int main() {
 	cin.tie(NULL); cout.tie(NULL);
 	ios_base::sync_with_stdio(false);
+	
 	input();
 	kosaraju();
 	print();
+	
 	return 0;
 }
