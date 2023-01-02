@@ -1,9 +1,9 @@
 // INPUT: Given an array of integers of size N.
-// Given the query a b c
+// Given the query (a b c)
 // If a = 1, change the value of the bth element to c,
 // If a = 2, find the sum of the elements in the interval [b, c].
-// OUTPUT: Given the query 2 b c, output the sum of elements in the interval [b, c].
-// TIME COMPLEXITY: O(nlogn) for initialize segment tree, O(logn) for each query.
+// OUTPUT: Given the query (2 b c), output the sum of elements in the interval [b, c].
+// TIME COMPLEXITY: O(n) for initialize segment tree, O(logn) for each query.
 
 // BOJ 2042 AC Code
 // https://www.acmicpc.net/problem/2042
