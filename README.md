@@ -63,7 +63,7 @@ Various data structures and algorithms for competitive programming.
 # Guidelines
 1. 코드는 간결하고 알아보기 쉬워야 한다. <br/>
 2. 코드 최상단에 주석으로 input, output, time complexity를 구체적으로 적어야 한다.
-3. 가급적이면 레퍼런스 문제를 남긴다. 예를 들어 세그먼트 트리 알고리즘을 작성할 때, https://www.acmicpc.net/problem/2042 를 래퍼런스 문제로 사용한다. <br/>
+3. 가급적이면 레퍼런스 문제를 남긴다. 예를 들어 세그먼트 트리 알고리즘을 작성할 때, [백준 2042번: 구간 합 구하기](https://www.acmicpc.net/problem/2042)문제를 래퍼런스 문제로 사용한다. <br/>
 4. 가급적이면 헤더 파일은 <bits/stdc++.h>만을 사용한다. <br/>
 5. 가급적이면 변수 이름, 함수 이름 등은 다음과 같은 형식을 사용한다. ex) unionFind (O), union_find (X) <br/>
 5.1. 단 구조체, 클래스의 이름은 첫 글자를 대문자로 한다. ex) UnionFind (O)
