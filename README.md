@@ -47,7 +47,7 @@ Various data structures and algorithms for competitive programming.
 7.3. [GCD, LCM](https://github.com/manoflearning/PS-Reference-Codes/blob/master/Reference%20Codes/7.%20Math/7.3.%20GCD,%20LCM.cpp) <br/>
 7.4. [Extended GCD](https://github.com/manoflearning/PS-Reference-Codes/blob/master/Reference%20Codes/7.%20Math/7.4.%20Extended%20GCD.cpp) <br/>
 7.5. [Fermat's Little Theorem](https://github.com/manoflearning/CP-Reference-Codes/blob/master/Reference%20Codes/7.%20Math/7.5.%20Fermat%E2%80%99s%20Little%20Theorem.cpp) <br/>
-7.6. [nCr mod p in O(1)](https://github.com/manoflearning/PS-Reference-Codes/blob/master/Reference%20Codes/7.%20Math/7.6.%20nCr%20mod%20p%20in%20O(1).cpp) <br/>
+7.6. [Binomial Coefficient](https://github.com/manoflearning/PS-Reference-Codes/blob/master/Reference%20Codes/7.%20Math/7.6.%20Binomial%20Coefficient.cpp) <br/>
 7.7. [Matrix](https://github.com/manoflearning/PS-Reference-Codes/blob/master/Reference%20Codes/7.%20Math/7.7.%20Matrix.cpp) <br/>
 7.8. [Catalan Number, Derangement Number](https://github.com/manoflearning/CP-Reference-Codes/blob/master/Reference%20Codes/7.%20Math/7.8.%20Catalan%20Number%2C%20Derangement%20Number.cpp) <br/>
 7.9. [Euler's Phi Function](https://github.com/manoflearning/PS-Reference-Codes/blob/master/Reference%20Codes/7.%20Math/7.9.%20Euler's%20Phi%20Function.cpp) <br/>
