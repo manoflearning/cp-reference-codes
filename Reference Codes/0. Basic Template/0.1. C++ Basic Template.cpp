@@ -12,7 +12,6 @@ using namespace std;
 #define pll pair<ll, ll>
 #define fr first
 #define sc second
-#define vt vector
 #define all(c) (c).begin(), (c).end()
 #define sz(x) (int)(x).size()
 
