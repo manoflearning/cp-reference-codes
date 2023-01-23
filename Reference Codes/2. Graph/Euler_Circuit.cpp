@@ -1,6 +1,6 @@
 // Hierholzer's Algorithm
 // INPUT: Given a undirected graph.
-// OUTPUT: Print the path of the Euler circuit of the graph.
+// OUTPUT: Print the path of the Euler circuit of the graph. Euler Path is a path in a finite graph that visits every edge exactly once. Similarly, an Euler Circuit is an Euler Path that starts and ends on the same vertex.
 // TIME COMPLEXITY: O(VE)
 
 // BOJ 1199 AC Code
