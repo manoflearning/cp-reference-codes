@@ -38,7 +38,7 @@ Various data structures and algorithms for competitive programming.
 5.7. [Z Algorithm](https://github.com/manoflearning/PS-Reference-Codes/tree/master/Reference%20Codes/5.%20String/Z_Algorithm.cpp) <br/>
 6. [Geometry](https://github.com/manoflearning/PS-Reference-Codes/tree/master/Reference%20Codes/6.%20Geometry) <br/>
 6.1. [CCW Algorithm](https://github.com/manoflearning/PS-Reference-Codes/blob/master/Reference%20Codes/6.%20Geometry/CCW_Algorithm.cpp) <br/>
-6.2. [Convex Hull](https://github.com/manoflearning/PS-Reference-Codes/blob/master/Reference%20Codes/6.%20Geometry/Convex_Hull) <br/>
+6.2. [Convex Hull](https://github.com/manoflearning/PS-Reference-Codes/blob/master/Reference%20Codes/6.%20Geometry/Convex%20Hull) <br/>
 6.3. [Rotating Callipers](https://github.com/manoflearning/PS-Reference-Codes/blob/master/Reference%20Codes/6.%20Geometry/Rotating_Callipers.cpp) <br/>
 6.4. [Ray Casting](https://github.com/manoflearning/PS-Reference-Codes/blob/master/Reference%20Codes/6.%20Geometry/Ray_Casting.cpp) <br/>
 6.5. [Rotation Matrix](https://github.com/manoflearning/PS-Reference-Codes/blob/master/Reference%20Codes/6.%20Geometry/Rotation_Matrix.txt) <br/>
