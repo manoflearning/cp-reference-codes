@@ -15,8 +15,8 @@ Various data structures and algorithms for competitive programming.
 2.3. [Minimum Spanning Tree](https://github.com/manoflearning/PS-Reference-Codes/tree/master/Reference%20Codes/2.%20Graph/Minimum_Spanning_Tree.cpp) <br/>
 2.4. [Topological Sort](https://github.com/manoflearning/PS-Reference-Codes/tree/master/Reference%20Codes/2.%20Graph/Topological%20Sort) <br/>
 2.5. [SCC](https://github.com/manoflearning/PS-Reference-Codes/blob/master/Reference%20Codes/2.%20Graph/SCC) <br/>
-2.6. [BCC](https://github.com/manoflearning/PS-Reference-Codes/blob/master/Reference%20Codes/2.%20Graph/BCC.cpp) <br/>
-2.7. [2-SAT](https://github.com/manoflearning/PS-Reference-Codes/blob/master/Reference%20Codes/2.%20Graph/2-SAT.cpp) <br/>
+2.6. [2-SAT](https://github.com/manoflearning/PS-Reference-Codes/blob/master/Reference%20Codes/2.%20Graph/2-SAT.cpp) <br/>
+2.7. [BCC](https://github.com/manoflearning/PS-Reference-Codes/blob/master/Reference%20Codes/2.%20Graph/BCC.cpp) <br/>
 2.8. [Euler Circuit](https://github.com/manoflearning/PS-Reference-Codes/blob/master/Reference%20Codes/2.%20Graph/Euler_Circuit.cpp) <br/>
 3. [Tree](https://github.com/manoflearning/PS-Reference-Codes/tree/master/Reference%20Codes/3.%20Tree) <br/>
 3.1. [LCA in O(logN) (Sparse Table)](https://github.com/manoflearning/CP-Reference-Codes/blob/master/Reference%20Codes/3.%20Tree/LCA_in_O(logN)_(Sparse_Table).cpp) <br/>
