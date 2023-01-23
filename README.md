@@ -20,7 +20,7 @@ Various data structures and algorithms for competitive programming.
 2.8. [Euler Circuit](https://github.com/manoflearning/PS-Reference-Codes/blob/master/Reference%20Codes/2.%20Graph/Euler_Circuit.cpp) <br/>
 3. [Tree](https://github.com/manoflearning/PS-Reference-Codes/tree/master/Reference%20Codes/3.%20Tree) <br/>
 3.1. [LCA in O(logN) (Sparse Table)](https://github.com/manoflearning/CP-Reference-Codes/blob/master/Reference%20Codes/3.%20Tree/LCA_in_O(logN)_(Sparse_Table).cpp) <br/>
-3.2. [Heavy-Light Decomposition](https://github.com/manoflearning/PS-Reference-Codes/tree/master/Reference%20Codes/3.%20Tree/Heavy-Light_Decomposition) <br/>
+3.2. [Heavy-Light Decomposition](https://github.com/manoflearning/PS-Reference-Codes/tree/master/Reference%20Codes/3.%20Tree/Heavy-Light%20Decomposition) <br/>
 3.3. [Centroid Decomposition](https://github.com/manoflearning/PS-Reference-Codes/blob/master/Reference%20Codes/3.%20Tree/Centroid_Decomposition.cpp) <br/>
 4. [Network Flow](https://github.com/manoflearning/PS-Reference-Codes/tree/master/Reference%20Codes/4.%20Network%20Flow) <br/>
 4.1. [Maximum Flow](https://github.com/manoflearning/PS-Reference-Codes/tree/master/Reference%20Codes/4.%20Network%20Flow/Maximum_Flow) <br/>
