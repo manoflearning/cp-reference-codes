@@ -41,7 +41,6 @@ Various data structures and algorithms for competitive programming.
 6.2. [Convex Hull](https://github.com/manoflearning/PS-Reference-Codes/blob/master/Reference%20Codes/6.%20Geometry/Convex%20Hull) <br/>
 6.3. [Rotating Callipers](https://github.com/manoflearning/PS-Reference-Codes/blob/master/Reference%20Codes/6.%20Geometry/Rotating_Callipers.cpp) <br/>
 6.4. [Ray Casting](https://github.com/manoflearning/PS-Reference-Codes/blob/master/Reference%20Codes/6.%20Geometry/Ray_Casting.cpp) <br/>
-6.5. [Rotation Matrix](https://github.com/manoflearning/PS-Reference-Codes/blob/master/Reference%20Codes/6.%20Geometry/Rotation_Matrix.txt) <br/>
 7. [Math](https://github.com/manoflearning/PS-Reference-Codes/tree/master/Reference%20Codes/7.%20Math) <br/>
 7.1. [Sieve of Eratosthenes](https://github.com/manoflearning/PS-Reference-Codes/blob/master/Reference%20Codes/7.%20Math/Sieve_of_Eratosthenes.cpp) <br/>
 7.2. [Linear Sieve](https://github.com/manoflearning/PS-Reference-Codes/blob/master/Reference%20Codes/7.%20Math/Linear_Sieve.cpp) <br/>
@@ -61,6 +60,7 @@ Various data structures and algorithms for competitive programming.
 8.4. [DP Opt](https://github.com/manoflearning/PS-Reference-Codes/blob/master/Reference%20Codes/8.%20Misc/DP_Opt.cpp) <br/>
 8.5. [Sqrt Decomposition, Mo's Algorithm](https://github.com/manoflearning/CP-Reference-Codes/blob/master/Reference%20Codes/8.%20Misc/Sqrt_Decomposition%2C_Mo's_Algorithm.cpp) <br/>
 8.6. [Fraction Data Type](https://github.com/manoflearning/CP-Reference-Codes/blob/master/Reference%20Codes/8.%20Misc/Fraction_Data_Type.cpp) <br/>
+8.7. [Rotation Matrix](https://github.com/manoflearning/PS-Reference-Codes/blob/master/Reference%20Codes/8.%20Misc/Rotation_Matrix.txt) <br/>
 
 # Guidelines
 1. 코드는 간결하고 알아보기 쉬워야 한다. <br/>
