@@ -23,7 +23,7 @@ Various data structures and algorithms for competitive programming.
 3.2. [Heavy-Light Decomposition](https://github.com/manoflearning/PS-Reference-Codes/tree/master/Reference%20Codes/3.%20Tree/Heavy-Light%20Decomposition) <br/>
 3.3. [Centroid Decomposition](https://github.com/manoflearning/PS-Reference-Codes/blob/master/Reference%20Codes/3.%20Tree/Centroid_Decomposition.cpp) <br/>
 4. [Network Flow](https://github.com/manoflearning/PS-Reference-Codes/tree/master/Reference%20Codes/4.%20Network%20Flow) <br/>
-4.1. [Maximum Flow](https://github.com/manoflearning/PS-Reference-Codes/tree/master/Reference%20Codes/4.%20Network%20Flow/Maximum_Flow) <br/>
+4.1. [Maximum Flow](https://github.com/manoflearning/PS-Reference-Codes/tree/master/Reference%20Codes/4.%20Network%20Flow/Maximum%20Flow) <br/>
 4.2. [Dinic's Algorithm](https://github.com/manoflearning/PS-Reference-Codes/blob/master/Reference%20Codes/4.%20Network%20Flow/Dinic's_Algorithm.cpp) <br/>
 4.3. [Bipartite Matching](https://github.com/manoflearning/PS-Reference-Codes/blob/master/Reference%20Codes/4.%20Network%20Flow/Bipartite_Matching.cpp) <br/>
 4.4. [Hopcroft-Karp Algorithm](https://github.com/manoflearning/PS-Reference-Codes/blob/master/Reference%20Codes/4.%20Network%20Flow/Hopcroft-Karp_Algorithm.cpp) <br/>
