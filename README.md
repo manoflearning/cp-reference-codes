@@ -60,6 +60,7 @@ Various data structures and algorithms for competitive programming.
 8.3. [Convex Hull Trick](https://github.com/manoflearning/PS-Reference-Codes/blob/master/Reference%20Codes/8.%20Misc/8.3.%20Convex%20Hull%20Trick.cpp) <br/>
 8.4. [DP Opt](https://github.com/manoflearning/PS-Reference-Codes/blob/master/Reference%20Codes/8.%20Misc/8.4.%20DP%20Opt.cpp) <br/>
 8.5. [Sqrt Decomposition, Mo's Algorithm](https://github.com/manoflearning/CP-Reference-Codes/blob/master/Reference%20Codes/8.%20Misc/8.5.%20Sqrt%20Decomposition%2C%20Mo's%20Algorithm.cpp) <br/>
+8.6. [Fraction Data Type](https://github.com/manoflearning/CP-Reference-Codes/blob/master/Reference%20Codes/8.%20Misc/Fraction-Data-Type.cpp) <br/>
 
 # Guidelines
 1. 코드는 간결하고 알아보기 쉬워야 한다. <br/>
