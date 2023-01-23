@@ -13,7 +13,7 @@ Various data structures and algorithms for competitive programming.
 2.1. [DFS, BFS](https://github.com/manoflearning/CP-Reference-Codes/blob/master/Reference%20Codes/2.%20Graph/DFS%2C_BFS.cpp) <br/>
 2.2. [Dijkstra's, Bellman-Ford, Floyd-Warshall](https://github.com/manoflearning/CP-Reference-Codes/blob/master/Reference%20Codes/2.%20Graph/Dijkstra's%2C_Bellman-Ford%2C_Floyd-Warshall.cpp) <br/>
 2.3. [Minimum Spanning Tree](https://github.com/manoflearning/PS-Reference-Codes/tree/master/Reference%20Codes/2.%20Graph/Minimum_Spanning_Tree.cpp) <br/>
-2.4. [Topological Sort](https://github.com/manoflearning/PS-Reference-Codes/tree/master/Reference%20Codes/2.%20Graph/Topological_Sort) <br/>
+2.4. [Topological Sort](https://github.com/manoflearning/PS-Reference-Codes/tree/master/Reference%20Codes/2.%20Graph/Topological%20Sort) <br/>
 2.5. [SCC](https://github.com/manoflearning/PS-Reference-Codes/blob/master/Reference%20Codes/2.%20Graph/SCC) <br/>
 2.6. [BCC](https://github.com/manoflearning/PS-Reference-Codes/blob/master/Reference%20Codes/2.%20Graph/BCC.cpp) <br/>
 2.7. [2-SAT](https://github.com/manoflearning/PS-Reference-Codes/blob/master/Reference%20Codes/2.%20Graph/2-SAT.cpp) <br/>
