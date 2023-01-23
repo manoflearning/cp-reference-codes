@@ -29,7 +29,7 @@ Various data structures and algorithms for competitive programming.
 4.4. [Hopcroft-Karp Algorithm](https://github.com/manoflearning/PS-Reference-Codes/blob/master/Reference%20Codes/4.%20Network%20Flow/Hopcroft-Karp_Algorithm.cpp) <br/>
 4.5. [MCMF](https://github.com/manoflearning/PS-Reference-Codes/blob/master/Reference%20Codes/4.%20Network%20Flow/MCMF.cpp) <br/>
 5. [String](https://github.com/manoflearning/PS-Reference-Codes/tree/master/Reference%20Codes/5.%20String) <br/>
-5.1. [Rabin-Karp Algorithm](https://github.com/manoflearning/PS-Reference-Codes/tree/master/Reference%20Codes/5.%20String/Rabin-Karp_Algorithm) <br/>
+5.1. [Rabin-Karp Algorithm](https://github.com/manoflearning/PS-Reference-Codes/tree/master/Reference%20Codes/5.%20String/Rabin-Karp%20Algorithm) <br/>
 5.2. [KMP Algorithm](https://github.com/manoflearning/PS-Reference-Codes/blob/master/Reference%20Codes/5.%20String/KMP_Algorithm.cpp) <br/>
 5.3. [Trie](https://github.com/manoflearning/PS-Reference-Codes/tree/master/Reference%20Codes/5.%20String/Trie) <br/>
 5.4. [Aho-Corasick](https://github.com/manoflearning/PS-Reference-Codes/tree/master/Reference%20Codes/5.%20String/Aho-Corasick.cpp) <br/>
