@@ -2,7 +2,7 @@
 // Two types of operations are given. 0 a b is the union operation.
 // 1 a b is an operation that checks whether a and b are in the same set.
 // OUTPUT: For inputs starting with 1, the result is output as YES/NO.
-// TIME COMPLEXITY: O(α(n)) (α is inverse Ackermann function)
+// TIME COMPLEXITY: O(α(n)) for each operation (α is inverse Ackermann function)
 
 // BOJ 1717 AC Code
 // https://www.acmicpc.net/problem/1717
