@@ -1,0 +1,15 @@
+Definition
+
+For any two points (x1, y1), (x2, y2) on two-dimensional coordinates,
+- the Manhattan distance is |x1 - x2| + |y1 - y2|.
+- the Chebyshev distance is max(|x1 - x2|, |y1 - y2|).
+
+Relationship between Manhattan distance and Chebyshev distance
+
+Let x1' = x1 - y1, y1' = x1 + y1,
+x2' = x2 - y2, y2' = x2 + y2. (using Rotation matrix)
+
+Then max(|x1 - x2|, |y1 - y2|)
+= (|x1' - x2'| + |y1' - y2'|) / 2.
+
+Thus, Manhattan distance can be solved by replacing it with Chebyshev distance, and vice versa.
