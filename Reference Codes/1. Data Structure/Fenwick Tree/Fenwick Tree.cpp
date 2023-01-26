@@ -13,32 +13,32 @@ using namespace std;
 #define ll long long
 
 struct Fenwick { // 0-indexed
-	int flag, cnt; // array size
+	int flag; // array size
 	vector<ll> arr, t;
 	void build(int n) {
-		for (flag = 1; flag < n; flag <<= 1, cnt++);
+		for (flag = 1; flag < n; flag <<= 1);
 		arr.resize(flag);
 		t.resize(flag);
-        for (int i = 0; i < n; i++) {
-            cin >> arr[i];
-            t[i] += arr[i];
-            if (i | (i + 1) < flag) t[i | (i + 1)] += t[i];
-        }
+		for (int i = 0; i < n; i++) cin >> arr[i];
+		for (int i = 0; i < n; i++) {
+			t[i] += arr[i];
+			if (i | (i + 1) < flag) t[i | (i + 1)] += t[i];
+		}
 	}
 	void add(int p, ll value) { // add value at position p
 		arr[p] += value;
-        while (p < flag) {
-            t[p] += value;
-            p |= p + 1;
-        }
+		while (p < flag) {
+			t[p] += value;
+			p |= p + 1;
+		}
 	}
-    void modify(int p, ll value) { // set value at position p
-        add(p, value - arr[p]);
-    };
+	void modify(int p, ll value) { // set value at position p
+		add(p, value - arr[p]);
+	};
 	ll query(int x) {
 		ll ret = 0;
-        while (x >= 0) ret += t[x], x = (x & (x + 1)) - 1;
-        return ret;
+		while (x >= 0) ret += t[x], x = (x & (x + 1)) - 1;
+		return ret;
 	}
 	ll query(int l, int r) {
 		return query(r) - (l ? query(l - 1) : 0);
