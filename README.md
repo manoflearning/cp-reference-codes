@@ -9,6 +9,7 @@ Various data structures and algorithms for competitive programming.
 1.2. [Sparse Table](https://github.com/manoflearning/CP-Reference-Codes/blob/master/Reference%20Codes/1.%20Data%20Structure/Sparse%20Table.cpp) <br/>
 1.3. [Segment Tree](https://github.com/manoflearning/CP-Reference-Codes/tree/master/Reference%20Codes/1.%20Data%20Structure/Segment%20Tree) <br/>
 1.4. [Merge Sort Tree](https://github.com/manoflearning/CP-Reference-Codes/tree/master/Reference%20Codes/1.%20Data%20Structure/Merge%20Sort%20Tree) <br/>
+1.5. [Fenwick Tree](https://github.com/manoflearning/CP-Reference-Codes/tree/master/Reference%20Codes/1.%20Data%20Structure/Fenwick%20Tree) <br/>
 2. [Graph](https://github.com/manoflearning/CP-Reference-Codes/tree/master/Reference%20Codes/2.%20Graph) <br/>
 2.1. [DFS, BFS](https://github.com/manoflearning/CP-Reference-Codes/blob/master/Reference%20Codes/2.%20Graph/DFS%2C%20BFS.cpp) <br/>
 2.2. [Dijkstra's, Bellman-Ford, Floyd-Warshall](https://github.com/manoflearning/CP-Reference-Codes/blob/master/Reference%20Codes/2.%20Graph/Dijkstra's%2C%20Bellman-Ford%2C%20Floyd-Warshall.cpp) <br/>
