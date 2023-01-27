@@ -14,10 +14,10 @@ using namespace std;
 #define ll long long
 
 struct Fenwick { // 0-indexed
-	int flag; // array size
+	int flag, cnt; // array size
 	vector<ll> arr, t;
 	void build(int n) {
-		for (flag = 1; flag < n; flag <<= 1);
+		for (flag = 1; flag < n; flag <<= 1, cnt++);
 		arr.resize(flag);
 		t.resize(flag);
 		for (int i = 0; i < n; i++) cin >> arr[i];
