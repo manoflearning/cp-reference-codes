@@ -3,7 +3,8 @@
 // If a = 1, change the value of the bth element to c,
 // If a = 2, find the sum of the elements in the interval [b, c].
 // OUTPUT: Given the query (2 b c), output the sum of elements in the interval [b, c].
-// TIME COMPLEXITY: O(n) for initialize fenwick tree, O(logn) for each query.
+// TIME COMPLEXITY: O(n) for initialize fenwick tree, O(logn) for each query,
+// O(logn) for find the kth smallest number.
 
 // BOJ 2042 AC Code
 // https://www.acmicpc.net/problem/2042
