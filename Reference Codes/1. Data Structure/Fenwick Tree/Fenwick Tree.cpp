@@ -43,6 +43,17 @@ struct Fenwick { // 0-indexed
 	ll query(int l, int r) {
 		return query(r) - (l ? query(l - 1) : 0);
 	}
+	int kth(int k) { // find the kth smallest number (1-indexed)
+		assert(t.back() >= k);
+		int l = 0, r = arr.size();
+		for (int i = 0; i <= cnt; i++) {
+			int mid = (l + r) >> 1;
+			ll val = mid ? t[mid - 1] : t.back();
+			if (val >= k) r = mid;
+			else l = mid, k -= val;
+		}
+		return l;
+	}
 }fw;
 
 int main() {
