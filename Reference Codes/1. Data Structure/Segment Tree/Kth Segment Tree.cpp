@@ -22,7 +22,7 @@ struct Seg {
     void add(int p, ll value) {  // add value at position p
         for (t[p += flag - 1] += value; p > 1; p >>= 1) t[p >> 1] = t[p] + t[p ^ 1];
     }
-    int kth(ll k, int n = 1) { // find the kth smallest number (1-indexed)
+    ll kth(ll k, int n = 1) { // find the kth smallest number (1-indexed)
         assert(t[n] >= k);
         if (flag <= n) return n - flag + 1;
         if (k <= t[n << 1]) return kth(k, n << 1);
