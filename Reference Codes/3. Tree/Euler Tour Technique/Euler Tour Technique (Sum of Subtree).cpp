@@ -53,39 +53,39 @@ int n, m, cnt;
 vector<int> adj[505050];
 
 void dfs(int v, int prv) {
-    in[v] = ++cnt;
-    for (auto& i : adj[v]) {
-        if (i != prv) dfs(i, v);
-    }
-    out[v] = cnt;
+	in[v] = ++cnt;
+	for (auto& i : adj[v]) {
+		if (i != prv) dfs(i, v);
+	}
+	out[v] = cnt;
 }
 
 int main() {
-    cin.tie(NULL); cout.tie(NULL);
-    ios_base::sync_with_stdio(false);
+	cin.tie(NULL); cout.tie(NULL);
+	ios_base::sync_with_stdio(false);
 
-    cin >> n >> m;
-    for (int v = 1; v <= n; v++) {
-        cin >> a[v];
-        if (v == 1) continue;
-        int u; cin >> u;
-        adj[v].push_back(u);
-        adj[u].push_back(v);
-    }
+	cin >> n >> m;
+	for (int v = 1; v <= n; v++) {
+		cin >> a[v];
+		if (v == 1) continue;
+		int u; cin >> u;
+		adj[v].push_back(u);
+		adj[u].push_back(v);
+	}
 
-    dfs(1, 0);
+	dfs(1, 0);
 
-    seg.build(cnt);
+	seg.build(cnt);
 
-    for (int i = 0; i < m; i++) {
-        char op; 
-        int x, y;
-        cin >> op >> x;
-        if (op == 'p') {
-            cin >> y;
-            seg.modify(in[x] + 1, out[x], y);
-        }
-        if (op == 'u')
-            cout << seg.query(in[x], in[x]) << '\n';
-    }
+	for (int i = 0; i < m; i++) {
+		char op; 
+		int x, y;
+		cin >> op >> x;
+		if (op == 'p') {
+			cin >> y;
+			seg.modify(in[x] + 1, out[x], y);
+		}
+		if (op == 'u')
+			cout << seg.query(in[x], in[x]) << '\n';
+	}
 }
