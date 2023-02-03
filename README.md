@@ -23,6 +23,7 @@ Various data structures and algorithms for competitive programming.
 3.1. [LCA in O(logN) (Sparse Table)](https://github.com/manoflearning/CP-Reference-Codes/blob/master/Reference%20Codes/3.%20Tree/LCA%20in%20O(logN)%20(Sparse%20Table).cpp) <br/>
 3.2. [Heavy-Light Decomposition](https://github.com/manoflearning/PS-Reference-Codes/tree/master/Reference%20Codes/3.%20Tree/Heavy-Light%20Decomposition) <br/>
 3.3. [Centroid Decomposition](https://github.com/manoflearning/PS-Reference-Codes/blob/master/Reference%20Codes/3.%20Tree/Centroid%20Decomposition.cpp) <br/>
+3.4. [Euler Tour Technique](https://github.com/manoflearning/PS-Reference-Codes/blob/master/Reference%20Codes/3.%20Tree/Euler%20Tour%20Technique) <br/>
 4. [Network Flow](https://github.com/manoflearning/PS-Reference-Codes/tree/master/Reference%20Codes/4.%20Network%20Flow) <br/>
 4.1. [Maximum Flow](https://github.com/manoflearning/PS-Reference-Codes/tree/master/Reference%20Codes/4.%20Network%20Flow/Maximum%20Flow) <br/>
 4.2. [Dinic's Algorithm](https://github.com/manoflearning/PS-Reference-Codes/blob/master/Reference%20Codes/4.%20Network%20Flow/Dinic's%20Algorithm.cpp) <br/>
