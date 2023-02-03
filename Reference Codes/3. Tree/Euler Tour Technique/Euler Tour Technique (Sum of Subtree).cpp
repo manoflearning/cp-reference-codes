@@ -1,3 +1,13 @@
+// INPUT: Given a tree with N nodes. Given a value on each nodes. 
+// Given M queries of the form (p x y) or (u x).
+// If the query is (p x y), add y to all nodes in the subtree of node x (except x).
+// If the query is (u x), find the value of node x.
+// OUTPUT: For each query of the form (u x), print the value of node x.
+// TIME COMPLEXITY: O(N) for initialize, O(logN) for each query.
+
+// BOJ 2820 AC Code
+// https://www.acmicpc.net/problem/2820
+
 #include <bits/stdc++.h>
 using namespace std;
 #define ll long long
