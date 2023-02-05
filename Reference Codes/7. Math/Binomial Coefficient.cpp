@@ -1,6 +1,7 @@
 // nCr in O(r)
 // Beware of integer overflow
 ll binom(int n, int r) {
+	if (r < 0 || n < r) return 0;
 	r = min(r, n - r);
 	ll ret = 1;
 	for (ll i = 1; i <= r; i++) {
