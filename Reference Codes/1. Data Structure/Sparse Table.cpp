@@ -1,6 +1,6 @@
 // INPUT: Given a function f: { 1, 2, ..., m } -> { 1, 2, ..., m }.
 // The function f is defined as f_1(x) = f(x), f_{n+1}(x) = f(f_n(x)).
-// OUTPUT: Given n and x, f_n(x).
+// OUTPUT: Given n and x, print f_n(x).
 // TIME COMPLEXITY: O(mlogn) for build sparse table, O(logn) for each query.
 
 // BOJ 17435 AC Code
