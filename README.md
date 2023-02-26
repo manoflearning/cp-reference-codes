@@ -15,7 +15,7 @@ Various data structures and algorithms for competitive programming.
 2.2. [Dijkstra's, Bellman-Ford, Floyd-Warshall](https://github.com/manoflearning/CP-Reference-Codes/blob/master/Reference%20Codes/2.%20Graph/Dijkstra's%2C%20Bellman-Ford%2C%20Floyd-Warshall.cpp) <br/>
 2.3. [Minimum Spanning Tree](https://github.com/manoflearning/PS-Reference-Codes/tree/master/Reference%20Codes/2.%20Graph/Minimum%20Spanning%20Tree.cpp) <br/>
 2.4. [Topological Sort](https://github.com/manoflearning/PS-Reference-Codes/tree/master/Reference%20Codes/2.%20Graph/Topological%20Sort) <br/>
-2.5. [SCC](https://github.com/manoflearning/PS-Reference-Codes/blob/master/Reference%20Codes/2.%20Graph/SCC%2C%202-SAT) <br/>
+2.5. [SCC, 2-SAT](https://github.com/manoflearning/PS-Reference-Codes/blob/master/Reference%20Codes/2.%20Graph/SCC%2C%202-SAT) <br/>
 2.6. [BCC](https://github.com/manoflearning/PS-Reference-Codes/blob/master/Reference%20Codes/2.%20Graph/BCC.cpp) <br/>
 2.7. [Euler Circuit](https://github.com/manoflearning/PS-Reference-Codes/blob/master/Reference%20Codes/2.%20Graph/Euler%20Circuit.cpp) <br/>
 3. [Tree](https://github.com/manoflearning/PS-Reference-Codes/tree/master/Reference%20Codes/3.%20Tree) <br/>
