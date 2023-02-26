@@ -35,6 +35,8 @@ void bulldozerTrick() {
     }
     sort(arr.begin(), arr.end());
 
+    // can check one of the results of sorting points at here.
+    
     for (int i = 0, j = 0; i < arr.size(); i = j) {
         while (j < arr.size() && arr[j] == arr[i]) j++; // all lines in [i, j) are same
         for (int k = i; k < j; k++) {
@@ -42,5 +44,7 @@ void bulldozerTrick() {
             swap(p[pos[u]], p[pos[v]]);
             swap(pos[u], pos[v]);
         }
+
+        // can check one of the results of sorting points at here.
     }
 }
