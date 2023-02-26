@@ -3,7 +3,7 @@
 // The Bulldozer Trick traverses all O(N^2) results in O(N^2logN) time.
 
 struct Point {
-    ll x, y, w;
+    ll x, y;
     bool operator<(const Point& rhs) const {
         return tie(x, y) < tie(rhs.x, rhs.y);
     }
@@ -27,6 +27,7 @@ void bulldozerTrick() {
     sort(p + 1, p + 1 + n);
     for (int i = 1; i <= n; i++) pos[i] = i;
 
+    // find the slope between every two points.
     vector<Line> arr;
     for (int i = 1; i <= n; i++) {
         for (int j = i + 1; j <= n; j++) {
