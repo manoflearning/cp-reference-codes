@@ -10,11 +10,11 @@ struct se {
 };
 // Zigzag Mo's (faster than basic Mo's Algorithm)
 /*struct se {
-    int s, e, idx;
-    bool operator<(const se &rhs) const {
-        if(s / sq != rhs.s / sq) return s / sq < rhs.s / sq;
-        else return (s / sq) & 1 ? e < rhs.e : e > rhs.e;
-    }
+	int s, e, idx;
+	bool operator<(const se &rhs) const {
+		if(s / sq != rhs.s / sq) return s / sq < rhs.s / sq;
+		else return (s / sq) & 1 ? e < rhs.e : e > rhs.e;
+	}
 };*/
 vector<se> q;
 vector<int> ans;
@@ -50,5 +50,4 @@ int main() {
 	f();
 	for (auto& i : ans) 
 		cout << i << '\n';
-	return 0;
 }
