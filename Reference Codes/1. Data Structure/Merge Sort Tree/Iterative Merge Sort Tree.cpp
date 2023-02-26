@@ -1,6 +1,6 @@
 // INPUT: Given a sequence A_1, A_2, ..., A_n of length n. Given a query (i, j, k).
 // OUTPUT: For each query (i, j, k), output the number of elements greater than k among elements A_i, A_{i+1}, ..., A_j.
-// TIME COMPLEXITY: O(nlogn) for initialize MST, O(log^2n) for each query.
+// TIME COMPLEXITY: O(nlogn) for initialize Merge Sort Tree, O(log^2n) for each query.
 
 // BOJ 13537 AC Code
 // https://www.acmicpc.net/problem/13537
