@@ -46,6 +46,7 @@ Various data structures and algorithms for competitive programming.
 6.5. [Rotation Matrix](https://github.com/manoflearning/PS-Reference-Codes/blob/master/Reference%20Codes/6.%20Geometry/Rotation%20Matrix.txt) <br/>
 6.6. [Manhattan Distance, Chebyshev Distance](https://github.com/manoflearning/PS-Reference-Codes/blob/master/Reference%20Codes/6.%20Geometry/Manhattan%20Distance,%20Chebyshev%20Distance.txt) <br/>
 6.7. [Sort by Angular](https://github.com/manoflearning/PS-Reference-Codes/blob/master/Reference%20Codes/6.%20Geometry/Sort%20by%20Angular.cpp) <br/>
+6.8. [Bulldozer Trick](https://github.com/manoflearning/PS-Reference-Codes/blob/master/Reference%20Codes/6.%20Geometry/Bulldozer%20Trick.cpp) <br/>
 7. [Math](https://github.com/manoflearning/PS-Reference-Codes/tree/master/Reference%20Codes/7.%20Math) <br/>
 7.1. [Sieve of Eratosthenes](https://github.com/manoflearning/PS-Reference-Codes/blob/master/Reference%20Codes/7.%20Math/Sieve%20of%20Eratosthenes.cpp) <br/>
 7.2. [Linear Sieve](https://github.com/manoflearning/PS-Reference-Codes/blob/master/Reference%20Codes/7.%20Math/Linear%20Sieve.cpp) <br/>
