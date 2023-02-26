@@ -1,4 +1,0 @@
-Rotation Matrix (In Two Dimensions)
-
-x' = x * cosθ - y * sinθ
-y' = x * sinθ + y * cosθ
