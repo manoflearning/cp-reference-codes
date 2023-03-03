@@ -3,6 +3,10 @@
 struct Fraction {
     ll n, d; // represent n/d
 
+    Fraction(ll N, ll D) { n = N, d = D; reduce(); }
+    Fraction(ll N) { n = N, d = 1; }
+    Fraction() { n = 0, d = 1; }
+
     ll gcd(ll a, ll b) {
         if (b == 0) return a;
         else return gcd(b, a % b);
