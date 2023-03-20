@@ -64,6 +64,8 @@ Various data structures and algorithms for competitive programming.
 8.5. [Sqrt Decomposition, Mo's Algorithm](https://github.com/manoflearning/CP-Reference-Codes/blob/master/Reference%20Codes/8.%20Misc/Sqrt%20Decomposition%2C%20Mo's%20Algorithm.cpp) <br/>
 8.6. [Fraction Data Type](https://github.com/manoflearning/CP-Reference-Codes/blob/master/Reference%20Codes/8.%20Misc/Fraction%20Data%20Type.cpp) <br/>
 8.7. [Rotation Matrix, Manhattan Distance, Chebyshev Distance](https://github.com/manoflearning/CP-Reference-Codes/blob/master/Reference%20Codes/8.%20Misc/Rotation%20Matrix,%20Manhattan%20Distance,%20Chebyshev%20Distance.txt) <br/>
+8.8. [Random](https://github.com/manoflearning/CP-Reference-Codes/blob/master/Reference%20Codes/8.%20Misc/Random.cpp) <br/>
+
 
 # Guidelines
 1. 코드는 간결하고 알아보기 쉬워야 한다. <br/>
