@@ -69,7 +69,7 @@ int main() {
 
 // Bellman-Ford Algorithm
 
-// INPUT: Given a directed gragh with weighted edges (possibly negative weight). Given a starting vertex.
+// INPUT: Given a directed graph with weighted(possibly negative) edges and no negative cycles. Given a starting vertex.
 // OUTPUT: Outputs the shortest distance from the starting vertex to all vertices.
 // TIME COMPLEXITY: O(VE)
 
@@ -139,7 +139,7 @@ int main() {
 
 // Floyd-Warshall Algorithm
 
-// INPUT: Given a directed graph with positive weights on the edges. Given a starting vertex.
+// INPUT: Given a directed graph with weighted(possibly negative) edges and no negative cycles.
 // OUTPUT: Outputs the shortest distance from all vertices to all vertices.
 // TIME COMPLEXITY: O(V^3)
 
