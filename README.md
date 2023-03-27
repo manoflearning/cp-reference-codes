@@ -65,6 +65,7 @@ Various data structures and algorithms for competitive programming.
 8.6. [Fraction Data Type](https://github.com/manoflearning/CP-Reference-Codes/blob/master/Reference%20Codes/8.%20Misc/Fraction%20Data%20Type.cpp) <br/>
 8.7. [Rotation Matrix, Manhattan Distance, Chebyshev Distance](https://github.com/manoflearning/CP-Reference-Codes/blob/master/Reference%20Codes/8.%20Misc/Rotation%20Matrix,%20Manhattan%20Distance,%20Chebyshev%20Distance.txt) <br/>
 8.8. [Random](https://github.com/manoflearning/CP-Reference-Codes/blob/master/Reference%20Codes/8.%20Misc/Random.cpp) <br/>
+8.9. [Ternary Search](https://github.com/manoflearning/CP-Reference-Codes/blob/master/Reference%20Codes/8.%20Misc/Ternary%20Search.cpp) <br/>
 
 
 # Guidelines
