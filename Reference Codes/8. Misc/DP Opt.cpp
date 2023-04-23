@@ -1,3 +1,61 @@
+// Convex Hull Trick
+// Recurrence: dp[i] = min(dp[j] + a[i] * b[j]) (j < i)
+// Condition: b[i - 1] >= b[i]
+// Naive Complexity: O(n^2)
+// Optimized Complexity: O(nlogn) (if a[i] <= a[i + 1], it can also be done in O(n))
+
+// BOJ 13263 AC Code
+// https://www.acmicpc.net/problem/13263
+#include <bits/stdc++.h>
+using namespace std;
+#define ll long long
+struct lf { // f(x) = px + q, x >= s
+    ll p, q; 
+    double s;
+    lf(): lf(1, 0) {}
+    lf(ll sp, ll sq): p(sp), q(sq), s(0) {}
+};
+double cross(const lf& u, const lf& v) {
+    return (double)(v.q - u.q) / (u.p - v.p);
+}
+int n;
+ll a[101010], b[101010];
+ll dp[101010];
+lf ch[101010];
+void input() {
+    cin >> n;
+    for (int i = 1; i <= n; i++) cin >> a[i];
+    for (int i = 1; i <= n; i++) cin >> b[i];
+}
+void convexHullTrick() {
+    int top = 1;
+    for (int i = 2; i <= n; i++) {
+        lf g(b[i - 1], dp[i - 1]);
+        while (top > 1) {
+            g.s = cross(ch[top - 1], g);
+            if (ch[top - 1].s < g.s) break;
+            --top;
+        }
+        ch[top++] = g;
+        int l = 1, r = top - 1;
+        while (l < r) {
+            int mid = (l + r + 1) >> 1;
+            if (a[i] < ch[mid].s) r = mid - 1;
+            else l = mid;
+        }
+        int fpos = l;
+        dp[i] = ch[fpos].p * a[i] + ch[fpos].q;
+    }
+}
+int main() {
+    cin.tie(NULL); cout.tie(NULL);
+    ios_base::sync_with_stdio(false);
+    input();
+    convexHullTrick();
+    cout << dp[n];
+    return 0;
+}
+
 // Knuth Optimization
 // Recurrence: DP[i][j] = min(DP[i][k] + DP[k + 1][j]) + C[i][j] (i <= k < j)
 // Condition: C[i][j] is a monge array (satisfies C[a][c] + C[b][d] <= C[a][d] + C[b][c]),

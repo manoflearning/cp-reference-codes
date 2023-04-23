@@ -59,13 +59,12 @@ Various data structures and algorithms for competitive programming.
 8. [Misc](https://github.com/manoflearning/PS-Reference-Codes/tree/master/Reference%20Codes/8.%20Misc) <br/>
 8.1. [Coordinate Compression](https://github.com/manoflearning/PS-Reference-Codes/blob/master/Reference%20Codes/8.%20Misc/Coordinate%20Compression.cpp) <br/>
 8.2. [2D Prefix Sum](https://github.com/manoflearning/PS-Reference-Codes/blob/master/Reference%20Codes/8.%20Misc/2D%20Prefix%20Sum.cpp) <br/>
-8.3. [Convex Hull Trick](https://github.com/manoflearning/PS-Reference-Codes/blob/master/Reference%20Codes/8.%20Misc/Convex%20Hull%20Trick.cpp) <br/>
-8.4. [DP Opt](https://github.com/manoflearning/PS-Reference-Codes/blob/master/Reference%20Codes/8.%20Misc/DP%20Opt.cpp) <br/>
-8.5. [Sqrt Decomposition, Mo's Algorithm](https://github.com/manoflearning/CP-Reference-Codes/blob/master/Reference%20Codes/8.%20Misc/Sqrt%20Decomposition%2C%20Mo's%20Algorithm.cpp) <br/>
-8.6. [Fraction Data Type](https://github.com/manoflearning/CP-Reference-Codes/blob/master/Reference%20Codes/8.%20Misc/Fraction%20Data%20Type.cpp) <br/>
-8.7. [Rotation Matrix, Manhattan Distance, Chebyshev Distance](https://github.com/manoflearning/CP-Reference-Codes/blob/master/Reference%20Codes/8.%20Misc/Rotation%20Matrix,%20Manhattan%20Distance,%20Chebyshev%20Distance.txt) <br/>
-8.8. [Random](https://github.com/manoflearning/CP-Reference-Codes/blob/master/Reference%20Codes/8.%20Misc/Random.cpp) <br/>
-8.9. [Ternary Search](https://github.com/manoflearning/CP-Reference-Codes/blob/master/Reference%20Codes/8.%20Misc/Ternary%20Search.cpp) <br/>
+8.3. [DP Opt](https://github.com/manoflearning/PS-Reference-Codes/blob/master/Reference%20Codes/8.%20Misc/DP%20Opt.cpp) <br/>
+8.4. [Sqrt Decomposition, Mo's Algorithm](https://github.com/manoflearning/CP-Reference-Codes/blob/master/Reference%20Codes/8.%20Misc/Sqrt%20Decomposition%2C%20Mo's%20Algorithm.cpp) <br/>
+8.5. [Fraction Data Type](https://github.com/manoflearning/CP-Reference-Codes/blob/master/Reference%20Codes/8.%20Misc/Fraction%20Data%20Type.cpp) <br/>
+8.6. [Rotation Matrix, Manhattan Distance, Chebyshev Distance](https://github.com/manoflearning/CP-Reference-Codes/blob/master/Reference%20Codes/8.%20Misc/Rotation%20Matrix,%20Manhattan%20Distance,%20Chebyshev%20Distance.txt) <br/>
+8.7. [Random](https://github.com/manoflearning/CP-Reference-Codes/blob/master/Reference%20Codes/8.%20Misc/Random.cpp) <br/>
+8.8. [Ternary Search](https://github.com/manoflearning/CP-Reference-Codes/blob/master/Reference%20Codes/8.%20Misc/Ternary%20Search.cpp) <br/>
 
 
 # Guidelines
