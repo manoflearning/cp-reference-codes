@@ -1,6 +1,6 @@
 // Convex Hull Trick
 // Recurrence: dp[i] = min(dp[j] + a[i] * b[j]) (j < i)
-// Condition: b[i - 1] >= b[i]
+// Condition: b[i] >= b[i + 1]
 // Naive Complexity: O(n^2)
 // Optimized Complexity: O(nlogn) (if a[i] <= a[i + 1], it can also be done in O(n))
 
