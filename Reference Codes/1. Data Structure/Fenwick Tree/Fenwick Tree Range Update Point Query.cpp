@@ -14,4 +14,4 @@ struct Fenwick { // 1-indexed
         for (; x; x ^= x & -x) ret += t[x];
         return ret;
     }
-} fw[1515];
+} fw;
