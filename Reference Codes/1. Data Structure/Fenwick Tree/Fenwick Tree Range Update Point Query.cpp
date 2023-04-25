@@ -11,7 +11,7 @@ struct Fenwick { // 1-indexed
     }
     ll query(int x) {
         ll ret = 0;
-		for (; x; x ^= x & -x) ret += t[x];
-		return ret;
+        for (; x; x ^= x & -x) ret += t[x];
+        return ret;
     }
 } fw[1515];
