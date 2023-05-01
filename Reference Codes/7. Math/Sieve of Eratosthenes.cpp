@@ -7,7 +7,8 @@ void getPrime() {
 	for (ll i = 4; i <= MAX; i += 2)
 		isPrime[i] = 0;
 	for (ll i = 3; i <= MAX; i += 2) {
-		if (isPrime[i]) prime.push_back(i);
+		if (!isPrime[i]) continue;
+		prime.push_back(i);
 		for (ll j = i * i; j <= MAX; j += i * 2)
 			isPrime[j] = 0;
 	}
