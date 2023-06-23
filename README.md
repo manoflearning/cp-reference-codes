@@ -68,7 +68,6 @@ Various data structures and algorithms for competitive programming.
 8.8. [Ternary Search](https://github.com/manoflearning/CP-Reference-Codes/blob/master/Reference%20Codes/8.%20Misc/Ternary%20Search.cpp) <br/>
 8.9. [LIS in O(NlogN)](https://github.com/manoflearning/CP-Reference-Codes/blob/master/Reference%20Codes/8.%20Misc/LIS%20in%20O(NlogN)) <br/>
 
-
 # Guidelines
 1. 코드는 간결하고 알아보기 쉬워야 한다. <br/>
 2. 필요한 경우 코드 최상단에 주석으로 input, output, time complexity를 적는다.
