@@ -45,17 +45,18 @@ Various data structures and algorithms for competitive programming.
 6.5. [Sort by Angular](https://github.com/manoflearning/PS-Reference-Codes/blob/master/Reference%20Codes/6.%20Geometry/Sort%20by%20Angular.cpp) <br/>
 6.6. [Bulldozer Trick](https://github.com/manoflearning/PS-Reference-Codes/blob/master/Reference%20Codes/6.%20Geometry/Bulldozer%20Trick.cpp) <br/>
 7. [Math](https://github.com/manoflearning/PS-Reference-Codes/tree/master/Reference%20Codes/7.%20Math) <br/>
-7.1. [Sieve of Eratosthenes](https://github.com/manoflearning/PS-Reference-Codes/blob/master/Reference%20Codes/7.%20Math/Sieve%20of%20Eratosthenes.cpp) <br/>
-7.2. [Linear Sieve](https://github.com/manoflearning/PS-Reference-Codes/blob/master/Reference%20Codes/7.%20Math/Linear%20Sieve.cpp) <br/>
-7.3. [GCD, LCM](https://github.com/manoflearning/PS-Reference-Codes/blob/master/Reference%20Codes/7.%20Math/GCD,%20LCM.cpp) <br/>
-7.4. [Extended GCD](https://github.com/manoflearning/PS-Reference-Codes/blob/master/Reference%20Codes/7.%20Math/Extended%20GCD.cpp) <br/>
-7.5. [Fermat's Little Theorem](https://github.com/manoflearning/CP-Reference-Codes/blob/master/Reference%20Codes/7.%20Math/Fermat%E2%80%99s%20Little%20Theorem.cpp) <br/>
-7.6. [Binomial Coefficient](https://github.com/manoflearning/PS-Reference-Codes/blob/master/Reference%20Codes/7.%20Math/Binomial%20Coefficient.cpp) <br/>
-7.7. [Matrix](https://github.com/manoflearning/PS-Reference-Codes/blob/master/Reference%20Codes/7.%20Math/Matrix.cpp) <br/>
-7.8. [Catalan Number, Derangement Number](https://github.com/manoflearning/CP-Reference-Codes/blob/master/Reference%20Codes/7.%20Math/Catalan%20Number%2C%20Derangement%20Number.cpp) <br/>
-7.9. [Euler's Phi Function](https://github.com/manoflearning/PS-Reference-Codes/blob/master/Reference%20Codes/7.%20Math/Euler's%20Phi%20Function.cpp) <br/>
-7.10. [FFT](https://github.com/manoflearning/PS-Reference-Codes/blob/master/Reference%20Codes/7.%20Math/FFT.cpp) <br/>
-7.11. [Gauss-Jordan Elimination](https://github.com/manoflearning/PS-Reference-Codes/blob/master/Reference%20Codes/7.%20Math/Gauss-Jordan%20Elimination.cpp)
+7.1. [Basic Sqrt-Time Algorithms](https://github.com/manoflearning/PS-Reference-Codes/blob/master/Reference%20Codes/7.%20Math/Basic%20Sqrt-Time%20Algorithms) <br/>
+7.2. [Sieve of Eratosthenes](https://github.com/manoflearning/PS-Reference-Codes/blob/master/Reference%20Codes/7.%20Math/Sieve%20of%20Eratosthenes.cpp) <br/>
+7.3. [Linear Sieve](https://github.com/manoflearning/PS-Reference-Codes/blob/master/Reference%20Codes/7.%20Math/Linear%20Sieve.cpp) <br/>
+7.4. [GCD, LCM](https://github.com/manoflearning/PS-Reference-Codes/blob/master/Reference%20Codes/7.%20Math/GCD,%20LCM.cpp) <br/>
+7.5. [Extended GCD](https://github.com/manoflearning/PS-Reference-Codes/blob/master/Reference%20Codes/7.%20Math/Extended%20GCD.cpp) <br/>
+7.6. [Fermat's Little Theorem](https://github.com/manoflearning/CP-Reference-Codes/blob/master/Reference%20Codes/7.%20Math/Fermat%E2%80%99s%20Little%20Theorem.cpp) <br/>
+7.7. [Binomial Coefficient](https://github.com/manoflearning/PS-Reference-Codes/blob/master/Reference%20Codes/7.%20Math/Binomial%20Coefficient.cpp) <br/>
+7.8. [Matrix](https://github.com/manoflearning/PS-Reference-Codes/blob/master/Reference%20Codes/7.%20Math/Matrix.cpp) <br/>
+7.9. [Catalan Number, Derangement Number](https://github.com/manoflearning/CP-Reference-Codes/blob/master/Reference%20Codes/7.%20Math/Catalan%20Number%2C%20Derangement%20Number.cpp) <br/>
+7.10. [Euler's Phi Function](https://github.com/manoflearning/PS-Reference-Codes/blob/master/Reference%20Codes/7.%20Math/Euler's%20Phi%20Function.cpp) <br/>
+7.11. [FFT](https://github.com/manoflearning/PS-Reference-Codes/blob/master/Reference%20Codes/7.%20Math/FFT.cpp) <br/>
+7.12. [Gauss-Jordan Elimination](https://github.com/manoflearning/PS-Reference-Codes/blob/master/Reference%20Codes/7.%20Math/Gauss-Jordan%20Elimination.cpp)
 8. [Misc](https://github.com/manoflearning/PS-Reference-Codes/tree/master/Reference%20Codes/8.%20Misc) <br/>
 8.1. [Coordinate Compression](https://github.com/manoflearning/PS-Reference-Codes/blob/master/Reference%20Codes/8.%20Misc/Coordinate%20Compression.cpp) <br/>
 8.2. [2D Prefix Sum](https://github.com/manoflearning/PS-Reference-Codes/blob/master/Reference%20Codes/8.%20Misc/2D%20Prefix%20Sum.cpp) <br/>
@@ -70,8 +71,8 @@ Various data structures and algorithms for competitive programming.
 
 # Guidelines
 1. 코드는 간결하고 알아보기 쉬워야 한다. <br/>
-2. 가급적이면 코드 최상단에 주석으로 input, output, time complexity를 적는다.
-3. 가급적이면 레퍼런스 문제를 남긴다. 예를 들어 세그먼트 트리 알고리즘을 작성할 때, [백준 2042번: 구간 합 구하기](https://www.acmicpc.net/problem/2042) 문제를 래퍼런스로 사용한다. <br/>
+2. 필요한 경우 코드 최상단에 주석으로 input, output, time complexity를 적는다.
+3. 필요한 경우 레퍼런스 문제를 남긴다. 예를 들어 세그먼트 트리 알고리즘을 작성할 때, [백준 2042번: 구간 합 구하기](https://www.acmicpc.net/problem/2042) 문제를 래퍼런스로 사용한다. <br/>
 4. 가급적이면 헤더 파일은 <bits/stdc++.h>만을 사용한다. <br/>
 5. 가급적이면 변수 이름, 함수 이름 등은 다음과 같은 형식을 사용한다. ex) unionFind (O), union_find (X) <br/>
 5.1. 단 구조체, 클래스의 이름은 첫 글자를 대문자로 한다. ex) UnionFind (O)
