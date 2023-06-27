@@ -136,26 +136,20 @@ void f(int gr, int l, int r, int nl, int nr) {
         f(gr, mid + 1, r, idx, nr);
     }
 }
-
 int main() {
     cin.tie(NULL); cout.tie(NULL);
     ios_base::sync_with_stdio(false);
-
     // input
     cin >> n >> m;
     for (int i = 1; i <= n; i++) cin >> a[i];
-
     // build prefix sum
     for (int i = 1; i <= n; i++) 
         psum[i] = a[i] + psum[i - 1];
-
     // dp (dnc opt)
     for (int i = 1; i <= n; i++)
         dp[1][i] = i * psum[i];
-
     for (int i = 2; i <= m; i++)
         f(i, 0, n, 0, n);
-
     // output
     cout << dp[m][n];
 }
