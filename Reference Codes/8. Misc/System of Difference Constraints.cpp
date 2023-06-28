@@ -1,4 +1,4 @@
-// Given some inequality on some variable (x_i, x_j, ...) in form x_j – x_i <= w
+// Given some inequality on some variable (x_1, x_2, ..., x_N) in form x_j – x_i <= w
 // We need to determine whether we can assign values to variables so that all the given inequality is satisfiable or not?
 // If satisfiable, then output a solution.
 
