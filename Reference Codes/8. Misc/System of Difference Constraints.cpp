@@ -1,6 +1,6 @@
 // Given some inequality on some variable (x_i, x_j, ...) in form x_j – x_i <= w
 // We need to determine whether we can assign values to variables so that all the given inequality is satisfiable or not?
-// If satisfiable, then output A solution.
+// If satisfiable, then output a solution.
 
 // Constraint graph
 // For each variable we create a vertex.
