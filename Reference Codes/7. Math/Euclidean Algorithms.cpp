@@ -61,7 +61,7 @@ pair<pll, ll> egcd(ll a, ll b) {
 	// oldr = gcd(a, b)
 	return { { olds, oldt }, oldr };
 }
-ll linearCongruence(ll a, ll b, ll n) { // Find x such that ax + ny = b (mod n).
+ll linearCongruence(ll a, ll b, ll n) { // Find x such that ax = b (mod n).
 	pair<pll, ll> res = egcd(a, n);
 	// ax + ny = b has a solution iff gcd(a,n) | b.
 	if (b % res.second) return -1;
