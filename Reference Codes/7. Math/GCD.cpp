@@ -18,6 +18,14 @@ ll lcm(ll a, ll b) {
 // x2 := x1 + k * b / gcd(a, b) and
 // y2 := y1 - k * a / gcd(a, b) also satisfy a * x2 + b * y2 = d for some integer k.
 
+// Results from Bezout's Lemma
+// (1) : If gcd(a,b) = d, gcd(a/d, b/d) = 1.
+// (2) : If gcd(a,b) = 1 and a|c, b|c, then ab|c.
+// (3) : If a|bc and gcd(a,b) = 1, a|c.
+// (4) : d|a, d|b <=> d|gcd(a,b)
+// (5) : gcd(ab,ac) = |a|gcd(b,c)
+// (6) : a|bc <=> (a/gcd(a,b))|c
+
 // TIME COMPLEXITY: O(log(AB))
 
 // BOJ 14565 AC Code
