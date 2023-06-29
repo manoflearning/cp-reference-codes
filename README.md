@@ -46,9 +46,8 @@ Various data structures and algorithms for competitive programming.
 6.6. [Bulldozer Trick](https://github.com/manoflearning/PS-Reference-Codes/blob/master/Reference%20Codes/6.%20Geometry/Bulldozer%20Trick.cpp) <br/>
 7. [Math](https://github.com/manoflearning/PS-Reference-Codes/tree/master/Reference%20Codes/7.%20Math) <br/>
 7.1. [Basic Sqrt-Time Algorithms](https://github.com/manoflearning/PS-Reference-Codes/blob/master/Reference%20Codes/7.%20Math/Basic%20Sqrt-Time%20Algorithms) <br/>
-7.2. [Sieve of Eratosthenes](https://github.com/manoflearning/PS-Reference-Codes/blob/master/Reference%20Codes/7.%20Math/Sieve%20of%20Eratosthenes.cpp) <br/>
-7.3. [Linear Sieve](https://github.com/manoflearning/PS-Reference-Codes/blob/master/Reference%20Codes/7.%20Math/Linear%20Sieve.cpp) <br/>
-7.4. [GCD, LCM](https://github.com/manoflearning/PS-Reference-Codes/blob/master/Reference%20Codes/7.%20Math/GCD,%20LCM.cpp) <br/>
+7.2. [Sieve](https://github.com/manoflearning/PS-Reference-Codes/blob/master/Reference%20Codes/7.%20Math/Sieve%.cpp) <br/>
+7.4. [GCD](https://github.com/manoflearning/PS-Reference-Codes/blob/master/Reference%20Codes/7.%20Math/GCD.cpp) <br/>
 7.5. [Fermat's Little Theorem](https://github.com/manoflearning/CP-Reference-Codes/blob/master/Reference%20Codes/7.%20Math/Fermat%E2%80%99s%20Little%20Theorem.cpp) <br/>
 7.6. [Binomial Coefficient](https://github.com/manoflearning/PS-Reference-Codes/blob/master/Reference%20Codes/7.%20Math/Binomial%20Coefficient.cpp) <br/>
 7.7. [Matrix](https://github.com/manoflearning/PS-Reference-Codes/blob/master/Reference%20Codes/7.%20Math/Matrix.cpp) <br/>
