@@ -26,6 +26,17 @@ ll lcm(ll a, ll b) {
 // (5) : gcd(ab,ac) = |a|gcd(b,c)
 // (6) : a|bc <=> (a/gcd(a,b))|c
 
+// Solving Linear Congreunce
+// Finding set of x satisfies ax = b (mod n).
+// We can think ax = b (mod n) as ax + ny = b.
+// Then we need to find all (x, y) that satisfy ax + ny = b.
+// ax + ny = b has a solution iff gcd(a,n) | b
+
+// Modular Inverse
+// In particular, if gcd(a,n) = 1, then we can find a unique x in (mod n) such that ax = 1 (mod n).
+// This is called the modular inverse of a over (mod n), sometimes written a^{-1}.
+// Multiplying the modular inverse is equivalent to dividing by a.
+
 // TIME COMPLEXITY: O(log(AB))
 
 // BOJ 14565 AC Code
@@ -47,9 +58,15 @@ pair<pll, ll> egcd(ll a, ll b) {
 		tmp = oldt - q * t;
 		oldt = t, t = tmp;
 	}
-	// a * olds + b * oldt = d.
+	// a * olds + b * oldt = d
 	// oldr = gcd(a, b)
 	return { { olds, oldt }, oldr };
+}
+ll linearCongruence(ll a, ll b, ll n) { // Find x such that ax + ny = b (mod n).
+	pair<pll, ll> res = egcd(a, n);
+	// ax + ny = b has a solution iff gcd(a,n) | b.
+	if (b % res.second) return 0;
+	return (res.first.first + n) % n;
 }
 ll modInv(ll a, ll p) { // Find x such that ax = 1 (mod p).
 	pair<pll, ll> res = egcd(a, p);

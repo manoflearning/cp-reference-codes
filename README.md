@@ -47,7 +47,7 @@ Various data structures and algorithms for competitive programming.
 7. [Math](https://github.com/manoflearning/PS-Reference-Codes/tree/master/Reference%20Codes/7.%20Math) <br/>
 7.1. [Basic Sqrt-Time Algorithms](https://github.com/manoflearning/PS-Reference-Codes/blob/master/Reference%20Codes/7.%20Math/Basic%20Sqrt-Time%20Algorithms) <br/>
 7.2. [Sieve](https://github.com/manoflearning/PS-Reference-Codes/blob/master/Reference%20Codes/7.%20Math/Sieve.cpp) <br/>
-7.3. [GCD](https://github.com/manoflearning/PS-Reference-Codes/blob/master/Reference%20Codes/7.%20Math/GCD.cpp) <br/>
+7.3. [Euclidean Algorithms](https://github.com/manoflearning/PS-Reference-Codes/blob/master/Reference%20Codes/7.%20Math/Euclidean%20Algorithms.cpp) <br/>
 7.4. [Fermat's Little Theorem](https://github.com/manoflearning/CP-Reference-Codes/blob/master/Reference%20Codes/7.%20Math/Fermat%E2%80%99s%20Little%20Theorem.cpp) <br/>
 7.5. [Binomial Coefficient](https://github.com/manoflearning/PS-Reference-Codes/blob/master/Reference%20Codes/7.%20Math/Binomial%20Coefficient.cpp) <br/>
 7.6. [Matrix](https://github.com/manoflearning/PS-Reference-Codes/blob/master/Reference%20Codes/7.%20Math/Matrix.cpp) <br/>
