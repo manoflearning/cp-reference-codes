@@ -19,9 +19,9 @@ ll lcm(ll a, ll b) {
 // y2 := y1 - k * a / gcd(a, b) also satisfy a * x2 + b * y2 = d for some integer k.
 
 // Results from Bezout's Lemma
-// (1) : If gcd(a,b) = d, gcd(a/d, b/d) = 1.
-// (2) : If gcd(a,b) = 1 and a|c, b|c, then ab|c.
-// (3) : If a|bc and gcd(a,b) = 1, a|c.
+// (1) : gcd(a,b) = d => gcd(a/d, b/d) = 1.
+// (2) : gcd(a,b) = 1, a|c, b|c => ab|c.
+// (3) : a|bc, gcd(a,b) = 1 => a|c.
 // (4) : d|a, d|b <=> d|gcd(a,b)
 // (5) : gcd(ab,ac) = |a|gcd(b,c)
 // (6) : a|bc <=> (a/gcd(a,b))|c
