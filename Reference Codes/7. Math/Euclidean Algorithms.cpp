@@ -9,11 +9,10 @@ ll lcm(ll a, ll b) {
 
 // Extended GCD
 
-// Bézout's identity
+// Bezout's Lemma
 // Let a and b be integers with d := gcd(a, b).
 // Then there exist integers x and y such that ax + by = d.
 // Moreover, the integers of the form az + bt are exactly the multiples of d.
-
 // If the integers x1 and y1 satisfy a * x1 + b * y1 = d,
 // x2 := x1 + k * b / gcd(a, b) and
 // y2 := y1 - k * a / gcd(a, b) also satisfy a * x2 + b * y2 = d for some integer k.
@@ -26,7 +25,7 @@ ll lcm(ll a, ll b) {
 // (5) : gcd(ab,ac) = |a|gcd(b,c)
 // (6) : a|bc <=> (a/gcd(a,b))|c
 
-// Solving Linear Congreunce
+// Linear Congreunce
 // Finding set of x satisfies ax = b (mod n).
 // We can think ax = b (mod n) as ax + ny = b.
 // Then we need to find all (x, y) that satisfy ax + ny = b.
@@ -65,7 +64,7 @@ pair<pll, ll> egcd(ll a, ll b) {
 ll linearCongruence(ll a, ll b, ll n) { // Find x such that ax + ny = b (mod n).
 	pair<pll, ll> res = egcd(a, n);
 	// ax + ny = b has a solution iff gcd(a,n) | b.
-	if (b % res.second) return 0;
+	if (b % res.second) return -1;
 	return (res.first.first + n) % n;
 }
 ll modInv(ll a, ll p) { // Find x such that ax = 1 (mod p).
