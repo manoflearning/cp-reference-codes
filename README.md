@@ -49,13 +49,13 @@ Various data structures and algorithms for competitive programming.
 7.2. [Sieve of Eratosthenes](https://github.com/manoflearning/PS-Reference-Codes/blob/master/Reference%20Codes/7.%20Math/Sieve%20of%20Eratosthenes.cpp) <br/>
 7.3. [Linear Sieve](https://github.com/manoflearning/PS-Reference-Codes/blob/master/Reference%20Codes/7.%20Math/Linear%20Sieve.cpp) <br/>
 7.4. [GCD, LCM](https://github.com/manoflearning/PS-Reference-Codes/blob/master/Reference%20Codes/7.%20Math/GCD,%20LCM.cpp) <br/>
-7.6. [Fermat's Little Theorem](https://github.com/manoflearning/CP-Reference-Codes/blob/master/Reference%20Codes/7.%20Math/Fermat%E2%80%99s%20Little%20Theorem.cpp) <br/>
-7.7. [Binomial Coefficient](https://github.com/manoflearning/PS-Reference-Codes/blob/master/Reference%20Codes/7.%20Math/Binomial%20Coefficient.cpp) <br/>
-7.8. [Matrix](https://github.com/manoflearning/PS-Reference-Codes/blob/master/Reference%20Codes/7.%20Math/Matrix.cpp) <br/>
-7.9. [Catalan Number, Derangement Number](https://github.com/manoflearning/CP-Reference-Codes/blob/master/Reference%20Codes/7.%20Math/Catalan%20Number%2C%20Derangement%20Number.cpp) <br/>
-7.10. [Euler's Phi Function](https://github.com/manoflearning/PS-Reference-Codes/blob/master/Reference%20Codes/7.%20Math/Euler's%20Phi%20Function.cpp) <br/>
-7.11. [FFT](https://github.com/manoflearning/PS-Reference-Codes/blob/master/Reference%20Codes/7.%20Math/FFT.cpp) <br/>
-7.12. [Gauss-Jordan Elimination](https://github.com/manoflearning/PS-Reference-Codes/blob/master/Reference%20Codes/7.%20Math/Gauss-Jordan%20Elimination.cpp)
+7.5. [Fermat's Little Theorem](https://github.com/manoflearning/CP-Reference-Codes/blob/master/Reference%20Codes/7.%20Math/Fermat%E2%80%99s%20Little%20Theorem.cpp) <br/>
+7.6. [Binomial Coefficient](https://github.com/manoflearning/PS-Reference-Codes/blob/master/Reference%20Codes/7.%20Math/Binomial%20Coefficient.cpp) <br/>
+7.7. [Matrix](https://github.com/manoflearning/PS-Reference-Codes/blob/master/Reference%20Codes/7.%20Math/Matrix.cpp) <br/>
+7.8. [Catalan Number, Derangement Number](https://github.com/manoflearning/CP-Reference-Codes/blob/master/Reference%20Codes/7.%20Math/Catalan%20Number%2C%20Derangement%20Number.cpp) <br/>
+7.9. [Euler's Phi Function](https://github.com/manoflearning/PS-Reference-Codes/blob/master/Reference%20Codes/7.%20Math/Euler's%20Phi%20Function.cpp) <br/>
+7.10. [FFT](https://github.com/manoflearning/PS-Reference-Codes/blob/master/Reference%20Codes/7.%20Math/FFT.cpp) <br/>
+7.11. [Gauss-Jordan Elimination](https://github.com/manoflearning/PS-Reference-Codes/blob/master/Reference%20Codes/7.%20Math/Gauss-Jordan%20Elimination.cpp)
 8. [Misc](https://github.com/manoflearning/PS-Reference-Codes/tree/master/Reference%20Codes/8.%20Misc) <br/>
 8.1. [Coordinate Compression](https://github.com/manoflearning/PS-Reference-Codes/blob/master/Reference%20Codes/8.%20Misc/Coordinate%20Compression.cpp) <br/>
 8.2. [2D Prefix Sum](https://github.com/manoflearning/PS-Reference-Codes/blob/master/Reference%20Codes/8.%20Misc/2D%20Prefix%20Sum.cpp) <br/>
