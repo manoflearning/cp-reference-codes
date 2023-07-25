@@ -44,6 +44,7 @@ Various data structures and algorithms for competitive programming.
 6.4. [Ray Casting](https://github.com/manoflearning/PS-Reference-Codes/blob/master/Reference%20Codes/6.%20Geometry/Ray%20Casting.cpp) <br/>
 6.5. [Sort by Angular](https://github.com/manoflearning/PS-Reference-Codes/blob/master/Reference%20Codes/6.%20Geometry/Sort%20by%20Angular.cpp) <br/>
 6.6. [Bulldozer Trick](https://github.com/manoflearning/PS-Reference-Codes/blob/master/Reference%20Codes/6.%20Geometry/Bulldozer%20Trick.cpp) <br/>
+6.7. [Minimum Enclosing Circle](https://github.com/manoflearning/PS-Reference-Codes/blob/master/Reference%20Codes/6.%20Geometry/Minimum%20Enclosing%20Circle.cpp)
 7. [Math](https://github.com/manoflearning/PS-Reference-Codes/tree/master/Reference%20Codes/7.%20Math) <br/>
 7.1. [Basic Sqrt-Time Algorithms](https://github.com/manoflearning/PS-Reference-Codes/blob/master/Reference%20Codes/7.%20Math/Basic%20Sqrt-Time%20Algorithms) <br/>
 7.2. [Sieve](https://github.com/manoflearning/PS-Reference-Codes/blob/master/Reference%20Codes/7.%20Math/Sieve.cpp) <br/>
