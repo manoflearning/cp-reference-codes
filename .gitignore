@@ -1,5 +1,7 @@
-
 *.exe
 *.DS_Store
 
+.gitignore
+
 .vscode/
+.vscode/settings.json
