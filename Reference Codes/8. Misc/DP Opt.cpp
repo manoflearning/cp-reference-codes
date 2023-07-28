@@ -9,19 +9,19 @@
 #include <bits/stdc++.h>
 using namespace std;
 #define ll long long
-struct lf { // f(x) = px + q, x >= s
+struct Line { // f(x) = px + q, x >= s
     ll p, q; 
     double s;
-    lf(): lf(1, 0) {}
-    lf(ll sp, ll sq): p(sp), q(sq), s(0) {}
+    Line(): Line(1, 0) {}
+    Line(ll sp, ll sq): p(sp), q(sq), s(0) {}
 };
-double cross(const lf& u, const lf& v) {
+double cross(const Line& u, const Line& v) {
     return (double)(v.q - u.q) / (u.p - v.p);
 }
 int n;
 ll a[101010], b[101010];
 ll dp[101010];
-lf ch[101010];
+Line ch[101010];
 void input() {
     cin >> n;
     for (int i = 1; i <= n; i++) cin >> a[i];
@@ -30,7 +30,7 @@ void input() {
 void convexHullTrick() {
     int top = 1;
     for (int i = 2; i <= n; i++) {
-        lf g(b[i - 1], dp[i - 1]);
+        Line g(b[i - 1], dp[i - 1]);
         while (top > 1) {
             g.s = cross(ch[top - 1], g);
             if (ch[top - 1].s < g.s) break;
