@@ -12,7 +12,7 @@ ll lcm(ll a, ll b) {
 // Bezout's Lemma
 // Let a and b be integers with d := gcd(a, b).
 // Then there exist integers x and y such that ax + by = d.
-// Moreover, the integers of the form az + bt are exactly the multiples of d.
+// Moreover, the integers of the form ax + by are exactly the multiples of d.
 // If the integers x1 and y1 satisfy a * x1 + b * y1 = d,
 // x2 := x1 + k * b / gcd(a, b) and
 // y2 := y1 - k * a / gcd(a, b) also satisfy a * x2 + b * y2 = d for some integer k.
