@@ -60,19 +60,19 @@ Various data structures and algorithms for competitive programming.
 8.1. [Coordinate Compression](https://github.com/manoflearning/cp-reference-codes/blob/master/reference-codes/8-misc/coordinate_compression.cpp) <br>
 8.2. [2D Prefix Sum](https://github.com/manoflearning/cp-reference-codes/blob/master/reference-codes/8-misc/2d_prefix_sum.cpp) <br>
 8.3. [DP Opt](https://github.com/manoflearning/cp-reference-codes/blob/master/reference-codes/8-misc/dp_opt.cpp) <br>
-8.4. [Sqrt Decomposition, Mo's Algorithm](https://github.com/manoflearning/cp-reference-codes/blob/master/reference-codes/8-misc/sqrt_decomposition_mos_algorithm.cpp)
-8.5. [Fraction Data Type](https://github.com/manoflearning/cp-reference-codes/blob/master/reference-codes/8-misc/fraction_data_type.cpp)
-8.6. [Rotation Matrix, Manhattan Distance, Chebyshev Distance](https://github.com/manoflearning/cp-reference-codes/blob/master/reference-codes/8-misc/rotation_matrix_manhattan_distance_chebyshev_distance.txt)
-8.7. [Random](https://github.com/manoflearning/cp-reference-codes/blob/master/reference-codes/8-misc/random.cpp)
-8.8. [Ternary Search](https://github.com/manoflearning/cp-reference-codes/blob/master/reference-codes/8-misc/ternary_search.cpp)
-8.9. [LIS in O(NlogN)](https://github.com/manoflearning/cp-reference-codes/tree/master/reference-codes/8-misc/lis-in-o-nlogn)
-8.10. [System of Difference Constraints](https://github.com/manoflearning/cp-reference-codes/blob/master/reference-codes/8-misc/system_of_difference_constraints.cpp)
+8.4. [Sqrt Decomposition, Mo's Algorithm](https://github.com/manoflearning/cp-reference-codes/blob/master/reference-codes/8-misc/sqrt_decomposition_mos_algorithm.cpp) <br>
+8.5. [Fraction Data Type](https://github.com/manoflearning/cp-reference-codes/blob/master/reference-codes/8-misc/fraction_data_type.cpp) <br>
+8.6. [Rotation Matrix, Manhattan Distance, Chebyshev Distance](https://github.com/manoflearning/cp-reference-codes/blob/master/reference-codes/8-misc/rotation_matrix_manhattan_distance_chebyshev_distance.txt) <br>
+8.7. [Random](https://github.com/manoflearning/cp-reference-codes/blob/master/reference-codes/8-misc/random.cpp) <br>
+8.8. [Ternary Search](https://github.com/manoflearning/cp-reference-codes/blob/master/reference-codes/8-misc/ternary_search.cpp) <br>
+8.9. [LIS in O(NlogN)](https://github.com/manoflearning/cp-reference-codes/tree/master/reference-codes/8-misc/lis-in-o-nlogn) <br>
+8.10. [System of Difference Constraints](https://github.com/manoflearning/cp-reference-codes/blob/master/reference-codes/8-misc/system_of_difference_constraints.cpp) <br>
 
 ## Guidelines
-1. 코드는 간결하고 알아보기 쉬워야 한다. <br/>
-2. 필요한 경우 코드 최상단에 주석으로 input, output, time complexity를 적는다.
-3. 필요한 경우 레퍼런스 문제를 남긴다. 예를 들어 세그먼트 트리 알고리즘을 작성할 때, [백준 2042번: 구간 합 구하기](https://www.acmicpc.net/problem/2042) 문제를 래퍼런스로 사용한다. <br/>
-4. 가급적이면 헤더 파일은 <bits/stdc++.h>만을 사용한다. <br/>
-5. 가급적이면 변수 이름, 함수 이름 등은 다음과 같은 형식을 사용한다. ex) unionFind (O), union_find (X) <br/>
-5.1. 단 구조체, 클래스의 이름은 첫 글자를 대문자로 한다. ex) UnionFind (O)
-6. 주석은 최대한 많이 작성한다. 주석은 영어로 작성한다. 주석은 간결하고 알아보기 쉬워야 한다. <br/>
+1. 코드는 간결하고 알아보기 쉬워야 한다. <br>
+2. 필요한 경우 코드 최상단에 주석으로 input, output, time complexity를 적는다. <br>
+3. 필요한 경우 레퍼런스 문제를 남긴다. 예를 들어 세그먼트 트리 알고리즘을 작성할 때, [백준 2042번: 구간 합 구하기](https://www.acmicpc.net/problem/2042) 문제를 래퍼런스로 사용한다. <br>
+4. 가급적이면 헤더 파일은 <bits/stdc++.h>만을 사용한다. <br>
+5. 가급적이면 변수 이름, 함수 이름 등은 다음과 같은 형식을 사용한다. ex) unionFind (O), union_find (X) <br>
+5.1. 단 구조체, 클래스의 이름은 첫 글자를 대문자로 한다. ex) UnionFind (O) <br>
+6. 주석은 최대한 많이 작성한다. 주석은 영어로 작성한다. 주석은 간결하고 알아보기 쉬워야 한다. <br>
