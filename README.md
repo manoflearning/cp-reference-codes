@@ -1,7 +1,7 @@
-# CP-Reference-Codes
+# CP Reference Codes
 Various data structures and algorithms for competitive programming.
 
-# Contents
+## Contents
 0. [Basic Template](https://github.com/manoflearning/CP-Reference-Codes/tree/master/Reference%20Codes/0.%20Basic%20Template) <br/>
 0.1. [C++ Basic Template](https://github.com/manoflearning/CP-Reference-Codes/blob/master/Reference%20Codes/0.%20Basic%20Template/C%2B%2B%20Basic%20Template.cpp) <br/>
 1. [Data Structure](https://github.com/manoflearning/CP-Reference-Codes/tree/master/Reference%20Codes/1.%20Data%20Structure) <br/>
@@ -68,7 +68,7 @@ Various data structures and algorithms for competitive programming.
 8.9. [LIS in O(NlogN)](https://github.com/manoflearning/CP-Reference-Codes/blob/master/Reference%20Codes/8.%20Misc/LIS%20in%20O(NlogN)) <br/>
 8.10. [System of Difference Constraints](https://github.com/manoflearning/CP-Reference-Codes/blob/master/Reference%20Codes/8.%20Misc/System%20of%20Difference%20Constraints.cpp)
 
-# Guidelines
+## Guidelines
 1. 코드는 간결하고 알아보기 쉬워야 한다. <br/>
 2. 필요한 경우 코드 최상단에 주석으로 input, output, time complexity를 적는다.
 3. 필요한 경우 레퍼런스 문제를 남긴다. 예를 들어 세그먼트 트리 알고리즘을 작성할 때, [백준 2042번: 구간 합 구하기](https://www.acmicpc.net/problem/2042) 문제를 래퍼런스로 사용한다. <br/>
