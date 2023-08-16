@@ -30,6 +30,8 @@ pll crt(pll U, pll V) {
 	if (V.sc == 1) return U;
 	ll g = gcd(U.sc, V.sc);
 	ll l = U.sc * V.sc / g;
+	// (U and V have a solution) iff (U.fr = U.sc (mod gcd(U.sc,V.sc)))
+	// also the solution is unique in the range [0, lcm(U.sc,V.sc)).
 	if ((V.fr - U.fr) % g) return { -1, -1 };
 
 	ll u = U.sc / g, v = V.sc / g;
@@ -40,12 +42,10 @@ pll crt(pll U, pll V) {
 	ret.fr %= ret.sc, ret.fr = (ret.fr + ret.sc) % ret.sc;
 	return ret;
 }
-pll solveLinearCongruence(const vector<pll>& a) {
+pll solvingSystemOfLinearCongruence(const vector<pll>& a) {
 	if (a.size() == 1) return a[0];
 	pll ret = crt(a[0], a[1]);
-	for (int i = 2; i < a.size(); i++) {
-		ret = crt(ret, a[i]);
-	}
+	for (int i = 2; i < a.size(); i++) ret = crt(ret, a[i]);
 	return ret;
 }
 
@@ -57,11 +57,11 @@ int main() {
 	while (tc--) {
 		ll M, N, p, q;
 		cin >> M >> N >> p >> q;
-		p--, q--; // From the given input, 1 <= p <= M, 1 <= q <= N
+		p--, q--; // from the given input, 1 <= p <= M, 1 <= q <= N
 		vector<pll> cg;
 		cg.push_back({ p, M });
 		cg.push_back({ q, N });
-		pll ans = solveLinearCongruence(cg);
+		pll ans = solvingSystemOfLinearCongruence(cg);
 		cout << (ans.fr == -1 ? ans.fr : ans.fr + 1) << '\n';
 	}
 }
