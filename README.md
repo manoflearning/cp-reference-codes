@@ -52,11 +52,12 @@ My implementations of various data structures and algorithms for competitive pro
 7.3. [Euclidean Algorithms](https://github.com/manoflearning/cp-reference-codes/blob/master/reference-codes/7-math/euclidean_algorithms.cpp) <br>
 7.4. [Fermat's Little Theorem](https://github.com/manoflearning/cp-reference-codes/blob/master/reference-codes/7-math/fermats_little_theorem.cpp) <br>
 7.5. [Euler's Phi Function](https://github.com/manoflearning/cp-reference-codes/blob/master/reference-codes/7-math/eulers_phi_function.cpp) <br>
-7.6. [Binomial Coefficient](https://github.com/manoflearning/cp-reference-codes/blob/master/reference-codes/7-math/binomial_coefficient.cpp) <br>
-7.7. [Matrix](https://github.com/manoflearning/cp-reference-codes/blob/master/reference-codes/7-math/matrix.cpp) <br>
-7.8. [Catalan Number, Derangement Number](https://github.com/manoflearning/cp-reference-codes/blob/master/reference-codes/7-math/catalan_number_derangement_number.cpp) <br>
-7.9. [FFT](https://github.com/manoflearning/cp-reference-codes/blob/master/reference-codes/7-math/fft.cpp) <br>
-7.10. [Gauss-Jordan Elimination](https://github.com/manoflearning/cp-reference-codes/blob/master/reference-codes/7-math/gauss_jordan_elimination.cpp) <br>
+7.6. [Chinese Remainder Theorem](https://github.com/manoflearning/cp-reference-codes/blob/master/reference-codes/7-math/chinese_remainder_theorem.cpp) <br>
+7.7. [Binomial Coefficient](https://github.com/manoflearning/cp-reference-codes/blob/master/reference-codes/7-math/binomial_coefficient.cpp) <br>
+7.8. [Matrix](https://github.com/manoflearning/cp-reference-codes/blob/master/reference-codes/7-math/matrix.cpp) <br>
+7.9. [Catalan Number, Derangement Number](https://github.com/manoflearning/cp-reference-codes/blob/master/reference-codes/7-math/catalan_number_derangement_number.cpp) <br>
+7.10. [FFT](https://github.com/manoflearning/cp-reference-codes/blob/master/reference-codes/7-math/fft.cpp) <br>
+7.11. [Gauss-Jordan Elimination](https://github.com/manoflearning/cp-reference-codes/blob/master/reference-codes/7-math/gauss_jordan_elimination.cpp) <br>
 8. [Misc](https://github.com/manoflearning/cp-reference-codes/tree/master/reference-codes/8-misc) <br>
 8.1. [Coordinate Compression](https://github.com/manoflearning/cp-reference-codes/blob/master/reference-codes/8-misc/coordinate_compression.cpp) <br>
 8.2. [2D Prefix Sum](https://github.com/manoflearning/cp-reference-codes/blob/master/reference-codes/8-misc/2d_prefix_sum.cpp) <br>
