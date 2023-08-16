@@ -22,6 +22,7 @@ ll phi(ll x) { // Find phi(x) in O(sqrt(x)).
     if (x > 1) p.push_back({ x, x });
     // Find phi(x).
     // phi(p^k) = p^{k-1} * (p - 1) for any prime number p.
+    // phi(mn) = phi(m) * phi(n) if gcd(m, n) = 1
     ll ret = 1;
     for (auto& i : p) {
         ret *= (i.fr / i.sc) * (i.sc - 1);
