@@ -1,3 +1,6 @@
+// INPUT: Given a natural number n.
+// OUTPUT: Find the number of natural numbers 1 ≤ k ≤ n such that GCD(n, k) = 1.
+// TIME COMPLEXITY: O(sqrt(n))
 // BOJ 11689 AC Code
 // https://www.acmicpc.net/problem/11689
 #include <bits/stdc++.h>
@@ -6,8 +9,7 @@ using namespace std;
 #define pll pair<ll, ll>
 #define fr first
 #define sc second
-// Find phi(x) in sqrt(x).
-ll phi(ll x) {
+ll phi(ll x) { // Find phi(x) in O(sqrt(x)).
     vector<pll> p;
     // Factorization in O(sqrt(x)).
     for (ll i = 2; i <= sqrt(x); i++) {
@@ -29,5 +31,4 @@ ll phi(ll x) {
 int main() {
     ll n; cin >> n;
     cout << phi(n);
-    return 0;
 }
