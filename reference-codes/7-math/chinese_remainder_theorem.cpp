@@ -41,12 +41,12 @@ pll crt(pll U, pll V) {
 	return ret;
 }
 pll solveLinearCongruence(const vector<pll>& a) {
-    if (a.size() == 1) return a[0];
-    pll ret = crt(a[0], a[1]);
-    for (int i = 2; i < a.size(); i++) {
-        ret = crt(ret, a[i]);
-    }
-    return ret;
+	if (a.size() == 1) return a[0];
+	pll ret = crt(a[0], a[1]);
+	for (int i = 2; i < a.size(); i++) {
+		ret = crt(ret, a[i]);
+	}
+	return ret;
 }
 
 int main() {
