@@ -18,7 +18,7 @@ inline ll dist(const Point& v) { return v.x * v.x + v.y * v.y; }
 
 // If the angle between any two points and the origin is less than 180 degrees,
 // they can be sorted through the cross product of the vectors.
-// Therefore, the points were divided into 1st and 4th quadrants and 2nd and 4th quadrants,
+// Therefore, the points were divided into 1st and 4th quadrants and 2nd and 3rd quadrants,
 // and the points in the 1st and 4th quadrants were arranged in front.
 void sortByAngular() {
     sort(p.begin(), p.end(), [&](const Point& lhs, const Point& rhs) {
