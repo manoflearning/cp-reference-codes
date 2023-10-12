@@ -1,6 +1,6 @@
-//#pragma GCC optimize("O3")
-//#pragma GCC optimize("Ofast")
-//#pragma GCC optimize("unroll-loops")
+// #pragma GCC optimize("O3")
+// #pragma GCC optimize("Ofast")
+// #pragma GCC optimize("unroll-loops")
 
 #include <bits/stdc++.h>
 #include <cassert>
@@ -22,6 +22,11 @@ const int dy[] = { 0, 0, 1, -1, 1, 1, -1, -1 };
 const int dx[] = { 1, -1, 0, 0, 1, -1, 1, -1 };
 
 int main() {
+	// #ifndef ONLINE_JUDGE
+	// freopen("Write your absolute/relative path of input.txt", "r", stdin);
+	// freopen("Write your absolute/relative path of output.txt", "w", stdout);
+	// #endif
+
 	cin.tie(NULL); cout.tie(NULL);
 	ios_base::sync_with_stdio(false);
 
