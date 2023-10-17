@@ -1,15 +1,3 @@
-// Input: two line segments ab and cd
-// Output: 1 if ab and cd intersect, 0 if they do not intersect
-// Time Complexity: O(1)
-
-// BOJ 17387 AC Code
-// https://www.acmicpc.net/problem/17387
-
-#include <bits/stdc++.h>
-using namespace std;
-#define ll long long
-#define pii pair<int, int>
-
 struct Point { ll x, y; };
 
 ll ccw(const Point& a, const Point& b, const Point& c) {
@@ -29,11 +17,4 @@ bool isCross(const Point& a, const Point& b, const Point& c, const Point& d) {
         return (A <= D && C <= B);
     }
     else return (ab <= 0 && cd <= 0);
-}
-
-int main() {
-    Point a, b, c, d;
-    cin >> a.x >> a.y >> b.x >> b.y;
-    cin >> c.x >> c.y >> d.x >> d.y;
-    cout << isCross(a, b, c, d);
 }
