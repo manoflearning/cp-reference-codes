@@ -37,7 +37,7 @@ void input() {
         cin >> op >> u >> v >> w;
         if (op == 1) {
             // x_u - x_v >= w
-            // iff x_v - x_u <= w
+            // iff x_v - x_u <= -w
             adj[u].push_back({ -w, v });
         }
         if (op == 2) {
