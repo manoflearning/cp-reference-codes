@@ -47,3 +47,4 @@ struct MergeSortTree {
         }
         return ret;
     }
+}mstree;
