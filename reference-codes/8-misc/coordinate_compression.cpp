@@ -11,5 +11,4 @@ int main() {
 		int num; cin >> num;
 		cout << lower_bound(a.begin(), a.end(), num) - a.begin();
 	}
-	return 0;
 }

@@ -66,5 +66,4 @@ int main() {
     cout << (insidePolygon(a) ? 1 : 0) << '\n';
     cout << (insidePolygon(b) ? 1 : 0) << '\n';
     cout << (insidePolygon(c) ? 1 : 0) << '\n';
-    return 0;
 }

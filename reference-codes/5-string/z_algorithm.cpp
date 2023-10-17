@@ -44,5 +44,4 @@ int main() {
         int x; cin >> x;
         cout << z[sz(s) - x] << '\n';
     }
-    return 0;
 }

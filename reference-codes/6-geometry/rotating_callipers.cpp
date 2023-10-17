@@ -77,5 +77,4 @@ int main() {
         cout << ans1.x << ' ' << ans1.y << ' ';
         cout << ans2.x << ' ' << ans2.y << '\n';
     }
-    return 0;
 }

@@ -82,5 +82,4 @@ int main() {
 		else cout << "NO\n";
 	}
 	delete root;
-	return 0;
 }

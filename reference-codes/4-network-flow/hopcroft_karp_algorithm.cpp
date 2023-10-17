@@ -61,5 +61,4 @@ int main() {
 	input();
 	int total = hopcroft();
 	cout << total << '\n';
-	return 0;
 }

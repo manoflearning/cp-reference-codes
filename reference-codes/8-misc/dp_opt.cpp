@@ -1,4 +1,4 @@
-// Convex Hull Trick
+// 1. Convex Hull Trick
 // Recurrence: dp[i] = min(dp[j] + a[i] * b[j]) (j < i)
 // Condition: b[i] >= b[i + 1]
 // Naive Complexity: O(n^2)
@@ -55,7 +55,7 @@ int main() {
     cout << dp[n];
 }
 
-// Knuth Optimization
+// 2. Knuth Optimization
 // Recurrence: DP[i][j] = min(DP[i][k] + DP[k + 1][j]) + C[i][j] (i <= k < j)
 // Condition: C[i][j] is a monge array (satisfies C[a][c] + C[b][d] <= C[a][d] + C[b][c]),
 //            and satisfies C[a][d] >= C[b][c] for a <= b <= c <= d
@@ -105,7 +105,7 @@ int main() {
     }
 }
 
-// Divide and Conquer Optimization 
+// 3. Divide and Conquer Optimization 
 // Recurrence: dp[t][i] = min(dp[t - 1][j] + c[j][i]) (j < i)
 // Condition: Let opt[t][i] be j with the smallest value of dp[t - 1][j] + c[j][i]. It must satisfy opt[t][i] <= opt[t][i + 1].
 // Naive Complexity: O(m * n^2)

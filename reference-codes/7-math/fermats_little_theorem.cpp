@@ -22,5 +22,4 @@ int main() {
     cin >> n >> r;
     // print nCr (mod 1e9+7)
     cout << fac[n] * powxy(fac[r], MOD - 2) % MOD * powxy(fac[n - r], MOD - 2) % MOD;
-    return 0;
 }

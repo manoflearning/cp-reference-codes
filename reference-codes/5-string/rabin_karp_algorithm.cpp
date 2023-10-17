@@ -40,5 +40,4 @@ int main() {
 	rabinKarp();
 	cout << sz(ans) << '\n';
 	for (int i : ans) cout << i + 1 << ' ';
-	return 0;
 }

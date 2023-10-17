@@ -43,5 +43,4 @@ int main() {
 	input();
 	int ans = bipartiteMatch();
 	cout << ans << '\n';
-	return 0;
 }

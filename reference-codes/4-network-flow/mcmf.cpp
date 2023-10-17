@@ -58,5 +58,4 @@ int main() {
 	input();
 	mcmf();
 	cout << mFlow << '\n' << mCost;	
-	return 0;
 }

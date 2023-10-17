@@ -4,10 +4,6 @@
 // 2 x : Find the max(f(x)) among the linear functions given so far.
 // OUTPUT: For each query 2 x, output the max(f(x)) among the linear functions given so far.
 // TIME COMPLEXITY: O(qlogq)
-#include <bits/stdc++.h>
-using namespace std;
-#define ll long long
-#define sz(x) (int)(x).size()
 #define Line pair<ll, ll>
 
 const Line e = { 0, -1e18 };
@@ -62,9 +58,6 @@ struct LiChaoTree {
 }lct;
 
 int main() {
-    cin.tie(NULL); cout.tie(NULL);
-    ios_base::sync_with_stdio(false);
-
     lct.build(-1'000'000'000'000ll, 1'000'000'000'000ll);
 
     int q; cin >> q;

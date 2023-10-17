@@ -47,5 +47,4 @@ int main() {
         ans = max(ans, p[i]);
     }
     cout << ans;
-    return 0;
 }

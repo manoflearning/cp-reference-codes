@@ -66,6 +66,4 @@ int main() {
 	dfs(1);
 	for (auto i : eulerCircult) 
 		cout << i << ' ';
-	
-	return 0;
 }

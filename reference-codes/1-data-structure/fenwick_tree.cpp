@@ -1,17 +1,73 @@
-// INPUT: Given an 2D array of integers of size N * N.
-// Given the query (0 x y c) or (1 sx sy ex ey)
-// If the first number is 0, change the value of the (x, y)th element to c,
-// If the first number is 1, find the sum of elements from (sx, sy) to (ex, ey)
+// 1. Fenwick Tree
+struct Fenwick { // 0-indexed
+	int flag, cnt; // array size
+	vector<ll> arr, t;
+	void build(int n) {
+		for (flag = 1; flag < n; flag <<= 1, cnt++);
+		arr.resize(flag);
+		t.resize(flag);
+		for (int i = 0; i < n; i++) cin >> arr[i];
+		for (int i = 0; i < n; i++) {
+			t[i] += arr[i];
+			if (i | (i + 1) < flag) t[i | (i + 1)] += t[i];
+		}
+	}
+	void add(int p, ll value) { // add value at position p
+		arr[p] += value;
+		while (p < flag) {
+			t[p] += value;
+			p |= p + 1;
+		}
+	}
+	void modify(int p, ll value) { // set value at position p
+		add(p, value - arr[p]);
+	};
+	ll query(int x) {
+		ll ret = 0;
+		while (x >= 0) ret += t[x], x = (x & (x + 1)) - 1;
+		return ret;
+	}
+	ll query(int l, int r) {
+		return query(r) - (l ? query(l - 1) : 0);
+	}
+	int kth(int k) { // find the kth smallest number (1-indexed)
+		assert(t.back() >= k);
+		int l = 0, r = arr.size();
+		for (int i = 0; i <= cnt; i++) {
+			int mid = (l + r) >> 1;
+			ll val = mid ? t[mid - 1] : t.back();
+			if (val >= k) r = mid;
+			else l = mid, k -= val;
+		}
+		return l;
+	}
+}fw;
+
+// 2. Fenwick Tree Range Update Point Query
+struct Fenwick { // 1-indexed
+    int flag;
+    vector<ll> t;
+    void build(int N) {
+        flag = N;
+        t.resize(flag + 1);
+    }
+    void modify(int l, int r, int val) { // add a val to all elements in interval [l, r]
+        for (; l <= flag; l += l & -l) t[l] += val;
+        for (r++; r<= flag; r += r & -r) t[r] -= val;
+    }
+    ll query(int x) {
+        ll ret = 0;
+        for (; x; x ^= x & -x) ret += t[x];
+        return ret;
+    }
+}fw;
+
+// 3. 2D Fenwick Tree
+// INPUT: Given an 2D array of integers of size N * M.
+// Can modify the value of the (x, y)th element.
+// Can find the sum of elements from (sx, sy) to (ex, ey).
 // OUTPUT: Given the query (1 sx sy ex ey), output the sum of elements from the interval (sx, sy) to (ex, ey)
-// TIME COMPLEXITY: O(N * N) for initialize fenwick tree, O(logN * logN) for each query.
-
-// BOJ 11658 AC Code
-// https://www.acmicpc.net/problem/11658
-
-#include <bits/stdc++.h>
-using namespace std;
-#define ll long long
-
+// TIME COMPLEXITY: O(N * M) for initialize fenwick tree, O(logN * logM) for each query.
 struct Fenwick2D { // 0-indexed
     int n, m, real_n, real_m;
     vector<vector<ll>> arr, t;
@@ -73,27 +129,3 @@ struct Fenwick2D { // 0-indexed
         return ret;
     }
 }fw2d;
-
-int main() {
-    cin.tie(NULL); cout.tie(NULL);
-    ios_base::sync_with_stdio(false);
-
-    int n, m;
-    cin >> n >> m;
-
-    fw2d.build(n, n);
-
-    for (int i = 0; i < m; i++) {
-        int op; cin >> op;
-        if (op == 0) {
-            int x, y; ll w;
-            cin >> x >> y >> w;
-            fw2d.modify(x - 1, y - 1, w);
-        }
-        if (op == 1) {
-            int sx, sy, ex, ey;
-            cin >> sx >> sy >> ex >> ey;
-            cout << fw2d.query(sx - 1, sy - 1, ex - 1, ey - 1) << '\n';
-        }
-    }
-}

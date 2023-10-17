@@ -62,5 +62,4 @@ int main() {
 	input();
 	int total = dinic();
 	cout << total << '\n';
-	return 0;
 }

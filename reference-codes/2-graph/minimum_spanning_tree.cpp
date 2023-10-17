@@ -62,6 +62,4 @@ int main() {
 
 	input();
 	cout << buildMST();
-	
-	return 0;
 }

@@ -44,7 +44,6 @@ int main() {
     cout << '\n';
     cout << "x ";
     for (int i = 1; i < sz(lcp); i++) cout << lcp[i] << ' ';
-    return 0;
 }
 // Manber-Myers Algorithm for Suffix Array
 // Time Conplexity: O(nlogn)
@@ -99,5 +98,4 @@ int main() {
     cout << '\n';
     cout << "x ";
     for (int i = 1; i < sz(lcp); i++) cout << lcp[i] << ' ';
-    return 0;
 }

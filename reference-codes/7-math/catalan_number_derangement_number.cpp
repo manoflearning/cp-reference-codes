@@ -28,7 +28,6 @@ int main() {
         int n; cin >> n;
         cout << catalanNumber(n) << '\n';
     }
-    return 0;
 }
 // Derangement Number
 // Counting derangements of a set amounts to the hat-check problem, 
@@ -53,5 +52,4 @@ int main() {
     }
     int n; cin >> n;
     cout << dp[n];
-    return 0;
 }

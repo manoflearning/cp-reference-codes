@@ -59,5 +59,4 @@ int main() {
 		cin >> n >> r;
 		cout << binom(n, r) << '\n';
 	}
-	return 0;
 }

@@ -69,6 +69,4 @@ int main() {
 		cin >> u >> v;
 		cout << lca(u, v) << '\n';
 	}
-
-	return 0;
 }

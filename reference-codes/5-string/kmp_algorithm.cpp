@@ -36,5 +36,4 @@ int main() {
 	cout << sz(ans) << '\n';
 	for (int i : ans)
 		cout << i + 1 << '\n';
-	return 0;
 }
