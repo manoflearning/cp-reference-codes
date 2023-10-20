@@ -65,7 +65,7 @@ My implementations of various data structures and algorithms for competitive pro
 8.6. [Rotation Matrix, Manhattan Distance, Chebyshev Distance](https://github.com/manoflearning/cp-reference-codes/blob/master/reference-codes/8-misc/rotation_matrix_manhattan_distance_chebyshev_distance.txt) <br>
 8.7. [Random](https://github.com/manoflearning/cp-reference-codes/blob/master/reference-codes/8-misc/random.cpp) <br>
 8.8. [Ternary Search](https://github.com/manoflearning/cp-reference-codes/blob/master/reference-codes/8-misc/ternary_search.cpp) <br>
-8.9. [LIS in O(NlogN)](https://github.com/manoflearning/cp-reference-codes/tree/master/reference-codes/8-misc/lis-in-o-nlogn) <br>
+8.9. [LIS in O(NlogN)](https://github.com/manoflearning/cp-reference-codes/tree/master/reference-codes/8-misc/lis_in_o_nlogn.cpp) <br>
 8.10. [System of Difference Constraints](https://github.com/manoflearning/cp-reference-codes/blob/master/reference-codes/8-misc/system_of_difference_constraints.cpp) <br>
 
 ## Guidelines
