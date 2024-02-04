@@ -69,10 +69,10 @@ My implementations of various data structures and algorithms for competitive pro
 8.10. [System of Difference Constraints](https://github.com/manoflearning/cp-reference-codes/blob/master/reference-codes/8-misc/system_of_difference_constraints.cpp) <br>
 
 ## Guidelines
-1. 코드는 간결하고 알아보기 쉬워야 한다. <br>
-2. 필요한 경우 코드 최상단에 주석으로 input, output, time complexity를 적는다. <br>
-3. 필요한 경우 레퍼런스 문제를 남긴다. 예를 들어 세그먼트 트리 알고리즘을 작성할 때, [백준 2042번: 구간 합 구하기](https://www.acmicpc.net/problem/2042) 문제를 래퍼런스로 사용한다. <br>
-4. 가급적이면 헤더 파일은 <bits/stdc++.h>만을 사용한다. <br>
-5. 가급적이면 변수 이름, 함수 이름 등은 다음과 같은 형식을 사용한다. (예 : unionFind (O), union_find (X)) <br>
-5.1. 단 구조체, 클래스의 이름은 첫 글자를 대문자로 한다. (예 : UnionFind (O)) <br>
-6. 주석은 최대한 많이 작성한다. 주석은 영어로 작성한다. 주석은 간결하고 알아보기 쉬워야 한다. <br>
+1. The code should be concise and easy to understand. <br>
+2. If needed, write comments at the top of the code describing the input, output, and time complexity. <br>
+3. If needed, leave a reference to a problem. For example, when writing the segment tree algorithm, use the problem [Baekjoon 2042: Interval Sum](https://www.acmicpc.net/problem/2042) as a reference.
+4. Preferably use only <bits/stdc++.h> as the header file. <br>
+5. Preferably use the following format for variable names, function names, etc. (e.g., unionFind (O), union_find (X)) <br>
+5.1. However, capitalize the first letter in the names of structures and classes. (e.g., UnionFind (O)) <br>
+6. Write as many comments as possible. Comments should be written in English. Comments should be concise and easy to understand. <br>
