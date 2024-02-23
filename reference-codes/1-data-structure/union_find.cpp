@@ -1,14 +1,17 @@
-int n;
-vector<int> uf(1010101, -1);
-
-int find(int x) {
-	if (uf[x] < 0) return x;
-	return uf[x] = find(uf[x]);
-}
-
-void merge(int a, int b) {
-	int A = find(a), B = find(b);
-	if (A == B) return;
-	uf[A] += uf[B];
-	uf[B] = A;
-}
+struct UF {
+    vector<int> uf;
+    void init(int N) {
+        uf.clear();
+        uf.resize(N + 1, -1);
+    }
+    int find(int v) {
+        if (uf[v] < 0) return v;
+        return uf[v] = find(uf[v]);
+    }
+    void merge(int u, int v) {
+        int U = find(u), V = find(v);
+        if (U == V) return;
+        uf[U] += uf[V];
+        uf[V] = U;
+    }
+}uf;
