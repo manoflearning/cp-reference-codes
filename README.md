@@ -56,6 +56,8 @@ My implementations of various data structures and algorithms for competitive pro
 7.9. [Catalan Number, Derangement Number](https://github.com/manoflearning/cp-reference-codes/blob/master/reference-codes/7-math/catalan_number_derangement_number.cpp) <br>
 7.10. [FFT](https://github.com/manoflearning/cp-reference-codes/blob/master/reference-codes/7-math/fft.cpp) <br>
 7.11. [Gauss-Jordan Elimination](https://github.com/manoflearning/cp-reference-codes/blob/master/reference-codes/7-math/gauss_jordan_elimination.cpp) <br>
+7.12. [Miller-Rabin Test + Pollard Rho Factorization](https://github.com/manoflearning/cp-reference-codes/blob/master/reference-codes/7-math/miller_rabin_pollard_rho.cpp) <br>
+
 8. [Misc](https://github.com/manoflearning/cp-reference-codes/tree/master/reference-codes/8-misc) <br>
 8.1. [Coordinate Compression](https://github.com/manoflearning/cp-reference-codes/blob/master/reference-codes/8-misc/coordinate_compression.cpp) <br>
 8.2. [2D Prefix Sum](https://github.com/manoflearning/cp-reference-codes/blob/master/reference-codes/8-misc/2d_prefix_sum.cpp) <br>
