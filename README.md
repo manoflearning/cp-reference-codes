@@ -70,12 +70,3 @@ My implementations of various data structures and algorithms for competitive pro
 8.9. [LIS in O(NlogN)](https://github.com/manoflearning/cp-reference-codes/tree/master/reference-codes/8-misc/lis_in_o_nlogn.cpp) <br>
 8.10. [System of Difference Constraints](https://github.com/manoflearning/cp-reference-codes/blob/master/reference-codes/8-misc/system_of_difference_constraints.cpp) <br>
 8.11. [SIMD](https://github.com/manoflearning/cp-reference-codes/blob/master/reference-codes/8-misc/simd.cpp) <br>
-
-## Guidelines
-1. The code should be concise and easy to understand. <br>
-2. If needed, write comments at the top of the code describing the input, output, and time complexity. <br>
-3. If needed, leave a reference to a problem. For example, when writing the segment tree algorithm, use the problem [Baekjoon 2042: Interval Sum](https://www.acmicpc.net/problem/2042) as a reference.
-4. Preferably use only <bits/stdc++.h> as the header file. <br>
-5. Preferably use the following format for variable names, function names, etc. (e.g., unionFind (O), union_find (X)) <br>
-5.1. However, capitalize the first letter in the names of structures and classes. (e.g., UnionFind (O)) <br>
-6. Write as many comments as possible. Comments should be written in English. Comments should be concise and easy to understand. <br>
