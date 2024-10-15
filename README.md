@@ -2,8 +2,6 @@
 My implementations of various data structures and algorithms for competitive programming.
 
 ## Contents
-0. [Basic Template](https://github.com/manoflearning/cp-reference-codes/tree/master/0-basic-template) <br>
-0.1. [C++ Basic Template](https://github.com/manoflearning/cp-reference-codes/blob/master/0-basic-template/cpp_basic_template.cpp) <br>
 1. [Data Structure](https://github.com/manoflearning/cp-reference-codes/tree/master/1-data-structure) <br>
 1.1. [Union Find](https://github.com/manoflearning/cp-reference-codes/blob/master/1-data-structure/union_find.cpp) <br>
 1.2. [Segment Tree](https://github.com/manoflearning/cp-reference-codes/tree/master/1-data-structure/segment_tree.cpp) <br>
