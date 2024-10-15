@@ -16,41 +16,41 @@ vector<int> adj[MAX], stk;
 int vi[MAX], fi[MAX], isCycle;
 
 void input() {
-	cin >> n >> m;
-	for (int i = 0; i < m; i++) {
-		int u, v;
-		cin >> u >> v;
-		adj[u].push_back(v);
-	}
+  cin >> n >> m;
+  for (int i = 0; i < m; i++) {
+    int u, v;
+    cin >> u >> v;
+    adj[u].push_back(v);
+  }
 }
 
 void dfs(int v) {
-	vi[v] = 1;
-	for (int next : adj[v]) {
-		if (!vi[next]) dfs(next);
-		else if (!fi[next]) isCycle = 1;
-	}
-	fi[v] = 1;
-	stk.push_back(v);
+  vi[v] = 1;
+  for (int next : adj[v]) {
+    if (!vi[next]) dfs(next);
+    else if (!fi[next]) isCycle = 1;
+  }
+  fi[v] = 1;
+  stk.push_back(v);
 }
 
 void topologicalSort() {
-	for (int i = 1; i <= n; i++) {
-		if (!vi[i]) dfs(i);
-	}
-	if (isCycle) cout << 0;
-	else {
-		for (int i = stk.size() - 1; i >= 0; i--) 
-			cout << stk[i] << ' ';
-	}
+  for (int i = 1; i <= n; i++) {
+    if (!vi[i]) dfs(i);
+  }
+  if (isCycle) cout << 0;
+  else {
+    for (int i = stk.size() - 1; i >= 0; i--)
+      cout << stk[i] << ' ';
+  }
 }
 
 int main() {
-	cin.tie(NULL); cout.tie(NULL);
-	ios_base::sync_with_stdio(false);
+  cin.tie(NULL), cout.tie(NULL);
+  ios_base::sync_with_stdio(false);
 
-	input();
-	topologicalSort();
+  input();
+  topologicalSort();
 }
 
 // 2. Topological Sort (Indegree)
@@ -71,46 +71,46 @@ vector<int> adj[MAX], ts;
 int ind[MAX], isCycle;
 
 void input() {
-	cin >> n >> m;
+  cin >> n >> m;
 
-	for (int i = 0; i < m; i++) {
-		int u, v;
-		cin >> u >> v;
-		adj[u].push_back(v);
-		ind[v]++;
-	}
+  for (int i = 0; i < m; i++) {
+    int u, v;
+    cin >> u >> v;
+    adj[u].push_back(v);
+    ind[v]++;
+  }
 }
 
 void topologicalSort() {
-	queue<int> q;
-	for (int i = 1; i <= n; i++)
-		if (ind[i] == 0) q.push(i);
+  queue<int> q;
+  for (int i = 1; i <= n; i++)
+    if (ind[i] == 0) q.push(i);
 
-	for (int i = 0; i < n; i++) {
-		if (q.empty()) {
-			isCycle = 1;
-			break;
-		}
-		int v = q.front();
-		q.pop();
-		ts.push_back(v);
-		for (int next : adj[v]) {
-			ind[next]--;
-			if (ind[next] == 0) q.push(next);
-		}
-	}
+  for (int i = 0; i < n; i++) {
+    if (q.empty()) {
+      isCycle = 1;
+      break;
+    }
+    int v = q.front();
+    q.pop();
+    ts.push_back(v);
+    for (int next : adj[v]) {
+      ind[next]--;
+      if (ind[next] == 0) q.push(next);
+    }
+  }
 
-	if (isCycle) cout << 0;
-	else {
-		for (int i = 0; i < ts.size(); i++)
-			cout << ts[i] << ' ';
-	}
+  if (isCycle) cout << 0;
+  else {
+    for (int i = 0; i < ts.size(); i++)
+      cout << ts[i] << ' ';
+  }
 }
 
 int main() {
-	cin.tie(NULL); cout.tie(NULL);
-	ios_base::sync_with_stdio(false);
+  cin.tie(NULL), cout.tie(NULL);
+  ios_base::sync_with_stdio(false);
 
-	input();
-	topologicalSort();
+  input();
+  topologicalSort();
 }
