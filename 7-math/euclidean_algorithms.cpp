@@ -1,10 +1,10 @@
 // GCD, LCM
 ll gcd(ll a, ll b) {
-	if (b == 0) return a;
-	else return gcd(b, a % b);
+  if (b == 0) return a;
+  else return gcd(b, a % b);
 }
 ll lcm(ll a, ll b) {
-	return a * b / gcd(a, b);
+  return a * b / gcd(a, b);
 }
 
 // Extended GCD
@@ -44,37 +44,37 @@ ll lcm(ll a, ll b) {
 using namespace std;
 #define ll long long
 #define pll pair<ll, ll>
-pair<pll, ll> egcd(ll a, ll b) { 
-	ll s = 0, olds = 1;
-	ll t = 1, oldt = 0;
-	ll r = b, oldr = a;
-	while (r != 0) {
-		ll q = oldr / r;
-		ll tmp = oldr - q * r;
-		oldr = r, r = tmp;
-		tmp = olds - q * s;
-		olds = s, s = tmp;
-		tmp = oldt - q * t;
-		oldt = t, t = tmp;
-	}
-	// a * olds + b * oldt = d
-	// oldr = gcd(a, b)
-	return { { olds, oldt }, oldr };
+pair<pll, ll> egcd(ll a, ll b) {
+  ll s = 0, olds = 1;
+  ll t = 1, oldt = 0;
+  ll r = b, oldr = a;
+  while (r != 0) {
+    ll q = oldr / r;
+    ll tmp = oldr - q * r;
+    oldr = r, r = tmp;
+    tmp = olds - q * s;
+    olds = s, s = tmp;
+    tmp = oldt - q * t;
+    oldt = t, t = tmp;
+  }
+  // a * olds + b * oldt = d
+  // oldr = gcd(a, b)
+  return {{olds, oldt}, oldr};
 }
 ll linearCongruence(ll a, ll b, ll n) { // Find x such that ax = b (mod n).
-	pair<pll, ll> res = egcd(a, n);
-	// ax + ny = b has a solution iff gcd(a,n) | b.
-	if (b % res.second) return -1;
-	return (res.first.first + n) % n;
+  pair<pll, ll> res = egcd(a, n);
+  // ax + ny = b has a solution iff gcd(a,n) | b.
+  if (b % res.second) return -1;
+  return (res.first.first + n) % n;
 }
 ll modInv(ll a, ll p) { // Find x such that ax = 1 (mod p).
-	pair<pll, ll> res = egcd(a, p);
-	// Modular inverse exists iff gcd(a, p) = 1.
-	if (res.second == 1) return (res.first.first + p) % p;
-	else return -1;
+  pair<pll, ll> res = egcd(a, p);
+  // Modular inverse exists iff gcd(a, p) = 1.
+  if (res.second == 1) return (res.first.first + p) % p;
+  else return -1;
 }
 int main() {
-	ll N, A;
-	cin >> N >> A;
-	cout << N - A << ' ' << modInv(A, N);
+  ll N, A;
+  cin >> N >> A;
+  cout << N - A << ' ' << modInv(A, N);
 }
