@@ -1,0 +1,25 @@
+name: C++ Formatting
+
+on:
+  push:
+    branches: [ master ]
+  pull_request:
+    branches: [ master ]
+
+jobs:
+  format:
+    runs-on: ubuntu-latest
+
+    steps:
+    - uses: actions/checkout@v2
+
+    - name: Install clang-format
+      run: sudo apt-get install -y clang-format
+
+    - name: Run clang-format
+      run: |
+        find . -name '*.cpp' -or -name '*.h' | xargs clang-format -i -style=file
+
+    - name: Check for changes
+      run: |
+        git diff --exit-code || (echo "Code formatting issues found. Please run clang-format locally and commit the changes." && exit 1)
