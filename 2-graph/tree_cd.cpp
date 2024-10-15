@@ -3,7 +3,7 @@
 // - A path between two arbitrary nodes u, v in the original tree traverses l := lca(u, v) in the centroid tree.
 //   We can think of the path (u, v) in the original tree as splitting into paths (u, l) and (l, v).
 // - In the original tree, all paths through (v, i) can be separated into paths through v, par(v), par(par(v)), ..., root in the centroid tree.
-namespace CD {
+namespace cd {
 const int MAXN = 202020;
 
 vector<int> adj[MAXN], cdchd[MAXN];
@@ -34,4 +34,4 @@ void cd(int now, int prv) {
   for (auto i : adj[cent])
     if (!used[i]) cd(i, cent);
 }
-} // namespace CD
+} // namespace cd
