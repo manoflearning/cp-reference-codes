@@ -1,7 +1,7 @@
 # CP Reference Codes
 My implementations of various data structures and algorithms for competitive programming.
 
-## Contents
+<!-- ## Contents
 1. [Data Structure](https://github.com/manoflearning/cp-reference-codes/tree/master/1-data-structure) <br>
 1.1. [Union Find](https://github.com/manoflearning/cp-reference-codes/blob/master/1-data-structure/union_find.cpp) <br>
 1.2. [Segment Tree](https://github.com/manoflearning/cp-reference-codes/tree/master/1-data-structure/segment_tree.cpp) <br>
@@ -67,4 +67,4 @@ My implementations of various data structures and algorithms for competitive pro
 8.8. [Ternary Search](https://github.com/manoflearning/cp-reference-codes/blob/master/8-misc/ternary_search.cpp) <br>
 8.9. [LIS in O(NlogN)](https://github.com/manoflearning/cp-reference-codes/tree/master/8-misc/lis_in_o_nlogn.cpp) <br>
 8.10. [System of Difference Constraints](https://github.com/manoflearning/cp-reference-codes/blob/master/8-misc/system_of_difference_constraints.cpp) <br>
-8.11. [SIMD](https://github.com/manoflearning/cp-reference-codes/blob/master/8-misc/simd.cpp) <br>
+8.11. [SIMD](https://github.com/manoflearning/cp-reference-codes/blob/master/8-misc/simd.cpp) <br> -->
