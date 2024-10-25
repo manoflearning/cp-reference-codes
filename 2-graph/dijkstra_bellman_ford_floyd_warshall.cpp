@@ -1,17 +1,9 @@
 // 1. Dijkstra's Algorithm
 // TIME COMPLEXITY: O(ElogV)
-int n, m, st;
-vector<wv> adj[202020];
+vector<pair<ll, int>> adj[202020];
 vector<ll> dist(202020, (ll)1e18);
-struct wv {
-  ll w;
-  int v;
-  bool operator<(const wv &rhs) const {
-    return w > rhs.w;
-  }
-};
 void dijkstra(int st) {
-  priority_queue<wv> pq;
+  priority_queue<pair<ll, int>, vector<pair<ll, int>>, greater<pair<ll, int>>> pq;
   pq.push({0, st});
   dist[st] = 0;
   while (!pq.empty()) {
@@ -31,24 +23,20 @@ void dijkstra(int st) {
 // INPUT: Given a directed graph with weighted(possibly negative) edges and no negative cycles. Given a starting vertex.
 // OUTPUT: Outputs the shortest distance from the starting vertex to all vertices.
 // TIME COMPLEXITY: O(VE)
-struct wv {
-  ll w;
-  int v;
-};
+const ll INF = 1e18;
 int n, m;
-vector<wv> adj[101010];
-vector<ll> upper(101010, (ll)1e18);
+vector<pair<ll, int>> adj[101010];
+vector<ll> upper(101010, INF);
 int bellmanFord() {
   upper[1] = 0;
   int update = 1;
   for (int i = 0; i <= n; i++) {
     update = 0;
-    for (int now = 1; now <= n; now++) {
-      if (upper[now] == INF) continue;
-      for (wv e : adj[now]) {
-        int next = e.v;
-        if (upper[next] > upper[now] + e.w) {
-          upper[next] = upper[now] + e.w;
+    for (int v = 1; v <= n; v++) {
+      if (upper[v] == INF) continue;
+      for (auto &i : adj[v]) {
+        if (upper[i.sc] > upper[v] + i.fr) {
+          upper[i.sc] = upper[v] + i.fr;
           update = 1;
         }
       }
