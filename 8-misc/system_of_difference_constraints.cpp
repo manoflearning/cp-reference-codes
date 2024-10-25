@@ -16,13 +16,6 @@
 // Shortest path can be calculated from Bellman-Ford algorithm.
 
 // TIME COMPLEXITY: O(NM) (Bellman-Ford), O(N^3) (Floyd-Warshall)
-
-// BOJ 13271 AC Code
-// https://www.acmicpc.net/problem/13271
-#include <bits/stdc++.h>
-using namespace std;
-#define ll long long
-
 const ll INF = 1e18;
 
 int N, K;
@@ -77,17 +70,14 @@ int bellmanFord() {
 
 int main() {
   input();
-
   for (int i = 1; i <= N; i++)
     adj[0].push_back({0, i});
-
   if (bellmanFord()) {
     ll mn = INF, mx = -INF;
     for (int i = 1; i <= N; i++) {
       mn = min(mn, upper[i]);
       mx = max(mx, upper[i]);
     }
-
     cout << (mx - mn <= 100 ? mx - mn : -1);
   } else cout << -1;
 }

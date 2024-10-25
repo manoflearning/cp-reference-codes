@@ -11,12 +11,8 @@ int N, M;
 int A[101010] __attribute__((aligned(32)));
 
 int main() {
-  cin.tie(NULL), cout.tie(NULL);
-  ios_base::sync_with_stdio(false);
-
   cin >> N;
   for (int i = 1; i <= N; i++) cin >> A[i];
-
   cin >> M;
   while (M--) {
     int op, x, y;

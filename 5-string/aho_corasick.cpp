@@ -1,7 +1,3 @@
-// BOJ 9250 AC Code
-// https://www.acmicpc.net/problem/9250
-#include <bits/stdc++.h>
-using namespace std;
 const char st = 'a';
 const int MAXC = 'z' - 'a' + 1;
 struct trie {
@@ -67,8 +63,6 @@ bool isMatch(const string &s) {
   return ret;
 }
 int main() {
-  cin.tie(NULL), cout.tie(NULL);
-  ios_base::sync_with_stdio(false);
   int N;
   cin >> N;
   for (int i = 0; i < N; i++) {

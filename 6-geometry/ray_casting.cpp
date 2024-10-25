@@ -1,9 +1,3 @@
-// BOJ 1688 AC Code
-// https://www.acmicpc.net/problem/1688
-#include <bits/stdc++.h>
-using namespace std;
-#define ll long long
-#define pii pair<int, int>
 struct point {
   ll x, y;
   bool operator==(const point &rhs) const {
@@ -59,8 +53,6 @@ bool insidePolygon(point v) {
   return cnt & 1;
 }
 int main() {
-  cin.tie(NULL), cout.tie(NULL);
-  ios_base::sync_with_stdio(false);
   input();
   cout << (insidePolygon(a) ? 1 : 0) << '\n';
   cout << (insidePolygon(b) ? 1 : 0) << '\n';

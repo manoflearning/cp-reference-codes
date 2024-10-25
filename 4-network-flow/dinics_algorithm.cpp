@@ -1,7 +1,5 @@
 // Dinic's Algorithm
 // time complexity : O(V^2 * E)
-#include <bits/stdc++.h>
-using namespace std;
 const int INF = 1e9 + 7;
 const int MAXV = 505;
 int N, st = 0, en = MAXV + 1;
@@ -57,8 +55,6 @@ int dinic() {
   return ret;
 }
 int main() {
-  cin.tie(NULL), cout.tie(NULL);
-  ios_base::sync_with_stdio(false);
   input();
   int total = dinic();
   cout << total << '\n';

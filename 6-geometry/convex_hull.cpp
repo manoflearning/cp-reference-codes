@@ -1,9 +1,4 @@
 // 1. Graham Scan
-// BOJ 1708 AC Code
-// https://www.acmicpc.net/problem/1708
-#include <bits/stdc++.h>
-using namespace std;
-#define ll long long
 struct point {
   ll x, y;
   bool operator<(const point &rhs) const {
@@ -52,19 +47,12 @@ void grahamScan() {
   }
 }
 int main() {
-  cin.tie(NULL), cout.tie(NULL);
-  ios_base::sync_with_stdio(false);
   input();
   grahamScan();
   cout << st.size();
 }
 
 // 2. Monotone Chain
-// BOJ 1708 AC Code
-// https://www.acmicpc.net/problem/1708
-#include <bits/stdc++.h>
-using namespace std;
-#define ll long long
 struct point {
   ll x, y;
   bool operator<(const point &rhs) const {
@@ -122,8 +110,6 @@ void monotoneChain() {
   }
 }
 int main() {
-  cin.tie(NULL), cout.tie(NULL);
-  ios_base::sync_with_stdio(false);
   input();
   monotoneChain();
   cout << (int)dh.size() + (int)uh.size() - 2;

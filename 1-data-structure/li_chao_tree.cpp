@@ -55,20 +55,3 @@ struct LiChaoTree {
     return ret;
   }
 } lct;
-
-int main() {
-  lct.build(-1'000'000'000'000ll, 1'000'000'000'000ll);
-
-  int q;
-  cin >> q;
-  while (q--) {
-    int op;
-    ll a, b;
-    cin >> op >> a;
-    if (op == 1) {
-      cin >> b;
-      lct.insert({a, b});
-    }
-    if (op == 2) cout << lct.query(a) << '\n';
-  }
-}

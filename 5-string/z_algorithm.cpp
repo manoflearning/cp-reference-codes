@@ -1,11 +1,6 @@
 // Z Algorithm
 // Given a string S of length n, the Z Algorithm produces an array Z
 // where Z[i] is the length of the longest substring starting from S[i] which is also a prefix of S
-// BOJ 13713 AC Code
-// https://www.acmicpc.net/problem/13713
-#include <bits/stdc++.h>
-using namespace std;
-#define sz(x) (int)(x).size()
 const int MAXS = 1010101;
 string s;
 int z[MAXS];
@@ -37,8 +32,6 @@ void zfunction() {
   }
 }
 int main() {
-  cin.tie(NULL), cout.tie(NULL);
-  ios_base::sync_with_stdio(false);
   input();
   zfunction();
   int q;

@@ -1,15 +1,6 @@
 // INPUT: Given 4 integers, M, N, p, q. (1 <= M, 1 <= N, 0 <= p < M, 0 <= q < N)
 // OUTPUT: Solve a system of linear congruence, x = p (mod M), x = q (mod N).
 // TIME COMPLEXITY: O(log(max(M, N)))
-// BOJ 6064 AC Code
-// https://www.acmicpc.net/problem/6064
-#include <bits/stdc++.h>
-using namespace std;
-#define ll long long
-#define pll pair<ll, ll>
-#define fr first
-#define sc second
-
 ll gcd(ll x, ll y) {
   if (!y) return x;
   return gcd(y, x % y);
@@ -50,9 +41,6 @@ pll solvingSystemOfLinearCongruence(const vector<pll> &a) {
 }
 
 int main() {
-  cin.tie(NULL), cout.tie(NULL);
-  ios_base::sync_with_stdio(false);
-
   int tc;
   cin >> tc;
   while (tc--) {

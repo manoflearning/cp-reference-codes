@@ -2,11 +2,6 @@
 // Time Conplexity: O(nlog^2n)
 // Kasai's Algorithm for LCP(Longest Common Prefix)
 // Time Complexity: O(n)
-// BOJ 9248 AC Code
-// https://www.acmicpc.net/problem/9248
-#include <bits/stdc++.h>
-using namespace std;
-#define sz(x) (int)(x).size()
 vector<int> buildsa(const string &s) {
   int n = sz(s);
   vector<int> sa(n), r(n + 1), nr(n + 1);
@@ -36,8 +31,6 @@ vector<int> buildlcp(const string &s, const vector<int> &sa) {
   return lcp;
 }
 int main() {
-  cin.tie(NULL), cout.tie(NULL);
-  ios_base::sync_with_stdio(false);
   string s;
   cin >> s;
   vector<int> sa = buildsa(s);
@@ -53,9 +46,6 @@ int main() {
 // Time Complexity: O(n)
 // BOJ 9248 AC Code
 // https://www.acmicpc.net/problem/9248
-#include <bits/stdc++.h>
-using namespace std;
-#define sz(x) (int)(x).size()
 vector<int> buildsa(const string &s) {
   int n = sz(s), m = max(256, n) + 1;
   vector<int> sa(n), r(2 * n), nr(2 * n), cnt(m), idx(n);
@@ -92,8 +82,6 @@ vector<int> buildlcp(const string &s, const vector<int> &sa) {
   return lcp;
 }
 int main() {
-  cin.tie(NULL), cout.tie(NULL);
-  ios_base::sync_with_stdio(false);
   string s;
   cin >> s;
   vector<int> sa = buildsa(s);

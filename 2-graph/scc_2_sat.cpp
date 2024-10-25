@@ -2,22 +2,12 @@
 // INPUT: Given a directed graph.
 // OUTPUT: Decompose this graph into SCCs and print them in lexicographical order.
 // TIME COMPLEXITY: O(V + E)
-
-// BOJ 2150 AC Code
-// https://www.acmicpc.net/problem/2150
-
-#include <bits/stdc++.h>
-using namespace std;
-#define sz(x) (int)(x).size()
-
 const int MAXV = 10101;
-
 int n, m;
 vector<int> adj[MAXV], radj[MAXV];
 int in[MAXV], out[MAXV], num, p[2 * MAXV];
 int vi[MAXV], cnt;
 vector<vector<int>> scc;
-
 void input() {
   cin >> n >> m;
   for (int i = 0; i < m; i++) {
@@ -27,7 +17,6 @@ void input() {
     radj[v].push_back(u);
   }
 }
-
 void dfs(int v) {
   in[v] = ++num;
   for (auto &i : radj[v]) {
@@ -36,7 +25,6 @@ void dfs(int v) {
   out[v] = ++num;
   p[num] = v;
 }
-
 void flood(int v) {
   scc[cnt].push_back(v);
   vi[v] = cnt;
@@ -44,7 +32,6 @@ void flood(int v) {
     if (!vi[i]) flood(i);
   }
 }
-
 void kosaraju() {
   for (int v = 1; v <= n; v++) {
     if (!in[v]) dfs(v);
@@ -57,7 +44,6 @@ void kosaraju() {
     flood(p[v]);
   }
 }
-
 void print() {
   for (auto &i : scc)
     sort(i.begin(), i.end());
@@ -69,11 +55,7 @@ void print() {
     cout << -1 << '\n';
   }
 }
-
 int main() {
-  cin.tie(NULL), cout.tie(NULL);
-  ios_base::sync_with_stdio(false);
-
   input();
   kosaraju();
   print();
@@ -83,22 +65,12 @@ int main() {
 // INPUT: Given a directed graph.
 // OUTPUT: Decompose this graph into SCCs and print them in lexicographical order.
 // TIME COMPLEXITY: O(V + E)
-
-// BOJ 2150 AC Code
-// https://www.acmicpc.net/problem/2150
-
-#include <bits/stdc++.h>
-using namespace std;
-#define sz(x) (int)(x).size()
-
 const int MAXV = 101010;
-
 int n, m, label[MAXV], labelCnt;
 int SCCnum[MAXV], SCCcnt, finished[MAXV];
 vector<int> adj[MAXV];
 stack<int> stk;
 vector<vector<int>> SCC;
-
 void input() {
   cin >> n >> m;
   for (int i = 0; i < m; i++) {
@@ -107,7 +79,6 @@ void input() {
     adj[u].push_back(v);
   }
 }
-
 int dfs(int v) {
   label[v] = labelCnt++;
   stk.push(v);
@@ -134,13 +105,11 @@ int dfs(int v) {
   }
   return ret;
 }
-
 void getSCC() {
   memset(label, -1, sizeof(label));
   for (int v = 1; v <= n; v++)
     if (label[v] == -1) dfs(v);
 }
-
 void print() {
   for (auto &i : SCC)
     sort(i.begin(), i.end());
@@ -152,11 +121,7 @@ void print() {
     cout << -1 << '\n';
   }
 }
-
 int main() {
-  cin.tie(NULL), cout.tie(NULL);
-  ios_base::sync_with_stdio(false);
-
   input();
   getSCC();
   print();
@@ -169,15 +134,7 @@ int main() {
 
 // BOJ 11281 AC Code
 // https://www.acmicpc.net/problem/11281
-
-#include <bits/stdc++.h>
-using namespace std;
-#define pii pair<int, int>
-#define fr first
-#define sc second
-
 const int MAXV = 20202;
-
 int n, m;
 int dfsn[MAXV], dCnt, sNum[MAXV], sCnt;
 int finished[MAXV];
@@ -185,18 +142,15 @@ vector<int> adj[MAXV];
 stack<int> stk;
 pii p[MAXV];
 int ans[MAXV / 2];
-
 inline int inv(int x) {
   // negative number -a indicates ¬a.
   return (x > 0) ? 2 * (x - 1) : 2 * (-x - 1) + 1;
 }
-
 void twoCnf(int a, int b) {
   // (a ∨ b) iff (¬a → b) iff (¬b → a)
   adj[inv(-a)].push_back(inv(b));
   adj[inv(-b)].push_back(inv(a));
 }
-
 void input() {
   cin >> n >> m;
   for (int i = 0; i < m; i++) {
@@ -205,7 +159,6 @@ void input() {
     twoCnf(a, b);
   }
 }
-
 int dfs(int now) {
   int ret = dfsn[now] = ++dCnt;
   stk.push(now);
@@ -225,7 +178,6 @@ int dfs(int now) {
   }
   return ret;
 }
-
 int isSatisfiable() {
   // determining satisfiability
   int isS = 1;
@@ -238,7 +190,6 @@ int isSatisfiable() {
   }
   return isS;
 }
-
 void findValueOfEachVariable() {
   // order of scc is the reverse of the topological sort
   for (int v = 0; v < 2 * n; v++) {
@@ -254,20 +205,13 @@ void findValueOfEachVariable() {
   for (int v = 1; v <= n; v++)
     cout << ans[v] << ' ';
 }
-
 int main() {
-  cin.tie(NULL), cout.tie(NULL);
-  ios_base::sync_with_stdio(false);
-
   memset(dfsn, -1, sizeof(dfsn));
   memset(ans, -1, sizeof(ans));
-
   input();
-
   // finding scc
   for (int v = 0; v < 2 * n; v++)
     if (dfsn[v] == -1) dfs(v);
-
   if (isSatisfiable()) {
     cout << 1 << '\n';
     findValueOfEachVariable();

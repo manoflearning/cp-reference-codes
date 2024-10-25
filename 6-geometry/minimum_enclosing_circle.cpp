@@ -2,12 +2,6 @@
 // OUTPUT: Find the center and the radius of the minimum enclosing circle.
 // A minimum enclosing circle is a circle in which all the points lie either inside the circle or on its boundaries.
 // TIME COMPLEXITY: O(N) (using random)
-
-// BOJ 2626 AC Code
-// https://www.acmicpc.net/problem/2626
-#include <bits/stdc++.h>
-using namespace std;
-
 struct Point {
   long double x, y;
 };
@@ -15,11 +9,9 @@ struct Circle {
   Point c;
   long double r;
 };
-
 long double dist(const Point &a, const Point &b) {
   return sqrt(pow(b.x - a.x, 2) + pow(b.y - a.y, 2));
 }
-
 Point getCircleCenter(const Point &a, const Point &b) {
   long double A = a.x * a.x + a.y * a.y;
   long double B = b.x * b.x + b.y * b.y;
@@ -36,7 +28,6 @@ Circle circleFrom(const Point &a, const Point &b) {
   Point c = {(a.x + b.x) / 2.0, (a.y + b.y) / 2.0};
   return {c, dist(a, b) / 2.0};
 }
-
 Circle minimumEnclosingCircle(int n, const vector<Point> &p) {
   Circle ret = {{0, 0}, 0};
   for (int i = 0; i < n; i++) {
@@ -53,20 +44,13 @@ Circle minimumEnclosingCircle(int n, const vector<Point> &p) {
   }
   return ret;
 }
-
 int main() {
-  cin.tie(NULL), cout.tie(NULL);
-  ios_base::sync_with_stdio(false);
-
   int n;
   cin >> n;
   vector<Point> p(n);
   for (auto &i : p) cin >> i.x >> i.y;
-
   random_shuffle(p.begin(), p.end());
-
   Circle ans = minimumEnclosingCircle(n, p);
-
   cout << fixed;
   cout.precision(3);
   cout << ans.c.x << ' ' << ans.c.y << '\n'

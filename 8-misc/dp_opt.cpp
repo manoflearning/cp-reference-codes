@@ -3,12 +3,6 @@
 // Condition: b[i] >= b[i + 1]
 // Naive Complexity: O(n^2)
 // Optimized Complexity: O(nlogn) (if a[i] <= a[i + 1], it can also be done in O(n))
-
-// BOJ 13263 AC Code
-// https://www.acmicpc.net/problem/13263
-#include <bits/stdc++.h>
-using namespace std;
-#define ll long long
 struct Line { // f(x) = px + q, x >= s
   ll p, q;
   double s;
@@ -48,8 +42,6 @@ void convexHullTrick() {
   }
 }
 int main() {
-  cin.tie(NULL), cout.tie(NULL);
-  ios_base::sync_with_stdio(false);
   input();
   convexHullTrick();
   cout << dp[n];
@@ -64,18 +56,10 @@ int main() {
 
 // Let opt[i][j] be the value of k that minimizes DP[i][j]
 // The following holds: opt[i][j - 1] <= opt[i][j] <= opt[i + 1][j]
-
-// BOJ 13974 AC Code
-// https://www.acmicpc.net/problem/13974
-#include <bits/stdc++.h>
-using namespace std;
-#define ll long long
 const ll INF = 1e18;
 int n, opt[5050][5050];
 ll a[5050], DP[5050][5050], psum[5050];
 int main() {
-  cin.tie(NULL), cout.tie(NULL);
-  ios_base::sync_with_stdio(false);
   int tc;
   cin >> tc;
   while (tc--) {
@@ -111,12 +95,6 @@ int main() {
 // Condition: Let opt[t][i] be j with the smallest value of dp[t - 1][j] + c[j][i]. It must satisfy opt[t][i] <= opt[t][i + 1].
 // Naive Complexity: O(m * n^2)
 // Optimized Complexity: O(m * nlogn)
-
-// BOJ 13261 AC Code
-// https://www.acmicpc.net/problem/13261
-#include <bits/stdc++.h>
-using namespace std;
-#define ll long long
 const ll INF = 1e18;
 int n, m;
 ll a[8080], psum[8080];
@@ -138,8 +116,6 @@ void f(int gr, int l, int r, int nl, int nr) {
   }
 }
 int main() {
-  cin.tie(NULL), cout.tie(NULL);
-  ios_base::sync_with_stdio(false);
   // input
   cin >> n >> m;
   for (int i = 1; i <= n; i++) cin >> a[i];
