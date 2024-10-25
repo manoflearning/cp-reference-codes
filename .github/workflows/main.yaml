@@ -8,18 +8,24 @@ on:
 
 jobs:
   format:
-    runs-on: ubuntu-latest
+    runs-on: ubuntu-22.04
 
     steps:
-    - uses: actions/checkout@v2
+      - uses: actions/checkout@v3
 
-    - name: Install clang-format
-      run: sudo apt-get install -y clang-format
+      - name: Install clang-format
+        run: |
+          sudo apt-get update
+          sudo apt-get install -y wget software-properties-common
+          wget https://apt.llvm.org/llvm.sh
+          chmod +x llvm.sh
+          sudo ./llvm.sh 19
+          sudo apt-get install -y clang-format-19
 
-    - name: Run clang-format
-      run: |
-        find . -name '*.cpp' -or -name '*.h' | xargs clang-format -i -style=file
+      - name: Run clang-format
+        run: |
+          find . -name '*.cpp' -or -name '*.h' | xargs clang-format-19 -i -style=file
 
-    - name: Check for changes
-      run: |
-        git diff --exit-code || (echo "Code formatting issues found. Please run clang-format locally and commit the changes." && exit 1)
+      - name: Check for changes
+        run: |
+          git diff --exit-code || (echo "Code formatting issues found. Please run clang-format locally and commit the changes." && exit 1)
