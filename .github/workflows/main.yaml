@@ -15,11 +15,12 @@ jobs:
 
     - name: Install clang-format
       run:
+        sudo apt-get update
         sudo apt-get install -y clang-format-12
 
     - name: Run clang-format
       run: |
-        find . -name '*.cpp' -or -name '*.h' | xargs clang-format -i -style=file
+        find . -name '*.cpp' -or -name '*.h' | xargs clang-format-12 -i -style=file
 
     - name: Check for changes
       run: |
