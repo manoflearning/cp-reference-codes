@@ -1,5 +1,3 @@
-#include <bits/stdc++.h>
-using namespace std;
 const int INF = 1e9 + 7;
 const int MAXV = 1010;
 int N, M, st = 0, en = 1001;
@@ -53,10 +51,7 @@ void mcmf() {
   }
 }
 int main() {
-  cin.tie(NULL), cout.tie(NULL);
-  ios_base::sync_with_stdio(false);
   input();
   mcmf();
-  cout << mFlow << '\n'
-       << mCost;
+  cout << mFlow << ' ' << mCost;
 }

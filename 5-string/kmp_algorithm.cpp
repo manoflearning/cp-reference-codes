@@ -1,8 +1,3 @@
-// BOJ 1786 AC Code
-// https://www.acmicpc.net/problem/1786
-#include <bits/stdc++.h>
-using namespace std;
-#define sz(x) (int)(x).size()
 vector<int> getpi(const string &P) {
   vector<int> pi(sz(P));
   for (int i = 1, j = 0; i < sz(P); i++) {
@@ -26,8 +21,6 @@ vector<int> kmp(const string &T, const string &P) {
   return ret;
 }
 int main() {
-  cin.tie(NULL), cout.tie(NULL);
-  ios_base::sync_with_stdio(false);
   string T, P;
   getline(cin, T);
   getline(cin, P);

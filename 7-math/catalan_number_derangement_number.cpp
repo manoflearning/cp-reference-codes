@@ -1,9 +1,4 @@
 // Catalan Number
-// BOJ 9343 AC Code
-// https://www.acmicpc.net/problem/9343
-#include <bits/stdc++.h>
-using namespace std;
-#define ll long long
 const int MOD = 1e9 + 7;
 const int MAXN = 2020202;
 ll fac[MAXN], inv[MAXN], facInv[MAXN];
@@ -11,8 +6,6 @@ ll catalanNumber(int n) { // Cn = 2nCn / (n + 1) = (2n)! / (n!(n + 1)!)
   return fac[2 * n] * facInv[n] % MOD * facInv[n + 1] % MOD;
 }
 int main() {
-  cin.tie(NULL), cout.tie(NULL);
-  ios_base::sync_with_stdio(false);
   // Preprocessing in O(N)
   fac[0] = fac[1] = inv[1] = 1;
   facInv[0] = facInv[1] = 1;
@@ -39,15 +32,10 @@ int main() {
 // Recurrence relation:
 // f1 = 0, f2 = 1.
 // fi = (i - 1) * (f{i-1} + f{i-2}) (i >= 3)
-#include <bits/stdc++.h>
-using namespace std;
-#define ll long long
 const int MOD = 1e9 + 7;
 const int MAX = 101010;
 ll dp[MAX];
 int main() {
-  cin.tie(NULL), cout.tie(NULL);
-  ios_base::sync_with_stdio(false);
   dp[1] = 0, dp[2] = 1;
   for (int i = 3; i < MAX; i++) {
     dp[i] = (i - 1) * (dp[i - 1] + dp[i - 2]) % MOD;

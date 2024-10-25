@@ -4,18 +4,9 @@
 // Euler Path is a path in a finite graph that visits every edge exactly once.
 // Similarly, an Euler Circuit is an Euler Path that starts and ends on the same vertex.
 // TIME COMPLEXITY: O(VE)
-
-// BOJ 1199 AC Code
-// https://www.acmicpc.net/problem/1199
-
-#include <bits/stdc++.h>
-using namespace std;
-
 const int MAXV = 1010;
-
 int n, adj[MAXV][MAXV], nxt[MAXV];
 vector<int> eulerCircult;
-
 void input() {
   cin >> n;
   for (int i = 1; i <= n; i++) {
@@ -24,7 +15,6 @@ void input() {
     }
   }
 }
-
 int doesEulerCircuitExist() {
   // If the degree of all nodes in the graph is even, then an euler circuit exists.
   // Otherwise, the euler circuit does not exist.
@@ -39,7 +29,6 @@ int doesEulerCircuitExist() {
   }
   return 1;
 }
-
 void dfs(int now) {
   for (int &x = nxt[now]; x <= n; x++) {
     while (x <= n && adj[now][x]) {
@@ -50,18 +39,12 @@ void dfs(int now) {
   }
   eulerCircult.push_back(now);
 }
-
 int main() {
-  cin.tie(NULL), cout.tie(NULL);
-  ios_base::sync_with_stdio(false);
-
   input();
-
   if (!doesEulerCircuitExist()) {
     cout << -1;
     return 0;
   }
-
   for (int i = 1; i <= n; i++) nxt[i] = 1;
   dfs(1);
   for (auto i : eulerCircult)

@@ -8,18 +8,12 @@
 // Similarly, a edge at which the graph is divided into two or more components when the edge is removed is called a 'articulation edge'.
 // For all tree edges on a dfs spanning tree, if tmp > dfsn[now], the edge { now, next } is a articulation edge.
 
-#include <bits/stdc++.h>
-using namespace std;
-#define pii pair<int, int>
-
 const int MAXV = 101010;
-
 int n, m;
 vector<int> adj[MAXV];
 vector<vector<pii>> bcc;
 set<int> aPoint;
 set<pii> aEdge;
-
 void input() {
   cin >> n >> m;
   for (int i = 0; i < m; i++) {
@@ -29,19 +23,15 @@ void input() {
     adj[v].push_back(u);
   }
 }
-
 int dfsn[MAXV], dCnt;
 stack<pii> stk;
 int dfs(int now, int prv) {
   int ret = dfsn[now] = ++dCnt;
-
   int childCnt = 0;
   for (int next : adj[now]) {
     if (next == prv) continue;
-
     // If an edge { now, next } has not yet been visited, puts an edge on the stack.
     if (dfsn[now] > dfsn[next]) stk.push({now, next});
-
     // Back edge
     if (dfsn[next] != -1) ret = min(ret, dfsn[next]);
     // Tree edge
@@ -49,12 +39,10 @@ int dfs(int now, int prv) {
       childCnt++;
       int tmp = dfs(next, now);
       ret = min(ret, tmp);
-
       if (prv != -1 && tmp >= dfsn[now])
         aPoint.insert(now);
       if (tmp > dfsn[now])
         aEdge.insert({min(now, next), max(now, next)});
-
       // If next cannot go to ancestor node of now, find BCC
       if (tmp >= dfsn[now]) {
         vector<pii> nowBCC;
@@ -68,23 +56,12 @@ int dfs(int now, int prv) {
       }
     }
   }
-
   if (prv == -1 && childCnt > 1)
     aPoint.insert(now);
-
   return ret;
 }
-
 void getBCC() {
   memset(dfsn, -1, sizeof(dfsn));
   for (int v = 1; v <= n; v++)
     if (dfsn[v] == -1) dfs(v, -1);
-}
-
-int main() {
-  cin.tie(NULL), cout.tie(NULL);
-  ios_base::sync_with_stdio(false);
-
-  input();
-  getBCC();
 }

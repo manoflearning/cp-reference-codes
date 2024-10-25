@@ -1,7 +1,5 @@
 // Bipartite Matching Algorithm
 // time complexity : O(E * sqrt(V))
-#include <bits/stdc++.h>
-using namespace std;
 const int INF = 1e9 + 7;
 const int MAXV = 10101;
 int n, A[MAXV], B[MAXV], dist[MAXV];
@@ -55,8 +53,6 @@ int hopcroft() {
   return ret;
 }
 int main() {
-  cin.tie(NULL), cout.tie(NULL);
-  ios_base::sync_with_stdio(false);
   input();
   int total = hopcroft();
   cout << total << '\n';

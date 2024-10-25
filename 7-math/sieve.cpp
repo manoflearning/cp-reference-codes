@@ -16,11 +16,6 @@ void getPrime() {
 }
 
 // Linear Sieve
-// BOJ 16563 AC Code
-// https://www.acmicpc.net/problem/16563
-#include <bits/stdc++.h>
-using namespace std;
-#define ll long long
 const int MAXN = 5000000;
 vector<int> sp(MAXN + 1);
 vector<ll> prime;
@@ -47,8 +42,6 @@ void factorization(int x) {
   cout << '\n';
 }
 int main() {
-  cin.tie(NULL), cout.tie(NULL);
-  ios_base::sync_with_stdio(false);
   linearSieve();
   int n;
   cin >> n;

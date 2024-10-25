@@ -10,7 +10,6 @@ ll binom(int n, int r) {
   }
   return ret;
 }
-
 // nCr (Pascal’s Rule)
 ll binomDP[1010][1010];
 void init() {
@@ -27,13 +26,7 @@ ll binom(int n, int r) {
   if (n == 1) return ret = 1;
   return binom(n - 1, r - 1) + binom(n - 1, r);
 }
-
 // nCr mod p in O(1)
-// BOJ 13977 AC Code
-// https://www.acmicpc.net/problem/13977
-#include <bits/stdc++.h>
-using namespace std;
-#define ll long long
 const int MOD = 1e9 + 7;
 const int MAXN = 4040404;
 ll fac[MAXN], inv[MAXN], facInv[MAXN];

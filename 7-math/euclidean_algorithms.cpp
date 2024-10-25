@@ -40,10 +40,6 @@ ll lcm(ll a, ll b) {
 
 // BOJ 14565 AC Code
 // https://www.acmicpc.net/problem/14565
-#include <bits/stdc++.h>
-using namespace std;
-#define ll long long
-#define pll pair<ll, ll>
 pair<pll, ll> egcd(ll a, ll b) {
   ll s = 0, olds = 1;
   ll t = 1, oldt = 0;

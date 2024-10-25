@@ -1,8 +1,3 @@
-// BOJ 10254 AC Code
-// https://www.acmicpc.net/problem/10254
-#include <bits/stdc++.h>
-using namespace std;
-#define ll long long
 struct point {
   ll x, y;
   bool operator<(const point &rhs) const {
@@ -67,8 +62,6 @@ void rotatingCallipers() {
   }
 }
 int main() {
-  cin.tie(NULL), cout.tie(NULL);
-  ios_base::sync_with_stdio(false);
   int tc;
   cin >> tc;
   while (tc--) {

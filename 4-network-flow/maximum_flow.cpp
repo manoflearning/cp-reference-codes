@@ -1,9 +1,6 @@
 // 1. Maximum Flow
 // Edmonds-Karp algorithm
 // time complexity : O(V * E^2)
-#include <bits/stdc++.h>
-using namespace std;
-#define ll long long
 const int MAXV = 1010;
 const int INF = 1e9 + 7;
 int n;
@@ -58,9 +55,6 @@ ll maxFlow(int st, int en) {
   return ret;
 }
 int main() {
-  cin.tie(NULL);
-  cout.tie(NULL);
-  ios_base::sync_with_stdio(false);
   input();
   ll total = maxFlow(1, n);
   cout << total << '\n';
@@ -69,9 +63,6 @@ int main() {
 // 2. Maximum Flow (Struct Edge)
 // Edmonds-Karp algorithm
 // time complexity : O(V * E^2)
-#include <bits/stdc++.h>
-using namespace std;
-#define ll long long
 const int MAXV = 1010;
 const int INF = 1e9 + 7;
 struct edge {
@@ -141,8 +132,6 @@ ll maxFlow(int st, int en) {
   return ret;
 }
 int main() {
-  cin.tie(NULL), cout.tie(NULL);
-  ios_base::sync_with_stdio(false);
   input();
   ll total = maxFlow(1, n);
   cout << total << '\n';

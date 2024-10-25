@@ -1,7 +1,5 @@
 // all edges have a capacity of 1
 // O(VE)
-#include <bits/stdc++.h>
-using namespace std;
 const int MAXV = 1010;
 int n, m, A[MAXV], B[MAXV];
 vector<int> adj[MAXV];
@@ -40,8 +38,6 @@ int bipartiteMatch() {
   return ret;
 }
 int main() {
-  cin.tie(NULL), cout.tie(NULL);
-  ios_base::sync_with_stdio(false);
   input();
   int ans = bipartiteMatch();
   cout << ans << '\n';

@@ -1,9 +1,3 @@
-// BOJ 11444 AC Code
-// https://www.acmicpc.net/problem/11444
-#include <bits/stdc++.h>
-using namespace std;
-#define ll long long
-#define sz(x) (int)(x).size()
 const int MOD = 1e9 + 7;
 struct Matrix {
   vector<vector<ll>> a;

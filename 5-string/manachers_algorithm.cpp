@@ -1,10 +1,5 @@
 // Manacher's Algorithm
 // Find all palindromes in string in O(N)
-// BOJ 14444 AC Code
-// https://www.acmicpc.net/problem/14444
-#include <bits/stdc++.h>
-using namespace std;
-#define sz(x) (x).size()
 int n; // n: length of string
 string s;
 vector<int> p; // p[i]: the radius of the palindrome at the current position i
@@ -37,14 +32,11 @@ void manacher() {
   }
 }
 int main() {
-  cin.tie(NULL), cout.tie(NULL);
-  ios_base::sync_with_stdio(false);
   cin >> s;
   manacher();
   // Get answer
   int ans = 0;
-  for (int i = 0; i < n; i++) {
+  for (int i = 0; i < n; i++)
     ans = max(ans, p[i]);
-  }
   cout << ans;
 }

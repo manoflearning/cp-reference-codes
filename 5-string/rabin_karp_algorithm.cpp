@@ -1,9 +1,3 @@
-// BOJ 1786 AC Code
-// https://www.acmicpc.net/problem/1786
-#include <bits/stdc++.h>
-using namespace std;
-#define ll long long
-#define sz(x) (int)(x).size()
 const int MAX = 1010101;
 const int MOD1 = 1e9 + 7, MOD2 = 1e9 + 9;
 string T, P;
@@ -28,8 +22,6 @@ void rabinKarp() {
   }
 }
 int main() {
-  cin.tie(NULL), cout.tie(NULL);
-  ios_base::sync_with_stdio(false);
   dexp1[0] = dexp2[0] = 1;
   for (int i = 1; i < MAX; i++) {
     dexp1[i] = d * dexp1[i - 1] % MOD1;

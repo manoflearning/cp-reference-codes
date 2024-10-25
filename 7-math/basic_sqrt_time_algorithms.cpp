@@ -2,7 +2,6 @@
 // INPUT: Given a natural number x.
 // OUTPUT: Find all the divisors of x.
 // TIME COMPLEXITY: O(sqrt(x)).
-
 vector<int> di;
 void findingDivisors(int x) {
   for (int i = 1; i <= sqrt(x); i++) {
@@ -18,7 +17,6 @@ void findingDivisors(int x) {
 // INPUT: Given a natural number x.
 // OUTPUT: Find the result of the prime factorization of x.
 // TIME COMPLEXITY: O(sqrt(x)).
-
 vector<int> p;
 void primeFactorization(int x) {
   while (x % 2 == 0) {
