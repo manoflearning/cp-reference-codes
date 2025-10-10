@@ -1,5 +1,5 @@
 // Dinic's Algorithm
-// time complexity : O(V^2 * E)
+// time complexity : O(V^2 * E) (In networks with unit capacities, it runs in O(min(V^{2/3}, E^{1/2}) * E) time)
 const int INF = 1e9 + 7;
 const int MAXV = 505;
 int N, st = 0, en = MAXV + 1;
