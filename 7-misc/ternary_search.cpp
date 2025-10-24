@@ -1,3 +1,5 @@
+#include "../common/common.hpp"
+
 void ternarySearch() {
   int l = 1, r = 10'000;
   while (r - l >= 3) {

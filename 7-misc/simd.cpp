@@ -1,3 +1,5 @@
+#include "../common/common.hpp"
+
 // BOJ 14438 AC Code
 // https://www.acmicpc.net/problem/14438
 #pragma GCC optimize("O3")

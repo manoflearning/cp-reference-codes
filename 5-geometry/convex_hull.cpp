@@ -1,3 +1,5 @@
+#include "../common/common.hpp"
+
 // 1. Graham Scan
 struct point {
   ll x, y;

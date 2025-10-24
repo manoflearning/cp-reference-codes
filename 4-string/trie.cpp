@@ -1,3 +1,5 @@
+#include "../common/common.hpp"
+
 // 1. Trie (Array Index)
 const char st = '0';
 const int MAXC = '9' - '0' + 1;

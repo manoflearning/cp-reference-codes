@@ -1,3 +1,5 @@
+#include "../common/common.hpp"
+
 namespace hld {
 const int MAXN = 202020;
 

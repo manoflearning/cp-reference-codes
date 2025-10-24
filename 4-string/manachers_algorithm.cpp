@@ -1,3 +1,5 @@
+#include "../common/common.hpp"
+
 // Manacher's Algorithm
 // Find all palindromes in string in O(N)
 int n; // n: length of string

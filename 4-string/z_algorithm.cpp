@@ -1,3 +1,5 @@
+#include "../common/common.hpp"
+
 // Z Algorithm
 // Given a string S of length n, the Z Algorithm produces an array Z
 // where Z[i] is the length of the longest substring starting from S[i] which is also a prefix of S

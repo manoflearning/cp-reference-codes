@@ -1,3 +1,5 @@
+#include "../common/common.hpp"
+
 // 1. Finding Divisors in O(sqrt(x))
 // INPUT: Given a natural number x.
 // OUTPUT: Find all the divisors of x.

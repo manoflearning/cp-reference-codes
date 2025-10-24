@@ -1,3 +1,5 @@
+#include "../common/common.hpp"
+
 namespace fft {
 using real_t = double;
 using cpx = complex<real_t>;

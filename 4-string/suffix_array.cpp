@@ -1,3 +1,5 @@
+#include "../common/common.hpp"
+
 // Manber-Myers Algorithm for Suffix Array
 // Time Conplexity: O(nlog^2n)
 // Kasai's Algorithm for LCP(Longest Common Prefix)

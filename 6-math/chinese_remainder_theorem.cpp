@@ -1,3 +1,5 @@
+#include "../common/common.hpp"
+
 // INPUT: Given 4 integers, M, N, p, q. (1 <= M, 1 <= N, 0 <= p < M, 0 <= q < N)
 // OUTPUT: Solve a system of linear congruence, x = p (mod M), x = q (mod N).
 // TIME COMPLEXITY: O(log(max(M, N)))

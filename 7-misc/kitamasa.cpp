@@ -1,3 +1,5 @@
+#include "../common/common.hpp"
+
 typedef vector<ll> poly;
 const int MOD = 1999;
 const int MAXN = 1010;

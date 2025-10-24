@@ -1,3 +1,5 @@
+#include "../common/common.hpp"
+
 // Bulldozer Trick
 // There are a total of O(N^2) results of sorting points on a two-dimensional plane based on an arbitrary axis.
 // The Bulldozer Trick traverses all O(N^2) results in O(N^2logN) time.

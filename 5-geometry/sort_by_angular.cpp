@@ -1,3 +1,5 @@
+#include "../common/common.hpp"
+
 // Sort by Angular (Relative to Origin)
 struct Point {
   ll x, y;

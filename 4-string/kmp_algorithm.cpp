@@ -1,3 +1,5 @@
+#include "../common/common.hpp"
+
 vector<int> getpi(const string &P) {
   vector<int> pi(sz(P));
   for (int i = 1, j = 0; i < sz(P); i++) {

@@ -1,3 +1,5 @@
+#include "../common/common.hpp"
+
 #include <random>
 using namespace std;
 const int MAX = 1'000;

@@ -1,3 +1,5 @@
+#include "../common/common.hpp"
+
 // 1. Fenwick Tree
 struct Fenwick { // 0-indexed
   int flag, cnt; // array size

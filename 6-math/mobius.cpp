@@ -1,3 +1,5 @@
+#include "../common/common.hpp"
+
 vector<int> mobius(int n) {
   vector<int> mu(n + 1, 1), prime, lp(n + 1, 0);
   mu[0] = 0;

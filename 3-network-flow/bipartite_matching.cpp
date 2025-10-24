@@ -1,3 +1,5 @@
+#include "../common/common.hpp"
+
 // all edges have a capacity of 1
 // O(VE)
 const int MAXV = 1010;

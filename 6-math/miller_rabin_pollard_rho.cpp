@@ -1,3 +1,5 @@
+#include "../common/common.hpp"
+
 namespace miller_rabin {
 ll mul(ll x, ll y, ll mod) { return (__int128_t)x * y % mod; }
 ll ipow(ll x, ll y, ll p) {

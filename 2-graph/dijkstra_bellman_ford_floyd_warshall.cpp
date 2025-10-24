@@ -1,3 +1,5 @@
+#include "../common/common.hpp"
+
 // 1. Dijkstra's Algorithm
 // TIME COMPLEXITY: O(ElogV)
 vector<pair<ll, int>> adj[202020];

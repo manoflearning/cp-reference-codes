@@ -1,3 +1,5 @@
+#include "../common/common.hpp"
+
 namespace sparse_table {
 const int MAXN = 101010, MAXD = 16; // 2^MAXD = 65536
 

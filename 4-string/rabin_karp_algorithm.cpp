@@ -1,3 +1,5 @@
+#include "../common/common.hpp"
+
 const int MAX = 1010101;
 const int MOD1 = 1e9 + 7, MOD2 = 1e9 + 9;
 string T, P;

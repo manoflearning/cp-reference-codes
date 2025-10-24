@@ -1,3 +1,5 @@
+#include "../common/common.hpp"
+
 // GCD, LCM
 ll gcd(ll a, ll b) {
   if (b == 0) return a;

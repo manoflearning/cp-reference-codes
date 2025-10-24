@@ -1,3 +1,5 @@
+#include "../common/common.hpp"
+
 // Inverse Matrix
 void inverse_matrix(vector<vector<double>> &a) {
   int n = a.size();
