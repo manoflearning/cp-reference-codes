@@ -1,3 +1,5 @@
+#include "../common/common.hpp"
+
 const char st = 'a';
 const int MAXC = 'z' - 'a' + 1;
 struct trie {

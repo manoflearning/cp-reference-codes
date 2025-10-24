@@ -1,3 +1,5 @@
+#include "../common/common.hpp"
+
 // 1. Convex Hull Trick
 // Recurrence: dp[i] = min(dp[j] + a[i] * b[j]) (j < i)
 // Condition: b[i] >= b[i + 1]

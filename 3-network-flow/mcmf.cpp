@@ -1,3 +1,5 @@
+#include "../common/common.hpp"
+
 const int INF = 1e9 + 7;
 const int MAXV = 1010;
 int N, M, st = 0, en = 1001;

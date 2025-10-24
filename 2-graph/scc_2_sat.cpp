@@ -1,3 +1,5 @@
+#include "../common/common.hpp"
+
 // 1. SCC (Kosaraju's Algorithm)
 // INPUT: Given a directed graph.
 // OUTPUT: Decompose this graph into SCCs and print them in lexicographical order.

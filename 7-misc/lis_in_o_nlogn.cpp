@@ -1,3 +1,5 @@
+#include "../common/common.hpp"
+
 // 1. DP and Binary Search
 // INPUT: Given an array of positive integers.
 // OUTPUT: Print the length of the LIS.

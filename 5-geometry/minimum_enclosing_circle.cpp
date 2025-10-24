@@ -1,3 +1,5 @@
+#include "../common/common.hpp"
+
 // INPUT: Given N points in a 2D plane with integer coordinates.
 // OUTPUT: Find the center and the radius of the minimum enclosing circle.
 // A minimum enclosing circle is a circle in which all the points lie either inside the circle or on its boundaries.

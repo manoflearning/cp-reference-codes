@@ -1,3 +1,5 @@
+#include "../common/common.hpp"
+
 struct Point {
   ll x, y;
   bool operator<(const Point &rhs) const {

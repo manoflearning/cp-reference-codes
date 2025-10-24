@@ -1,3 +1,5 @@
+#include "../common/common.hpp"
+
 // A Biconnected Component (BCC) is a subset of vertices in an undirected graph that satisfies the following conditions:
 // (1) If you delete any vertex from a subset, the remaining vertices are connected to each other.
 // (2) Adding other vertices to this subset does not satisfy (1). (This is the largest set that satisfies (1))

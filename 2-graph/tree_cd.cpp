@@ -1,3 +1,5 @@
+#include "../common/common.hpp"
+
 // TIME COMPLEXITY: O(n log n)
 // - The height of a centroid tree is O(log n).
 // - A path between two arbitrary nodes u, v in the original tree traverses l := lca(u, v) in the centroid tree.

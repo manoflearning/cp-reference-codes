@@ -1,3 +1,5 @@
+#include "../common/common.hpp"
+
 // INPUT: Given a natural number n.
 // OUTPUT: Find the number of natural numbers 1 ≤ k ≤ n such that GCD(n, k) = 1.
 // TIME COMPLEXITY: O(sqrt(n))

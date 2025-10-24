@@ -1,3 +1,5 @@
+#include "../common/common.hpp"
+
 const int MAXN = 505050;
 const int MAXD = 18;
 int n, q;

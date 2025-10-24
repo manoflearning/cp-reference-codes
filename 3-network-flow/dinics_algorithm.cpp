@@ -1,3 +1,5 @@
+#include "../common/common.hpp"
+
 // Dinic's Algorithm
 // time complexity : O(V^2 * E) (In networks with unit capacities, it runs in O(min(V^{2/3}, E^{1/2}) * E) time)
 const int INF = 1e9 + 7;

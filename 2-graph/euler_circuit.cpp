@@ -1,3 +1,5 @@
+#include "../common/common.hpp"
+
 // Hierholzer's Algorithm
 // INPUT: Given a undirected graph.
 // OUTPUT: Print the path of the Euler circuit of the graph.

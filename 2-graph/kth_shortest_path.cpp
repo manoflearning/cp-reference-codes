@@ -1,3 +1,5 @@
+#include "../common/common.hpp"
+
 // call init(|V|) first, add_edge(u, v, x), then kth_walk(s, e, K)
 // O(|E|log|E|+klogk) in total
 // if there is negative edge, O((SPFA time) + |E|log|E| + klogk)

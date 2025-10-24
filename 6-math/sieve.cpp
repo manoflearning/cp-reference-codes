@@ -1,3 +1,5 @@
+#include "../common/common.hpp"
+
 // Sieve of Eratosthenes
 // TIME COMPLEXITY: O(Nlog(log(N)))
 const int MAX = 1e6;

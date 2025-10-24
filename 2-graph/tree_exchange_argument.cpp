@@ -1,3 +1,5 @@
+#include "../common/common.hpp"
+
 const int MAXN = 303030;
 struct UF {
   vector<int> uf;

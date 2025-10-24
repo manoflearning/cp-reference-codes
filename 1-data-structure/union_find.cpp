@@ -1,3 +1,5 @@
+#include "../common/common.hpp"
+
 struct UF {
   vector<int> uf;
   void build(int N) {

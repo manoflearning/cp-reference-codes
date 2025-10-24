@@ -1,3 +1,5 @@
+#include "../common/common.hpp"
+
 // Catalan Number
 const int MOD = 1e9 + 7;
 const int MAXN = 2020202;

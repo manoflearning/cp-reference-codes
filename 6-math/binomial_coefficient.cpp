@@ -1,3 +1,5 @@
+#include "../common/common.hpp"
+
 // nCr in O(r)
 // Beware of integer overflow
 ll binom(int n, int r) {

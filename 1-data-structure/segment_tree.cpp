@@ -1,3 +1,5 @@
+#include "../common/common.hpp"
+
 // 1. Segment Tree
 int flag;    // array size
 struct Seg { // 1-indexed
@@ -118,7 +120,7 @@ struct PST { // 1-indexed
   vector<int> root;
 
   void addNode() { t.push_back({-1, -1, 0}); }
-  void build(int l, int r, int n) {
+  void build(int l, int r, int n, const vector<int> &a) {
     assert(0 <= n && n < sz(t));
     if (l == r) {
       t[n].val = a[l];
@@ -130,15 +132,15 @@ struct PST { // 1-indexed
     t[n].r = sz(t) - 1;
 
     int mid = (l + r) >> 1;
-    build(l, mid, t[n].l);
-    build(mid + 1, r, t[n].r);
+    build(l, mid, t[n].l, a);
+    build(mid + 1, r, t[n].r, a);
     t[n].val = t[t[n].l].val + t[t[n].r].val;
   }
-  void build(int Flag) {
+  void build(int Flag, const vector<int> &a) {
     addNode();
     root.push_back(sz(t) - 1);
     flag = Flag;
-    build(1, flag, root[0]);
+    build(1, flag, root[0], a);
   }
   void modify(int p, ll val, int l, int r, int n1, int n2) {
     assert(0 <= n1 && n1 < sz(t));

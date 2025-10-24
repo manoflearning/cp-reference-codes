@@ -1,3 +1,5 @@
+#include "../common/common.hpp"
+
 int flag;
 struct Seg {
   vector<vector<pii>> t;

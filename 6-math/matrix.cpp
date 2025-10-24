@@ -1,3 +1,5 @@
+#include "../common/common.hpp"
+
 const int MOD = 1e9 + 7;
 struct Matrix {
   vector<vector<ll>> a;
