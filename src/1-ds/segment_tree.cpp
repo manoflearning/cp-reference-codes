@@ -1,5 +1,4 @@
 #include "../common/common.hpp"
-namespace refcode {
 int flag; // array size
 // 1. Segment Tree
 struct Seg { // 1-indexed
@@ -228,4 +227,3 @@ struct DySeg {
     return ret;
   }
 };
-} // namespace refcode

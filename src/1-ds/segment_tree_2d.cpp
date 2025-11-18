@@ -1,5 +1,5 @@
 #include "../common/common.hpp"
-namespace refcode {
+// 1. 2D Segment Tree
 struct Seg2D { // 0-indexed
   int n;
   vector<vector<ll>> t;
@@ -48,6 +48,7 @@ struct Seg2D { // 0-indexed
     return ret;
   }
 };
+// 2. 2D Segment Tree with Coordinate Compression
 // You must perform all fake_* calls first, then call prepare(), and only after that call modify and query
 struct Seg2DComp { // 0-indexed
   int n;
@@ -108,4 +109,3 @@ struct Seg2DComp { // 0-indexed
     return ret;
   }
 };
-} // namespace refcode
