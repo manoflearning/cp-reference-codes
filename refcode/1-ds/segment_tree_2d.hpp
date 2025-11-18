@@ -89,7 +89,7 @@ struct Seg2DComp { // 0-indexed
     }
   }
   ll query1D(int x, int y1, int y2) {
-    ll ret = -INF;
+    ll ret = 0;
     y1 = lower_bound(all(used[x]), y1) - used[x].begin();
     y2 = lower_bound(all(used[x]), y2) - used[x].begin();
     for (y1 += sz(used[x]), y2 += sz(used[x]) + 1; y1 < y2; y1 >>= 1, y2 >>= 1) {
@@ -100,7 +100,7 @@ struct Seg2DComp { // 0-indexed
   }
   // sum on rectangle [x1, x2] × [y1, y2] (0-indexed, inclusive)
   ll query(int x1, int x2, int y1, int y2) {
-    ll ret = -INF;
+    ll ret = 0;
     for (x1 += n, x2 += n + 1; x1 < x2; x1 >>= 1, x2 >>= 1) {
       if (x1 & 1) ret += query1D(x1++, y1, y2);
       if (x2 & 1) ret += query1D(--x2, y1, y2);
