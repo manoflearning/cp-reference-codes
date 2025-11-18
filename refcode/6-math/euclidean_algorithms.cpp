@@ -61,14 +61,15 @@ pair<pll, ll> egcd(ll a, ll b) {
 }
 ll linearCongruence(ll a, ll b, ll n) { // Find x such that ax = b (mod n).
   pair<pll, ll> res = egcd(a, n);
+  ll g = res.sc;
   // ax + ny = b has a solution iff gcd(a,n) | b.
-  if (b % res.second) return -1;
-  return (res.first.first + n) % n;
+  if (b % g) return -1;
+  return (res.fr.fr * (b / g) % n + n) % n;
 }
 ll modInv(ll a, ll p) { // Find x such that ax = 1 (mod p).
   pair<pll, ll> res = egcd(a, p);
   // Modular inverse exists iff gcd(a, p) = 1.
-  if (res.second == 1) return (res.first.first + p) % p;
+  if (res.sc == 1) return (res.fr.fr + p) % p;
   else return -1;
 }
 int main() {
