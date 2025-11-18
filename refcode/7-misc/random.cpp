@@ -1,7 +1,5 @@
 #include "../common/common.hpp"
-
-#include <random>
-using namespace std;
-const int MAX = 1'000;
-srand(time(NULL));
-int x = rand() % MAX;
+mt19937 rng((unsigned)chrono::steady_clock::now().time_since_epoch().count());
+uniform_int_distribution<int> dist(0, 100);
+auto gen = bind(dist, rng); // usage: int x = gen();
+shuffle(v.begin(), v.end(), rng);
