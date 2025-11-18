@@ -1,14 +1,13 @@
 #include "../common/common.hpp"
-
+namespace refcode {
 // INPUT: Initially, a 2d plane in which no linear function exists is given.
 // Two types of queries are given.
 // 1 a b : The linear function f(x) = ax + b is added.
 // 2 x : Find the max(f(x)) among the linear functions given so far.
 // OUTPUT: For each query 2 x, output the max(f(x)) among the linear functions given so far.
 // TIME COMPLEXITY: O(qlogq)
-#define Line pair<ll, ll>
-
-const Line e = {0, -1e18};
+using Line = pair<ll, ll>;
+constexpr Line e = {0, -1e18};
 struct LiChaoTree {
   ll f(Line l, ll x) { return l.first * x + l.second; }
   struct Node {
@@ -56,4 +55,5 @@ struct LiChaoTree {
     else ret = max(ret, query(x, t[n].r));
     return ret;
   }
-} lct;
+};
+} // namespace refcode

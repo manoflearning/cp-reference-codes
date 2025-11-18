@@ -1,10 +1,10 @@
 #include "../common/common.hpp"
-
+namespace refcode {
+constexpr int MAX_MST = 1 << 17;
 // 1. Merge Sort Tree
 // INPUT: Given a sequence A_1, A_2, ..., A_n of length n. Given a query (i, j, k).
 // OUTPUT: For each query (i, j, k), output the number of elements greater than k among elements A_i, A_{i+1}, ..., A_j.
 // TIME COMPLEXITY: O(nlogn) for initialize Merge Sort Tree, O(log^2n) for each query.
-const int MAX_MST = 1 << 17;
 struct MergeSortTree {
   vector<int> t[MAX_MST << 1];
   void build(const vector<int> &arr) {
@@ -22,14 +22,12 @@ struct MergeSortTree {
     int mid = (nl + nr) >> 1;
     return query(l, r, k, n << 1, nl, mid) + query(l, r, k, n << 1 | 1, mid + 1, nr);
   }
-} mstree;
-
+};
 // 2. Iterative Merge Sort Tree
 // INPUT: Given a sequence A_1, A_2, ..., A_n of length n. Given a query (i, j, k).
 // OUTPUT: For each query (i, j, k), output the number of elements greater than k among elements A_i, A_{i+1}, ..., A_j.
 // TIME COMPLEXITY: O(nlogn) for initialize Merge Sort Tree, O(log^2n) for each query.
-const int MAX_MST = 1 << 17;
-struct MergeSortTree {
+struct MergeSortTreeIter {
   vector<int> t[MAX_MST << 1];
   void build(const vector<int> &arr) {
     for (int i = 0; i < sz(arr); i++)
@@ -49,4 +47,5 @@ struct MergeSortTree {
     }
     return ret;
   }
-} mstree;
+};
+} // namespace refcode

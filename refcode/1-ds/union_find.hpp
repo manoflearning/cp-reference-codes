@@ -1,10 +1,10 @@
 #include "../common/common.hpp"
-
+namespace refcode {
 struct UF {
   vector<int> uf;
-  void build(int N) {
+  void build(int n) {
     uf.clear();
-    uf.resize(N + 1, -1);
+    uf.resize(n + 1, -1);
   }
   int find(int v) {
     if (uf[v] < 0) return v;
@@ -16,4 +16,5 @@ struct UF {
     uf[U] += uf[V];
     uf[V] = U;
   }
-} uf;
+};
+} // namespace refcode

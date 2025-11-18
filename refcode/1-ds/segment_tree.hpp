@@ -1,7 +1,7 @@
 #include "../common/common.hpp"
-
+namespace refcode {
+int flag; // array size
 // 1. Segment Tree
-int flag;    // array size
 struct Seg { // 1-indexed
   vector<ll> t;
   void build(int n) {
@@ -19,12 +19,11 @@ struct Seg { // 1-indexed
     int mid = (nl + nr) / 2;
     return query(l, r, n << 1, nl, mid) + query(l, r, n << 1 | 1, mid + 1, nr);
   }
-} seg;
-
+};
 // 2. Iterative Segment Tree
-const int MAXN = 1010101; // limit for array size
-struct Seg {              // 0-indexed
-  int n;                  // array size
+constexpr int MAXN = 1010101; // limit for array size
+struct SegIter {              // 0-indexed
+  int n;                      // array size
   ll t[2 * MAXN];
   void build(int N) {
     n = N;
@@ -42,11 +41,9 @@ struct Seg {              // 0-indexed
     }
     return ret;
   }
-} seg;
-
+};
 // 3. k-th Segment Tree
-int flag; // array size
-struct Seg {
+struct SegKth {
   vector<ll> t;
   void build(int n) {
     for (flag = 1; flag < n; flag <<= 1);
@@ -61,11 +58,9 @@ struct Seg {
     if (k <= t[n << 1]) return kth(k, n << 1);
     else return kth(k - t[n << 1], n << 1 | 1);
   }
-} seg;
-
+};
 // 4. Segment Tree with Lazy Propagation
-int flag;    // array size
-struct Seg { // 1-indexed
+struct SegLazy { // 1-indexed
   vector<ll> t, lazy;
   void build(int n) {
     for (flag = 1; flag < n; flag <<= 1);
@@ -105,8 +100,7 @@ struct Seg { // 1-indexed
       lazy[n] = 0;
     }
   }
-} seg;
-
+};
 // 5. Persistent Segment Tree
 // TIME COMPLEXITY: O(n) for initialize PST, O(logn) for each query.
 // SPACE COMPLEXITY: O(nlogm).
@@ -153,7 +147,6 @@ struct PST { // 1-indexed
       t[n2].val = val;
       return;
     }
-
     int mid = (l + r) >> 1;
     if (p <= mid) {
       t[n2].r = t[n1].r;
@@ -184,17 +177,14 @@ struct PST { // 1-indexed
     assert(n < sz(root));
     return query(l, r, root[n], 1, flag);
   }
-} pst;
-
+};
 // 6. Dynamic Segment Tree
-const int MAXL = 1, MAXR = 1000000;
-
+constexpr int MAXL = 1, MAXR = 1000000;
 struct Node {
   ll x;
   int l, r;
 };
-
-struct Dyseg {
+struct DySeg {
   vector<Node> t = {{0, -1, -1}, {0, -1, -1}};
   void modify(int p, ll x, int n = 1, int nl = MAXL, int nr = MAXR) {
     if (p < nl || nr < p) return;
@@ -237,4 +227,5 @@ struct Dyseg {
     }
     return ret;
   }
-} dyseg;
+};
+} // namespace refcode
