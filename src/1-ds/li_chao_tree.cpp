@@ -1,5 +1,4 @@
 #include "../common/common.hpp"
-namespace refcode {
 // INPUT: Initially, a 2d plane in which no linear function exists is given.
 // Two types of queries are given.
 // 1 a b : The linear function f(x) = ax + b is added.
@@ -56,4 +55,3 @@ struct LiChaoTree {
     return ret;
   }
 };
-} // namespace refcode

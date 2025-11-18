@@ -1,5 +1,4 @@
 #include "../common/common.hpp"
-namespace refcode {
 // 1. Fenwick Tree
 struct Fenwick { // 0-indexed
   int flag, cnt; // array size
@@ -129,4 +128,3 @@ struct Fenwick2D { // 0-indexed
     return ret;
   }
 };
-} // namespace refcode

@@ -1,5 +1,4 @@
 #include "../common/common.hpp"
-namespace refcode {
 template <class T, class O = less<T>>
 struct pq_set {
   priority_queue<T, vector<T>, O> q, del;
@@ -13,4 +12,3 @@ struct pq_set {
     while (del.size() && q.top() == del.top()) q.pop(), del.pop();
   }
 };
-} // namespace refcode

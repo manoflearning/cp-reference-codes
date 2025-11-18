@@ -1,5 +1,4 @@
 #include "../common/common.hpp"
-namespace refcode {
 constexpr int MAX_MST = 1 << 17;
 // 1. Merge Sort Tree
 // INPUT: Given a sequence A_1, A_2, ..., A_n of length n. Given a query (i, j, k).
@@ -48,4 +47,3 @@ struct MergeSortTreeIter {
     return ret;
   }
 };
-} // namespace refcode

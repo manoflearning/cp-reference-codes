@@ -1,5 +1,4 @@
 #include "../common/common.hpp"
-namespace refcode {
 struct UF {
   vector<int> uf;
   void build(int n) {
@@ -17,4 +16,3 @@ struct UF {
     uf[V] = U;
   }
 };
-} // namespace refcode
