@@ -1,5 +1,5 @@
 #include "../common/common.hpp"
-
+namespace refcode {
 // 1. Fenwick Tree
 struct Fenwick { // 0-indexed
   int flag, cnt; // array size
@@ -23,7 +23,7 @@ struct Fenwick { // 0-indexed
   }
   void modify(int p, ll value) { // set value at position p
     add(p, value - arr[p]);
-  };
+  }
   ll query(int x) {
     ll ret = 0;
     while (x >= 0) ret += t[x], x = (x & (x + 1)) - 1;
@@ -43,10 +43,9 @@ struct Fenwick { // 0-indexed
     }
     return l;
   }
-} fw;
-
+};
 // 2. Fenwick Tree Range Update Point Query
-struct Fenwick { // 1-indexed
+struct FenwickRUPQ { // 1-indexed
   int flag;
   vector<ll> t;
   void build(int N) {
@@ -62,8 +61,7 @@ struct Fenwick { // 1-indexed
     for (; x; x ^= x & -x) ret += t[x];
     return ret;
   }
-} fw;
-
+};
 // 3. 2D Fenwick Tree
 // INPUT: Given an 2D array of integers of size N * M.
 // Can modify the value of the (x, y)th element.
@@ -130,4 +128,5 @@ struct Fenwick2D { // 0-indexed
     if (sx && sy) ret += query(sx - 1, sy - 1);
     return ret;
   }
-} fw2d;
+};
+} // namespace refcode
