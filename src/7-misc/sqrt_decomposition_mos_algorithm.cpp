@@ -1,7 +1,4 @@
 #include "../common/common.hpp"
-
-#include <bits/stdc++.h>
-using namespace std;
 int sq;
 struct se {
   int s, e, idx;
@@ -9,15 +6,12 @@ struct se {
     if (s / sq != rhs.s / sq) return s / sq < rhs.s / sq;
     return e < rhs.e;
   }
+  // Zigzag Mo's (faster than basic Mo's Algorithm)
+  // bool operator<(const se &rhs) const {
+  //   if(s / sq != rhs.s / sq) return s / sq < rhs.s / sq;
+  //   else return (s / sq) & 1 ? e < rhs.e : e > rhs.e;
+  // }
 };
-// Zigzag Mo's (faster than basic Mo's Algorithm)
-/*struct se {
-        int s, e, idx;
-        bool operator<(const se &rhs) const {
-                if(s / sq != rhs.s / sq) return s / sq < rhs.s / sq;
-                else return (s / sq) & 1 ? e < rhs.e : e > rhs.e;
-        }
-};*/
 vector<se> q;
 vector<int> ans;
 void input() {
