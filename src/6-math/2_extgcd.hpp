@@ -1,3 +1,4 @@
+#pragma once
 #include "../common/common.hpp"
 
 // GCD, LCM
@@ -40,8 +41,6 @@ ll lcm(ll a, ll b) {
 
 // TIME COMPLEXITY: O(log(AB))
 
-// BOJ 14565 AC Code
-// https://www.acmicpc.net/problem/14565
 pair<pll, ll> egcd(ll a, ll b) {
   ll s = 0, olds = 1;
   ll t = 1, oldt = 0;
@@ -59,21 +58,22 @@ pair<pll, ll> egcd(ll a, ll b) {
   // oldr = gcd(a, b)
   return {{olds, oldt}, oldr};
 }
-ll linearCongruence(ll a, ll b, ll n) { // Find x such that ax = b (mod n).
+ll linear_congruence(ll a, ll b, ll n) { // Find x such that ax = b (mod n).
   pair<pll, ll> res = egcd(a, n);
   ll g = res.sc;
   // ax + ny = b has a solution iff gcd(a,n) | b.
   if (b % g) return -1;
   return (res.fr.fr * (b / g) % n + n) % n;
 }
-ll modInv(ll a, ll p) { // Find x such that ax = 1 (mod p).
-  pair<pll, ll> res = egcd(a, p);
-  // Modular inverse exists iff gcd(a, p) = 1.
-  if (res.sc == 1) return (res.fr.fr + p) % p;
-  else return -1;
-}
-int main() {
-  ll N, A;
-  cin >> N >> A;
-  cout << N - A << ' ' << modInv(A, N);
+ll inv_mod(ll a, ll p) { // Find x such that ax = 1 (mod p).
+  ll b = p, u = 1, v = 0;
+  while (b) {
+    ll t = a / b;
+    a -= t * b;
+    swap(a, b);
+    u -= t * v;
+    swap(u, v);
+  }
+  if (u < 0) u += p;
+  return u;
 }
