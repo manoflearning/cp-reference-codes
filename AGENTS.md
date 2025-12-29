@@ -33,6 +33,7 @@ When adding or editing code here, optimize for contest usage first.
 - Avoid unnecessary dynamic polymorphism, complex metaprogramming, and over-engineered designs.
 - Public-facing helpers should be easy to understand without reading 5 other files.
 - Template common patterns (I/O, loops, small utilities), but keep templates minimal.
+- ICPC team notes have a length limit. Write the code as concisely as possible.
 
 ## Comments and documentation (required)
 Write friendly, high-signal documentation in a consistent format.
