@@ -451,13 +451,13 @@ struct lr_mcmf {
     int ss = n, tt = n + 1;
     pll res = mf.min_cost_max_flow(ss, tt, total, init_pot);
     for (auto ref : aux) mf.clear_edge(ref);
-    return {res.first == total, res.second};
+    return {res.fr == total, res.sc};
   }
 
   pair<bool, pll> max_flow(int s, int t, bool init_pot = true) {
     if (s == t) {
       auto r = feasible(init_pot);
-      return {r.first, {0, r.second}};
+      return {r.fr, {0, r.sc}};
     }
     vector<mcmf::edge_ref> aux;
     aux.reserve(n + 1);
@@ -465,17 +465,17 @@ struct lr_mcmf {
     auto ts = mf.add_edge(t, s, INF, 0);
     ll total = add_demands(aux);
     pll res = mf.min_cost_max_flow(ss, tt, total, init_pot);
-    if (res.first != total) {
+    if (res.fr != total) {
       mf.clear_edge(ts);
       for (auto ref : aux) mf.clear_edge(ref);
       return {false, {0, 0}};
     }
     ll base = mf.edge_flow(ts);
-    ll cost = res.second;
+    ll cost = res.sc;
     mf.clear_edge(ts);
     for (auto ref : aux) mf.clear_edge(ref);
     pll extra = mf.min_cost_max_flow(s, t, INF, init_pot);
-    return {true, {base + extra.first, cost + extra.second}};
+    return {true, {base + extra.fr, cost + extra.sc}};
   }
 };
 
