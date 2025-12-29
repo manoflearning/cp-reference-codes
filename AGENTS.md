@@ -11,14 +11,16 @@ When adding or editing code here, optimize for contest usage first.
 5. **Template-friendly**: easy to reuse across problems with minimal edits.
 
 ## Repo standard code style (required)
+
 ### Naming
-- **Struct names**: `PascalCase` (capitalized).
-  - Example: `struct FenwickTree { ... };`
 - **Constants** (e.g., `constexpr`, global `const`, fixed parameters): `UPPER_SNAKE_CASE`.
   - Examples: `constexpr int MOD = 1e9 + 7;`, `const int INF = 1e9;`
-- **Everything else** uses **lowercase `snake_case`**:
-  - namespaces, functions, variables, file names
-  - Examples: `namespace fast_io`, `add_edge`, `max_flow`, `solve_case`, `pref_sum`
+- **All other identifiers** use **lowercase `snake_case`** (STL style):
+  - structs, classes, namespaces, functions, variables, file names
+  - Examples: `struct fenwick_tree`, `namespace fast_io`, `solve_case`, `add_edge`
+- **Concise yet descriptive**: names must be short for typing speed but clear enough to read under pressure.
+  - **Good**: `cnt`, `idx`, `res`, `nxt`, `vis`, `dist`.
+  - **Bad**: `number_of_elements`, `adjacency_list`, `calculated_distance`.
 
 ### Types
 - Prefer `ll` by default to reduce overflow debugging.
@@ -61,7 +63,6 @@ Do not commit unformatted code.
 Before finishing a change:
 - Style matches the rules above (naming, layout, aliases).
 - The API is minimal and pasteable.
-- No extra dependencies unless clearly worth it.
 - Complexity and constraints are stated.
 - Comments explain intent/invariants/edges without being verbose.
 - The code is not longer than it needs to be.
