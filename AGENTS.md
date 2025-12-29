@@ -26,6 +26,7 @@ When adding or editing code here, optimize for contest usage first.
 - Prefer `ll` by default to reduce overflow debugging.
 - Use `int` only when clearly safe and beneficial (memory, bitset indexing, array indices, tight constraints).
 - Avoid implicit narrowing conversions. Cast explicitly at boundaries when mixing types.
+- Prefer aliases from `common.hpp` (e.g., `pll`, `pii`) when they match exactly to reduce typing.
 
 ## Coding rules
 - Prefer straightforward implementations over heavy abstractions.
@@ -37,8 +38,8 @@ When adding or editing code here, optimize for contest usage first.
 Write friendly, high-signal documentation in a consistent format.
 
 ### 1) Module header (for each reusable component)
-Add a short header comment near the top:
-- What it does
+Add a header comment near the top:
+- What it does: add comments so that even content encountered after a long time serves as a reminder.
 - Complexity (time, memory)
 - Constraints / gotchas (short)
 - Optional: where it was verified (contest / problem ID)
