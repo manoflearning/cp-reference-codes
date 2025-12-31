@@ -17,20 +17,18 @@
 - **그 외 모든 식별자**는 **소문자 `snake_case`** 사용 (STL 스타일):
   - struct, class, namespace, function, variable, file name
   - 예시: `struct fenwick_tree`, `namespace fast_io`, `solve_case`, `add_edge`
-- **간결하지만 설명적**: 이름은 타이핑 속도를 위해 짧아야 하지만, 압박 속에서도 읽을 수 있을 정도로는 명확해야 함.
+- **간결하지만 설명적**: 이름은 타이핑 속도를 위해 최대 7자 이내로 짧아야 함. 동시에 압박 속에서도 읽을 수 있을 정도로는 명확해야 함.
   - **Good**: `cnt`, `idx`, `res`, `nxt`, `vis`, `dist`.
   - **Bad**: `number_of_elements`, `adjacency_list`, `calculated_distance`.
 
 ### Types
 - 오버플로 디버깅을 줄이기 위해 기본적으로 `ll`을 선호. `int`는 명확히 안전하고 이점이 있을 때만 사용 (메모리, bitset 인덱싱, 배열 인덱스, 빡센 제약 등).
 - 암묵적 축소 변환을 피하기. 타입을 섞어 쓸 때 경계에서는 명시적으로 캐스팅.
-- 코드 길이, 타이핑을 줄이기 위해 `common.hpp`의 alias (예: `pll`, `pii`)를 적극적으로 사용.
+- 코드 길이, 타이핑을 줄이기 위해 `common.hpp`의 alias (예: `pll`, `all(x)`)를 적극적으로 사용.
 
 ## 코딩 규칙
 - 무거운 추상화보다 직관적인 구현을 선호.
 - 불필요한 동적 다형성, 복잡한 메타프로그래밍, 과도하게 공학적인 설계를 피하기.
-- 공개용 helper는 다른 파일 5개를 읽지 않아도 이해되게.
-- 흔한 패턴(I/O, 루프, 작은 유틸)을 템플릿화하되, 템플릿은 최소한으로 유지.
 - ICPC 팀 노트에는 길이 제한이 있음. 코드는 가능한 한 간결하게 작성.
 
 ## 주석과 문서화 (필수)
@@ -41,7 +39,6 @@
 - What it does: 오래 시간이 지난 뒤 다시 봐도 상기할 수 있도록 주석 추가.
 - Complexity (time, memory)
 - Constraints / gotchas (short)
-- Optional: 어디서 검증됐는지 (대회 / 문제 ID)
 
 ### 2) 인라인 주석 (코드 전반)
 짧고 일관된 한 줄 주석을 넉넉하게 달기:
