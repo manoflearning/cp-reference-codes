@@ -1,150 +1,145 @@
 #include "../common/common.hpp"
 
-// 1. Convex Hull Trick
-// Recurrence: dp[i] = min(dp[j] + a[i] * b[j]) (j < i)
-// Condition: b[i] >= b[i + 1]
-// Naive Complexity: O(n^2)
-// Optimized Complexity: O(nlogn) (if a[i] <= a[i + 1], it can also be done in O(n))
-struct Line { // f(x) = px + q, x >= s
-    ll p, q;
-    double s;
-    Line() : Line(1, 0) {}
-    Line(ll sp, ll sq) : p(sp), q(sq), s(0) {}
-};
-double cross(const Line &u, const Line &v) {
-    return (double)(v.q - u.q) / (u.p - v.p);
-}
-int n;
-ll a[101010], b[101010];
-ll dp[101010];
-Line ch[101010];
-void input() {
-    cin >> n;
-    for (int i = 1; i <= n; i++) cin >> a[i];
-    for (int i = 1; i <= n; i++) cin >> b[i];
-}
-void convexHullTrick() {
-    int top = 1;
-    for (int i = 2; i <= n; i++) {
-        Line g(b[i - 1], dp[i - 1]);
-        while (top > 1) {
-            g.s = cross(ch[top - 1], g);
-            if (ch[top - 1].s < g.s) break;
-            --top;
+// what: dp optimization snippets (monotone CHT, Knuth opt, DnC opt, slope trick).
+// time: see each component; memory: see each component.
+// constraint: see each component.
+// usage: include and use each struct/function below.
+
+// Monotone Convex Hull Trick (min query).
+// what: min of y = m*x + b with monotone slopes, query any x via binary search.
+// time: add O(1) amortized, query O(log n); memory: O(n)
+// constraint: slopes added in decreasing order for min; uses long double intersections.
+// usage: cht_mono ch; ch.add_line(m, b); ll v = ch.get(x);
+struct cht_mono {
+    struct line {
+        ll m, b;
+        ld x;
+    };
+    vector<line> st;
+    static constexpr ld NEG_INF = -1e30L;
+
+    ld isect(const line &a, const line &b) const {
+        return (ld)(b.b - a.b) / (a.m - b.m);
+    }
+
+    void add_line(ll m, ll b) {
+        // goal: maintain lower hull with increasing slopes
+        if (!st.empty() && st.back().m == m) {
+            if (st.back().b <= b) return; // new line is worse
+            st.pop_back();
         }
-        ch[top++] = g;
-        int l = 1, r = top - 1;
+        line cur{m, b, NEG_INF};
+        while (!st.empty()) {
+            cur.x = isect(st.back(), cur);
+            if (cur.x > st.back().x) break;
+            st.pop_back();
+        }
+        if (st.empty()) cur.x = NEG_INF;
+        st.push_back(cur);
+    }
+
+    ll get(ll x) const {
+        // invariant: st is sorted by x; pick last with x_i <= x
+        int l = 0, r = sz(st) - 1;
+        ld xd = (ld)x;
         while (l < r) {
             int mid = (l + r + 1) >> 1;
-            if (a[i] < ch[mid].s) r = mid - 1;
-            else l = mid;
+            if (st[mid].x <= xd) l = mid;
+            else r = mid - 1;
         }
-        int fpos = l;
-        dp[i] = ch[fpos].p * a[i] + ch[fpos].q;
+        return st[l].m * x + st[l].b;
     }
-}
-int main() {
-    input();
-    convexHullTrick();
-    cout << dp[n];
-}
+};
 
-// 2. Knuth Optimization
-// Recurrence: DP[i][j] = min(DP[i][k] + DP[k + 1][j]) + C[i][j] (i <= k < j)
-// Condition: C[i][j] is a monge array (satisfies C[a][c] + C[b][d] <= C[a][d] + C[b][c]),
-//            and satisfies C[a][d] >= C[b][c] for a <= b <= c <= d
-// Naive Complexity: O(n^3)
-// Optimized Complexity: O(n^2)
+// Knuth Optimization.
+// what: dp[i][j] = min_{k in [i..j-1]} dp[i][k] + dp[k+1][j] + cost(i,j).
+// time: O(n^2); memory: O(n^2)
+// constraint: cost must satisfy quadrangle inequality (Monge) + monotone opt.
+// usage: knuth_opt ko; ko.build(n, [&](int i,int j){ return cost(i,j); });
+struct knuth_opt {
+    static constexpr ll INF = (1LL << 62);
+    int n;
+    vector<vector<ll>> dp;
+    vector<vector<int>> opt;
 
-// Let opt[i][j] be the value of k that minimizes DP[i][j]
-// The following holds: opt[i][j - 1] <= opt[i][j] <= opt[i + 1][j]
-const ll INF = 1e18;
-int n, opt[5050][5050];
-ll a[5050], DP[5050][5050], psum[5050];
-int main() {
-    int tc;
-    cin >> tc;
-    while (tc--) {
-        cin >> n;
-        for (int i = 1; i <= n; i++) {
-            cin >> a[i];
-            psum[i] = a[i] + psum[i - 1];
-        }
-        for (int i = 1; i <= n; i++) {
-            DP[i][i] = 0;
-            opt[i][i] = i;
-        }
-        for (int i = n - 1; i >= 1; i--) {
-            for (int j = i + 1; j <= n; j++) {
-                ll mn = INF, mnk = -1;
-                for (int k = opt[i][j - 1]; k <= opt[i + 1][j]; k++) {
-                    ll res = DP[i][k] + DP[k + 1][j] + (psum[j] - psum[i - 1]);
-                    if (res < mn) {
-                        mn = res;
-                        mnk = k;
-                    }
+    template <class F>
+    void build(int n_, F cost) {
+        // goal: fill dp/opt for 0..n-1
+        n = n_;
+        dp.assign(n, vector<ll>(n, 0));
+        opt.assign(n, vector<int>(n, 0));
+        for (int i = 0; i < n; i++) opt[i][i] = i;
+        for (int len = 2; len <= n; len++) {
+            for (int i = 0; i + len - 1 < n; i++) {
+                int j = i + len - 1;
+                ll best = INF;
+                int best_k = -1;
+                int l = opt[i][j - 1];
+                int r = opt[i + 1][j];
+                l = max(l, i);
+                r = min(r, j - 1);
+                for (int k = l; k <= r; k++) {
+                    ll val = dp[i][k] + dp[k + 1][j] + cost(i, j);
+                    if (val < best) best = val, best_k = k;
                 }
-                DP[i][j] = mn;
-                opt[i][j] = mnk;
+                dp[i][j] = best;
+                opt[i][j] = best_k;
             }
         }
-        cout << DP[1][n] << '\n';
     }
-}
+};
 
-// 3. Divide and Conquer Optimization
-// Recurrence: dp[t][i] = min(dp[t - 1][j] + c[j][i]) (j < i)
-// Condition: Let opt[t][i] be j with the smallest value of dp[t - 1][j] + c[j][i]. It must satisfy opt[t][i] <= opt[t][i + 1].
-// Naive Complexity: O(m * n^2)
-// Optimized Complexity: O(m * nlogn)
-const ll INF = 1e18;
-int n, m;
-ll a[8080], psum[8080];
-ll dp[808][8080];
-void f(int gr, int l, int r, int nl, int nr) {
-    int mid = (l + r) >> 1, idx = -1;
-    ll &res = dp[gr][mid];
-    res = INF;
-    for (int i = nl; i <= min(mid, nr); i++) {
-        assert(i <= mid);
-        ll val = dp[gr - 1][i] + (mid - i) * (psum[mid] - psum[i]);
-        if (res > val) {
-            res = val, idx = i;
+// Divide and Conquer Optimization.
+// what: dp[g][i] = min_{j in [0..i]} prv[j] + cost(j,i).
+// time: O(k n log n); memory: O(n)
+// constraint: opt[g][i] <= opt[g][i+1] (Monge cost).
+// usage: dnc_opt dc; dc.run(k, n, base, cost); auto ans = dc.dp();
+struct dnc_opt {
+    static constexpr ll INF = (1LL << 62);
+    vector<ll> prv, cur;
+
+    template <class F>
+    void run(int k, int n, const vector<ll> &base, F cost) {
+        // goal: compute dp for k layers, starting from base
+        prv = base;
+        cur.assign(n, INF);
+        for (int g = 1; g <= k; g++) {
+            fill(cur.begin(), cur.end(), INF);
+            solve(0, n - 1, 0, n - 1, cost);
+            prv.swap(cur);
         }
     }
-    if (l < r) {
-        f(gr, l, mid, nl, idx);
-        f(gr, mid + 1, r, idx, nr);
-    }
-}
-int main() {
-    // input
-    cin >> n >> m;
-    for (int i = 1; i <= n; i++) cin >> a[i];
-    // build prefix sum
-    for (int i = 1; i <= n; i++)
-        psum[i] = a[i] + psum[i - 1];
-    // dp (dnc opt)
-    for (int i = 1; i <= n; i++)
-        dp[1][i] = i * psum[i];
-    for (int i = 2; i <= m; i++)
-        f(i, 0, n, 0, n);
-    // output
-    cout << dp[m][n];
-}
 
-// 4. Slope Trick
-// PROBLEM: You are given the array containing n integers.
-// At one turn you can pick any element and increase or decrease it by 1.
-// The goal is the make the array strictly increasing by making the minimum possible number of operations.
-// TIME COMPLEXITY: O(n log(n))
+    const vector<ll> &dp() const { return prv; }
+
+    template <class F>
+    void solve(int l, int r, int opt_l, int opt_r, F cost) {
+        int mid = (l + r) >> 1;
+        ll best = INF;
+        int best_k = -1;
+        int end = min(mid, opt_r);
+        for (int j = opt_l; j <= end; j++) {
+            ll val = prv[j] + cost(j, mid);
+            if (val < best) best = val, best_k = j;
+        }
+        cur[mid] = best;
+        if (l == r) return;
+        solve(l, mid, opt_l, best_k, cost);
+        solve(mid + 1, r, best_k, opt_r, cost);
+    }
+};
+
+// Slope Trick for making array strictly increasing.
+// what: min sum |a[i]-b[i]| s.t. b is strictly increasing.
+// time: O(n log n); memory: O(n)
+// constraint: values fit in ll.
+// usage: ll ops = slope_trick(a);
 ll slope_trick(vector<ll> a) {
     ll ret = 0;
     priority_queue<ll> pq;
     for (int i = 0; i < sz(a); i++) {
-        a[i] -= i; // Change strictly increasing condition to non-decreasing condition
+        a[i] -= i; // goal: convert to nondecreasing
         pq.push(a[i]);
-
         if (pq.top() > a[i]) {
             ret += pq.top() - a[i];
             pq.pop();

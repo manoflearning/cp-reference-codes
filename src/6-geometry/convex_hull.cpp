@@ -1,9 +1,9 @@
 #include "geom_base.cpp"
 
-// what: convex hull of 2D points (ccw, no duplicate endpoint).
+// what: convex hull of 2D points (ccw, start from lowest lexicographic).
 // time: O(n log n); memory: O(n)
 // constraint: collinear points on edges are removed (use < instead of <= to keep).
-// usage: auto hull = convex_hull(p);
+// usage: vector<pt> hull = convex_hull(p);
 vector<pt> convex_hull(vector<pt> p) {
     sort(all(p));
     p.erase(unique(all(p)), p.end());

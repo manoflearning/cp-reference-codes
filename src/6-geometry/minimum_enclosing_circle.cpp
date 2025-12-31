@@ -9,7 +9,7 @@ struct circle {
     ld r;
 };
 
-inline bool in_circle(const circle &c, const ptd &p) {
+bool in_circle(const circle &c, const ptd &p) {
     return dist(c.c, p) <= c.r + 1e-12;
 }
 
@@ -39,6 +39,7 @@ circle circle_from(const ptd &a, const ptd &b, const ptd &c) {
 }
 
 circle min_circle(vector<ptd> p) {
+    if (p.empty()) return {{0, 0}, 0};
     static mt19937 rng(712367);
     shuffle(all(p), rng);
     circle c{{0, 0}, -1};

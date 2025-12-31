@@ -2,8 +2,8 @@
 
 // what: iterate all angular orders of points by rotating a line (bulldozer trick).
 // time: O(n^2 log n); memory: O(n^2)
-// constraint: points are processed in-place in p; edit the marked loop to use each order.
-// usage: bulldozer(p); // inside, use current order of p
+// constraint: orders correspond to direction angle in [0, pi); points processed in-place.
+// usage: bulldozer(p, [&](const vector<pt> &cur) { /* use order */ });
 struct line {
     int u, v;
     ll dx, dy; // dx >= 0
@@ -16,9 +16,11 @@ struct line {
     }
 };
 
-void bulldozer(vector<pt> &p) {
+template <class F>
+void bulldozer(vector<pt> &p, F f) {
     int n = sz(p);
     sort(all(p));
+    vector<pt> base = p;
     vector<int> pos(n);
     iota(all(pos), 0);
     vector<line> ln;
@@ -36,13 +38,36 @@ void bulldozer(vector<pt> &p) {
         }
     }
     sort(all(ln));
+    f(p);
     for (int i = 0, j = 0; i < sz(ln); i = j) {
         while (j < sz(ln) && ln[j] == ln[i]) j++;
+        ll dx = ln[i].dx, dy = ln[i].dy;
+        if (dx == 0) break;
+        unordered_map<ll, vector<int>> mp;
+        mp.reserve((j - i) * 2 + 1);
         for (int k = i; k < j; k++) {
             int u = ln[k].u, v = ln[k].v;
-            swap(p[pos[u]], p[pos[v]]);
-            swap(pos[u], pos[v]);
+            ll c = -dy * base[u].x + dx * base[u].y;
+            mp[c].push_back(u);
+            mp[c].push_back(v);
         }
-        // usage: handle current order of p here.
+        for (auto &it : mp) {
+            auto &vec = it.sc;
+            sort(all(vec));
+            vec.erase(unique(all(vec)), vec.end());
+            sort(all(vec), [&](int a, int b) { return pos[a] < pos[b]; });
+            for (int l = 0, r = sz(vec) - 1; l < r; l++, r--) {
+                int u = vec[l], v = vec[r];
+                int pu = pos[u], pv = pos[v];
+                if (pu == pv) continue;
+                swap(p[pu], p[pv]);
+                swap(pos[u], pos[v]);
+            }
+        }
+        f(p);
     }
+}
+
+void bulldozer(vector<pt> &p) {
+    bulldozer(p, [](const vector<pt> &) {});
 }

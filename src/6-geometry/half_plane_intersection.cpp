@@ -8,15 +8,19 @@ struct line {
     ptd s, t;
 };
 
-inline ptd dir(const line &l) {
+static bool eq(ld a, ld b) {
+    return fabsl(a - b) < EPS;
+}
+
+static ptd dir(const line &l) {
     return l.t - l.s;
 }
 
-inline bool out(const line &l, const ptd &p) {
+static bool out(const line &l, const ptd &p) {
     return cross(l.t - l.s, p - l.s) < -EPS;
 }
 
-bool bad(const line &a, const line &b, const line &c) {
+static bool bad(const line &a, const line &b, const line &c) {
     ptd p;
     if (!line_inter(a.s, a.t, b.s, b.t, p)) return 0;
     return out(c, p);

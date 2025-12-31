@@ -1,85 +1,65 @@
 #include "../common/common.hpp"
 
-// Given some inequality on some variable (x_1, x_2, ..., x_N) in form x_j – x_i <= w
-// We need to determine whether we can assign values to variables so that all the given inequality is satisfiable or not?
-// If satisfiable, then output a solution.
+// what: system of difference constraints (x_v - x_u <= w).
+// time: O(nm) via Bellman-Ford; memory: O(n+m)
+// constraint: 0-indexed vars; no overflow in relaxations.
+// usage: diff_cons dc(n); dc.add_le(u,v,w); bool ok=dc.solve(); auto x=dc.val();
+struct diff_cons {
+    struct edge {
+        int to;
+        ll w;
+    };
 
-// Constraint graph
-// For each variable we create a vertex.
-// For each inequality, x_j – x_i <= W , We give an edge (v_i,v_j) with cost w.
-// Create a source vertex S and give an edge (S,v_i) with cost = 0.
+    int n;
+    vector<vector<edge>> g;
+    vector<ll> dist;
 
-// Unsatisfiable constraints
-// If the constraint graph contains a negative-weight cycle, then the system of differences is unsatisfiable.
+    diff_cons(int n_ = 0) { init(n_); }
 
-// Solution
-// For each variable x_i:
-// x_i = shortest path distance of v_i from the source vertex S in constraint graph.
-// Shortest path can be calculated from Bellman-Ford algorithm.
-
-// TIME COMPLEXITY: O(NM) (Bellman-Ford), O(N^3) (Floyd-Warshall)
-const ll INF = 1e18;
-
-int N, K;
-struct wv {
-    int w, v;
-};
-vector<wv> adj[1010];
-vector<ll> upper(1010, INF);
-
-void input() {
-    cin >> N >> K;
-    for (int i = 0; i < K; i++) {
-        int op, u, v, w;
-        cin >> op >> u >> v >> w;
-        if (op == 1) {
-            // x_u - x_v >= w
-            // iff x_v - x_u <= -w
-            adj[u].push_back({-w, v});
-        }
-        if (op == 2) {
-            // x_u - x_v <= w
-            adj[v].push_back({w, u});
-        }
-        if (op == 3) {
-            // x_u - x_v = w
-            // iff x_u - x_v <= w and x_v - x_u <= -w
-            adj[v].push_back({w, u});
-            adj[u].push_back({-w, v});
-        }
+    void init(int n_) {
+        n = n_;
+        g.assign(n, {});
+        dist.assign(n, 0);
     }
-}
 
-int bellmanFord() {
-    upper[0] = 0;
-    int update = 1;
-    for (int i = 0; i < N + 2; i++) {
-        update = 0;
-        for (int now = 0; now <= N; now++) {
-            if (upper[now] == INF) continue;
-            for (wv e : adj[now]) {
-                int next = e.v;
-                if (upper[next] > upper[now] + e.w) {
-                    upper[next] = upper[now] + e.w;
-                    update = 1;
+    void add_le(int u, int v, ll w) {
+        // goal: x_v - x_u <= w
+        g[u].push_back({v, w});
+    }
+
+    void add_ge(int u, int v, ll w) {
+        // goal: x_v - x_u >= w  <=>  x_u - x_v <= -w
+        add_le(v, u, -w);
+    }
+
+    void add_eq(int u, int v, ll w) {
+        // goal: x_v - x_u = w
+        add_le(u, v, w);
+        add_le(v, u, -w);
+    }
+
+    bool solve() {
+        // invariant: dist is current potential, all nodes reachable from super source
+        dist.assign(n, 0);
+        for (int it = 0; it < n; it++) {
+            bool upd = false;
+            for (int v = 0; v < n; v++) {
+                for (const auto &e : g[v]) {
+                    if (dist[e.to] > dist[v] + e.w) {
+                        dist[e.to] = dist[v] + e.w;
+                        upd = true;
+                    }
                 }
             }
+            if (!upd) return true;
         }
-        if (!update) break;
+        for (int v = 0; v < n; v++) {
+            for (const auto &e : g[v]) {
+                if (dist[e.to] > dist[v] + e.w) return false;
+            }
+        }
+        return true;
     }
-    return !update;
-}
 
-int main() {
-    input();
-    for (int i = 1; i <= N; i++)
-        adj[0].push_back({0, i});
-    if (bellmanFord()) {
-        ll mn = INF, mx = -INF;
-        for (int i = 1; i <= N; i++) {
-            mn = min(mn, upper[i]);
-            mx = max(mx, upper[i]);
-        }
-        cout << (mx - mn <= 100 ? mx - mn : -1);
-    } else cout << -1;
-}
+    vector<ll> val() const { return dist; }
+};
