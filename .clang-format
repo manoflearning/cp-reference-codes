@@ -10,7 +10,7 @@ BraceWrapping:
   BeforeCatch: false
   BeforeElse: false
   IndentBraces: false
-IndentWidth: 2
+IndentWidth: 4
 ColumnLimit: 0
 AllowShortIfStatementsOnASingleLine: AllIfsAndElse
 AllowShortLoopsOnASingleLine: true

@@ -13,27 +13,27 @@ int siz[MAXN], cdpar[MAXN];
 bool used[MAXN];
 
 int getSize(int now, int prv) {
-  siz[now] = 1;
-  for (auto i : adj[now]) {
-    if (used[i] || prv == i) continue;
-    siz[now] += getSize(i, now);
-  }
-  return siz[now];
+    siz[now] = 1;
+    for (auto i : adj[now]) {
+        if (used[i] || prv == i) continue;
+        siz[now] += getSize(i, now);
+    }
+    return siz[now];
 }
 int getCent(int now, int prv, int mxsiz) {
-  for (auto &i : adj[now]) {
-    if (used[i] || i == prv) continue;
-    if (siz[i] > mxsiz / 2) return getCent(i, now, mxsiz);
-  }
-  return now;
+    for (auto &i : adj[now]) {
+        if (used[i] || i == prv) continue;
+        if (siz[i] > mxsiz / 2) return getCent(i, now, mxsiz);
+    }
+    return now;
 }
 void cd(int now, int prv) {
-  int mxsiz = getSize(now, prv);
-  int cent = getCent(now, prv, mxsiz);
-  cdpar[cent] = prv;
-  cdchd[prv].push_back(cent);
-  used[cent] = 1;
-  for (auto i : adj[cent])
-    if (!used[i]) cd(i, cent);
+    int mxsiz = getSize(now, prv);
+    int cent = getCent(now, prv, mxsiz);
+    cdpar[cent] = prv;
+    cdchd[prv].push_back(cent);
+    used[cent] = 1;
+    for (auto i : adj[cent])
+        if (!used[i]) cd(i, cent);
 }
 } // namespace cd
