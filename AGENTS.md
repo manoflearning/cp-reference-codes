@@ -26,7 +26,7 @@ When adding or editing code here, optimize for contest usage first.
 - Prefer `ll` by default to reduce overflow debugging.
 - Use `int` only when clearly safe and beneficial (memory, bitset indexing, array indices, tight constraints).
 - Avoid implicit narrowing conversions. Cast explicitly at boundaries when mixing types.
-- Prefer aliases from `common.hpp` (e.g., `pll`, `pii`) when they match exactly to reduce typing.
+- Always use aliases from `common.hpp` (e.g., `pll`, `pii`) when they match exactly to reduce typing.
 
 ## Coding rules
 - Prefer straightforward implementations over heavy abstractions.
