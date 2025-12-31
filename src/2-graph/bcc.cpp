@@ -2,13 +2,13 @@
 
 // what: biconnected components + articulation points/edges (undirected).
 // time: O(n+m); memory: O(n+m)
-// constraint: 1-indexed; recursion depth O(n).
+// constraint: 1-indexed; no self-loops; recursion depth O(n).
 // usage: bcc g; g.init(n); g.add(u,v); g.run(); // g.bccs, g.ap, g.ae
 struct bcc {
     int n, tim;
-    vector<vector<int>> adj;
-    vector<int> dfn, low, ap;
-    vector<pii> ae, st;
+    vector<vector<pii>> adj;
+    vector<int> dfn, low, ap, st;
+    vector<pii> ed, ae;
     vector<vector<pii>> bccs;
 
     void init(int n_) {
@@ -20,42 +20,44 @@ struct bcc {
         ap.clear();
         ae.clear();
         st.clear();
+        ed.clear();
         bccs.clear();
     }
     void add(int u, int v) {
-        adj[u].push_back(v);
-        adj[v].push_back(u);
+        int id = sz(ed);
+        ed.push_back({u, v});
+        adj[u].push_back({v, id});
+        adj[v].push_back({u, id});
     }
-    void dfs(int v, int p) {
+    void dfs(int v, int pe) {
         dfn[v] = low[v] = ++tim;
         int ch = 0;
-        for (int to : adj[v]) {
-            if (to == p) continue;
+        for (auto [to, id] : adj[v]) {
+            if (id == pe) continue;
             if (dfn[to] != -1) {
                 // edge: back edge to ancestor.
                 low[v] = min(low[v], dfn[to]);
-                if (dfn[to] < dfn[v]) st.push_back({v, to});
+                if (dfn[to] < dfn[v]) st.push_back(id);
                 continue;
             }
-            // goal: tree edge, expand subtree.
-            st.push_back({v, to});
+            st.push_back(id);
             ch++;
-            dfs(to, v);
+            dfs(to, id);
             low[v] = min(low[v], low[to]);
-            if (p != -1 && low[to] >= dfn[v]) ap.push_back(v);
+            if (pe != -1 && low[to] >= dfn[v]) ap.push_back(v);
             if (low[to] > dfn[v]) ae.push_back({min(v, to), max(v, to)});
             if (low[to] >= dfn[v]) {
                 vector<pii> comp;
                 while (1) {
-                    pii e = st.back();
+                    int eid = st.back();
                     st.pop_back();
-                    comp.push_back(e);
-                    if (e == pii{v, to}) break;
+                    comp.push_back(ed[eid]);
+                    if (eid == id) break;
                 }
                 bccs.push_back(comp);
             }
         }
-        if (p == -1 && ch > 1) ap.push_back(v);
+        if (pe == -1 && ch > 1) ap.push_back(v);
     }
     void run() {
         for (int v = 1; v <= n; v++)

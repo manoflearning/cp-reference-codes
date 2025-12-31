@@ -2,7 +2,7 @@
 
 // what: Euler circuit via Hierholzer (undirected multigraph, matrix).
 // time: O(n^2+m); memory: O(n^2)
-// constraint: 1-indexed; dense/multi-edge; loops supported via add().
+// constraint: 1-indexed; all nonzero-degree nodes connected.
 // usage: ecir g; g.init(n); g.add(u,v); if (g.can()) auto path=g.run(1);
 struct ecir {
     int n;
@@ -16,15 +16,34 @@ struct ecir {
         path.clear();
     }
     void add(int u, int v, int c = 1) {
-        if (u == v) adj[u][u] += 2 * c; // goal: keep degree correct for loops.
+        if (u == v) adj[u][u] += 2 * c;
         else adj[u][v] += c, adj[v][u] += c;
     }
     bool can() {
-        for (int i = 1; i <= n; i++) {
-            int deg = 0;
-            for (int j = 1; j <= n; j++) deg += adj[i][j];
-            if (deg & 1) return 0;
+        vector<int> deg(n + 1);
+        for (int i = 1; i <= n; i++)
+            for (int j = 1; j <= n; j++) deg[i] += adj[i][j];
+        for (int i = 1; i <= n; i++)
+            if (deg[i] & 1) return 0;
+        int s = 0;
+        for (int i = 1; i <= n; i++)
+            if (deg[i]) {
+                s = i;
+                break;
+            }
+        if (!s) return 1;
+        vector<int> vis(n + 1);
+        queue<int> q;
+        q.push(s);
+        vis[s] = 1;
+        while (!q.empty()) {
+            int v = q.front();
+            q.pop();
+            for (int i = 1; i <= n; i++)
+                if (adj[v][i] && !vis[i]) vis[i] = 1, q.push(i);
         }
+        for (int i = 1; i <= n; i++)
+            if (deg[i] && !vis[i]) return 0;
         return 1;
     }
     void dfs(int v) {

@@ -1,12 +1,11 @@
 #include "../common/common.hpp"
 
 // what: k-th shortest walk (Eppstein-style, non-negative weights).
-// time: O((n+m)log m + klog k); memory: O(n+m+HSIZE)
-// constraint: 1-indexed; w >= 0; HSIZE >= 2m log m.
+// time: O((n+m)log m + klog k); memory: O(n+m+heap)
+// constraint: 1-indexed; w >= 0; n <= MAXN-1; recursion depth O(log m).
 // usage: ksp g; g.init(n); g.add(u,v,w); auto v=g.run(s,e,k);
 struct ksp {
     static const int MAXN = 303030;
-    static const int HSIZE = 20202020;
     static const ll INF = (ll)1e18;
 
     int n;
@@ -16,13 +15,12 @@ struct ksp {
         struct nd {
             pll x;
             int l, r, s;
-            nd() : x({0, 0}), l(0), r(0), s(0) {}
-            nd(pll x, int l, int r, int s) : x(x), l(l), r(r), s(s) {}
-        } h[HSIZE];
-        int cnt = 1;
+        };
+        vector<nd> h;
+        void init() { h.assign(1, {{0, 0}, 0, 0, 0}); }
         int mk(pll x) {
-            h[cnt] = nd(x, 0, 0, 1);
-            return cnt++;
+            h.push_back({x, 0, 0, 1});
+            return sz(h) - 1;
         }
         void norm(int x) {
             if (h[h[x].l].s < h[h[x].r].s) swap(h[x].l, h[x].r);
@@ -42,7 +40,7 @@ struct ksp {
     void init(int n_) {
         n = n_;
         for (int i = 1; i <= n; i++) g[i].clear(), rg[i].clear();
-        hp.cnt = 1;
+        hp.init();
     }
     void add(int u, int v, ll w) {
         g[u].push_back({w, v});

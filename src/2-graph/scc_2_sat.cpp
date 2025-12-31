@@ -2,7 +2,7 @@
 
 // what: SCC via Kosaraju.
 // time: O(n+m); memory: O(n+m)
-// constraint: directed; 1-indexed.
+// constraint: directed; 1-indexed; recursion depth O(n).
 // usage: scc_ko s; s.init(n); s.add(u,v); int c=s.run();
 struct scc_ko {
     int n;
@@ -49,12 +49,12 @@ struct scc_ko {
 
 // what: SCC via Tarjan.
 // time: O(n+m); memory: O(n+m)
-// constraint: directed; 1-indexed.
+// constraint: directed; 1-indexed; recursion depth O(n).
 // usage: scc_ta s; s.init(n); s.add(u,v); int c=s.run();
 struct scc_ta {
     int n, tim;
     vector<vector<int>> g, sccs;
-    vector<int> dfn, low, comp, st, inst;
+    vector<int> dfn, low, comp, st, ins;
 
     void init(int n_) {
         n = n_;
@@ -64,19 +64,19 @@ struct scc_ta {
         dfn.assign(n + 1, -1);
         low.assign(n + 1, 0);
         comp.assign(n + 1, -1);
-        inst.assign(n + 1, 0);
+        ins.assign(n + 1, 0);
         st.clear();
     }
     void add(int u, int v) { g[u].push_back(v); }
     void dfs(int v) {
         dfn[v] = low[v] = ++tim;
         st.push_back(v);
-        inst[v] = 1;
+        ins[v] = 1;
         for (int to : g[v]) {
             if (dfn[to] == -1) {
                 dfs(to);
                 low[v] = min(low[v], low[to]);
-            } else if (inst[to]) {
+            } else if (ins[to]) {
                 low[v] = min(low[v], dfn[to]);
             }
         }
@@ -86,7 +86,7 @@ struct scc_ta {
         while (1) {
             int x = st.back();
             st.pop_back();
-            inst[x] = 0;
+            ins[x] = 0;
             comp[x] = id;
             sccs[id].push_back(x);
             if (x == v) break;
@@ -101,12 +101,12 @@ struct scc_ta {
 
 // what: 2-SAT via SCC (Tarjan).
 // time: O(n+m); memory: O(n+m)
-// constraint: vars are 1..n; literal x<0 means not x.
+// constraint: vars are 1..n; literal x<0 means not x; recursion depth O(n).
 // usage: two_sat s; s.init(n); s.add(a,b); bool ok=s.run(); // s.val
 struct two_sat {
-    int n, tim, sc;
+    int n, tim, cid;
     vector<vector<int>> g;
-    vector<int> dfn, low, comp, st, inst, val;
+    vector<int> dfn, low, comp, st, ins, val;
 
     void init(int n_) {
         n = n_;
@@ -114,11 +114,11 @@ struct two_sat {
         dfn.assign(2 * n, -1);
         low.assign(2 * n, 0);
         comp.assign(2 * n, -1);
-        inst.assign(2 * n, 0);
+        ins.assign(2 * n, 0);
         st.clear();
         val.assign(n + 1, 0);
         tim = 0;
-        sc = 0;
+        cid = 0;
     }
     int id(int x) {
         // goal: x in [-n, n]\{0} -> node id.
@@ -132,12 +132,12 @@ struct two_sat {
     void dfs(int v) {
         dfn[v] = low[v] = ++tim;
         st.push_back(v);
-        inst[v] = 1;
+        ins[v] = 1;
         for (int to : g[v]) {
             if (dfn[to] == -1) {
                 dfs(to);
                 low[v] = min(low[v], low[to]);
-            } else if (inst[to]) {
+            } else if (ins[to]) {
                 low[v] = min(low[v], dfn[to]);
             }
         }
@@ -145,18 +145,18 @@ struct two_sat {
         while (1) {
             int x = st.back();
             st.pop_back();
-            inst[x] = 0;
-            comp[x] = sc;
+            ins[x] = 0;
+            comp[x] = cid;
             if (x == v) break;
         }
-        sc++;
+        cid++;
     }
     bool run() {
         for (int i = 0; i < 2 * n; i++)
             if (dfn[i] == -1) dfs(i);
         for (int i = 0; i < n; i++) {
             if (comp[2 * i] == comp[2 * i + 1]) return 0;
-            val[i + 1] = comp[2 * i] > comp[2 * i + 1];
+            val[i + 1] = comp[2 * i] < comp[2 * i + 1];
         }
         return 1;
     }

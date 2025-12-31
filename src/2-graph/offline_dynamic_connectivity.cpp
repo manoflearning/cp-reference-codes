@@ -2,7 +2,7 @@
 
 // what: offline dynamic connectivity with segment tree + rollback dsu.
 // time: O((n+q)log q); memory: O(n+q)
-// constraint: 1-indexed time; ops: 1 add, 2 del, 3 query.
+// constraint: 1-indexed time; ops consistent; no parallel active edge.
 // usage: odc g; g.init(n,q); g.add_op(i,op,u,v); g.build(); g.run();
 struct odc {
     struct seg {
@@ -74,8 +74,10 @@ struct odc {
         if (op == 1) {
             mp[{u, v}] = i;
         } else if (op == 2) {
-            sg.add(mp[{u, v}], i - 1, {u, v});
-            mp.erase({u, v});
+            auto it = mp.find({u, v});
+            if (it == mp.end()) return;
+            sg.add(it->second, i - 1, {u, v});
+            mp.erase(it);
         } else if (op == 3) {
             qry[i] = {u, v};
         }
