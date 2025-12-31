@@ -23,7 +23,7 @@ struct cht_mono {
     }
 
     void add_line(ll m, ll b) {
-        // goal: maintain lower hull with increasing slopes
+        // goal: maintain lower hull with decreasing slopes
         if (!st.empty() && st.back().m == m) {
             if (st.back().b <= b) return; // new line is worse
             st.pop_back();
