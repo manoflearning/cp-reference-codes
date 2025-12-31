@@ -1,6 +1,6 @@
 #include "../../src/1-ds/merge_sort_tree.cpp"
 
-// what: tests for mseg, mseg_it.
+// what: tests for merge_seg, merge_seg_it.
 // time: random + edge cases; memory: O(n log n)
 // constraint: uses assert, fixed seed.
 // usage: g++ -std=c++17 test_merge_sort_tree.cpp && ./a.out
@@ -19,7 +19,7 @@ int count_greater(const vector<int> &a, int l, int r, int k) {
 
 void test_merge_sort_tree_basic() {
     vector<int> a = {5};
-    mseg st;
+    merge_seg st;
     st.build(a);
     assert(st.query(0, 0, 4) == 1);
     assert(st.query(0, 0, 5) == 0);
@@ -30,7 +30,7 @@ void test_merge_sort_tree_random() {
     vector<int> a(n);
     for (int i = 0; i < n; i++) a[i] = (int)rnd(-10, 10);
 
-    mseg st;
+    merge_seg st;
     st.build(a);
 
     for (int it = 0; it < 4000; it++) {
@@ -43,7 +43,7 @@ void test_merge_sort_tree_random() {
 
 void test_merge_sort_tree_iter_basic() {
     vector<int> a = {2};
-    mseg_it st;
+    merge_seg_it st;
     st.build(a);
     assert(st.query(0, 0, 1) == 1);
     assert(st.query(0, 0, 2) == 0);
@@ -54,7 +54,7 @@ void test_merge_sort_tree_iter_random() {
     vector<int> a(n);
     for (int i = 0; i < n; i++) a[i] = (int)rnd(-10, 10);
 
-    mseg_it st;
+    merge_seg_it st;
     st.build(a);
 
     for (int it = 0; it < 4000; it++) {

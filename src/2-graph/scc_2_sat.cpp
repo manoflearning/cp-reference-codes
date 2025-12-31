@@ -3,8 +3,8 @@
 // what: SCC via Kosaraju.
 // time: O(n+m); memory: O(n+m)
 // constraint: directed; 1-indexed; recursion depth O(n).
-// usage: scc_ko s; s.init(n); s.add(u,v); int c=s.run();
-struct scc_ko {
+// usage: scc_kosa s; s.init(n); s.add(u,v); int c=s.run();
+struct scc_kosa {
     int n;
     vector<vector<int>> g, rg, sccs;
     vector<int> vis, comp, ord;
@@ -50,8 +50,8 @@ struct scc_ko {
 // what: SCC via Tarjan.
 // time: O(n+m); memory: O(n+m)
 // constraint: directed; 1-indexed; recursion depth O(n).
-// usage: scc_ta s; s.init(n); s.add(u,v); int c=s.run();
-struct scc_ta {
+// usage: scc_tarjan s; s.init(n); s.add(u,v); int c=s.run();
+struct scc_tarjan {
     int n, tim;
     vector<vector<int>> g, sccs;
     vector<int> dfn, low, comp, st, ins;

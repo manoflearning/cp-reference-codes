@@ -3,8 +3,8 @@
 // what: segment tree (point set, range sum).
 // time: build O(n), update/query O(log n); memory: O(n)
 // constraint: 1-indexed [1, n]; a[0] unused.
-// usage: segt st; st.build(a); st.set(p, v); st.query(l, r);
-struct segt {
+// usage: seg_tree st; st.build(a); st.set(p, v); st.query(l, r);
+struct seg_tree {
     int flag;
     vector<ll> t;
     void build(const vector<ll> &a) {
@@ -30,8 +30,8 @@ struct segt {
 // what: iter segment tree (point set, range sum).
 // time: build O(n), update/query O(log n); memory: O(n)
 // constraint: 0-indexed [l, r).
-// usage: segti st; st.build(a); st.set(p, v); st.query(l, r);
-struct segti { // 0-indexed
+// usage: seg_tree_it st; st.build(a); st.set(p, v); st.query(l, r);
+struct seg_tree_it { // 0-indexed
     int n;
     vector<ll> t;
     void build(const vector<ll> &a) {
@@ -56,8 +56,8 @@ struct segti { // 0-indexed
 // what: segment tree for kth on freq array.
 // time: update/query O(log n); memory: O(n)
 // constraint: 1-indexed [1, n], values >= 0.
-// usage: segk st; st.init(n); st.add(p, v); st.kth(k);
-struct segk {
+// usage: seg_tree_kth st; st.init(n); st.add(p, v); st.kth(k);
+struct seg_tree_kth {
     int flag;
     vector<ll> t;
     void init(int n) {
@@ -79,8 +79,8 @@ struct segk {
 // what: segment tree with range add + range sum.
 // time: update/query O(log n); memory: O(n)
 // constraint: 1-indexed [1, n]; a[0] unused.
-// usage: seglz st; st.build(a); st.add(l, r, v); st.query(l, r);
-struct seglz {
+// usage: seg_tree_lz st; st.build(a); st.add(l, r, v); st.query(l, r);
+struct seg_tree_lz {
     int flag;
     vector<ll> t, lz;
     void build(const vector<ll> &a) {
@@ -128,8 +128,8 @@ struct seglz {
 // what: persistent segment tree (point set, range sum).
 // time: build O(n), update/query O(log n); memory: O(n log n)
 // constraint: 1-indexed [1, n]; a[0] unused.
-// usage: pst st; st.build(n, a); st.set(p, v); st.query(l, r, ver);
-struct pst {
+// usage: seg_pst st; st.build(n, a); st.set(p, v); st.query(l, r, ver);
+struct seg_pst {
     struct node {
         int l, r;
         ll val;
@@ -201,13 +201,13 @@ struct pst {
 // what: dynamic seg tree (sparse, point add, range sum).
 // time: update/query O(log R); memory: O(k log R)
 // constraint: range [MAXL, MAXR], missing child => 0.
-// usage: dyseg st; st.add(p, v); st.query(l, r);
+// usage: seg_sparse st; st.add(p, v); st.query(l, r);
 constexpr int MAXL = 1, MAXR = 1000000;
 struct dnode {
     ll x;
     int l, r;
 };
-struct dyseg {
+struct seg_sparse {
     vector<dnode> t = {{0, -1, -1}, {0, -1, -1}};
     void add(int p, ll x, int v = 1, int nl = MAXL, int nr = MAXR) {
         if (p < nl || nr < p) return;
@@ -242,8 +242,8 @@ struct dyseg {
 // what: 2D segment tree (point set, rect sum).
 // time: build O(n^2), update/query O(log^2 n); memory: O(n^2)
 // constraint: 0-indexed square n x n.
-// usage: seg2d st; st.build(a); st.set(x, y, v); st.query(x1, x2, y1, y2);
-struct seg2d { // 0-indexed
+// usage: seg_2d st; st.build(a); st.set(x, y, v); st.query(x1, x2, y1, y2);
+struct seg_2d { // 0-indexed
     int n;
     vector<vector<ll>> t;
     void build(const vector<vector<ll>> &a) {
@@ -287,18 +287,18 @@ struct seg2d { // 0-indexed
 
 // what: 2D seg tree with coord comp (offline).
 // time: prep O(q log q), update/query O(log^2 n); memory: O(q log q)
-// constraint: call fmod/fqry first, then prep, then set/query.
-// usage: seg2dc st(n); st.fmod(x, y); st.fqry(x1, x2, y1, y2); st.prep(); st.set(x, y, v); st.query(x1, x2, y1, y2);
-struct seg2dc { // 0-indexed
+// constraint: call mark_set/mark_qry first, then prep, then set/query.
+// usage: seg2d_comp st(n); st.mark_set(x, y); st.mark_qry(x1, x2, y1, y2); st.prep(); st.set(x, y, v); st.query(x1, x2, y1, y2);
+struct seg2d_comp { // 0-indexed
     int n;
     vector<vector<ll>> a;
     vector<vector<int>> used;
     unordered_map<ll, ll> mp;
-    seg2dc(int n) : n(n), a(2 * n), used(2 * n) {}
-    void fmod(int x, int y) {
+    seg2d_comp(int n) : n(n), a(2 * n), used(2 * n) {}
+    void mark_set(int x, int y) {
         for (x += n; x >= 1; x >>= 1) used[x].push_back(y);
     }
-    void fqry(int x1, int x2, int y1, int y2) {
+    void mark_qry(int x1, int x2, int y1, int y2) {
         for (x1 += n, x2 += n + 1; x1 < x2; x1 >>= 1, x2 >>= 1) {
             if (x1 & 1) {
                 used[x1].push_back(y1);

@@ -3,8 +3,8 @@
 // what: Dijkstra shortest path (non-negative weights).
 // time: O((n+m)log n); memory: O(n+m)
 // constraint: directed; 1-indexed; w >= 0.
-// usage: dijk g; g.init(n); g.add(u,v,w); auto dist=g.run(s);
-struct dijk {
+// usage: dijkstra g; g.init(n); g.add(u,v,w); auto dist=g.run(s);
+struct dijkstra {
     static const ll INF = (1LL << 62);
     int n;
     vector<vector<pll>> adj;
@@ -37,8 +37,8 @@ struct dijk {
 // what: Bellman-Ford shortest path.
 // time: O(nm); memory: O(n+m)
 // constraint: directed; 1-indexed; detects negative cycle reachable from s.
-// usage: bell g; g.init(n); g.add(u,v,w); bool ok=g.run(s, dist);
-struct bell {
+// usage: bell_ford g; g.init(n); g.add(u,v,w); bool ok=g.run(s, dist);
+struct bell_ford {
     static const ll INF = (1LL << 62);
     int n;
     vector<tuple<int, int, ll>> ed;

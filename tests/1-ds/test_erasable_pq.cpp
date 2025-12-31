@@ -1,6 +1,6 @@
 #include "../../src/1-ds/erasable_pq.cpp"
 
-// what: tests for epq (erasable pq).
+// what: tests for erase_pq (erasable pq).
 // time: random + edge cases; memory: O(n)
 // constraint: uses assert, fixed seed.
 // usage: g++ -std=c++17 test_erasable_pq.cpp && ./a.out
@@ -19,7 +19,7 @@ ll pick_multiset(multiset<ll> &ms) {
 }
 
 void test_edge_cases() {
-    epq<ll> pq;
+    erase_pq<ll> pq;
     multiset<ll> ms;
 
     pq.push(5), ms.insert(5);
@@ -43,7 +43,7 @@ void test_edge_cases() {
 }
 
 void test_randomized() {
-    epq<ll> pq;
+    erase_pq<ll> pq;
     multiset<ll> ms;
 
     for (int it = 0; it < 3000; it++) {

@@ -3,8 +3,8 @@
 // what: k-th shortest walk (Eppstein-style, non-negative weights).
 // time: O((n+m)log m + klog k); memory: O(n+m+heap)
 // constraint: 1-indexed; w >= 0; n <= MAXN-1; recursion depth O(log m).
-// usage: ksp g; g.init(n); g.add(u,v,w); auto v=g.run(s,e,k);
-struct ksp {
+// usage: kth_walk g; g.init(n); g.add(u,v,w); auto v=g.run(s,e,k);
+struct kth_walk {
     static const int MAXN = 303030;
     static const ll INF = (ll)1e18;
 

@@ -3,8 +3,8 @@
 // what: offline dynamic connectivity with segment tree + rollback dsu.
 // time: O((n+q)log q); memory: O(n+q)
 // constraint: 1-indexed time; ops consistent; no parallel active edge.
-// usage: odc g; g.init(n,q); g.add_op(i,op,u,v); g.build(); g.run();
-struct odc {
+// usage: dyn_conn g; g.init(n,q); g.add_op(i,op,u,v); g.build(); g.run();
+struct dyn_conn {
     struct seg {
         int flg;
         vector<vector<pii>> t;

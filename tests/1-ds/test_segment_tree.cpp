@@ -1,6 +1,6 @@
 #include "../../src/1-ds/segment_tree.cpp"
 
-// what: tests for segt, segti, segk, seglz, pst, dyseg, seg2d, seg2dc.
+// what: tests for seg_tree, seg_tree_it, seg_tree_kth, seg_tree_lz, seg_pst, seg_sparse, seg_2d, seg2d_comp.
 // time: random + edge cases; memory: O(n log n)
 // constraint: uses assert, fixed seed.
 // usage: g++ -std=c++17 test_segment_tree.cpp && ./a.out
@@ -28,7 +28,7 @@ int kth_naive_freq(const vector<ll> &a, ll k) {
 
 void test_segt_basic() {
     vector<ll> a = {0, 3};
-    segt st;
+    seg_tree st;
     st.build(a);
     assert(st.query(1, 1) == 3);
     st.set(1, -2);
@@ -40,7 +40,7 @@ void test_segt_random() {
     vector<ll> a(n + 1, 0);
     for (int i = 1; i <= n; i++) a[i] = rnd(-5, 5);
 
-    segt st;
+    seg_tree st;
     st.build(a);
 
     for (int it = 0; it < 5000; it++) {
@@ -60,7 +60,7 @@ void test_segt_random() {
 
 void test_segti_basic() {
     vector<ll> a = {4};
-    segti st;
+    seg_tree_it st;
     st.build(a);
     assert(st.query(0, 1) == 4);
     st.set(0, 1);
@@ -72,7 +72,7 @@ void test_segti_random() {
     vector<ll> a(n, 0);
     for (int i = 0; i < n; i++) a[i] = rnd(-5, 5);
 
-    segti st;
+    seg_tree_it st;
     st.build(a);
 
     for (int it = 0; it < 5000; it++) {
@@ -94,7 +94,7 @@ void test_segti_random() {
 
 void test_segk_basic() {
     int n = 3;
-    segk st;
+    seg_tree_kth st;
     st.init(n);
     st.add(1, 2);
     st.add(3, 1);
@@ -106,7 +106,7 @@ void test_segk_basic() {
 void test_segk_random() {
     int n = 40;
     vector<ll> a(n + 1, 0);
-    segk st;
+    seg_tree_kth st;
     st.init(n);
 
     for (int it = 0; it < 4000; it++) {
@@ -128,7 +128,7 @@ void test_segk_random() {
 
 void test_seglz_basic() {
     vector<ll> a = {0, 1, 2};
-    seglz st;
+    seg_tree_lz st;
     st.build(a);
     st.add(1, 2, 3);
     assert(st.query(1, 2) == 1 + 2 + 6);
@@ -139,7 +139,7 @@ void test_seglz_random() {
     vector<ll> a(n + 1, 0);
     for (int i = 1; i <= n; i++) a[i] = rnd(-5, 5);
 
-    seglz st;
+    seg_tree_lz st;
     st.build(a);
 
     for (int it = 0; it < 4000; it++) {
@@ -161,7 +161,7 @@ void test_seglz_random() {
 void test_pst_basic() {
     int n = 3;
     vector<ll> a = {0, 1, 2, 3};
-    pst st;
+    seg_pst st;
     st.build(n, a);
     st.set(2, 5);
     assert(st.query(1, 3, 0) == 6);
@@ -175,7 +175,7 @@ void test_pst_random() {
     for (int i = 1; i <= n; i++) a[i] = rnd(-5, 5);
     ver.push_back(a);
 
-    pst st;
+    seg_pst st;
     st.build(n, a);
 
     for (int it = 0; it < 2000; it++) {
@@ -197,7 +197,7 @@ void test_pst_random() {
 }
 
 void test_dyseg_basic() {
-    dyseg st;
+    seg_sparse st;
     st.add(MAXL, 5);
     st.add(MAXR, -2);
     assert(st.query(MAXL, MAXL) == 5);
@@ -206,7 +206,7 @@ void test_dyseg_basic() {
 }
 
 void test_dyseg_random() {
-    dyseg st;
+    seg_sparse st;
     map<int, ll> mp;
     int lo = 1, hi = 1000;
 
@@ -237,7 +237,7 @@ ll sum_rect(const vector<vector<ll>> &a, int x1, int y1, int x2, int y2) {
 
 void test_seg2d_basic() {
     vector<vector<ll>> a = {{7}};
-    seg2d st;
+    seg_2d st;
     st.build(a);
     assert(st.query(0, 0, 0, 0) == 7);
     st.set(0, 0, -1);
@@ -250,7 +250,7 @@ void test_seg2d_random() {
     for (int i = 0; i < n; i++)
         for (int j = 0; j < n; j++) a[i][j] = rnd(-3, 3);
 
-    seg2d st;
+    seg_2d st;
     st.build(a);
 
     for (int it = 0; it < 3000; it++) {
@@ -279,7 +279,7 @@ struct op2d {
 
 void test_seg2dc_basic() {
     int n = 1;
-    seg2dc st(n);
+    seg2d_comp st(n);
     vector<op2d> ops;
     ops.push_back({0, 0, 0, 0, 0, 5});
     ops.push_back({1, 0, 0, 0, 0, 0});
@@ -287,8 +287,8 @@ void test_seg2dc_basic() {
     ops.push_back({1, 0, 0, 0, 0, 0});
 
     for (auto &op : ops) {
-        if (op.type == 0) st.fmod(op.x1, op.y1);
-        else st.fqry(op.x1, op.x2, op.y1, op.y2);
+        if (op.type == 0) st.mark_set(op.x1, op.y1);
+        else st.mark_qry(op.x1, op.x2, op.y1, op.y2);
     }
     st.prep();
 
@@ -301,7 +301,7 @@ void test_seg2dc_basic() {
             ll got = st.query(op.x1, op.x2, op.y1, op.y2);
             ll exp = sum_rect(a, op.x1, op.y1, op.x2, op.y2);
             if (got != exp) {
-                cerr << "seg2dc mismatch: "
+                cerr << "seg2d_comp mismatch: "
                      << "x1=" << op.x1 << " x2=" << op.x2
                      << " y1=" << op.y1 << " y2=" << op.y2
                      << " got=" << got << " exp=" << exp << "\n";
@@ -313,7 +313,7 @@ void test_seg2dc_basic() {
 
 void test_seg2dc_random() {
     int n = 6;
-    seg2dc st(n);
+    seg2d_comp st(n);
     vector<op2d> ops;
     int q = 2000;
     for (int i = 0; i < q; i++) {
@@ -333,8 +333,8 @@ void test_seg2dc_random() {
     }
 
     for (auto &op : ops) {
-        if (op.type == 0) st.fmod(op.x1, op.y1);
-        else st.fqry(op.x1, op.x2, op.y1, op.y2);
+        if (op.type == 0) st.mark_set(op.x1, op.y1);
+        else st.mark_qry(op.x1, op.x2, op.y1, op.y2);
     }
     st.prep();
 
@@ -347,7 +347,7 @@ void test_seg2dc_random() {
             ll got = st.query(op.x1, op.x2, op.y1, op.y2);
             ll exp = sum_rect(a, op.x1, op.y1, op.x2, op.y2);
             if (got != exp) {
-                cerr << "seg2dc mismatch: "
+                cerr << "seg2d_comp mismatch: "
                      << "x1=" << op.x1 << " x2=" << op.x2
                      << " y1=" << op.y1 << " y2=" << op.y2
                      << " got=" << got << " exp=" << exp << "\n";

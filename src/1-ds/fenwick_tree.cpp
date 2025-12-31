@@ -3,8 +3,8 @@
 // what: fenwick tree (point add, prefix/range sum).
 // time: build O(n), update/query O(log n); memory: O(n)
 // constraint: 0-indexed; kth needs all values >= 0.
-// usage: fenw fw; fw.build(a); fw.add(p, x); fw.sum(l, r); fw.kth(k);
-struct fenw {
+// usage: fenwick fw; fw.build(a); fw.add(p, x); fw.sum(l, r); fw.kth(k);
+struct fenwick {
     int n;
     vector<ll> a, t;
     void init(int n_) {
@@ -52,8 +52,8 @@ struct fenw {
 // what: fenwick tree (range add, point get).
 // time: update/query O(log n); memory: O(n)
 // constraint: 1-indexed; l <= r.
-// usage: fenw_rp fw; fw.init(n); fw.add(l, r, x); ll v = fw.get(p);
-struct fenw_rp { // 1-indexed
+// usage: fenw_range fw; fw.init(n); fw.add(l, r, x); ll v = fw.get(p);
+struct fenw_range { // 1-indexed
     int n;
     vector<ll> t;
     void init(int n_) {
@@ -74,8 +74,8 @@ struct fenw_rp { // 1-indexed
 // what: 2D fenwick tree (point add, rectangle sum).
 // time: build O(n m), update/query O(log n log m); memory: O(n m)
 // constraint: 0-indexed; no bounds check.
-// usage: fenw2d fw; fw.build(a); fw.add(x, y, v); fw.sum(x1, y1, x2, y2);
-struct fenw2d { // 0-indexed
+// usage: fenw_2d fw; fw.build(a); fw.add(x, y, v); fw.sum(x1, y1, x2, y2);
+struct fenw_2d { // 0-indexed
     int n, m;
     vector<vector<ll>> a, t;
     void init(int n_, int m_) {
