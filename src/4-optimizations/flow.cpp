@@ -1,18 +1,18 @@
 #include "../common/common.hpp"
 
-// Flow templates (0-based).
-// what: max flow, min-cost flow, bipartite matching, lr flow
-// time: see each struct, memory: O(E)
-// constraint: capacities >= 0, mcmf needs no negative cycle
-namespace flow {
-constexpr ll INF = (1LL << 62);
+// what: flow templates (dinic, mcmf, matching, lower/upper bounds).
+// time: see each struct; memory: O(E)
+// constraint: 0-based; cap >= 0; mcmf assumes no negative cycle reachable from s.
+// usage: dinic mf(n); mf.add_edge(u,v,c); ll f=mf.max_flow(s,t);
 
 // dinic max flow (0-based).
 // what: fast max flow with residual graph
-// time: O(E V^2) worst, memory: O(E)
+// time: O(E V^2) worst; memory: O(E)
 // constraint: cap >= 0
 // usage: dinic mf(n); mf.add_edge(u, v, cap); ll f = mf.max_flow(s, t);
 struct dinic {
+    static constexpr ll INF = (1LL << 62);
+
     struct edge {
         int to, rev;
         ll cap;
@@ -105,7 +105,7 @@ struct dinic {
 
 // hk bipartite matching (0-based).
 // what: maximum matching in bipartite graph
-// time: O(E sqrt V), memory: O(E)
+// time: O(E sqrt V); memory: O(E)
 // constraint: left [0..n_l-1], right [0..n_r-1]
 // usage: hk bm(n_l, n_r); bm.add_edge(l, r); int m = bm.max_matching();
 struct hk {
@@ -185,11 +185,13 @@ struct hk {
 
 // mcmf min-cost max-flow (0-based).
 // what: min-cost flow with negative costs via potentials
-// time: O(F E log V), memory: O(E)
+// time: O(F E log V); memory: O(E)
 // constraint: no negative cycle reachable from s
-// usage: mcmf mf(n); mf.add_edge(u, v, cap, cost); pll r = mf.min_cost_max_flow(s, t);
+// usage: mcmf mf(n); mf.add_edge(u,v,c,co); pll r=mf.min_cost_mf(s,t);
 // usage: init_pot = false if all costs >= 0 (faster)
 struct mcmf {
+    static constexpr ll INF = (1LL << 62);
+
     struct edge {
         int to, rev;
         ll cap, cost;
@@ -231,7 +233,7 @@ struct mcmf {
         rev.cap = 0;
     }
 
-    pll min_cost_max_flow(int s, int t, ll max_f = INF, bool init_pot = true) {
+    pll min_cost_mf(int s, int t, ll max_f = INF, bool init_pot = true) {
         ll flow = 0, cost = 0;
         vector<ll> pot(n, 0), dist(n);
         vector<int> pv(n), pe(n);
@@ -313,6 +315,8 @@ struct mcmf {
 // constraint: 0 <= lo <= hi, single-use (call init(n) to reuse)
 // usage: lr_dinic f(n); int id = f.add_edge(u, v, lo, hi); auto [ok, v] = f.max_flow(s, t);
 struct lr_dinic {
+    static constexpr ll INF = dinic::INF;
+
     struct edge_info {
         dinic::edge_ref ref;
         ll lo;
@@ -397,6 +401,8 @@ struct lr_dinic {
 // constraint: 0 <= lo <= hi, no negative cycle, single-use (call init(n) to reuse)
 // usage: lr_mcmf f(n); f.add_edge(u, v, lo, hi, cost); auto [ok, r] = f.max_flow(s, t);
 struct lr_mcmf {
+    static constexpr ll INF = mcmf::INF;
+
     struct edge_info {
         mcmf::edge_ref ref;
         ll lo;
@@ -406,6 +412,7 @@ struct lr_mcmf {
     mcmf mf;
     vector<ll> demand;
     vector<edge_info> edges;
+    ll base_cost;
 
     lr_mcmf(int n = 0) { init(n); }
 
@@ -414,12 +421,14 @@ struct lr_mcmf {
         mf.init(n + 2);
         demand.assign(n, 0);
         edges.clear();
+        base_cost = 0;
     }
 
     int add_edge(int u, int v, ll lo, ll hi, ll cost) {
         // goal: store lower bounds via node demands
         demand[u] -= lo;
         demand[v] += lo;
+        base_cost += lo * cost;
         edges.push_back({mf.add_edge(u, v, hi - lo, cost), lo});
         return (int)edges.size() - 1;
     }
@@ -449,9 +458,10 @@ struct lr_mcmf {
         aux.reserve(n);
         ll total = add_demands(aux);
         int ss = n, tt = n + 1;
-        pll res = mf.min_cost_max_flow(ss, tt, total, init_pot);
+        pll res = mf.min_cost_mf(ss, tt, total, init_pot);
         for (auto ref : aux) mf.clear_edge(ref);
-        return {res.fr == total, res.sc};
+        if (res.fr != total) return {false, 0};
+        return {true, res.sc + base_cost};
     }
 
     pair<bool, pll> max_flow(int s, int t, bool init_pot = true) {
@@ -464,7 +474,7 @@ struct lr_mcmf {
         int ss = n, tt = n + 1;
         auto ts = mf.add_edge(t, s, INF, 0);
         ll total = add_demands(aux);
-        pll res = mf.min_cost_max_flow(ss, tt, total, init_pot);
+        pll res = mf.min_cost_mf(ss, tt, total, init_pot);
         if (res.fr != total) {
             mf.clear_edge(ts);
             for (auto ref : aux) mf.clear_edge(ref);
@@ -474,9 +484,7 @@ struct lr_mcmf {
         ll cost = res.sc;
         mf.clear_edge(ts);
         for (auto ref : aux) mf.clear_edge(ref);
-        pll extra = mf.min_cost_max_flow(s, t, INF, init_pot);
-        return {true, {base + extra.fr, cost + extra.sc}};
+        pll extra = mf.min_cost_mf(s, t, INF, init_pot);
+        return {true, {base + extra.fr, cost + extra.sc + base_cost}};
     }
 };
-
-} // namespace flow

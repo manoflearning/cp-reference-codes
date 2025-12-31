@@ -1,33 +1,31 @@
 #include "../common/common.hpp"
 
-vector<int> getpi(const string &P) {
-    vector<int> pi(sz(P));
-    for (int i = 1, j = 0; i < sz(P); i++) {
-        while (j > 0 && P[i] != P[j]) j = pi[j - 1];
-        if (P[i] == P[j]) pi[i] = ++j;
+// what: KMP (prefix function) for exact pattern matching.
+// time: O(|t|+|p|); memory: O(|p|)
+// constraint: returns 0-indexed match positions.
+// usage: auto pos = kmp_match(t, p); // p in t
+vector<int> kmp_pi(const string &p) {
+    vector<int> pi(sz(p));
+    for (int i = 1, j = 0; i < sz(p); i++) {
+        while (j && p[i] != p[j]) j = pi[j - 1];
+        if (p[i] == p[j]) pi[i] = ++j;
     }
     return pi;
 }
-vector<int> kmp(const string &T, const string &P) {
-    vector<int> ret;
-    vector<int> pi = getpi(P);
-    for (int i = 0, j = 0; i < sz(T); i++) {
-        while (j > 0 && T[i] != P[j]) j = pi[j - 1];
-        if (T[i] == P[j]) {
-            if (j == sz(P) - 1) {
-                ret.push_back(i - (sz(P) - 1));
-                j = pi[j];
-            } else ++j;
+
+vector<int> kmp_match(const string &t, const string &p) {
+    vector<int> res;
+    if (p.empty()) return res;
+    auto pi = kmp_pi(p);
+    for (int i = 0, j = 0; i < sz(t); i++) {
+        while (j && t[i] != p[j]) j = pi[j - 1];
+        if (t[i] != p[j]) continue;
+        if (j == sz(p) - 1) {
+            res.push_back(i - (sz(p) - 1));
+            j = pi[j];
+        } else {
+            j++;
         }
     }
-    return ret;
-}
-int main() {
-    string T, P;
-    getline(cin, T);
-    getline(cin, P);
-    vector<int> ans = kmp(T, P);
-    cout << sz(ans) << '\n';
-    for (int i : ans)
-        cout << i + 1 << '\n';
+    return res;
 }

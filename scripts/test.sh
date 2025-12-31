@@ -7,7 +7,8 @@ cd "$root_dir"
 out_dir=$(mktemp -d)
 trap 'rm -rf "$out_dir"' EXIT
 
-for src in tests/1-ds/test_*.cpp tests/2-graph/test_*.cpp tests/3-tree/test_*.cpp; do
+for src in tests/1-ds/test_*.cpp tests/2-graph/test_*.cpp tests/3-tree/test_*.cpp \
+  tests/4-optimizations/test_*.cpp tests/5-string/test_*.cpp; do
   bin="$out_dir/$(basename "${src%.cpp}")"
   echo "[build] $src"
   g++ -std=c++17 -O2 -pipe "$src" -o "$bin"

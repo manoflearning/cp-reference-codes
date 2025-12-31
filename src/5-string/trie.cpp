@@ -1,101 +1,45 @@
 #include "../common/common.hpp"
 
-// 1. Trie (Array Index)
-const char st = '0';
-const int MAXC = '9' - '0' + 1;
-const int MAXN = 100 * 100 * MAXC + 1;
+// what: trie for lowercase strings.
+// time: add/has O(|s|); memory: O(nodes*ALPHA)
+// constraint: 'a'..'z'.
+// usage: trie tr; tr.add(s); bool ok=tr.has(s);
 struct trie {
-    int cnt, t[MAXN][MAXC];
-    bool term[MAXN];
-    void clear() {
-        memset(t, 0, sizeof(t));
-        memset(term, 0, sizeof(term));
-        cnt = 0;
-    }
-    void insert(string &s) {
-        int here = 0;
-        for (char &i : s) {
-            if (!t[here][i - st]) t[here][i - st] = ++cnt;
-            here = t[here][i - st];
-        }
-        term[here] = true;
-    }
-    bool find(string &s) {
-        int here = 0;
-        for (int i = 0; i < s.size(); i++) {
-            if (!t[here][s[i] - st]) return false;
-            here = t[here][s[i] - st];
-            if (i == s.size() - 1 && term[here]) return true;
-        }
-        return false;
-    }
-};
-trie T;
-int main() {
-    int N;
-    cin >> N;
-    for (int i = 0; i < N; i++) {
-        string s;
-        cin >> s;
-        T.insert(s);
-    }
-    int Q;
-    cin >> Q;
-    while (Q--) {
-        string s;
-        cin >> s;
-        if (T.find(s)) cout << "Is exist.\n";
-        else cout << "Is not exist.\n";
-    }
-}
+    static constexpr int ALPHA = 26;
+    vector<array<int, ALPHA>> nxt;
+    vector<char> term;
 
-// 2. Trie (Pointer)
-const char st = 'a';
-const int MAXC = 'z' - 'a' + 1;
-struct trie {
-    trie *child[MAXC];
-    bool term;
-    trie() {
-        fill(child, child + MAXC, nullptr);
-        term = false;
+    trie() { init(); }
+
+    void init() {
+        nxt.assign(1, {});
+        nxt[0].fill(-1);
+        term.assign(1, 0);
     }
-    ~trie() {
-        for (int i = 0; i < MAXC; i++)
-            if (child[i]) delete child[i];
-    }
-    void insert(const string &s, int key = 0) {
-        if (s.size() == key) term = true;
-        else {
-            int next = s[key] - st;
-            if (!child[next]) child[next] = new trie;
-            child[next]->insert(s, key + 1);
+
+    int add(const string &s) {
+        int v = 0;
+        for (char ch : s) {
+            int c = ch - 'a';
+            if (nxt[v][c] == -1) {
+                nxt[v][c] = sz(nxt);
+                nxt.push_back({});
+                nxt.back().fill(-1);
+                term.push_back(0);
+            }
+            v = nxt[v][c];
         }
+        term[v] = 1;
+        return v;
     }
-    bool find(const string &s, int key = 0) {
-        if (s.size() == key) return term;
-        else {
-            int next = s[key] - st;
-            if (!child[next]) return false;
-            else return child[next]->find(s, key + 1);
+
+    bool has(const string &s) const {
+        int v = 0;
+        for (char ch : s) {
+            int c = ch - 'a';
+            if (nxt[v][c] == -1) return false;
+            v = nxt[v][c];
         }
+        return term[v];
     }
 };
-int main() {
-    trie *root = new trie;
-    int N;
-    cin >> N;
-    for (int i = 0; i < N; i++) {
-        string s;
-        cin >> s;
-        root->insert(s);
-    }
-    int Q;
-    cin >> Q;
-    while (Q--) {
-        string s;
-        cin >> s;
-        if (root->find(s)) cout << "Is exist.\n";
-        else cout << "Is not exist.\n";
-    }
-    delete root;
-}
