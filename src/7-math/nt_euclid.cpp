@@ -1,11 +1,12 @@
 #pragma once
 #include "num.hpp"
 
-// what: Euclidean algorithms cheat sheet (gcd/lcm/egcd + mod inverse / linear congruence).
+// what: quick reference for gcd/egcd/inverse/linear congruence identities.
 // time: O(log n); memory: O(1)
 // constraint: modular ops require mod > 0.
 // usage: ll g=euclid::gcd(a,b); auto eg=euclid::egcd(a,b); ll inv=euclid::inv_mod(a,mod);
 
+// goal: keep key formulas handy when using euclid in num.hpp.
 // Bezout:
 // gcd(a,b)=g => exists x,y: ax+by=g. (euclid::egcd)
 //

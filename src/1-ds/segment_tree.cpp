@@ -1,6 +1,6 @@
 #include "../common/common.hpp"
 
-// what: segment tree (point set, range sum).
+// what: point update + range sum on a fixed-size array using a tree.
 // time: build O(n), update/query O(log n); memory: O(n)
 // constraint: 1-indexed [1, n]; a[0] unused.
 // usage: seg_tree st; st.build(a); st.set(p, v); st.query(l, r);
@@ -8,6 +8,7 @@ struct seg_tree {
     int flag;
     vector<ll> t;
     void build(const vector<ll> &a) {
+        // goal: build tree from 1-indexed array.
         int n = sz(a) - 1;
         flag = 1;
         while (flag < n) flag <<= 1;
@@ -16,10 +17,12 @@ struct seg_tree {
         for (int i = flag - 1; i >= 1; i--) t[i] = t[i << 1] + t[i << 1 | 1];
     }
     void set(int p, ll val) {
+        // goal: set a[p] = val.
         for (t[p += flag - 1] = val; p > 1; p >>= 1) t[p >> 1] = t[p] + t[p ^ 1];
     }
     ll query(int l, int r) const { return query(l, r, 1, 1, flag); }
     ll query(int l, int r, int v, int nl, int nr) const {
+        // result: sum on [l, r] within node range.
         if (r < nl || nr < l) return 0;
         if (l <= nl && nr <= r) return t[v];
         int mid = (nl + nr) >> 1;
@@ -27,7 +30,7 @@ struct seg_tree {
     }
 };
 
-// what: iter segment tree (point set, range sum).
+// what: iterative segment tree for point update and range sum.
 // time: build O(n), update/query O(log n); memory: O(n)
 // constraint: 0-indexed [l, r).
 // usage: seg_tree_it st; st.build(a); st.set(p, v); st.query(l, r);
@@ -35,15 +38,18 @@ struct seg_tree_it { // 0-indexed
     int n;
     vector<ll> t;
     void build(const vector<ll> &a) {
+        // goal: build tree from 0-indexed array.
         n = sz(a);
         t.assign(2 * n, 0);
         for (int i = 0; i < n; i++) t[n + i] = a[i];
         for (int i = n - 1; i >= 1; i--) t[i] = t[i << 1] + t[i << 1 | 1];
     }
     void set(int p, ll val) {
+        // goal: set a[p] = val.
         for (t[p += n] = val; p > 1; p >>= 1) t[p >> 1] = t[p] + t[p ^ 1];
     }
     ll query(int l, int r) const {
+        // result: sum on [l, r).
         ll ret = 0;
         for (l += n, r += n; l < r; l >>= 1, r >>= 1) {
             if (l & 1) ret += t[l++];
@@ -53,7 +59,7 @@ struct seg_tree_it { // 0-indexed
     }
 };
 
-// what: segment tree for kth on freq array.
+// what: find k-th element by prefix sum on a frequency array.
 // time: update/query O(log n); memory: O(n)
 // constraint: 1-indexed [1, n], values >= 0.
 // usage: seg_tree_kth st; st.init(n); st.add(p, v); st.kth(k);
@@ -61,14 +67,17 @@ struct seg_tree_kth {
     int flag;
     vector<ll> t;
     void init(int n) {
+        // goal: allocate tree for size n.
         flag = 1;
         while (flag < n) flag <<= 1;
         t.assign(flag << 1, 0);
     }
     void add(int p, ll val) {
+        // goal: add val to frequency at p.
         for (t[p += flag - 1] += val; p > 1; p >>= 1) t[p >> 1] = t[p] + t[p ^ 1];
     }
     ll kth(ll k, int v = 1) const {
+        // result: smallest index with prefix sum >= k.
         assert(t[v] >= k);
         if (v >= flag) return v - flag + 1;
         if (k <= t[v << 1]) return kth(k, v << 1);
@@ -76,7 +85,7 @@ struct seg_tree_kth {
     }
 };
 
-// what: segment tree with range add + range sum.
+// what: range add and range sum with lazy propagation.
 // time: update/query O(log n); memory: O(n)
 // constraint: 1-indexed [1, n]; a[0] unused.
 // usage: seg_tree_lz st; st.build(a); st.add(l, r, v); st.query(l, r);
@@ -84,6 +93,7 @@ struct seg_tree_lz {
     int flag;
     vector<ll> t, lz;
     void build(const vector<ll> &a) {
+        // goal: build tree and clear lazy tags.
         int n = sz(a) - 1;
         flag = 1;
         while (flag < n) flag <<= 1;
@@ -95,6 +105,7 @@ struct seg_tree_lz {
     void add(int l, int r, ll val) { add(l, r, val, 1, 1, flag); }
     ll query(int l, int r) { return query(l, r, 1, 1, flag); }
     void add(int l, int r, ll val, int v, int nl, int nr) {
+        // goal: add val to all indices in [l, r].
         push(v, nl, nr);
         if (r < nl || nr < l) return;
         if (l <= nl && nr <= r) {
@@ -108,6 +119,7 @@ struct seg_tree_lz {
         t[v] = t[v << 1] + t[v << 1 | 1];
     }
     ll query(int l, int r, int v, int nl, int nr) {
+        // result: sum on [l, r].
         push(v, nl, nr);
         if (r < nl || nr < l) return 0;
         if (l <= nl && nr <= r) return t[v];
@@ -115,6 +127,7 @@ struct seg_tree_lz {
         return query(l, r, v << 1, nl, mid) + query(l, r, v << 1 | 1, mid + 1, nr);
     }
     void push(int v, int nl, int nr) {
+        // goal: propagate lazy value to children.
         if (lz[v] == 0) return;
         if (v < flag) {
             lz[v << 1] += lz[v];
@@ -125,7 +138,7 @@ struct seg_tree_lz {
     }
 };
 
-// what: persistent segment tree (point set, range sum).
+// what: keep all versions of point updates with range sum queries.
 // time: build O(n), update/query O(log n); memory: O(n log n)
 // constraint: 1-indexed [1, n]; a[0] unused.
 // usage: seg_pst st; st.build(n, a); st.set(p, v); st.query(l, r, ver);
@@ -140,6 +153,7 @@ struct seg_pst {
 
     void newnd() { t.push_back({-1, -1, 0}); }
     void build(int n_, const vector<ll> &a) {
+        // goal: build initial version.
         n = n_;
         t.clear();
         root.clear();
@@ -148,6 +162,7 @@ struct seg_pst {
         build(1, n, root[0], a);
     }
     void build(int l, int r, int v, const vector<ll> &a) {
+        // goal: build node v for range [l, r].
         if (l == r) {
             t[v].val = a[l];
             return;
@@ -162,11 +177,13 @@ struct seg_pst {
         t[v].val = t[t[v].l].val + t[t[v].r].val;
     }
     void set(int p, ll val) {
+        // goal: create new version with a[p] = val.
         newnd();
         root.push_back(sz(t) - 1);
         set(p, val, 1, n, root[sz(root) - 2], root.back());
     }
     void set(int p, ll val, int l, int r, int v1, int v2) {
+        // goal: update along path while sharing unchanged nodes.
         if (p < l || r < p) {
             t[v2] = t[v1];
             return;
@@ -190,6 +207,7 @@ struct seg_pst {
         t[v2].val = t[t[v2].l].val + t[t[v2].r].val;
     }
     ll query(int l, int r, int v, int nl, int nr) const {
+        // result: sum on [l, r] in a specific version.
         if (r < nl || nr < l) return 0;
         if (l <= nl && nr <= r) return t[v].val;
         int mid = (nl + nr) >> 1;
@@ -198,7 +216,7 @@ struct seg_pst {
     ll query(int l, int r, int ver) const { return query(l, r, root[ver], 1, n); }
 };
 
-// what: dynamic seg tree (sparse, point add, range sum).
+// what: sparse segment tree for large coordinate range (point add, range sum).
 // time: update/query O(log R); memory: O(k log R)
 // constraint: range [MAXL, MAXR], missing child => 0.
 // usage: seg_sparse st; st.add(p, v); st.query(l, r);
@@ -210,6 +228,7 @@ struct dnode {
 struct seg_sparse {
     vector<dnode> t = {{0, -1, -1}, {0, -1, -1}};
     void add(int p, ll x, int v = 1, int nl = MAXL, int nr = MAXR) {
+        // goal: add x to position p.
         if (p < nl || nr < p) return;
         t[v].x += x;
         if (nl == nr) return;
@@ -229,6 +248,7 @@ struct seg_sparse {
         }
     }
     ll query(int l, int r, int v = 1, int nl = MAXL, int nr = MAXR) const {
+        // result: sum on [l, r].
         if (v == -1 || r < nl || nr < l) return 0;
         if (l <= nl && nr <= r) return t[v].x;
         int mid = (nl + nr) >> 1;
@@ -239,7 +259,7 @@ struct seg_sparse {
     }
 };
 
-// what: 2D segment tree (point set, rect sum).
+// what: 2D point updates with rectangle sum queries on a square grid.
 // time: build O(n^2), update/query O(log^2 n); memory: O(n^2)
 // constraint: 0-indexed square n x n.
 // usage: seg_2d st; st.build(a); st.set(x, y, v); st.query(x1, x2, y1, y2);
@@ -247,6 +267,7 @@ struct seg_2d { // 0-indexed
     int n;
     vector<vector<ll>> t;
     void build(const vector<vector<ll>> &a) {
+        // goal: build 2D tree from initial grid.
         n = sz(a);
         t.assign(2 * n, vector<ll>(2 * n, 0));
         for (int i = 0; i < n; i++)
@@ -260,6 +281,7 @@ struct seg_2d { // 0-indexed
                 t[i][j] = t[i << 1][j] + t[i << 1 | 1][j];
     }
     void set(int x, int y, ll val) {
+        // goal: set a[x][y] = val.
         t[x + n][y + n] = val;
         for (int j = y + n; j > 1; j >>= 1)
             t[x + n][j >> 1] = t[x + n][j] + t[x + n][j ^ 1];
@@ -268,6 +290,7 @@ struct seg_2d { // 0-indexed
                 t[x >> 1][j] = t[x][j] + t[x ^ 1][j];
     }
     ll qry1d(int x, int y1, int y2) const {
+        // result: sum on row x for y in [y1, y2].
         ll ret = 0;
         for (y1 += n, y2 += n + 1; y1 < y2; y1 >>= 1, y2 >>= 1) {
             if (y1 & 1) ret += t[x][y1++];
@@ -276,6 +299,7 @@ struct seg_2d { // 0-indexed
         return ret;
     }
     ll query(int x1, int x2, int y1, int y2) const {
+        // result: sum on rectangle [x1..x2] x [y1..y2].
         ll ret = 0;
         for (x1 += n, x2 += n + 1; x1 < x2; x1 >>= 1, x2 >>= 1) {
             if (x1 & 1) ret += qry1d(x1++, y1, y2);
@@ -285,7 +309,7 @@ struct seg_2d { // 0-indexed
     }
 };
 
-// what: 2D seg tree with coord comp (offline).
+// what: 2D segment tree with coordinate compression for sparse updates/queries.
 // time: prep O(q log q), update/query O(log^2 n); memory: O(q log q)
 // constraint: call mark_set/mark_qry first, then prep, then set/query.
 // usage: seg2d_comp st(n); st.mark_set(x, y); st.mark_qry(x1, x2, y1, y2); st.prep(); st.set(x, y, v); st.query(x1, x2, y1, y2);
@@ -296,9 +320,11 @@ struct seg2d_comp { // 0-indexed
     unordered_map<ll, ll> mp;
     seg2d_comp(int n) : n(n), a(2 * n), used(2 * n) {}
     void mark_set(int x, int y) {
+        // goal: record y-coordinates that will be updated.
         for (x += n; x >= 1; x >>= 1) used[x].push_back(y);
     }
     void mark_qry(int x1, int x2, int y1, int y2) {
+        // goal: record y-coordinates needed for queries.
         for (x1 += n, x2 += n + 1; x1 < x2; x1 >>= 1, x2 >>= 1) {
             if (x1 & 1) {
                 used[x1].push_back(y1);
@@ -311,6 +337,7 @@ struct seg2d_comp { // 0-indexed
         }
     }
     void prep() {
+        // goal: compress and allocate internal trees.
         for (int i = 0; i < 2 * n; i++) {
             if (!used[i].empty()) {
                 sort(all(used[i]));
@@ -321,6 +348,7 @@ struct seg2d_comp { // 0-indexed
         }
     }
     void set(int x, int y, ll v) {
+        // goal: set a[x][y] = v using compressed tree.
         ll k = (ll)x << 32 | (unsigned)y;
         ll d = v - mp[k];
         mp[k] = v;
@@ -331,6 +359,7 @@ struct seg2d_comp { // 0-indexed
         }
     }
     ll qry1d(int x, int y1, int y2) const {
+        // result: sum on row segment [y1, y2].
         ll ret = 0;
         y1 = lower_bound(all(used[x]), y1) - used[x].begin();
         y2 = lower_bound(all(used[x]), y2) - used[x].begin();
@@ -341,6 +370,7 @@ struct seg2d_comp { // 0-indexed
         return ret;
     }
     ll query(int x1, int x2, int y1, int y2) const {
+        // result: sum on rectangle [x1..x2] x [y1..y2].
         ll ret = 0;
         for (x1 += n, x2 += n + 1; x1 < x2; x1 >>= 1, x2 >>= 1) {
             if (x1 & 1) ret += qry1d(x1++, y1, y2);

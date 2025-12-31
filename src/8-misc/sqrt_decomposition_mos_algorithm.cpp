@@ -1,6 +1,6 @@
 #include "../common/common.hpp"
 
-// what: mo's algorithm for offline range queries.
+// what: reorder offline range queries to minimize add/del operations (Mo's algorithm).
 // time: O((n+q) * sqrt(n)); memory: O(q)
 // constraint: 0-indexed, inclusive [l, r]; add/del by index.
 // usage: mo solver(n); solver.add_query(l, r, idx); solver.run(add, del, out);
@@ -15,6 +15,7 @@ struct mo {
     mo(int n_ = 0) { init(n_); }
 
     void init(int n_) {
+        // goal: set array size and reset queries.
         n = n_;
         bs = max(1, (int)sqrt(n));
         q.clear();
@@ -24,6 +25,7 @@ struct mo {
 
     template <class Add, class Del, class Out>
     void run(Add add, Del del, Out out) {
+        // goal: process queries in Mo order with callbacks.
         sort(q.begin(), q.end(), [&](const qry &a, const qry &b) {
             int ba = a.l / bs, bb = b.l / bs;
             if (ba != bb) return ba < bb;

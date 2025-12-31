@@ -4,7 +4,7 @@
 constexpr ld EPS = 1e-12;
 constexpr int GAUSS_BSZ = 500;
 
-// what: Gauss-Jordan inverse for real matrices.
+// what: invert a real matrix (and solve) with Gauss-Jordan elimination.
 // time: O(n^3); memory: O(n^2)
 // constraint: a must be square; uses EPS for pivot check.
 // usage: vector<vector<ld>> a=...; bool ok=gauss_real::inv(a);
@@ -41,7 +41,7 @@ struct gauss_real {
     }
 };
 
-// what: Gauss-Jordan for linear system modulo prime.
+// what: solve linear system modulo prime with Gauss-Jordan elimination.
 // time: O(n*m^2); memory: O(n*m)
 // constraint: mod is prime; matrix is n x (m+1) augmented.
 // usage: auto x=gauss_mod::solve(a, mod); // empty if no solution
@@ -90,7 +90,7 @@ struct gauss_mod {
     }
 };
 
-// what: Gauss-Jordan for xor system (mod 2) with bitset.
+// what: solve xor linear system over GF(2) using bitset Gauss-Jordan.
 // time: O(n*m^2/64); memory: O(n*m/64)
 // constraint: each row is size >= m+1; last bit is RHS.
 // usage: auto x=gauss_xor::solve(a, m); // empty if no solution

@@ -1,11 +1,12 @@
 #include "../common/common.hpp"
 
-// what: min-cost assignment for n x m matrix via hungarian algorithm.
+// what: solve rectangular assignment problem (min-cost matching) via Hungarian.
 // time: O(n m^2); memory: O(n+m)
 // constraint: 1 <= n <= m, 1-indexed cost a[1..n][1..m] (minimization).
 // usage: hungarian hu; auto [cost, match_l] = hu.run(n, m, a); // match_l[i]=j
 struct hungarian {
     pair<ll, vector<int>> run(int n, int m, const vector<vector<ll>> &a) {
+        // result: {min_cost, match_l} with match_l[i]=assigned column.
         const ll INF = (1LL << 62);
         vector<ll> u(n + 1), v(m + 1);
         vector<int> p(m + 1), way(m + 1);

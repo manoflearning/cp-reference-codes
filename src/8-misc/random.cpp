@@ -1,13 +1,14 @@
 #include "../common/common.hpp"
 
-// what: rng helper for reproducible randoms and shuffle.
+// what: tiny RNG wrapper with fixed default seed for reproducible tests/shuffles.
 // time: O(1) per call; memory: O(1)
 // constraint: uses mt19937_64.
 // usage: rng rd(2); ll x = rd.ll_range(l, r); rd.shuf(v);
 struct rng {
+    static constexpr ull DEFAULT_SEED = 712367;
     mt19937_64 eng;
 
-    rng(ull seed = (ull)chrono::steady_clock::now().time_since_epoch().count()) : eng(seed) {}
+    rng(ull seed = DEFAULT_SEED) : eng(seed) {}
 
     ll ll_range(ll l, ll r) {
         // edge: l <= r

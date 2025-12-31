@@ -1,7 +1,7 @@
 #pragma once
 #include "../common/common.hpp"
 
-// what: Sieve of Eratosthenes (is_prime table + primes list).
+// what: precompute primality table and prime list with Eratosthenes sieve.
 // time: O(n log log n); memory: O(n)
 // constraint: n >= 0.
 // usage: era_sieve es(n); if(es.is_prime(x)) ...
@@ -34,7 +34,7 @@ struct era_sieve {
     bool is_prime(int x) const { return x >= 2 && x <= n && isp[x]; }
 };
 
-// what: linear sieve (lp/primes/mu/phi + factorization).
+// what: linear sieve for lp/primes/mu/phi with factorization helpers.
 // time: O(n) build; O(log x) factor; memory: O(n)
 // constraint: factor(x) requires 1 <= x <= n.
 // usage: lin_sieve sv(n); auto fc=sv.factor_cnt(x); int mu=sv.mu[x];
@@ -102,7 +102,7 @@ struct lin_sieve {
     }
 };
 
-// what: mobius function mu[0..n] (mu[0]=0, mu[1]=1).
+// what: compute mobius function mu[0..n].
 // time: O(n); memory: O(n)
 // constraint: n >= 0.
 // usage: auto mu = mobius(n); if(mu[x]) ...
@@ -111,7 +111,7 @@ inline vector<int> mobius(int n) {
     return sv.mu;
 }
 
-// what: Euler's totient phi (single n via sqrt; phi[0..n] via linear sieve).
+// what: compute Euler's totient (single n or all up to n).
 // time: phi(x) O(sqrt x); phi_upto(n) O(n); memory: O(n)
 // constraint: phi(x) assumes x >= 0; phi_upto uses lin_sieve.
 // usage: ll v=euler_phi::phi(x); auto ph=euler_phi::phi_upto(n);

@@ -1,6 +1,6 @@
 #include "../common/common.hpp"
 
-// what: ternary search on unimodal functions (integer + real).
+// what: maximize/minimize a unimodal function with ternary search (int/real).
 // time: int O(log range); real O(it); memory: O(1)
 // constraint: single peak/valley; use max/min versions accordingly.
 // usage: auto [x, v] = ternary_int_max(l, r, f); ld x = ternary_real_min(l, r, f);

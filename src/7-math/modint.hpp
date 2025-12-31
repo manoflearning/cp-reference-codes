@@ -2,7 +2,7 @@
 
 #include "num.hpp"
 
-// what: static modint (compile-time MOD).
+// what: modular integer with compile-time modulus and safe arithmetic ops.
 // time: O(1) per op; memory: O(1)
 // constraint: inv() exists iff gcd(v, MOD) = 1.
 // usage: using mint=modint<998244353>; mint a=3; a+=4; auto b=a.inv();
@@ -12,6 +12,7 @@ struct modint {
     ll v;
 
     static ll norm(ll x) {
+        // goal: normalize x into [0, MOD).
         x %= MOD;
         if (x < 0) x += MOD;
         return x;
@@ -61,7 +62,7 @@ struct modint {
     }
 };
 
-// what: dynamic modint (runtime MOD).
+// what: modular integer with runtime modulus (set once per ID).
 // time: O(1) per op; memory: O(1)
 // constraint: call set_mod() before use; inv() exists iff gcd(v, mod) = 1.
 // usage: using dm=dyn_modint<0>; dm::set_mod(1'000'000'007); dm x=5;
@@ -71,6 +72,7 @@ struct dyn_modint {
     ll v;
 
     static ll norm(ll x) {
+        // goal: normalize x into [0, mod_).
         x %= mod_;
         if (x < 0) x += mod_;
         return x;

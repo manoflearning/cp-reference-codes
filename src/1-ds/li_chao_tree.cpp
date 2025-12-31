@@ -1,31 +1,35 @@
 #include "../common/common.hpp"
 
-// what: Li Chao tree for max line query.
+// what: maintain max of lines on a fixed x-range with online add + point query.
 // time: add/query O(log X); memory: O(n)
 // constraint: x in [xl, xr]; line is y = ax + b.
 // usage: li_chao lc; lc.init(xl, xr); lc.add({a, b}); ll v = lc.query(x);
-using line = pair<ll, ll>;
+struct lc_line {
+    ll m, b;
+};
 constexpr ll NEG_INF = -(1LL << 60);
-constexpr line LINE_E = {0, NEG_INF};
+constexpr lc_line LINE_E = {0, NEG_INF};
 
 struct li_chao {
     struct node {
         ll xl, xr;
         int l, r;
-        line ln;
+        lc_line ln;
     };
     vector<node> t;
 
-    ll eval(const line &ln, ll x) const { return ln.first * x + ln.second; }
+    ll eval(const lc_line &ln, ll x) const { return ln.m * x + ln.b; }
     void init(ll xl, ll xr) {
+        // goal: set x-range and clear tree.
         t.clear();
         t.push_back({xl, xr, -1, -1, LINE_E});
     }
-    void add(line nw, int v = 0) {
+    void add(lc_line nw, int v = 0) {
+        // goal: insert a new line into the segment.
         ll xl = t[v].xl, xr = t[v].xr;
         ll mid = (xl + xr) >> 1;
 
-        line lo = t[v].ln, hi = nw;
+        lc_line lo = t[v].ln, hi = nw;
         if (eval(lo, xl) >= eval(hi, xl)) swap(lo, hi);
 
         if (eval(lo, xr) <= eval(hi, xr)) {
@@ -49,6 +53,7 @@ struct li_chao {
         }
     }
     ll query(ll x, int v = 0) const {
+        // result: max y-value among all lines at x.
         if (v == -1) return NEG_INF;
         ll xl = t[v].xl, xr = t[v].xr;
         ll mid = (xl + xr) >> 1;

@@ -1,12 +1,12 @@
 #include "../common/common.hpp"
 
-// what: flow templates (dinic, mcmf, matching, lower/upper bounds).
+// what: collection of flow solvers (max flow, min-cost flow, matching, bounds).
 // time: see each struct; memory: O(E)
 // constraint: 0-based; cap >= 0; mcmf assumes no negative cycle reachable from s.
 // usage: dinic mf(n); mf.add_edge(u,v,c); ll f=mf.max_flow(s,t);
 
 // dinic max flow (0-based).
-// what: fast max flow with residual graph
+// what: compute maximum flow in a directed graph (Dinic).
 // time: O(E V^2) worst; memory: O(E)
 // constraint: cap >= 0
 // usage: dinic mf(n); mf.add_edge(u, v, cap); ll f = mf.max_flow(s, t);
@@ -104,7 +104,7 @@ struct dinic {
 };
 
 // hk bipartite matching (0-based).
-// what: maximum matching in bipartite graph
+// what: compute maximum bipartite matching (Hopcroft-Karp).
 // time: O(E sqrt V); memory: O(E)
 // constraint: left [0..n_l-1], right [0..n_r-1]
 // usage: hk bm(n_l, n_r); bm.add_edge(l, r); int m = bm.max_matching();
@@ -184,7 +184,7 @@ struct hk {
 };
 
 // mcmf min-cost max-flow (0-based).
-// what: min-cost flow with negative costs via potentials
+// what: compute min-cost max-flow using potentials and Dijkstra.
 // time: O(F E log V); memory: O(E)
 // constraint: no negative cycle reachable from s
 // usage: mcmf mf(n); mf.add_edge(u,v,c,co); pll r=mf.min_cost_mf(s,t);
@@ -310,7 +310,7 @@ struct mcmf {
 };
 
 // lr_dinic (0-based).
-// what: max flow with edge lower/upper bounds
+// what: find feasible max flow with lower/upper bounds via transformation.
 // time: dominated by dinic, memory: O(E)
 // constraint: 0 <= lo <= hi, single-use (call init(n) to reuse)
 // usage: lr_dinic f(n); int id = f.add_edge(u, v, lo, hi); auto [ok, v] = f.max_flow(s, t);
@@ -396,7 +396,7 @@ struct lr_dinic {
 };
 
 // lr_mcmf (0-based).
-// what: max flow with edge lower/upper bounds + min cost
+// what: find min-cost flow with lower/upper bounds via transformation.
 // time: dominated by mcmf, memory: O(E)
 // constraint: 0 <= lo <= hi, no negative cycle, single-use (call init(n) to reuse)
 // usage: lr_mcmf f(n); f.add_edge(u, v, lo, hi, cost); auto [ok, r] = f.max_flow(s, t);

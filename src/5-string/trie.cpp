@@ -1,6 +1,6 @@
 #include "../common/common.hpp"
 
-// what: trie for lowercase strings.
+// what: store a set of lowercase strings for fast prefix traversal and lookup.
 // time: add/has O(|s|); memory: O(nodes*ALPHA)
 // constraint: 'a'..'z'.
 // usage: trie tr; tr.add(s); bool ok=tr.has(s);
@@ -12,12 +12,14 @@ struct trie {
     trie() { init(); }
 
     void init() {
+        // goal: reset to empty trie.
         nxt.assign(1, {});
         nxt[0].fill(-1);
         term.assign(1, 0);
     }
 
     int add(const string &s) {
+        // goal: insert a string and mark its terminal node.
         int v = 0;
         for (char ch : s) {
             int c = ch - 'a';
@@ -34,6 +36,7 @@ struct trie {
     }
 
     bool has(const string &s) const {
+        // result: true if s exists as a full word.
         int v = 0;
         for (char ch : s) {
             int c = ch - 'a';

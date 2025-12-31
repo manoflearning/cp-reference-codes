@@ -1,7 +1,7 @@
 #pragma once
 #include "modint.hpp"
 
-// what: nCr in O(r) without mod (safe for small n).
+// what: compute nCr exactly in O(r) without modulus for small n.
 // time: O(r); memory: O(1)
 // constraint: watch for overflow in ll.
 // usage: ll v = comb_lr::ncr(n, r);
@@ -17,7 +17,7 @@ struct comb_lr {
     }
 };
 
-// what: nCr by Pascal DP.
+// what: compute nCr table using Pascal DP.
 // time: O(n^2) init, O(1) query; memory: O(n^2)
 // constraint: small n only.
 // usage: comb_dp cb; cb.init(n); ll v=cb.ncr(n,r);
@@ -41,7 +41,7 @@ struct comb_dp {
     }
 };
 
-// what: nCr mod p with factorials.
+// what: compute nCr mod p using factorials and inverse factorials.
 // time: O(n) init, O(1) query; memory: O(n)
 // constraint: mod is prime; 0 <= n <= precomputed N.
 // usage: comb_mod cb; cb.init(n, mod); ll v=cb.ncr(n, r);

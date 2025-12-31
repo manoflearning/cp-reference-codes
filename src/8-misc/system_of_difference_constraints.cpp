@@ -1,6 +1,6 @@
 #include "../common/common.hpp"
 
-// what: system of difference constraints (x_v - x_u <= w).
+// what: solve difference constraints x_v - x_u <= w with Bellman-Ford.
 // time: O(nm) via Bellman-Ford; memory: O(n+m)
 // constraint: 0-indexed vars; no overflow in relaxations.
 // usage: diff_cons dc(n); dc.add_le(u,v,w); bool ok=dc.solve(); auto x=dc.val();

@@ -1,7 +1,7 @@
 #pragma once
 #include "../common/common.hpp"
 
-// what: 2D geometry base (pt/ptd, ccw/cross/dot, segment/line utils).
+// what: 2D primitives and orientation/intersection helpers for integer and double points.
 // time: O(1) per op; memory: O(1)
 // constraint: pt uses ll (overflow if |coord| too large); ptd uses EPS.
 // usage: pt a{0,0}; int s = ccw(a,b,c); if (seg_inter(a,b,c,d)) ...
@@ -28,10 +28,12 @@ ll dist2(const pt &a, const pt &b) {
     return dx * dx + dy * dy;
 }
 int ccw(const pt &a, const pt &b, const pt &c) {
+    // result: sign of cross product (orientation).
     ll v = cross(a, b, c);
     return (v > 0) - (v < 0);
 }
 bool seg_inter(const pt &a, const pt &b, const pt &c, const pt &d) {
+    // result: true if segments ab and cd intersect.
     auto in_box = [&](const pt &u, const pt &v, const pt &p) { return min(u.x, v.x) <= p.x && p.x <= max(u.x, v.x) && min(u.y, v.y) <= p.y && p.y <= max(u.y, v.y); };
     auto on_seg = [&](const pt &u, const pt &v, const pt &p) { return ccw(u, v, p) == 0 && in_box(u, v, p); };
     int ab1 = ccw(a, b, c), ab2 = ccw(a, b, d), cd1 = ccw(c, d, a), cd2 = ccw(c, d, b);
@@ -50,6 +52,7 @@ ld dist(const ptd &a, const ptd &b) {
     return sqrtl(dx * dx + dy * dy);
 }
 bool line_inter(const ptd &a, const ptd &b, const ptd &c, const ptd &d, ptd &out) {
+    // result: intersection point of two lines if not parallel.
     ld vx1 = b.x - a.x, vy1 = b.y - a.y, vx2 = d.x - c.x, vy2 = d.y - c.y;
     ld det = vx1 * (-vy2) - (-vx2) * vy1;
     if (fabsl(det) < EPS) return 0;

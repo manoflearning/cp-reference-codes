@@ -1,10 +1,11 @@
 #include "geom_base.cpp"
 
-// what: diameter (farthest pair) of a convex polygon via rotating calipers.
+// what: find the farthest pair of points on a convex polygon (diameter).
 // time: O(n); memory: O(1)
 // constraint: hull must be CCW, no duplicate last point; n>=1.
 // usage: auto [a,b] = hull_diam(hull);
 pair<pt, pt> hull_diam(const vector<pt> &h) {
+    // result: pair of points with maximum distance.
     int n = sz(h);
     if (!n) return {{0, 0}, {0, 0}};
     if (n == 1) return {h[0], h[0]};

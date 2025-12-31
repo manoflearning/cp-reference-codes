@@ -1,6 +1,6 @@
 #include "geom_base.cpp"
 
-// what: minimum enclosing circle of points (Welzl-style iterative).
+// what: compute the smallest circle containing all points (expected linear).
 // time: expected O(n); memory: O(1)
 // constraint: uses fixed RNG for shuffle; works with doubles (ptd).
 // usage: circle c = min_circle(p);
@@ -39,6 +39,7 @@ circle circle_from(const ptd &a, const ptd &b, const ptd &c) {
 }
 
 circle min_circle(vector<ptd> p) {
+    // result: minimum enclosing circle of p.
     if (p.empty()) return {{0, 0}, 0};
     static mt19937 rng(712367);
     shuffle(all(p), rng);

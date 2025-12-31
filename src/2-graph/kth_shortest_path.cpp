@@ -1,6 +1,6 @@
 #include "../common/common.hpp"
 
-// what: k-th shortest walk (Eppstein-style, non-negative weights).
+// what: enumerate k-th shortest walk from s to t with non-negative weights (Eppstein-style).
 // time: O((n+m)log m + klog k); memory: O(n+m+heap)
 // constraint: 1-indexed; w >= 0; n <= MAXN-1; recursion depth O(log m).
 // usage: kth_walk g; g.init(n); g.add(u,v,w); auto v=g.run(s,e,k);

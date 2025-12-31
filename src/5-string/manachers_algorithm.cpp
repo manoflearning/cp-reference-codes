@@ -1,10 +1,11 @@
 #include "../common/common.hpp"
 
-// what: manacher (odd/even pal radii).
+// what: compute longest palindrome radius at every center (odd/even).
 // time: O(n); memory: O(n)
 // constraint: 0-indexed; d1[i]=odd radius, d2[i]=even radius.
 // usage: auto [d1,d2]=manacher(s); // max len = max(2*d1[i]-1,2*d2[i])
 pair<vector<int>, vector<int>> manacher(const string &s) {
+    // result: d1/d2 radii for odd/even palindromes centered at i.
     int n = sz(s);
     vector<int> d1(n), d2(n);
     for (int i = 0, l = 0, r = -1; i < n; i++) {

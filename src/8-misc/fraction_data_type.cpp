@@ -1,6 +1,6 @@
 #include "../common/common.hpp"
 
-// what: rational number (normalized fraction) with exact comparisons.
+// what: normalized rational type with exact arithmetic and comparisons.
 // time: O(log max(|n|,|d|)) per op; memory: O(1)
 // constraint: denominator != 0; results must fit in 64-bit.
 // usage: fraction a(1, 3), b(2, 5); fraction c = a + b;

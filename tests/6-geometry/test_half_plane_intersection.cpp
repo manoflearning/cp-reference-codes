@@ -1,7 +1,7 @@
 #include "../../src/6-geometry/convex_hull.cpp"
 #include "../../src/6-geometry/half_plane_intersection.cpp"
 
-// what: tests for hpi (half-plane intersection).
+// what: tests for hpi (half-plane intersection polygon).
 // time: random (convex) + edge cases; memory: O(n)
 // constraint: bounded cases only; eps checks.
 // usage: g++ -std=c++17 test_half_plane_intersection.cpp && ./a.out
@@ -21,12 +21,12 @@ ld area_poly(const vector<ptd> &p) {
     return fabsl(a) / 2;
 }
 
-bool in_hp(const line &l, const ptd &p) {
+bool in_hp(const hp_line &l, const ptd &p) {
     return cross(l.t - l.s, p - l.s) >= -1e-8;
 }
 
 void test_hpi_square() {
-    vector<line> ln;
+    vector<hp_line> ln;
     ln.push_back({{0, 1}, {0, 0}}); // x >= 0
     ln.push_back({{1, 0}, {1, 1}}); // x <= 1
     ln.push_back({{0, 0}, {1, 0}}); // y >= 0
@@ -40,7 +40,7 @@ void test_hpi_square() {
 }
 
 void test_hpi_triangle() {
-    vector<line> ln;
+    vector<hp_line> ln;
     ln.push_back({{0, 1}, {0, 0}}); // x >= 0
     ln.push_back({{0, 0}, {1, 0}}); // y >= 0
     ln.push_back({{1, 0}, {0, 1}}); // x + y <= 1
@@ -53,7 +53,7 @@ void test_hpi_triangle() {
 }
 
 void test_hpi_empty() {
-    vector<line> ln;
+    vector<hp_line> ln;
     ln.push_back({{0, 1}, {0, 0}});   // x >= 0
     ln.push_back({{-1, 0}, {-1, 1}}); // x <= -1
     auto poly = hpi(ln);
@@ -71,7 +71,7 @@ void test_hpi_random_convex() {
 
         vector<ptd> hp;
         for (auto &v : h) hp.push_back({(ld)v.x, (ld)v.y});
-        vector<line> ln;
+        vector<hp_line> ln;
         for (int i = 0; i < sz(hp); i++) {
             ln.push_back({hp[i], hp[(i + 1) % sz(hp)]});
         }
