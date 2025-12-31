@@ -1,6 +1,6 @@
 #!/usr/bin/env bash
 root="$(cd "$(dirname "$0")/.." && pwd)"
-target="$root/src"
+target="$root"
 mapfile -t files < <(find "$target" -type f \( -name '*.cpp' -o -name '*.hpp' \))
 ((${#files[@]})) || { echo "no .cpp/.hpp files in $target"; exit 0; }
 declare -A before

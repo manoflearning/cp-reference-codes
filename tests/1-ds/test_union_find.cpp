@@ -27,14 +27,16 @@ struct naive_dsu {
             if (comp[i] == cb) comp[i] = ca;
         }
         int cnt = 0;
-        for (int i = 0; i < sz(comp); i++) if (comp[i] == ca) cnt++;
+        for (int i = 0; i < sz(comp); i++)
+            if (comp[i] == ca) cnt++;
         siz[ca] = cnt;
     }
     bool same(int a, int b) const { return comp[a] == comp[b]; }
     int size(int a) const {
         int ca = comp[a];
         int cnt = 0;
-        for (int i = 0; i < sz(comp); i++) if (comp[i] == ca) cnt++;
+        for (int i = 0; i < sz(comp); i++)
+            if (comp[i] == ca) cnt++;
         return cnt;
     }
 };
