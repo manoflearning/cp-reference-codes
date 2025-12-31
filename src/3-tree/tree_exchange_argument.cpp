@@ -1,73 +1,70 @@
 #include "../common/common.hpp"
 
-const int MAXN = 303030;
-struct UF {
-    vector<int> uf;
-    vector<ll> cw, w, t;
-    void build(int n) {
-        uf.resize(n + 1, -1);
-        cw.resize(n + 1);
-        iota(all(cw), 0);
-        w.resize(n + 1);
-        iota(all(w), 0);
-        t.resize(n + 1, 1);
+// what: greedy merge on tree by exchange argument (problem-specific cost).
+// time: O(n log n); memory: O(n)
+// constraint: 1-indexed tree; defaults w[i]=i, t[i]=1.
+// usage: tree_xchg tx; tx.init(n, root); tx.add(u,v); ll ans=tx.run();
+struct tree_xchg {
+    struct uf {
+        vector<int> par;
+        vector<ll> cw, w, t;
+        void init(int n) {
+            par.assign(n + 1, -1);
+            cw.resize(n + 1);
+            w.resize(n + 1);
+            t.assign(n + 1, 1);
+            iota(all(cw), 0);
+            iota(all(w), 0);
+        }
+        int find(int x) { return par[x] < 0 ? x : par[x] = find(par[x]); }
+        void merge(int u, int v) {
+            // goal: merge v into u (both roots).
+            par[v] = u;
+            cw[u] += t[u] * w[v] + cw[v];
+            w[u] += w[v];
+            t[u] += t[v];
+        }
+    } ds;
+    struct node {
+        ll cw, w, t;
+        int v;
+        bool operator<(const node &o) const { return w * o.t > o.w * t; }
+    };
+
+    int n, root;
+    vector<vector<int>> adj;
+    vector<int> par;
+
+    void init(int n_, int r) {
+        n = n_;
+        root = r;
+        adj.assign(n + 1, {});
+        par.assign(n + 1, 0);
+        ds.init(n);
     }
-    int find(int x) {
-        if (uf[x] < 0) return x;
-        return uf[x] = find(uf[x]);
-    }
-    void merge(int u, int v) {
-        // int U = find(u), V = find(v);
-        // assert(U != V);
-        uf[v] = u;
-        cw[u] += t[u] * w[v] + cw[v];
-        w[u] += w[v];
-        t[u] += t[v];
-    }
-} uf;
-struct Node {
-    ll cw, w, t;
-    int v;
-    bool operator<(const Node &o) const {
-        return w * o.t > o.w * t;
-    }
-};
-int n, ro;
-vector<int> adj[MAXN];
-int par[MAXN];
-void input() {
-    cin >> n >> ro;
-    uf.build(n);
-    for (int i = 0; i < n - 1; i++) {
-        int u, v;
-        cin >> u >> v;
+    void add(int u, int v) {
         adj[u].push_back(v);
         adj[v].push_back(u);
     }
-}
-void dfs(int v, int prv) {
-    par[v] = prv;
-    for (auto &i : adj[v]) {
-        if (i != prv) dfs(i, v);
+    void dfs(int v, int p) {
+        par[v] = p;
+        for (int to : adj[v])
+            if (to != p) dfs(to, v);
     }
-}
-void solve() {
-    priority_queue<Node> pq;
-    for (int v = 1; v <= n; v++)
-        if (v != ro) pq.push({uf.cw[v], uf.w[v], uf.t[v], v});
-    while (!pq.empty()) {
-        auto [cw, w, t, v] = pq.top();
-        pq.pop();
-        v = uf.find(v);
-        if (w != uf.w[v]) continue;
-        int p = uf.find(par[v]);
-        uf.merge(p, v);
-        if (p != ro) pq.push({uf.cw[p], uf.w[p], uf.t[p], p});
+    ll run() {
+        dfs(root, 0);
+        priority_queue<node> pq;
+        for (int v = 1; v <= n; v++)
+            if (v != root) pq.push({ds.cw[v], ds.w[v], ds.t[v], v});
+        while (!pq.empty()) {
+            auto [cw, w, t, v] = pq.top();
+            pq.pop();
+            v = ds.find(v);
+            if (w != ds.w[v]) continue;
+            int p = ds.find(par[v]);
+            ds.merge(p, v);
+            if (p != root) pq.push({ds.cw[p], ds.w[p], ds.t[p], p});
+        }
+        return ds.cw[root];
     }
-}
-int main() {
-    input();
-    dfs(ro, 0);
-    solve();
-    cout << uf.cw[ro];
-}
+};
