@@ -10,7 +10,7 @@ st.find_by_order(x); // value of xth element (0-based)
 // multiset pbds (use "less_equal<int>" and custom "m_erase")
 using multi_pbds = tree<int, null_type, less_equal<int>, rb_tree_tag, tree_order_statistics_node_update>;
 void m_erase(multi_pbds &OS, int val) {
-  int index = OS.order_of_key(val);
-  multi_pbds::iterator it = OS.find_by_order(index);
-  OS.erase(it);
+    int index = OS.order_of_key(val);
+    multi_pbds::iterator it = OS.find_by_order(index);
+    OS.erase(it);
 }

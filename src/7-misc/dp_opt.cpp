@@ -6,47 +6,47 @@
 // Naive Complexity: O(n^2)
 // Optimized Complexity: O(nlogn) (if a[i] <= a[i + 1], it can also be done in O(n))
 struct Line { // f(x) = px + q, x >= s
-  ll p, q;
-  double s;
-  Line() : Line(1, 0) {}
-  Line(ll sp, ll sq) : p(sp), q(sq), s(0) {}
+    ll p, q;
+    double s;
+    Line() : Line(1, 0) {}
+    Line(ll sp, ll sq) : p(sp), q(sq), s(0) {}
 };
 double cross(const Line &u, const Line &v) {
-  return (double)(v.q - u.q) / (u.p - v.p);
+    return (double)(v.q - u.q) / (u.p - v.p);
 }
 int n;
 ll a[101010], b[101010];
 ll dp[101010];
 Line ch[101010];
 void input() {
-  cin >> n;
-  for (int i = 1; i <= n; i++) cin >> a[i];
-  for (int i = 1; i <= n; i++) cin >> b[i];
+    cin >> n;
+    for (int i = 1; i <= n; i++) cin >> a[i];
+    for (int i = 1; i <= n; i++) cin >> b[i];
 }
 void convexHullTrick() {
-  int top = 1;
-  for (int i = 2; i <= n; i++) {
-    Line g(b[i - 1], dp[i - 1]);
-    while (top > 1) {
-      g.s = cross(ch[top - 1], g);
-      if (ch[top - 1].s < g.s) break;
-      --top;
+    int top = 1;
+    for (int i = 2; i <= n; i++) {
+        Line g(b[i - 1], dp[i - 1]);
+        while (top > 1) {
+            g.s = cross(ch[top - 1], g);
+            if (ch[top - 1].s < g.s) break;
+            --top;
+        }
+        ch[top++] = g;
+        int l = 1, r = top - 1;
+        while (l < r) {
+            int mid = (l + r + 1) >> 1;
+            if (a[i] < ch[mid].s) r = mid - 1;
+            else l = mid;
+        }
+        int fpos = l;
+        dp[i] = ch[fpos].p * a[i] + ch[fpos].q;
     }
-    ch[top++] = g;
-    int l = 1, r = top - 1;
-    while (l < r) {
-      int mid = (l + r + 1) >> 1;
-      if (a[i] < ch[mid].s) r = mid - 1;
-      else l = mid;
-    }
-    int fpos = l;
-    dp[i] = ch[fpos].p * a[i] + ch[fpos].q;
-  }
 }
 int main() {
-  input();
-  convexHullTrick();
-  cout << dp[n];
+    input();
+    convexHullTrick();
+    cout << dp[n];
 }
 
 // 2. Knuth Optimization
@@ -62,34 +62,34 @@ const ll INF = 1e18;
 int n, opt[5050][5050];
 ll a[5050], DP[5050][5050], psum[5050];
 int main() {
-  int tc;
-  cin >> tc;
-  while (tc--) {
-    cin >> n;
-    for (int i = 1; i <= n; i++) {
-      cin >> a[i];
-      psum[i] = a[i] + psum[i - 1];
-    }
-    for (int i = 1; i <= n; i++) {
-      DP[i][i] = 0;
-      opt[i][i] = i;
-    }
-    for (int i = n - 1; i >= 1; i--) {
-      for (int j = i + 1; j <= n; j++) {
-        ll mn = INF, mnk = -1;
-        for (int k = opt[i][j - 1]; k <= opt[i + 1][j]; k++) {
-          ll res = DP[i][k] + DP[k + 1][j] + (psum[j] - psum[i - 1]);
-          if (res < mn) {
-            mn = res;
-            mnk = k;
-          }
+    int tc;
+    cin >> tc;
+    while (tc--) {
+        cin >> n;
+        for (int i = 1; i <= n; i++) {
+            cin >> a[i];
+            psum[i] = a[i] + psum[i - 1];
         }
-        DP[i][j] = mn;
-        opt[i][j] = mnk;
-      }
+        for (int i = 1; i <= n; i++) {
+            DP[i][i] = 0;
+            opt[i][i] = i;
+        }
+        for (int i = n - 1; i >= 1; i--) {
+            for (int j = i + 1; j <= n; j++) {
+                ll mn = INF, mnk = -1;
+                for (int k = opt[i][j - 1]; k <= opt[i + 1][j]; k++) {
+                    ll res = DP[i][k] + DP[k + 1][j] + (psum[j] - psum[i - 1]);
+                    if (res < mn) {
+                        mn = res;
+                        mnk = k;
+                    }
+                }
+                DP[i][j] = mn;
+                opt[i][j] = mnk;
+            }
+        }
+        cout << DP[1][n] << '\n';
     }
-    cout << DP[1][n] << '\n';
-  }
 }
 
 // 3. Divide and Conquer Optimization
@@ -102,35 +102,35 @@ int n, m;
 ll a[8080], psum[8080];
 ll dp[808][8080];
 void f(int gr, int l, int r, int nl, int nr) {
-  int mid = (l + r) >> 1, idx = -1;
-  ll &res = dp[gr][mid];
-  res = INF;
-  for (int i = nl; i <= min(mid, nr); i++) {
-    assert(i <= mid);
-    ll val = dp[gr - 1][i] + (mid - i) * (psum[mid] - psum[i]);
-    if (res > val) {
-      res = val, idx = i;
+    int mid = (l + r) >> 1, idx = -1;
+    ll &res = dp[gr][mid];
+    res = INF;
+    for (int i = nl; i <= min(mid, nr); i++) {
+        assert(i <= mid);
+        ll val = dp[gr - 1][i] + (mid - i) * (psum[mid] - psum[i]);
+        if (res > val) {
+            res = val, idx = i;
+        }
     }
-  }
-  if (l < r) {
-    f(gr, l, mid, nl, idx);
-    f(gr, mid + 1, r, idx, nr);
-  }
+    if (l < r) {
+        f(gr, l, mid, nl, idx);
+        f(gr, mid + 1, r, idx, nr);
+    }
 }
 int main() {
-  // input
-  cin >> n >> m;
-  for (int i = 1; i <= n; i++) cin >> a[i];
-  // build prefix sum
-  for (int i = 1; i <= n; i++)
-    psum[i] = a[i] + psum[i - 1];
-  // dp (dnc opt)
-  for (int i = 1; i <= n; i++)
-    dp[1][i] = i * psum[i];
-  for (int i = 2; i <= m; i++)
-    f(i, 0, n, 0, n);
-  // output
-  cout << dp[m][n];
+    // input
+    cin >> n >> m;
+    for (int i = 1; i <= n; i++) cin >> a[i];
+    // build prefix sum
+    for (int i = 1; i <= n; i++)
+        psum[i] = a[i] + psum[i - 1];
+    // dp (dnc opt)
+    for (int i = 1; i <= n; i++)
+        dp[1][i] = i * psum[i];
+    for (int i = 2; i <= m; i++)
+        f(i, 0, n, 0, n);
+    // output
+    cout << dp[m][n];
 }
 
 // 4. Slope Trick
@@ -139,17 +139,17 @@ int main() {
 // The goal is the make the array strictly increasing by making the minimum possible number of operations.
 // TIME COMPLEXITY: O(n log(n))
 ll slope_trick(vector<ll> a) {
-  ll ret = 0;
-  priority_queue<ll> pq;
-  for (int i = 0; i < sz(a); i++) {
-    a[i] -= i; // Change strictly increasing condition to non-decreasing condition
-    pq.push(a[i]);
+    ll ret = 0;
+    priority_queue<ll> pq;
+    for (int i = 0; i < sz(a); i++) {
+        a[i] -= i; // Change strictly increasing condition to non-decreasing condition
+        pq.push(a[i]);
 
-    if (pq.top() > a[i]) {
-      ret += pq.top() - a[i];
-      pq.pop();
-      pq.push(a[i]);
+        if (pq.top() > a[i]) {
+            ret += pq.top() - a[i];
+            pq.pop();
+            pq.push(a[i]);
+        }
     }
-  }
-  return ret;
+    return ret;
 }
