@@ -1,18 +1,19 @@
 #include "../common/common.hpp"
-struct UF {
-    vector<int> uf;
-    void build(int n) {
-        uf.clear();
-        uf.resize(n + 1, -1);
-    }
-    int find(int v) {
-        if (uf[v] < 0) return v;
-        return uf[v] = find(uf[v]);
-    }
-    void merge(int u, int v) {
-        int U = find(u), V = find(v);
-        if (U == V) return;
-        uf[U] += uf[V];
-        uf[V] = U;
+
+// what: disjoint set union (union by size + path comp).
+// time: init O(n), join/find amortized a(n); memory: O(n)
+// constraint: 1-indexed [1, n].
+// usage: dsu d; d.init(n); d.join(a, b); int r = d.find(x); int s = d.size(x);
+struct dsu {
+    vector<int> p;
+    void init(int n) { p.assign(n + 1, -1); }
+    int find(int x) { return p[x] < 0 ? x : p[x] = find(p[x]); }
+    int size(int x) { return -p[find(x)]; }
+    void join(int a, int b) {
+        a = find(a), b = find(b);
+        if (a == b) return;
+        if (p[a] > p[b]) swap(a, b); // a has larger size (more negative)
+        p[a] += p[b];
+        p[b] = a;
     }
 };

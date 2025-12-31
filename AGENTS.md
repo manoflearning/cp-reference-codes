@@ -1,70 +1,66 @@
 # AGENTS.md
 
-This repo is a competitive programming reference library (ICPC, CF, BOJ, etc).
-When adding or editing code here, optimize for contest usage first.
+이 저장소는 competitive programming 참고 라이브러리입니다 (ICPC, CF, BOJ 등).
+여기에 코드를 추가하거나 수정할 때는, 대회에서의 사용성을 최우선으로 최적화하세요.
 
-## Core goals (in priority order)
-1. **Quick to type and paste**: short, practical APIs and file structure.
-2. **Fast and memory efficient**: proven time complexity, low constants, minimal allocations.
-3. **Readable under pressure**: simple control flow, obvious invariants, and friendly comments.
-4. **Consistent style**: match the rules in this file and existing patterns in this repo.
-5. **Template-friendly**: easy to reuse across problems with minimal edits.
+## 핵심 목표 (우선순위 순)
+1. **빠르게 타이핑하고 붙여넣기**: 짧은 코드 길이. 실용적인 API와 파일 구조.
+2. **빠르고 메모리 효율적**: 검증된 시간 복잡도, 낮은 상수, 최소한의 할당.
+3. **압박 속에서도 읽기 쉬움**: 단순한 제어 흐름, 명확한 불변식, 친절한 주석.
+4. **템플릿 친화적**: 최소한의 수정으로 다양한 변형 문제들에 쉽게 재사용.
 
-## Repo standard code style (required)
+## 저장소 표준 코드 스타일 (필수)
 
 ### Naming
-- **Constants** (e.g., `constexpr`, global `const`, fixed parameters): `UPPER_SNAKE_CASE`.
-  - Examples: `constexpr int MOD = 1e9 + 7;`, `const int INF = 1e9;`
-- **All other identifiers** use **lowercase `snake_case`** (STL style):
-  - structs, classes, namespaces, functions, variables, file names
-  - Examples: `struct fenwick_tree`, `namespace fast_io`, `solve_case`, `add_edge`
-- **Concise yet descriptive**: names must be short for typing speed but clear enough to read under pressure.
+- **상수** (예: `constexpr`, 전역 `const`, 고정 파라미터): `UPPER_SNAKE_CASE`.
+  - 예시: `constexpr int MOD = 1e9 + 7;`, `const int INF = 1e9;`
+- **그 외 모든 식별자**는 **소문자 `snake_case`** 사용 (STL 스타일):
+  - struct, class, namespace, function, variable, file name
+  - 예시: `struct fenwick_tree`, `namespace fast_io`, `solve_case`, `add_edge`
+- **간결하지만 설명적**: 이름은 타이핑 속도를 위해 최대 7자 이내로 짧아야 함. 동시에 압박 속에서도 읽을 수 있을 정도로는 명확해야 함.
   - **Good**: `cnt`, `idx`, `res`, `nxt`, `vis`, `dist`.
   - **Bad**: `number_of_elements`, `adjacency_list`, `calculated_distance`.
 
 ### Types
-- Prefer `ll` by default to reduce overflow debugging.
-- Use `int` only when clearly safe and beneficial (memory, bitset indexing, array indices, tight constraints).
-- Avoid implicit narrowing conversions. Cast explicitly at boundaries when mixing types.
-- Always use aliases from `common.hpp` (e.g., `pll`, `pii`) when they match exactly to reduce typing.
+- 오버플로 디버깅을 줄이기 위해 기본적으로 `ll`을 선호. `int`는 명확히 안전하고 이점이 있을 때만 사용 (메모리, bitset 인덱싱, 배열 인덱스, 빡센 제약 등).
+- 암묵적 축소 변환을 피하기. 타입을 섞어 쓸 때 경계에서는 명시적으로 캐스팅.
+- 코드 길이, 타이핑을 줄이기 위해 `common.hpp`의 alias (예: `pll`, `all(x)`)를 적극적으로 사용.
 
-## Coding rules
-- Prefer straightforward implementations over heavy abstractions.
-- Avoid unnecessary dynamic polymorphism, complex metaprogramming, and over-engineered designs.
-- Public-facing helpers should be easy to understand without reading 5 other files.
-- Template common patterns (I/O, loops, small utilities), but keep templates minimal.
-- ICPC team notes have a length limit. Write the code as concisely as possible.
+## 코딩 규칙
+- 무거운 추상화보다 직관적인 구현을 선호.
+- 불필요한 동적 다형성, 복잡한 메타프로그래밍, 과도하게 공학적인 설계를 피하기.
+- ICPC 팀 노트에는 길이 제한이 있음. 코드는 가능한 한 간결하게 작성.
 
-## Comments and documentation (required)
-Write friendly, high-signal documentation in a consistent format.
+## 주석과 문서화 (필수)
+일관된 형식으로 친절하고 신호가 높은 문서를 작성하세요.
 
-### 1) Module header (for each reusable component)
-Add a header comment near the top:
-- What it does: add comments so that even content encountered after a long time serves as a reminder.
-- Complexity (time, memory)
-- Constraints / gotchas (short)
-- Optional: where it was verified (contest / problem ID)
+### 1) 모듈 헤더 (재사용 가능한 각 컴포넌트마다)
+상단 근처에 헤더 주석을 추가:
+- what
+- time; memory
+- constraint
+- usage
 
-### 2) Inline comments (throughout the code)
-Comment generously with short, consistent one-liners:
-- intent (`// goal: ...`)
-- invariants (`// invariant: ...` = must stay true throughout the loop/algorithm)
-- edge cases (`// edge: ...`)
-- tricky reasoning (`// why: ...`)
-- usage (`// usage: ...`)
+### 2) 인라인 주석 (코드 전반)
+짧고 일관된 한 줄 주석을 넉넉하게 달기:
+- 의도 (`// goal: ...`)
+- 불변식 (`// invariant: ...` = 루프/알고리즘 전반에서 항상 참이어야 함)
+- 엣지 케이스 (`// edge: ...`)
+- 까다로운 추론 (`// why: ...`)
 
-Prefer many small comments over a few long paragraphs.
+긴 문단 몇 개보다, 작은 주석을 많이 두는 걸 선호.
 
-## Formatting (required)
-After any change, run:
+## Formatting (필수)
+변경 후에는 항상 실행:
 - `scripts/format.sh`
 
-Do not commit unformatted code.
+포맷되지 않은 코드를 커밋하지 마세요.
 
-## Consistency checklist
-Before finishing a change:
-- Style matches the rules above (naming, layout, aliases).
-- The API is minimal and pasteable.
-- Complexity and constraints are stated.
-- Comments explain intent/invariants/edges without being verbose.
-- The code is not longer than it needs to be.
+## 테스트 (권장)
+- 템플릿 파일과 1:1 대응되는 테스트 파일을 둔다. 예: `src/1-ds/erasable_pq.cpp` -> `tests/1-ds/test_erasable_pq.cpp`
+- 파일명 규칙: `test_{*}.cpp` (길이 제한 없음)
+- 테스트는 단일 실행 파일로 작성하고 외부 프레임워크 없이 assert/직접 비교를 사용
+- 랜덤 + 나이브 비교, 엣지 케이스는 반드시 포함
+- 랜덤은 재현 가능하도록 고정 seed 사용 (필요 시 seed 출력)
+- 실행은 `scripts/test.sh`로 일괄, 가능하면 로컬에서도 실행
+- 다음은 기본 테스트 대상에서 제외: `1-ds/pbds.cpp`

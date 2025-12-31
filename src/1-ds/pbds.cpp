@@ -2,15 +2,20 @@
 #include <ext/pb_ds/assoc_container.hpp>
 #include <ext/pb_ds/tree_policy.hpp>
 using namespace __gnu_pbds;
-using pbds = tree<int, null_type, less<int>, rb_tree_tag, tree_order_statistics_node_update>;
-pbds st;
-st.order_of_key(x);  // number of elements strictly less than x
-st.find_by_order(x); // value of xth element (0-based)
 
-// multiset pbds (use "less_equal<int>" and custom "m_erase")
-using multi_pbds = tree<int, null_type, less_equal<int>, rb_tree_tag, tree_order_statistics_node_update>;
-void m_erase(multi_pbds &OS, int val) {
-    int index = OS.order_of_key(val);
-    multi_pbds::iterator it = OS.find_by_order(index);
-    OS.erase(it);
+// what: ordered set with order stats (no dup).
+// time: insert/erase/order_of_key/find_by_order O(log n); memory: O(n)
+// constraint: GNU pbds only.
+// usage: oset s; s.order_of_key(x); s.find_by_order(k);
+using oset = tree<ll, null_type, less<ll>, rb_tree_tag, tree_order_statistics_node_update>;
+
+// what: ordered multiset with order stats (dup ok).
+// time: insert/erase/order_of_key/find_by_order O(log n); memory: O(n)
+// constraint: GNU pbds only; erase assumes val exists.
+// usage: omset s; m_erase(s, x);
+using omset = tree<ll, null_type, less_equal<ll>, rb_tree_tag, tree_order_statistics_node_update>;
+void m_erase(omset &os, ll val) {
+    int idx = os.order_of_key(val);
+    omset::iterator it = os.find_by_order(idx);
+    os.erase(it);
 }
