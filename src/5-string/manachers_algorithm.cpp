@@ -1,44 +1,23 @@
 #include "../common/common.hpp"
 
-// Manacher's Algorithm
-// Find all palindromes in string in O(N)
-int n; // n: length of string
-string s;
-vector<int> p; // p[i]: the radius of the palindrome at the current position i
-void manacher() {
-    // Preprocessing for determining even-length pelindromes
-    n = sz(s);
-    s.resize(n << 1 | 1);
-    p.resize(n << 1 | 1);
-    for (int i = n - 1; i >= 0; i--) {
-        s[i << 1 | 1] = s[i];
-        s[i << 1] = '#';
+// what: manacher (odd/even pal radii).
+// time: O(n); memory: O(n)
+// constraint: 0-indexed; d1[i]=odd radius, d2[i]=even radius.
+// usage: auto [d1,d2]=manacher(s); // max len = max(2*d1[i]-1,2*d2[i])
+pair<vector<int>, vector<int>> manacher(const string &s) {
+    int n = sz(s);
+    vector<int> d1(n), d2(n);
+    for (int i = 0, l = 0, r = -1; i < n; i++) {
+        int k = (i > r) ? 1 : min(d1[l + r - i], r - i + 1);
+        while (i - k >= 0 && i + k < n && s[i - k] == s[i + k]) k++;
+        d1[i] = k--;
+        if (i + k > r) l = i - k, r = i + k;
     }
-    n <<= 1;
-    s[n++] = '#';
-    // Processing
-    int r = -1, c = -1;
-    // r: end of palindrome
-    // c: center of palindrome
-    for (int i = 0; i < n; i++) {
-        if (i <= r) p[i] = min(r - i, p[c * 2 - i]);
-        else p[i] = 0;
-        while (1) {
-            if (i - p[i] - 1 < 0 || i + p[i] + 1 >= n) break;
-            if (s[i + p[i] + 1] != s[i - p[i] - 1]) break;
-            p[i]++;
-        }
-        if (i + p[i] > r) {
-            r = i + p[i], c = i;
-        }
+    for (int i = 0, l = 0, r = -1; i < n; i++) {
+        int k = (i > r) ? 0 : min(d2[l + r - i + 1], r - i + 1);
+        while (i - k - 1 >= 0 && i + k < n && s[i - k - 1] == s[i + k]) k++;
+        d2[i] = k--;
+        if (i + k > r) l = i - k - 1, r = i + k;
     }
-}
-int main() {
-    cin >> s;
-    manacher();
-    // Get answer
-    int ans = 0;
-    for (int i = 0; i < n; i++)
-        ans = max(ans, p[i]);
-    cout << ans;
+    return {d1, d2};
 }

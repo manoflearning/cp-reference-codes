@@ -1,37 +1,48 @@
 #include "../common/common.hpp"
 
-const int MAX = 1010101;
-const int MOD1 = 1e9 + 7, MOD2 = 1e9 + 9;
-string T, P;
-ll d = 128, dexp1[MAX], dexp2[MAX];
-vector<int> ans;
-void rabinKarp() {
-    int len = sz(P);
-    ll p1 = 0, p2 = 0, t1 = 0, t2 = 0;
-    for (int i = 0; i < len; i++) {
-        p1 = (d * p1 + P[i]) % MOD1;
-        p2 = (d * p2 + P[i]) % MOD2;
-        t1 = (d * t1 + T[i]) % MOD1;
-        t2 = (d * t2 + T[i]) % MOD2;
+// what: rabin-karp (double rolling hash) for substring queries / pattern match.
+// time: build O(n), get O(1), match O(n); memory: O(n)
+// constraint: probabilistic (hash collision), returns 0-indexed match positions.
+// usage: auto pos = rk_match(t, p); // p in t
+struct rabin_karp {
+    static constexpr ll MOD1 = 1000000007;
+    static constexpr ll MOD2 = 1000000009;
+    static constexpr ll BASE = 911382323;
+    vector<ll> p1, p2, h1, h2;
+
+    void build(const string &s) {
+        int n = sz(s);
+        p1.assign(n + 1, 1);
+        p2.assign(n + 1, 1);
+        h1.assign(n + 1, 0);
+        h2.assign(n + 1, 0);
+        for (int i = 0; i < n; i++) {
+            ll x = (unsigned char)s[i] + 1;
+            p1[i + 1] = p1[i] * BASE % MOD1;
+            p2[i + 1] = p2[i] * BASE % MOD2;
+            h1[i + 1] = (h1[i] * BASE + x) % MOD1;
+            h2[i + 1] = (h2[i] * BASE + x) % MOD2;
+        }
     }
-    if (p1 == t1 && p2 == t2) ans.push_back(0);
-    for (int i = 1; i < sz(T) - len + 1; i++) {
-        t1 = (d * (t1 - dexp1[len - 1] * T[i - 1]) + T[i + len - 1]) % MOD1;
-        t1 = (t1 + MOD1) % MOD1;
-        t2 = (d * (t2 - dexp2[len - 1] * T[i - 1]) + T[i + len - 1]) % MOD2;
-        t2 = (t2 + MOD2) % MOD2;
-        if (p1 == t1 && p2 == t2) ans.push_back(i);
+
+    pll get(int l, int r) const { // [l, r)
+        ll x1 = (h1[r] - h1[l] * p1[r - l]) % MOD1;
+        ll x2 = (h2[r] - h2[l] * p2[r - l]) % MOD2;
+        if (x1 < 0) x1 += MOD1;
+        if (x2 < 0) x2 += MOD2;
+        return {x1, x2};
     }
-}
-int main() {
-    dexp1[0] = dexp2[0] = 1;
-    for (int i = 1; i < MAX; i++) {
-        dexp1[i] = d * dexp1[i - 1] % MOD1;
-        dexp2[i] = d * dexp2[i - 1] % MOD2;
-    }
-    getline(cin, T);
-    getline(cin, P);
-    rabinKarp();
-    cout << sz(ans) << '\n';
-    for (int i : ans) cout << i + 1 << ' ';
+};
+
+vector<int> rk_match(const string &t, const string &p) {
+    vector<int> res;
+    int n = sz(t), m = sz(p);
+    if (!m || n < m) return res;
+    rabin_karp ht, hp;
+    ht.build(t);
+    hp.build(p);
+    pll hp0 = hp.get(0, m);
+    for (int i = 0; i + m <= n; i++)
+        if (ht.get(i, i + m) == hp0) res.push_back(i);
+    return res;
 }

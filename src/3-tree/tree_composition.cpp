@@ -1,86 +1,80 @@
 #include "../common/common.hpp"
 
-const int MAXN = 505050;
-const int MAXD = 18;
-int n, q;
-int par[MAXN][MAXD + 1];
-vector<int> chd[MAXN];
-int in[MAXN], p, dep[MAXN];
-ll dp[MAXN];
-vector<int> cpchd[MAXN];
-int cppar[MAXN];
-void input() {
-    cin >> n >> q;
-    for (int i = 2; i <= n; i++) {
-        cin >> par[i][0];
-        chd[par[i][0]].push_back(i);
+// what: virtual tree builder for subset DP using LCA and dfs order.
+// time: build O(n log n), make O(k log k); memory: O(n log n)
+// constraint: 1-indexed tree.
+// usage: tree_comp tc; tc.init(n); tc.add(u,v); tc.build(root); auto nodes=tc.make(vs); // use tc.vt_adj
+struct tree_comp {
+    int n, lg, tim;
+    vector<vector<int>> adj, up, vt_adj;
+    vector<int> tin, tout, dep;
+
+    void init(int n_) {
+        n = n_;
+        lg = 1;
+        while ((1 << lg) <= n) lg++;
+        adj.assign(n + 1, {});
+        up.assign(lg, vector<int>(n + 1, 0));
+        vt_adj.assign(n + 1, {});
+        tin.assign(n + 1, 0);
+        tout.assign(n + 1, 0);
+        dep.assign(n + 1, 0);
+        tim = 0;
     }
-}
-void dfs(int v, int prv) {
-    in[v] = ++p;
-    dep[v] = 1 + dep[prv];
-    for (auto &i : chd[v])
-        if (i != prv) dfs(i, v);
-}
-void build_sparse_table() {
-    for (int d = 0; d + 1 <= MAXD; d++)
-        for (int v = 1; v <= n; v++)
-            par[v][d + 1] = par[par[v][d]][d];
-}
-int lca(int u, int v) {
-    if (dep[u] > dep[v]) swap(u, v);
-    int diff = dep[v] - dep[u];
-    for (int i = 0; i <= MAXD; i++) {
-        if (diff & (1 << i)) {
-            v = par[v][i];
-        }
+    void add(int u, int v) {
+        adj[u].push_back(v);
+        adj[v].push_back(u);
     }
-    if (u == v) return u;
-    for (int i = MAXD; i >= 0; i--) {
-        if (par[u][i] ^ par[v][i]) {
-            u = par[u][i];
-            v = par[v][i];
-        }
+    void dfs(int v, int p) {
+        // goal: build tin/tout, depth, and parents.
+        up[0][v] = p;
+        dep[v] = dep[p] + 1;
+        tin[v] = ++tim;
+        for (int to : adj[v])
+            if (to != p) dfs(to, v);
+        tout[v] = tim;
     }
-    return par[u][0];
-}
-int main() {
-    input();
-    dfs(1, 0);
-    build_sparse_table();
-    while (q--) {
-        int k;
-        cin >> k;
-        vector<int> vs(k);
-        for (auto &i : vs) cin >> i;
-        for (auto &i : vs) dp[i] = 1;
-        sort(all(vs), [&](int p1, int p2) {
-            return in[p1] < in[p2];
-        });
-        for (int i = 0; i + 1 < k; i++) {
-            vs.push_back(lca(vs[i], vs[i + 1]));
-        }
-        sort(all(vs), [&](int p1, int p2) {
-            return in[p1] < in[p2];
-        });
-        vs.erase(unique(all(vs)), vs.end());
-        for (int i = 0; i + 1 < sz(vs); i++) {
-            int u = vs[i], v = vs[i + 1];
-            int l = lca(u, v);
-            cpchd[l].push_back(v);
-        }
-        ll ans = 0;
-        for (int i = sz(vs) - 1; i >= 0; i--) {
-            int p = vs[i];
-            for (auto &v : cpchd[p]) {
-                ans += dp[p] * dp[v] * (dep[p] - 1);
-                dp[p] += dp[v];
+    void build(int root = 1) {
+        dfs(root, 0);
+        for (int k = 0; k + 1 < lg; k++)
+            for (int v = 1; v <= n; v++)
+                up[k + 1][v] = up[k][up[k][v]];
+    }
+    bool is_anc(int a, int b) const {
+        return tin[a] <= tin[b] && tout[b] <= tout[a];
+    }
+    int lca(int a, int b) const {
+        if (dep[a] < dep[b]) swap(a, b);
+        int diff = dep[a] - dep[b];
+        for (int k = 0; k < lg; k++)
+            if (diff & (1 << k)) a = up[k][a];
+        if (a == b) return a;
+        for (int k = lg - 1; k >= 0; k--) {
+            if (up[k][a] != up[k][b]) {
+                a = up[k][a];
+                b = up[k][b];
             }
         }
-        for (auto &i : vs) {
-            dp[i] = 0;
-            cpchd[i].clear();
-        }
-        cout << ans << '\n';
+        return up[0][a];
     }
-}
+    vector<int> make(vector<int> vs) {
+        if (vs.empty()) return {};
+        sort(all(vs), [&](int a, int b) { return tin[a] < tin[b]; });
+        vs.erase(unique(all(vs)), vs.end());
+        int m = sz(vs);
+        for (int i = 0; i + 1 < m; i++) vs.push_back(lca(vs[i], vs[i + 1]));
+        sort(all(vs), [&](int a, int b) { return tin[a] < tin[b]; });
+        vs.erase(unique(all(vs)), vs.end());
+        for (int v : vs) vt_adj[v].clear();
+        vector<int> st;
+        st.push_back(vs[0]);
+        for (int i = 1; i < sz(vs); i++) {
+            int v = vs[i];
+            // invariant: stack is ancestor chain.
+            while (!is_anc(st.back(), v)) st.pop_back();
+            vt_adj[st.back()].push_back(v);
+            st.push_back(v);
+        }
+        return vs;
+    }
+};
