@@ -1,29 +1,30 @@
 #include "geom_base.cpp"
 
-// what: iterate all angular orders of points by rotating a line (bulldozer trick).
+// what: enumerate point orderings under rotating direction for angle-sweep counting.
 // time: O(n^2 log n); memory: O(n^2)
 // constraint: orders correspond to direction angle in [0, pi); points processed in-place.
 // usage: bulldozer(p, [&](const vector<pt> &cur) { /* use order */ });
-struct line {
+struct bd_line {
     int u, v;
     ll dx, dy; // dx >= 0
-    bool operator<(const line &rhs) const {
+    bool operator<(const bd_line &rhs) const {
         if (dy * rhs.dx != rhs.dy * dx) return dy * rhs.dx < rhs.dy * dx;
         return tie(u, v) < tie(rhs.u, rhs.v);
     }
-    bool operator==(const line &rhs) const {
+    bool operator==(const bd_line &rhs) const {
         return dy * rhs.dx == rhs.dy * dx;
     }
 };
 
 template <class F>
 void bulldozer(vector<pt> &p, F f) {
+    // goal: visit each distinct angular order once.
     int n = sz(p);
     sort(all(p));
     vector<pt> base = p;
     vector<int> pos(n);
     iota(all(pos), 0);
-    vector<line> ln;
+    vector<bd_line> ln;
     ln.reserve(1LL * n * (n - 1) / 2);
     for (int i = 0; i < n; i++) {
         for (int j = i + 1; j < n; j++) {

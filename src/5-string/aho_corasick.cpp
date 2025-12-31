@@ -1,6 +1,6 @@
 #include "../common/common.hpp"
 
-// what: aho-corasick automaton for multiple pattern matching (lowercase).
+// what: build automaton to find many lowercase patterns inside a text.
 // time: add O(|p|), build O(nodes*ALPHA), query O(|t|); memory: O(nodes*ALPHA)
 // constraint: patterns/text are 'a'..'z', call build() after add().
 // usage: aho_corasick ac; ac.add(p); ac.build(); bool any=ac.match_any(t); ll cnt=ac.count(t);
@@ -12,6 +12,7 @@ struct aho_corasick {
     aho_corasick() { init(); }
 
     void init() {
+        // goal: reset to a single root node.
         nxt.assign(1, {});
         nxt[0].fill(-1);
         fail.assign(1, 0);
@@ -19,6 +20,7 @@ struct aho_corasick {
     }
 
     int add(const string &s) {
+        // goal: insert a pattern and return its terminal node.
         int v = 0;
         for (char ch : s) {
             int c = ch - 'a';
@@ -36,6 +38,7 @@ struct aho_corasick {
     }
 
     void build() {
+        // goal: compute failure links and output counts.
         queue<int> q;
         for (int c = 0; c < ALPHA; c++) {
             int v = nxt[0][c];
@@ -65,6 +68,7 @@ struct aho_corasick {
     int step(int v, char ch) const { return nxt[v][ch - 'a']; }
 
     bool match_any(const string &t) const {
+        // result: true if any pattern appears in t.
         int v = 0;
         for (char ch : t) {
             v = step(v, ch);
@@ -74,6 +78,7 @@ struct aho_corasick {
     }
 
     ll count(const string &t) const {
+        // result: total number of pattern occurrences in t.
         ll res = 0;
         int v = 0;
         for (char ch : t) {

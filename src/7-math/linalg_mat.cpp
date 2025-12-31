@@ -1,7 +1,7 @@
 #pragma once
 #include "../common/common.hpp"
 
-// what: matrix with modular multiplication + fast exponentiation.
+// what: small matrix helper for modular multiply and fast exponentiation.
 // time: multiply O(n*m*k); power O(log e * n^3); memory: O(n*m)
 // constraint: mod > 0; dims must match for multiply.
 // usage: matrix a(n,n,mod); auto r=matrix::power(a, e);

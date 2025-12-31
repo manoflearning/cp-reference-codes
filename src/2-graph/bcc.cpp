@@ -1,6 +1,6 @@
 #include "../common/common.hpp"
 
-// what: biconnected components + articulation points/edges (undirected).
+// what: find biconnected components and articulation points/bridges in an undirected graph.
 // time: O(n+m); memory: O(n+m)
 // constraint: 1-indexed; no self-loops; recursion depth O(n).
 // usage: bcc_graph g; g.init(n); g.add(u,v); g.run(); // g.bccs, g.ap, g.ae

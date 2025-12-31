@@ -1,10 +1,11 @@
 #include "../common/common.hpp"
 
-// what: suffix array (doubling + counting sort) and LCP (kasai).
+// what: build lexicographic suffix order and LCP for fast substring comparisons.
 // time: build_sa O(n log n), build_lcp O(n); memory: O(n)
 // constraint: s is 0-indexed string, sa is 0-indexed positions.
 // usage: suffix_array sa; sa.build(s); // sa.sa, sa.lcp (lcp[i]=lcp(sa[i], sa[i-1]))
 vector<int> build_sa(const string &s) {
+    // result: sa[i] = starting index of i-th suffix in sorted order.
     int n = sz(s);
     if (!n) return {};
     int m = max(256, n) + 1;
@@ -32,6 +33,7 @@ vector<int> build_sa(const string &s) {
 }
 
 vector<int> build_lcp(const string &s, const vector<int> &sa) {
+    // result: lcp[i] = LCP of sa[i] and sa[i-1].
     int n = sz(s);
     vector<int> lcp(n), rk(n);
     for (int i = 0; i < n; i++) rk[sa[i]] = i;
@@ -49,6 +51,7 @@ vector<int> build_lcp(const string &s, const vector<int> &sa) {
 struct suffix_array {
     vector<int> sa, lcp;
     void build(const string &s) {
+        // goal: fill sa and lcp for string s.
         sa = build_sa(s);
         lcp = build_lcp(s, sa);
     }

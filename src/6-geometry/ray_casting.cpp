@@ -1,6 +1,6 @@
 #include "geom_base.cpp"
 
-// what: point-in-polygon test by ray casting (boundary included).
+// what: test whether a point lies inside or on the boundary of a polygon.
 // time: O(n); memory: O(1)
 // constraint: polygon is simple (cw/ccw ok); returns true on boundary.
 // usage: bool inside = in_poly(poly, q);
@@ -14,6 +14,7 @@ static bool on_seg(const pt &a, const pt &b, const pt &p) {
 }
 
 bool in_poly(const vector<pt> &poly, const pt &q) {
+    // result: true if q is inside or on the boundary.
     int n = sz(poly);
     if (!n) return 0;
     for (int i = 0; i < n; i++) {

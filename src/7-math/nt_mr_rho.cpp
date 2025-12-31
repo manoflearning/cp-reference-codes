@@ -1,7 +1,7 @@
 #pragma once
 #include "num.hpp"
 
-// what: primality test for 64-bit (Miller-Rabin).
+// what: decide primality of a 64-bit integer using deterministic Miller-Rabin.
 // time: O(k log n); memory: O(1)
 // constraint: n fits in signed ll; uses __int128 mul.
 // usage: if(miller_rabin::is_prime(n)) ...
@@ -37,7 +37,7 @@ struct miller_rabin {
     }
 };
 
-// what: 64-bit factorization (Pollard-Rho).
+// what: split a 64-bit integer into prime factors using randomized Pollard-Rho.
 // time: fast in practice; memory: O(log n)
 // constraint: randomized; uses miller_rabin.
 // usage: auto f=pollard_rho::factor(n);
@@ -46,7 +46,7 @@ struct pollard_rho {
 
     static ll rho(ll n) {
         if ((n & 1) == 0) return 2;
-        static mt19937_64 rng(chrono::steady_clock::now().time_since_epoch().count());
+        static mt19937_64 rng(712367);
         while (1) {
             ll c = uniform_int_distribution<ll>(1, n - 1)(rng);
             ll x = uniform_int_distribution<ll>(0, n - 1)(rng);

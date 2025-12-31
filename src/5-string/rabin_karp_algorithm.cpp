@@ -1,6 +1,6 @@
 #include "../common/common.hpp"
 
-// what: rabin-karp (double rolling hash) for substring queries / pattern match.
+// what: probabilistic substring matching using double rolling hash.
 // time: build O(n), get O(1), match O(n); memory: O(n)
 // constraint: probabilistic (hash collision), returns 0-indexed match positions.
 // usage: auto pos = rk_match(t, p); // p in t
@@ -11,6 +11,7 @@ struct rabin_karp {
     vector<ll> p1, p2, h1, h2;
 
     void build(const string &s) {
+        // goal: precompute prefix hashes and powers.
         int n = sz(s);
         p1.assign(n + 1, 1);
         p2.assign(n + 1, 1);
@@ -26,6 +27,7 @@ struct rabin_karp {
     }
 
     pll get(int l, int r) const { // [l, r)
+        // result: hash of s[l..r).
         ll x1 = (h1[r] - h1[l] * p1[r - l]) % MOD1;
         ll x2 = (h2[r] - h2[l] * p2[r - l]) % MOD2;
         if (x1 < 0) x1 += MOD1;
@@ -35,6 +37,7 @@ struct rabin_karp {
 };
 
 vector<int> rk_match(const string &t, const string &p) {
+    // result: all positions where p matches t (by hash).
     vector<int> res;
     int n = sz(t), m = sz(p);
     if (!m || n < m) return res;

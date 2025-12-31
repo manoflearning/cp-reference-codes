@@ -1,10 +1,11 @@
 #include "geom_base.cpp"
 
-// what: segment intersection test with intersection point (double).
+// what: test segment intersection and return one intersection point if any.
 // time: O(1); memory: O(1)
 // constraint: seg_inter_p returns one point; overlapping segments return one endpoint.
 // usage: ptd out; if (seg_inter_p(a,b,c,d,out)) ...
 bool seg_inter_p(const pt &a, const pt &b, const pt &c, const pt &d, ptd &out) {
+    // result: true if segments intersect, out is one point.
     if (!seg_inter(a, b, c, d)) return 0;
     if (ccw(a, b, c) == 0 && ccw(a, b, d) == 0) {
         pt ab_lo = (b < a) ? b : a;

@@ -1,10 +1,11 @@
 #include "../common/common.hpp"
 
-// what: KMP (prefix function) for exact pattern matching.
+// what: find all occurrences of a pattern using prefix-function (KMP).
 // time: O(|t|+|p|); memory: O(|p|)
 // constraint: returns 0-indexed match positions.
 // usage: auto pos = kmp_match(t, p); // p in t
 vector<int> kmp_pi(const string &p) {
+    // result: pi[i] = length of longest proper prefix ending at i.
     vector<int> pi(sz(p));
     for (int i = 1, j = 0; i < sz(p); i++) {
         while (j && p[i] != p[j]) j = pi[j - 1];
@@ -14,6 +15,7 @@ vector<int> kmp_pi(const string &p) {
 }
 
 vector<int> kmp_match(const string &t, const string &p) {
+    // result: all start indices where p matches t.
     vector<int> res;
     if (p.empty()) return res;
     auto pi = kmp_pi(p);

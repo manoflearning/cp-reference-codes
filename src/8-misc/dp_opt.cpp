@@ -1,12 +1,12 @@
 #include "../common/common.hpp"
 
-// what: dp optimization snippets (monotone CHT, Knuth opt, DnC opt, slope trick).
+// what: collection of DP optimizations (CHT, Knuth, DnC, slope trick).
 // time: see each component; memory: see each component.
 // constraint: see each component.
 // usage: include and use each struct/function below.
 
 // Monotone Convex Hull Trick (min query).
-// what: min of y = m*x + b with monotone slopes, query any x via binary search.
+// what: maintain lower hull for monotone slopes and query min at any x.
 // time: add O(1) amortized, query O(log n); memory: O(n)
 // constraint: slopes added in decreasing order for min; uses long double intersections.
 // usage: cht_mono ch; ch.add_line(m, b); ll v = ch.get(x);
@@ -52,7 +52,7 @@ struct cht_mono {
 };
 
 // Knuth Optimization.
-// what: dp[i][j] = min_{k in [i..j-1]} dp[i][k] + dp[k+1][j] + cost(i,j).
+// what: optimize interval DP with quadrangle inequality (Knuth).
 // time: O(n^2); memory: O(n^2)
 // constraint: cost must satisfy quadrangle inequality (Monge) + monotone opt.
 // usage: knuth_opt ko; ko.build(n, [&](int i,int j){ return cost(i,j); });
@@ -90,7 +90,7 @@ struct knuth_opt {
 };
 
 // Divide and Conquer Optimization.
-// what: dp[g][i] = min_{j in [0..i]} prv[j] + cost(j,i).
+// what: optimize layered DP with monotone opt (divide and conquer).
 // time: O(k n log n); memory: O(n)
 // constraint: opt[g][i] <= opt[g][i+1] (Monge cost).
 // usage: dnc_opt dc; dc.run(k, n, base, cost); auto ans = dc.dp();
@@ -130,7 +130,7 @@ struct dnc_opt {
 };
 
 // Slope Trick for making array strictly increasing.
-// what: min sum |a[i]-b[i]| s.t. b is strictly increasing.
+// what: adjust array to strictly increasing with minimum L1 cost (slope trick).
 // time: O(n log n); memory: O(n)
 // constraint: values fit in ll.
 // usage: ll ops = slope_trick(a);

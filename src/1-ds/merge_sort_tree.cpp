@@ -1,13 +1,14 @@
 #include "../common/common.hpp"
 constexpr int MAX_MST = 1 << 17;
 
-// what: merge sort tree for count of values > k on a range.
+// what: static range count queries by storing sorted lists on a segment tree.
 // time: build O(n log n), query O(log^2 n); memory: O(n log n)
 // constraint: MAX_MST >= n; values fit in int; 0-indexed [l, r]; build once.
 // usage: merge_seg st; st.build(a); st.query(l, r, k);
 struct merge_seg {
     vector<int> t[MAX_MST << 1];
     void build(const vector<int> &a) {
+        // goal: build sorted lists for each node.
         for (int i = 0; i < sz(a); i++)
             t[i + MAX_MST].push_back(a[i]);
         for (int i = MAX_MST - 1; i >= 1; i--) {
@@ -16,6 +17,7 @@ struct merge_seg {
         }
     }
     int query(int l, int r, int k, int v = 1, int nl = 0, int nr = MAX_MST - 1) const {
+        // result: count of elements > k in [l, r].
         if (nr < l || r < nl) return 0;
         if (l <= nl && nr <= r)
             return int(t[v].end() - upper_bound(all(t[v]), k));
@@ -24,13 +26,14 @@ struct merge_seg {
     }
 };
 
-// what: iter merge sort tree for count of values > k on a range.
+// what: iterative merge sort tree for static range count queries.
 // time: build O(n log n), query O(log^2 n); memory: O(n log n)
 // constraint: MAX_MST >= n; values fit in int; 0-indexed [l, r]; build once.
 // usage: merge_seg_it st; st.build(a); st.query(l, r, k);
 struct merge_seg_it {
     vector<int> t[MAX_MST << 1];
     void build(const vector<int> &a) {
+        // goal: build sorted lists for each node.
         for (int i = 0; i < sz(a); i++)
             t[i + MAX_MST].push_back(a[i]);
         for (int i = MAX_MST - 1; i >= 1; i--) {
@@ -39,6 +42,7 @@ struct merge_seg_it {
         }
     }
     int query(int l, int r, int k) const {
+        // result: count of elements > k in [l, r].
         l += MAX_MST, r += MAX_MST;
         int ret = 0;
         while (l <= r) {

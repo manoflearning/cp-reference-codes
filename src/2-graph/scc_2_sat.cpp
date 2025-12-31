@@ -1,6 +1,6 @@
 #include "../common/common.hpp"
 
-// what: SCC via Kosaraju.
+// what: compute SCCs in a directed graph using Kosaraju's algorithm.
 // time: O(n+m); memory: O(n+m)
 // constraint: directed; 1-indexed; recursion depth O(n).
 // usage: scc_kosa s; s.init(n); s.add(u,v); int c=s.run();
@@ -47,7 +47,7 @@ struct scc_kosa {
     }
 };
 
-// what: SCC via Tarjan.
+// what: compute SCCs in a directed graph using Tarjan's algorithm.
 // time: O(n+m); memory: O(n+m)
 // constraint: directed; 1-indexed; recursion depth O(n).
 // usage: scc_tarjan s; s.init(n); s.add(u,v); int c=s.run();
@@ -99,7 +99,7 @@ struct scc_tarjan {
     }
 };
 
-// what: 2-SAT via SCC (Tarjan).
+// what: solve 2-SAT by SCC condensation (Tarjan-based).
 // time: O(n+m); memory: O(n+m)
 // constraint: vars are 1..n; literal x<0 means not x; recursion depth O(n).
 // usage: two_sat s; s.init(n); s.add(a,b); bool ok=s.run(); // s.val

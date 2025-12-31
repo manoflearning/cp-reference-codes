@@ -1,6 +1,6 @@
 #include "../common/common.hpp"
 
-// what: kitamasa for linear recurrence (k^2 log n).
+// what: compute n-th term of a linear recurrence using Kitamasa.
 // time: O(k^2 log n); memory: O(k^2)
 // constraint: coef.size() == init.size(); mod >= 1.
 // usage: coef[i] for A_{n-1-i}; ll an = kitamasa(coef, init, n, mod);

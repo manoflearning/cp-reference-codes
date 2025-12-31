@@ -1,10 +1,11 @@
 #include "geom_base.cpp"
 
-// what: convex hull of 2D points (ccw, start from lowest lexicographic).
+// what: compute the convex hull polygon of points in CCW order.
 // time: O(n log n); memory: O(n)
 // constraint: collinear points on edges are removed (use < instead of <= to keep).
 // usage: vector<pt> hull = convex_hull(p);
 vector<pt> convex_hull(vector<pt> p) {
+    // result: hull without collinear edge points.
     sort(all(p));
     p.erase(unique(all(p)), p.end());
     int n = sz(p);

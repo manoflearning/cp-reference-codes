@@ -1,7 +1,7 @@
 #pragma once
 #include "comb_binom.cpp"
 
-// what: Catalan numbers modulo prime.
+// what: precompute Catalan numbers modulo a prime.
 // time: O(n) init, O(1) query; memory: O(n)
 // constraint: mod is prime; n < mod (so inv(n+1) exists).
 // usage: catalan_mod ct; ct.init(n, mod); ll v=ct.catalan(k);
@@ -22,7 +22,7 @@ struct catalan_mod {
     }
 };
 
-// what: derangement numbers modulo mod.
+// what: precompute derangement numbers modulo mod.
 // time: O(n) init, O(1) query; memory: O(n)
 // constraint: mod > 1.
 // usage: derange_mod de; de.init(n, mod); ll v=de.get(k);

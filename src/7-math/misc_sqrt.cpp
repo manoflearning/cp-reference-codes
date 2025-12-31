@@ -1,15 +1,15 @@
 #pragma once
 #include "../common/common.hpp"
 
-// what: sqrt-time number theory basics (divisors, prime factorization).
+// what: list all divisors and prime factors of a single integer by sqrt trial division.
 // time: O(sqrt x); memory: O(1) extra
-// constraint: x >= 1.
+// constraint: x >= 1 and fits in ll.
 // usage: auto d=sqrt_alg::divisors(x); auto pf=sqrt_alg::prime_fac(x);
 struct sqrt_alg {
-    static vector<int> divisors(int x) {
+    static vector<ll> divisors(ll x) {
         // result: sorted divisors of x.
-        vector<int> d;
-        for (int i = 1; 1LL * i * i <= x; i++) {
+        vector<ll> d;
+        for (ll i = 1; i <= x / i; i++) {
             if (x % i) continue;
             d.push_back(i);
             if (i * i != x) d.push_back(x / i);
@@ -18,14 +18,14 @@ struct sqrt_alg {
         return d;
     }
 
-    static vector<int> prime_fac(int x) {
+    static vector<ll> prime_fac(ll x) {
         // result: prime factors of x (with repetition).
-        vector<int> p;
+        vector<ll> p;
         while ((x & 1) == 0) {
             p.push_back(2);
             x >>= 1;
         }
-        for (int i = 3; 1LL * i * i <= x; i += 2) {
+        for (ll i = 3; i <= x / i; i += 2) {
             while (x % i == 0) {
                 p.push_back(i);
                 x /= i;

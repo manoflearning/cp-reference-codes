@@ -2,7 +2,7 @@
 
 #include "../common/common.hpp"
 
-// what: extended euclid toolkit.
+// what: gcd/egcd/inverse helpers and modular exponentiation.
 // time: O(log n); memory: O(1)
 // constraint: works for any ll.
 // usage: auto eg=euclid::egcd(a,b); ll inv=euclid::inv_mod(a,mod);
@@ -61,7 +61,7 @@ struct euclid {
     }
 
     static ll lin_cong(ll a, ll b, ll mod) {
-        // what: solve a*x = b (mod mod).
+        // what: solve linear congruence a*x = b (mod mod).
         // result: one x in [0, mod) if exists, else -1.
         auto res = egcd(a, mod);
         ll g = res.sc;
@@ -72,7 +72,7 @@ struct euclid {
     }
 };
 
-// what: modular exponentiation.
+// what: fast modular exponentiation (binary exponentiation).
 // time: O(log e); memory: O(1)
 // constraint: mod > 0.
 // usage: ll p=pow_mod(a,e,mod);
