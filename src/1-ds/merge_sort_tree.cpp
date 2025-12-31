@@ -1,47 +1,49 @@
 #include "../common/common.hpp"
 constexpr int MAX_MST = 1 << 17;
-// 1. Merge Sort Tree
-// INPUT: Given a sequence A_1, A_2, ..., A_n of length n. Given a query (i, j, k).
-// OUTPUT: For each query (i, j, k), output the number of elements greater than k among elements A_i, A_{i+1}, ..., A_j.
-// TIME COMPLEXITY: O(nlogn) for initialize Merge Sort Tree, O(log^2n) for each query.
-struct MergeSortTree {
+
+// what: merge sort tree for count of values > k on a range.
+// time: build O(n log n), query O(log^2 n); memory: O(n log n)
+// constraint: MAX_MST >= n; values fit in int; 0-indexed [l, r]; build once.
+// usage: mseg st; st.build(a); st.query(l, r, k);
+struct mseg {
     vector<int> t[MAX_MST << 1];
-    void build(const vector<int> &arr) {
-        for (int i = 0; i < sz(arr); i++)
-            t[i + 1 + MAX_MST].push_back(arr[i]);
+    void build(const vector<int> &a) {
+        for (int i = 0; i < sz(a); i++)
+            t[i + MAX_MST].push_back(a[i]);
         for (int i = MAX_MST - 1; i >= 1; i--) {
             t[i].resize(sz(t[i << 1]) + sz(t[i << 1 | 1]));
             merge(all(t[i << 1]), all(t[i << 1 | 1]), t[i].begin());
         }
     }
-    int query(int l, int r, int k, int n = 1, int nl = 0, int nr = MAX_MST - 1) { // 0-indexed, query on interval [l, r]
+    int query(int l, int r, int k, int v = 1, int nl = 0, int nr = MAX_MST - 1) const {
         if (nr < l || r < nl) return 0;
         if (l <= nl && nr <= r)
-            return t[n].end() - upper_bound(all(t[n]), k);
+            return int(t[v].end() - upper_bound(all(t[v]), k));
         int mid = (nl + nr) >> 1;
-        return query(l, r, k, n << 1, nl, mid) + query(l, r, k, n << 1 | 1, mid + 1, nr);
+        return query(l, r, k, v << 1, nl, mid) + query(l, r, k, v << 1 | 1, mid + 1, nr);
     }
 };
-// 2. Iterative Merge Sort Tree
-// INPUT: Given a sequence A_1, A_2, ..., A_n of length n. Given a query (i, j, k).
-// OUTPUT: For each query (i, j, k), output the number of elements greater than k among elements A_i, A_{i+1}, ..., A_j.
-// TIME COMPLEXITY: O(nlogn) for initialize Merge Sort Tree, O(log^2n) for each query.
-struct MergeSortTreeIter {
+
+// what: iter merge sort tree for count of values > k on a range.
+// time: build O(n log n), query O(log^2 n); memory: O(n log n)
+// constraint: MAX_MST >= n; values fit in int; 0-indexed [l, r]; build once.
+// usage: mseg_it st; st.build(a); st.query(l, r, k);
+struct mseg_it {
     vector<int> t[MAX_MST << 1];
-    void build(const vector<int> &arr) {
-        for (int i = 0; i < sz(arr); i++)
-            t[i + 1 + MAX_MST].push_back(arr[i]);
+    void build(const vector<int> &a) {
+        for (int i = 0; i < sz(a); i++)
+            t[i + MAX_MST].push_back(a[i]);
         for (int i = MAX_MST - 1; i >= 1; i--) {
             t[i].resize(sz(t[i << 1]) + sz(t[i << 1 | 1]));
             merge(all(t[i << 1]), all(t[i << 1 | 1]), t[i].begin());
         }
     }
-    int query(int l, int r, int k) { // 1-indexed, query on interval [l, r]
+    int query(int l, int r, int k) const {
         l += MAX_MST, r += MAX_MST;
         int ret = 0;
         while (l <= r) {
-            if (l & 1) ret += t[l].end() - upper_bound(all(t[l]), k), l++;
-            if (~r & 1) ret += t[r].end() - upper_bound(all(t[r]), k), r--;
+            if (l & 1) ret += int(t[l].end() - upper_bound(all(t[l]), k)), l++;
+            if (~r & 1) ret += int(t[r].end() - upper_bound(all(t[r]), k)), r--;
             l >>= 1, r >>= 1;
         }
         return ret;

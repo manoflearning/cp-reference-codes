@@ -1,57 +1,61 @@
 #include "../common/common.hpp"
-// INPUT: Initially, a 2d plane in which no linear function exists is given.
-// Two types of queries are given.
-// 1 a b : The linear function f(x) = ax + b is added.
-// 2 x : Find the max(f(x)) among the linear functions given so far.
-// OUTPUT: For each query 2 x, output the max(f(x)) among the linear functions given so far.
-// TIME COMPLEXITY: O(qlogq)
-using Line = pair<ll, ll>;
-constexpr Line e = {0, -1e18};
-struct LiChaoTree {
-    ll f(Line l, ll x) { return l.first * x + l.second; }
-    struct Node {
+
+// what: Li Chao tree for max line query.
+// time: add/query O(log X); memory: O(n)
+// constraint: x in [xl, xr]; line is y = ax + b.
+// usage: li_chao lc; lc.init(xl, xr); lc.add({a, b}); ll v = lc.query(x);
+using line = pair<ll, ll>;
+constexpr ll NEG_INF = -(1LL << 60);
+constexpr line LINE_E = {0, NEG_INF};
+
+struct li_chao {
+    struct node {
         ll xl, xr;
         int l, r;
-        Line line;
+        line ln;
     };
-    vector<Node> t;
-    void build(ll xlb, ll xub) {
-        t.push_back({xlb, xub, -1, -1, e});
+    vector<node> t;
+
+    ll eval(const line &ln, ll x) const { return ln.first * x + ln.second; }
+    void init(ll xl, ll xr) {
+        t.clear();
+        t.push_back({xl, xr, -1, -1, LINE_E});
     }
-    void insert(Line newLine, int n = 0) {
-        ll xl = t[n].xl, xr = t[n].xr;
-        ll xmid = (xl + xr) >> 1;
+    void add(line nw, int v = 0) {
+        ll xl = t[v].xl, xr = t[v].xr;
+        ll mid = (xl + xr) >> 1;
 
-        Line llow = t[n].line, lhigh = newLine;
-        if (f(llow, xl) >= f(lhigh, xl)) swap(llow, lhigh);
+        line lo = t[v].ln, hi = nw;
+        if (eval(lo, xl) >= eval(hi, xl)) swap(lo, hi);
 
-        if (f(llow, xr) <= f(lhigh, xr)) {
-            t[n].line = lhigh;
+        if (eval(lo, xr) <= eval(hi, xr)) {
+            t[v].ln = hi;
             return;
-        } else if (f(llow, xmid) < f(lhigh, xmid)) {
-            t[n].line = lhigh;
-            if (t[n].r == -1) {
-                t[n].r = sz(t);
-                t.push_back({xmid + 1, xr, -1, -1, e});
+        }
+        if (eval(lo, mid) < eval(hi, mid)) {
+            t[v].ln = hi;
+            if (t[v].r == -1) {
+                t[v].r = sz(t);
+                t.push_back({mid + 1, xr, -1, -1, LINE_E});
             }
-            insert(llow, t[n].r);
-        } else if (f(llow, xmid) >= f(lhigh, xmid)) {
-            t[n].line = llow;
-            if (t[n].l == -1) {
-                t[n].l = sz(t);
-                t.push_back({xl, xmid, -1, -1, e});
+            add(lo, t[v].r);
+        } else {
+            t[v].ln = lo;
+            if (t[v].l == -1) {
+                t[v].l = sz(t);
+                t.push_back({xl, mid, -1, -1, LINE_E});
             }
-            insert(lhigh, t[n].l);
+            add(hi, t[v].l);
         }
     }
-    ll query(ll x, int n = 0) {
-        if (n == -1) return e.second;
-        ll xl = t[n].xl, xr = t[n].xr;
-        ll xmid = (xl + xr) >> 1;
+    ll query(ll x, int v = 0) const {
+        if (v == -1) return NEG_INF;
+        ll xl = t[v].xl, xr = t[v].xr;
+        ll mid = (xl + xr) >> 1;
 
-        ll ret = f(t[n].line, x);
-        if (x <= xmid) ret = max(ret, query(x, t[n].l));
-        else ret = max(ret, query(x, t[n].r));
+        ll ret = eval(t[v].ln, x);
+        if (x <= mid) ret = max(ret, query(x, t[v].l));
+        else ret = max(ret, query(x, t[v].r));
         return ret;
     }
 };

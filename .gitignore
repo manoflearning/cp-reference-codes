@@ -1,1 +1,5 @@
 .vscode
+.bin
+.venv
+.DS_Store
+.ruff_cache
