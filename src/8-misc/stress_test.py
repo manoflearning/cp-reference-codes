@@ -1,18 +1,28 @@
 from subprocess import run
 
-run(["g++ input.cpp -o input"], shell=True)
-run(["g++ naive.cpp -o naive"], shell=True)
-run(["g++ solve.cpp -o solve"], shell=True)
-for _ in range(100000):
-    inp = run(
-        ["./input"], shell=True, capture_output=True, input=str(_), text=True
-    ).stdout
-    O1 = run(["./naive"], shell=True, capture_output=True, input=inp, text=True).stdout
-    O2 = run(["./solve"], shell=True, capture_output=True, input=inp, text=True).stdout
-    if O1 != O2:
+# what: stress test driver (input -> naive vs solve).
+# usage: keep input.cpp/naive.cpp/solve.cpp and run python3 stress_test.py
+
+def build(cmd):
+    run(cmd, shell=True, check=True)
+
+
+def exec_bin(bin_path, inp):
+    return run([bin_path], capture_output=True, input=inp, text=True).stdout
+
+
+build("g++ -std=c++17 -O2 -pipe input.cpp -o input")
+build("g++ -std=c++17 -O2 -pipe naive.cpp -o naive")
+build("g++ -std=c++17 -O2 -pipe solve.cpp -o solve")
+
+for it in range(100000):
+    inp = exec_bin("./input", str(it))
+    o1 = exec_bin("./naive", inp)
+    o2 = exec_bin("./solve", inp)
+    if o1 != o2:
         print(inp)
         print("output_naive")
-        print(O1)
+        print(o1)
         print("output_solve")
-        print(O2)
+        print(o2)
         break

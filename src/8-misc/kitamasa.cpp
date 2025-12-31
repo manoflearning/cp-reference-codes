@@ -1,69 +1,58 @@
 #include "../common/common.hpp"
 
-typedef vector<ll> poly;
-const int MOD = 1999;
-const int MAXN = 1010;
-int Mod(ll x) {
-    return (x %= MOD) < 0 ? x + MOD : x;
+// what: kitamasa for linear recurrence (k^2 log n).
+// time: O(k^2 log n); memory: O(k^2)
+// constraint: coef.size() == init.size(); mod >= 1.
+// usage: coef[i] for A_{n-1-i}; ll an = kitamasa(coef, init, n, mod);
+using poly = vector<ll>;
+
+ll mod_norm(ll x, ll mod) {
+    x %= mod;
+    if (x < 0) x += mod;
+    return x;
 }
-poly Mul(const poly &a, const poly &b) {
-    poly ret(sz(a) + sz(b) - 1);
-    for (int i = 0; i < sz(a); i++)
+
+poly poly_mul(const poly &a, const poly &b, ll mod) {
+    poly ret(sz(a) + sz(b) - 1, 0);
+    for (int i = 0; i < sz(a); i++) {
         for (int j = 0; j < sz(b); j++) {
-            ret[i + j] = (ret[i + j] + a[i] * b[j]) % MOD;
+            ret[i + j] = mod_norm(ret[i + j] + (__int128)a[i] * b[j], mod);
         }
+    }
     return ret;
 }
-poly Div(const poly &a, const poly &b) {
-    poly ret(all(a));
-    for (int i = sz(ret) - 1; i >= sz(b) - 1; i--)
-        for (int j = 0; j < sz(b); j++) {
-            ret[i + j - sz(b) + 1] = Mod(ret[i + j - sz(b) + 1] - ret[i] * b[j]);
+
+poly poly_div(const poly &a, const poly &f, ll mod) {
+    // goal: reduce a(x) mod f(x), where f is monic
+    poly ret = a;
+    for (int i = sz(ret) - 1; i >= sz(f) - 1; i--) {
+        if (ret[i] == 0) continue;
+        for (int j = 0; j < sz(f); j++) {
+            int idx = i + j - sz(f) + 1;
+            ret[idx] = mod_norm(ret[idx] - (__int128)ret[i] * f[j], mod);
         }
-    ret.resize(sz(b) - 1);
+    }
+    ret.resize(sz(f) - 1);
     return ret;
 }
-// kitamasa: A_{n} = \sum c_{i}A_{n-i} = \sum d_{i}A_{i}
-// given A, c, n, get d, A_{n} in O(K^2 \log N)
-ll kitamasa(poly c, poly a, ll n) {
-    poly d = {1};      // result
-    poly xn = {0, 1};  // shift = x^1, x^2, x^4, ...
-    poly f(sz(c) + 1); // f(x) = x^K - \sum c_{i}x^{i}
+
+ll kitamasa(const vector<ll> &coef, const vector<ll> &init, ll n, ll mod) {
+    int k = sz(coef);
+    assert(k == sz(init));
+    if (n < k) return mod_norm(init[n], mod);
+    poly d = {1};    // result
+    poly x = {0, 1}; // x^(2^i)
+    poly f(k + 1, 0);
     f.back() = 1;
-    for (int i = 0; i < sz(c); i++) f[i] = Mod(-c[i]);
+    for (int i = 0; i < k; i++) f[k - 1 - i] = mod_norm(-coef[i], mod);
     while (n) {
-        if (n & 1) d = Div(Mul(d, xn), f);
+        if (n & 1) d = poly_div(poly_mul(d, x, mod), f, mod);
         n >>= 1;
-        xn = Div(Mul(xn, xn), f);
+        x = poly_div(poly_mul(x, x, mod), f, mod);
     }
     ll ret = 0;
-    for (int i = 0; i < sz(a); i++) ret = Mod(ret + a[i] * d[i]);
+    for (int i = 0; i < k; i++) {
+        ret = mod_norm(ret + (__int128)init[i] * d[i], mod);
+    }
     return ret;
-}
-ll power(ll x, ll y) {
-    if (y == 0) return 1;
-    if (y == 1) return x;
-    ll res = power(x, y / 2);
-    return res * res % MOD * (y & 1 ? x : 1) % MOD;
-}
-int n;
-ll m;
-vector<ll> dp;
-int main() {
-    cin >> n >> m;
-    if (m < n) {
-        cout << power(2, m - 1);
-        exit(0);
-    }
-    vector<ll> c(n);
-    for (int i = 0; i < n; i++) {
-        if (i == 0) c[i] = power(2, n - 1);
-        else c[i] = 1;
-    }
-    dp.resize(n);
-    dp[0] = 1;
-    for (int i = 1; i < n; i++)
-        for (int j = 0; j < i; j++)
-            dp[i] = (dp[i] + dp[j]) % MOD;
-    cout << kitamasa(c, dp, m);
 }

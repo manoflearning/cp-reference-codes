@@ -1,28 +1,23 @@
-#include "../common/common.hpp"
+#include "geom_base.cpp"
 
-// Sort by Angular (Relative to Origin)
-struct Point {
-    ll x, y;
-    bool operator<(const Point &rhs) const {
-        return x ^ rhs.x ? x < rhs.x : y < rhs.y;
-    }
-};
-const Point o = {0, 0};
-vector<Point> p;
-ll ccw(const Point &a, const Point &b, const Point &c) {
-    // res > 0 -> ccw, res < 0 -> cw, res = 0 -> colinear
-    ll res = (b.x - a.x) * (c.y - a.y) - (c.x - a.x) * (b.y - a.y);
-    return (res > 0 ? 1 : (res < 0 ? -1 : 0));
-}
-inline ll dist(const Point &v) { return v.x * v.x + v.y * v.y; }
-// If the angle between any two points and the origin is less than 180 degrees,
-// they can be sorted through the cross product of the vectors.
-// Therefore, the points were divided into 1st and 4th quadrants and 2nd and 3rd quadrants,
-// and the points in the 1st and 4th quadrants were arranged in front.
-void sortByAngular() {
-    sort(p.begin(), p.end(), [&](const Point &lhs, const Point &rhs) {
-        if ((lhs < o) ^ (rhs < o)) return (lhs < o) < (rhs < o);
-        if (ccw(o, lhs, rhs)) return ccw(o, lhs, rhs) > 0;
-        return dist(lhs) < dist(rhs);
+// what: sort points by polar angle around origin (CCW, starting from +x).
+// time: O(n log n); memory: O(1)
+// constraint: ties by distance to origin; pass custom origin if needed.
+// usage: sort_ang(p); // origin (0,0)
+void sort_ang(vector<pt> &p, const pt &o) {
+    auto half = [&](const pt &v) {
+        return (v.y > 0 || (v.y == 0 && v.x >= 0));
+    };
+    sort(all(p), [&](const pt &a, const pt &b) {
+        pt da = a - o, db = b - o;
+        bool ha = half(da), hb = half(db);
+        if (ha != hb) return ha > hb;
+        ll cr = cross(da, db);
+        if (cr) return cr > 0;
+        return dist2(o, a) < dist2(o, b);
     });
+}
+
+void sort_ang(vector<pt> &p) {
+    sort_ang(p, {0, 0});
 }

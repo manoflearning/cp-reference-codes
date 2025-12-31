@@ -1,47 +1,41 @@
 #include "../common/common.hpp"
-int sq;
-struct se {
-    int s, e, idx;
-    bool operator<(const se &rhs) const {
-        if (s / sq != rhs.s / sq) return s / sq < rhs.s / sq;
-        return e < rhs.e;
+
+// what: mo's algorithm for offline range queries.
+// time: O((n+q) * sqrt(n)); memory: O(q)
+// constraint: 0-indexed, inclusive [l, r]; add/del by index.
+// usage: mo solver(n); solver.add_query(l, r, idx); solver.run(add, del, out);
+struct mo {
+    struct qry {
+        int l, r, idx;
+    };
+
+    int n, bs;
+    vector<qry> q;
+
+    mo(int n_ = 0) { init(n_); }
+
+    void init(int n_) {
+        n = n_;
+        bs = max(1, (int)sqrt(n));
+        q.clear();
     }
-    // Zigzag Mo's (faster than basic Mo's Algorithm)
-    // bool operator<(const se &rhs) const {
-    //   if(s / sq != rhs.s / sq) return s / sq < rhs.s / sq;
-    //   else return (s / sq) & 1 ? e < rhs.e : e > rhs.e;
-    // }
+
+    void add_query(int l, int r, int idx) { q.push_back({l, r, idx}); }
+
+    template <class Add, class Del, class Out>
+    void run(Add add, Del del, Out out) {
+        sort(q.begin(), q.end(), [&](const qry &a, const qry &b) {
+            int ba = a.l / bs, bb = b.l / bs;
+            if (ba != bb) return ba < bb;
+            return (ba & 1) ? a.r > b.r : a.r < b.r;
+        });
+        int l = 0, r = -1;
+        for (const auto &qr : q) {
+            while (l > qr.l) add(--l);
+            while (r < qr.r) add(++r);
+            while (l < qr.l) del(l++);
+            while (r > qr.r) del(r--);
+            out(qr.idx);
+        }
+    }
 };
-vector<se> q;
-vector<int> ans;
-void input() {
-    // TODO: 1. receive input 2. resize q, ans 3. calculate sq
-}
-void add(int idx) {
-    // TODO: add value at idx from data structure
-}
-void del(int idx) {
-    // TODO: remove value at idx from data structure
-}
-int query() {
-    // TODO: extract the current answer of the data structure
-}
-void f() {
-    int s = q[0].s, e = q[0].e;
-    // TODO: initialize data structure
-    ans[q[0].idx] = query();
-    for (int i = 1; i < q.size(); i++) {
-        while (q[i].s < s) add(--s);
-        while (e < q[i].e) add(++e);
-        while (s < q[i].s) del(s++);
-        while (q[i].e < e) del(e--);
-        ans[q[i].idx] = query();
-    }
-}
-int main() {
-    input();
-    sort(q.begin(), q.end());
-    f();
-    for (auto &i : ans)
-        cout << i << '\n';
-}
