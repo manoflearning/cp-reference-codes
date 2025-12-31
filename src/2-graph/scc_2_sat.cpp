@@ -1,221 +1,163 @@
 #include "../common/common.hpp"
 
-// 1. SCC (Kosaraju's Algorithm)
-// INPUT: Given a directed graph.
-// OUTPUT: Decompose this graph into SCCs and print them in lexicographical order.
-// TIME COMPLEXITY: O(V + E)
-const int MAXV = 10101;
-int n, m;
-vector<int> adj[MAXV], radj[MAXV];
-int in[MAXV], out[MAXV], num, p[2 * MAXV];
-int vi[MAXV], cnt;
-vector<vector<int>> scc;
-void input() {
-    cin >> n >> m;
-    for (int i = 0; i < m; i++) {
-        int u, v;
-        cin >> u >> v;
-        adj[u].push_back(v);
-        radj[v].push_back(u);
-    }
-}
-void dfs(int v) {
-    in[v] = ++num;
-    for (auto &i : radj[v]) {
-        if (!in[i]) dfs(i);
-    }
-    out[v] = ++num;
-    p[num] = v;
-}
-void flood(int v) {
-    scc[cnt].push_back(v);
-    vi[v] = cnt;
-    for (auto &i : adj[v]) {
-        if (!vi[i]) flood(i);
-    }
-}
-void kosaraju() {
-    for (int v = 1; v <= n; v++) {
-        if (!in[v]) dfs(v);
-    }
-    for (int v = 2 * n; v >= 1; v--) {
-        if (!p[v]) continue;
-        if (vi[p[v]]) continue;
-        cnt++;
-        scc.resize(cnt + 1);
-        flood(p[v]);
-    }
-}
-void print() {
-    for (auto &i : scc)
-        sort(i.begin(), i.end());
-    sort(scc.begin(), scc.end());
-    cout << sz(scc) - 1 << '\n';
-    for (int i = 1; i < sz(scc); i++) {
-        auto &arr = scc[i];
-        for (auto &j : arr) cout << j << ' ';
-        cout << -1 << '\n';
-    }
-}
-int main() {
-    input();
-    kosaraju();
-    print();
-}
+// what: SCC via Kosaraju.
+// time: O(n+m); memory: O(n+m)
+// constraint: directed; 1-indexed; recursion depth O(n).
+// usage: scc_ko s; s.init(n); s.add(u,v); int c=s.run();
+struct scc_ko {
+    int n;
+    vector<vector<int>> g, rg, sccs;
+    vector<int> vis, comp, ord;
 
-// 2. SCC (Tarjan's strongly connected components algorithm)
-// INPUT: Given a directed graph.
-// OUTPUT: Decompose this graph into SCCs and print them in lexicographical order.
-// TIME COMPLEXITY: O(V + E)
-const int MAXV = 101010;
-int n, m, label[MAXV], labelCnt;
-int SCCnum[MAXV], SCCcnt, finished[MAXV];
-vector<int> adj[MAXV];
-stack<int> stk;
-vector<vector<int>> SCC;
-void input() {
-    cin >> n >> m;
-    for (int i = 0; i < m; i++) {
-        int u, v;
-        cin >> u >> v;
-        adj[u].push_back(v);
+    void init(int n_) {
+        n = n_;
+        g.assign(n + 1, {});
+        rg.assign(n + 1, {});
+        sccs.clear();
+        vis.assign(n + 1, 0);
+        comp.assign(n + 1, -1);
+        ord.clear();
     }
-}
-int dfs(int v) {
-    label[v] = labelCnt++;
-    stk.push(v);
-    int ret = label[v];
-    for (int next : adj[v]) {
-        // Unvisited node.
-        if (label[next] == -1) ret = min(ret, dfs(next));
-        // Visited but not yet classified as SCC. In other words, edge { v, next } is back edge.
-        else if (!finished[next]) ret = min(ret, label[next]);
+    void add(int u, int v) {
+        g[u].push_back(v);
+        rg[v].push_back(u);
     }
-    // If there is no edge to the ancestor node among itself and its descendants, find scc.
-    if (ret == label[v]) {
-        vector<int> vSCC;
+    void dfs1(int v) {
+        vis[v] = 1;
+        for (int to : rg[v])
+            if (!vis[to]) dfs1(to);
+        ord.push_back(v);
+    }
+    void dfs2(int v, int id) {
+        comp[v] = id;
+        sccs[id].push_back(v);
+        for (int to : g[v])
+            if (comp[to] == -1) dfs2(to, id);
+    }
+    int run() {
+        for (int v = 1; v <= n; v++)
+            if (!vis[v]) dfs1(v);
+        reverse(all(ord));
+        for (int v : ord) {
+            if (comp[v] != -1) continue;
+            sccs.push_back({});
+            dfs2(v, sz(sccs) - 1);
+        }
+        return sz(sccs);
+    }
+};
+
+// what: SCC via Tarjan.
+// time: O(n+m); memory: O(n+m)
+// constraint: directed; 1-indexed; recursion depth O(n).
+// usage: scc_ta s; s.init(n); s.add(u,v); int c=s.run();
+struct scc_ta {
+    int n, tim;
+    vector<vector<int>> g, sccs;
+    vector<int> dfn, low, comp, st, ins;
+
+    void init(int n_) {
+        n = n_;
+        tim = 0;
+        g.assign(n + 1, {});
+        sccs.clear();
+        dfn.assign(n + 1, -1);
+        low.assign(n + 1, 0);
+        comp.assign(n + 1, -1);
+        ins.assign(n + 1, 0);
+        st.clear();
+    }
+    void add(int u, int v) { g[u].push_back(v); }
+    void dfs(int v) {
+        dfn[v] = low[v] = ++tim;
+        st.push_back(v);
+        ins[v] = 1;
+        for (int to : g[v]) {
+            if (dfn[to] == -1) {
+                dfs(to);
+                low[v] = min(low[v], low[to]);
+            } else if (ins[to]) {
+                low[v] = min(low[v], dfn[to]);
+            }
+        }
+        if (low[v] != dfn[v]) return;
+        sccs.push_back({});
+        int id = sz(sccs) - 1;
         while (1) {
-            int t = stk.top();
-            stk.pop();
-            vSCC.push_back(t);
-            SCCnum[t] = SCCcnt;
-            finished[t] = 1;
-            if (t == v) break;
+            int x = st.back();
+            st.pop_back();
+            ins[x] = 0;
+            comp[x] = id;
+            sccs[id].push_back(x);
+            if (x == v) break;
         }
-        SCC.push_back(vSCC);
-        SCCcnt++;
     }
-    return ret;
-}
-void getSCC() {
-    memset(label, -1, sizeof(label));
-    for (int v = 1; v <= n; v++)
-        if (label[v] == -1) dfs(v);
-}
-void print() {
-    for (auto &i : SCC)
-        sort(i.begin(), i.end());
-    sort(SCC.begin(), SCC.end());
-    cout << sz(SCC) << '\n';
-    for (int i = 0; i < sz(SCC); i++) {
-        auto &arr = SCC[i];
-        for (auto &j : arr) cout << j << ' ';
-        cout << -1 << '\n';
+    int run() {
+        for (int v = 1; v <= n; v++)
+            if (dfn[v] == -1) dfs(v);
+        return sz(sccs);
     }
-}
-int main() {
-    input();
-    getSCC();
-    print();
-}
+};
 
-// 3. 2-SAT
-// INPUT: A 2-CNF is given. 2-CNF is a boolean expression in the form (x ∨ y) ∧ (￢ y ∨ z) ∧ (x ∨ ￢ z) ∧ (z ∨ y).
-// OUTPUT: Determine whether there exists a case where a given 2-CNF expression can be true. (2-Satisfiability Problem)
-// TIME COMPLEXITY: O(n + m) = O(n) (m = 2n)
+// what: 2-SAT via SCC (Tarjan).
+// time: O(n+m); memory: O(n+m)
+// constraint: vars are 1..n; literal x<0 means not x; recursion depth O(n).
+// usage: two_sat s; s.init(n); s.add(a,b); bool ok=s.run(); // s.val
+struct two_sat {
+    int n, tim, cid;
+    vector<vector<int>> g;
+    vector<int> dfn, low, comp, st, ins, val;
 
-// BOJ 11281 AC Code
-// https://www.acmicpc.net/problem/11281
-const int MAXV = 20202;
-int n, m;
-int dfsn[MAXV], dCnt, sNum[MAXV], sCnt;
-int finished[MAXV];
-vector<int> adj[MAXV];
-stack<int> stk;
-pii p[MAXV];
-int ans[MAXV / 2];
-inline int inv(int x) {
-    // negative number -a indicates ¬a.
-    return (x > 0) ? 2 * (x - 1) : 2 * (-x - 1) + 1;
-}
-void twoCnf(int a, int b) {
-    // (a ∨ b) iff (¬a → b) iff (¬b → a)
-    adj[inv(-a)].push_back(inv(b));
-    adj[inv(-b)].push_back(inv(a));
-}
-void input() {
-    cin >> n >> m;
-    for (int i = 0; i < m; i++) {
-        int a, b;
-        cin >> a >> b;
-        twoCnf(a, b);
+    void init(int n_) {
+        n = n_;
+        g.assign(2 * n, {});
+        dfn.assign(2 * n, -1);
+        low.assign(2 * n, 0);
+        comp.assign(2 * n, -1);
+        ins.assign(2 * n, 0);
+        st.clear();
+        val.assign(n + 1, 0);
+        tim = 0;
+        cid = 0;
     }
-}
-int dfs(int now) {
-    int ret = dfsn[now] = ++dCnt;
-    stk.push(now);
-    for (int next : adj[now]) {
-        if (dfsn[next] == -1) ret = min(ret, dfs(next));
-        else if (!finished[next]) ret = min(ret, dfsn[next]);
+    int id(int x) {
+        // goal: x in [-n, n]\{0} -> node id.
+        return x > 0 ? 2 * (x - 1) : 2 * (-x - 1) + 1;
     }
-    if (ret >= dfsn[now]) {
+    void add(int a, int b) {
+        // goal: (a v b) == (!a -> b) & (!b -> a)
+        g[id(-a)].push_back(id(b));
+        g[id(-b)].push_back(id(a));
+    }
+    void dfs(int v) {
+        dfn[v] = low[v] = ++tim;
+        st.push_back(v);
+        ins[v] = 1;
+        for (int to : g[v]) {
+            if (dfn[to] == -1) {
+                dfs(to);
+                low[v] = min(low[v], low[to]);
+            } else if (ins[to]) {
+                low[v] = min(low[v], dfn[to]);
+            }
+        }
+        if (low[v] != dfn[v]) return;
         while (1) {
-            int t = stk.top();
-            stk.pop();
-            sNum[t] = sCnt;
-            finished[t] = 1;
-            if (t == now) break;
+            int x = st.back();
+            st.pop_back();
+            ins[x] = 0;
+            comp[x] = cid;
+            if (x == v) break;
         }
-        sCnt++;
+        cid++;
     }
-    return ret;
-}
-int isSatisfiable() {
-    // determining satisfiability
-    int isS = 1;
-    for (int v = 0; v < 2 * n; v += 2) {
-        // if x and ¬x is in same scc, then the proposition is not satisfiable
-        if (sNum[v] == sNum[v + 1]) {
-            isS = 0;
-            break;
+    bool run() {
+        for (int i = 0; i < 2 * n; i++)
+            if (dfn[i] == -1) dfs(i);
+        for (int i = 0; i < n; i++) {
+            if (comp[2 * i] == comp[2 * i + 1]) return 0;
+            val[i + 1] = comp[2 * i] < comp[2 * i + 1];
         }
+        return 1;
     }
-    return isS;
-}
-void findValueOfEachVariable() {
-    // order of scc is the reverse of the topological sort
-    for (int v = 0; v < 2 * n; v++) {
-        p[v] = {sNum[v], v};
-    }
-    sort(p, p + 2 * n);
-    // determining true/false of each variable
-    for (int i = 2 * n - 1; i >= 0; i--) {
-        int v = p[i].sc;
-        if (ans[v / 2 + 1] == -1)
-            ans[v / 2 + 1] = (v & 1) ? 1 : 0;
-    }
-    for (int v = 1; v <= n; v++)
-        cout << ans[v] << ' ';
-}
-int main() {
-    memset(dfsn, -1, sizeof(dfsn));
-    memset(ans, -1, sizeof(ans));
-    input();
-    // finding scc
-    for (int v = 0; v < 2 * n; v++)
-        if (dfsn[v] == -1) dfs(v);
-    if (isSatisfiable()) {
-        cout << 1 << '\n';
-        findValueOfEachVariable();
-    } else cout << 0;
-}
+};
