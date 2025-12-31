@@ -1,6 +1,6 @@
 #include "../../src/2-graph/bcc.cpp"
 
-// what: tests for bcc.
+// what: tests for bcc_graph.
 // time: random + brute checks; memory: O(n+m)
 // constraint: small n brute.
 // usage: g++ -std=c++17 test_bcc.cpp && ./a.out
@@ -62,7 +62,7 @@ vector<pii> ae_na(int n, const vector<pii> &ed) {
     return ae;
 }
 
-void chk_bcc(int n, const vector<pii> &ed, bcc &g) {
+void chk_bcc(int n, const vector<pii> &ed, bcc_graph &g) {
     map<pii, int> cnt, got;
     for (auto [u, v] : ed) {
         if (u > v) swap(u, v);
@@ -107,7 +107,7 @@ void chk_bcc(int n, const vector<pii> &ed, bcc &g) {
 void t_fix() {
     int n = 3;
     vector<pii> ed = {{1, 2}, {2, 3}};
-    bcc g;
+    bcc_graph g;
     g.init(n);
     for (auto [u, v] : ed) g.add(u, v);
     g.run();
@@ -133,7 +133,7 @@ void t_rnd() {
             }
             ed.push_back({u, v});
         }
-        bcc g;
+        bcc_graph g;
         g.init(n);
         for (auto [u, v] : ed) g.add(u, v);
         g.run();

@@ -4,8 +4,8 @@ constexpr int MAX_MST = 1 << 17;
 // what: merge sort tree for count of values > k on a range.
 // time: build O(n log n), query O(log^2 n); memory: O(n log n)
 // constraint: MAX_MST >= n; values fit in int; 0-indexed [l, r]; build once.
-// usage: mseg st; st.build(a); st.query(l, r, k);
-struct mseg {
+// usage: merge_seg st; st.build(a); st.query(l, r, k);
+struct merge_seg {
     vector<int> t[MAX_MST << 1];
     void build(const vector<int> &a) {
         for (int i = 0; i < sz(a); i++)
@@ -27,8 +27,8 @@ struct mseg {
 // what: iter merge sort tree for count of values > k on a range.
 // time: build O(n log n), query O(log^2 n); memory: O(n log n)
 // constraint: MAX_MST >= n; values fit in int; 0-indexed [l, r]; build once.
-// usage: mseg_it st; st.build(a); st.query(l, r, k);
-struct mseg_it {
+// usage: merge_seg_it st; st.build(a); st.query(l, r, k);
+struct merge_seg_it {
     vector<int> t[MAX_MST << 1];
     void build(const vector<int> &a) {
         for (int i = 0; i < sz(a); i++)

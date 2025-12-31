@@ -53,7 +53,7 @@ bool can_na(int n, const vector<vector<int>> &cnt) {
     return 1;
 }
 
-void add_ed(ecir &g, vector<vector<int>> &cnt, int u, int v) {
+void add_ed(euler_cir &g, vector<vector<int>> &cnt, int u, int v) {
     g.add(u, v);
     if (u == v) cnt[u][u]++;
     else cnt[u][v]++, cnt[v][u]++;
@@ -84,7 +84,7 @@ void chk_run(int n, const vector<vector<int>> &cnt, const vector<int> &path) {
 
 void t_fix() {
     int n = 3;
-    ecir g;
+    euler_cir g;
     g.init(n);
     vector<vector<int>> cnt(n + 1, vector<int>(n + 1));
     add_ed(g, cnt, 1, 2);
@@ -105,7 +105,7 @@ void t_rnd() {
     for (int it = 0; it < 200; it++) {
         int n = rnd(1, 6);
         int m = rnd(0, 8);
-        ecir g;
+        euler_cir g;
         g.init(n);
         vector<vector<int>> cnt(n + 1, vector<int>(n + 1));
         for (int i = 0; i < m; i++) {

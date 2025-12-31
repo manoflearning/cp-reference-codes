@@ -72,13 +72,13 @@ void t_scc() {
         }
         auto cmp = cmp_na(n, g);
 
-        scc_ko s1;
+        scc_kosa s1;
         s1.init(n);
         for (int u = 1; u <= n; u++)
             for (int v : g[u]) s1.add(u, v);
         s1.run();
 
-        scc_ta s2;
+        scc_tarjan s2;
         s2.init(n);
         for (int u = 1; u <= n; u++)
             for (int v : g[u]) s2.add(u, v);

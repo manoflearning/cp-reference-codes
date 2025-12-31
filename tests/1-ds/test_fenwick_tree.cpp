@@ -1,6 +1,6 @@
 #include "../../src/1-ds/fenwick_tree.cpp"
 
-// what: tests for fenw, fenw_rp, fenw2d.
+// what: tests for fenwick, fenw_range, fenw_2d.
 // time: random + edge cases; memory: O(n^2)
 // constraint: uses assert, fixed seed.
 // usage: g++ -std=c++17 test_fenwick_tree.cpp && ./a.out
@@ -34,7 +34,7 @@ ll sum_2d(const vector<vector<ll>> &a, int x1, int y1, int x2, int y2) {
 }
 
 void test_fenwick_basic() {
-    fenw fw;
+    fenwick fw;
     vector<ll> a = {5};
     fw.build(a);
     assert(fw.sum(0, 0) == 5);
@@ -50,7 +50,7 @@ void test_fenwick_random() {
     vector<ll> a(n);
     for (int i = 0; i < n; i++) a[i] = rnd(0, 5);
 
-    fenw fw;
+    fenwick fw;
     fw.build(a);
 
     for (int it = 0; it < 5000; it++) {
@@ -80,7 +80,7 @@ void test_fenwick_random() {
 }
 
 void test_fenwick_rp_basic() {
-    fenw_rp fw;
+    fenw_range fw;
     fw.init(1);
     fw.add(1, 1, 5);
     assert(fw.get(1) == 5);
@@ -89,7 +89,7 @@ void test_fenwick_rp_basic() {
 void test_fenwick_rp_random() {
     int n = 40;
     vector<ll> a(n + 1, 0);
-    fenw_rp fw;
+    fenw_range fw;
     fw.init(n);
 
     for (int it = 0; it < 4000; it++) {
@@ -108,7 +108,7 @@ void test_fenwick_rp_random() {
 }
 
 void test_fenwick_2d_basic() {
-    fenw2d fw;
+    fenw_2d fw;
     vector<vector<ll>> a = {{3}};
     fw.build(a);
     assert(fw.sum(0, 0, 0, 0) == 3);
@@ -122,7 +122,7 @@ void test_fenwick_2d_random() {
     for (int i = 0; i < n; i++)
         for (int j = 0; j < m; j++) a[i][j] = rnd(-3, 3);
 
-    fenw2d fw;
+    fenw_2d fw;
     fw.build(a);
 
     for (int it = 0; it < 4000; it++) {

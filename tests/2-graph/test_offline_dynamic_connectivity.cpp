@@ -51,7 +51,7 @@ void t_fix() {
         else ans[i] = conn(n, act, a, b);
     }
 
-    odc g;
+    dyn_conn g;
     g.init(n, q);
     for (int i = 1; i <= q; i++) g.add_op(i, op[i], u[i], v[i]);
     g.build();
@@ -100,7 +100,7 @@ void t_rnd() {
             }
         }
 
-        odc g;
+        dyn_conn g;
         g.init(n, q);
         for (int i = 1; i <= q; i++) g.add_op(i, op[i], u[i], v[i]);
         g.build();

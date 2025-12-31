@@ -31,7 +31,7 @@ void t_dijk() {
         int n = rnd(2, 7);
         int m = rnd(0, n * (n - 1));
         vector<tuple<int, int, ll>> ed;
-        dijk dj;
+        dijkstra dj;
         dj.init(n);
         for (int i = 0; i < m; i++) {
             int u = rnd(1, n), v = rnd(1, n);
@@ -57,7 +57,7 @@ void t_bell() {
         int n = rnd(2, 6);
         int m = rnd(0, n * (n - 1));
         vector<tuple<int, int, ll>> ed;
-        bell bl;
+        bell_ford bl;
         bl.init(n);
         for (int i = 0; i < m; i++) {
             int u = rnd(1, n), v = rnd(1, n);

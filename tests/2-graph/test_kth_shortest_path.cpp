@@ -11,7 +11,7 @@ int rnd(int l, int r) {
     return dis(rng);
 }
 
-ksp ks;
+kth_walk ks;
 
 vector<ll> kth_na(int n, const vector<vector<pll>> &g, int s, int e, int k) {
     vector<int> cnt(n + 1);

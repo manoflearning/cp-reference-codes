@@ -3,8 +3,8 @@
 // what: biconnected components + articulation points/edges (undirected).
 // time: O(n+m); memory: O(n+m)
 // constraint: 1-indexed; no self-loops; recursion depth O(n).
-// usage: bcc g; g.init(n); g.add(u,v); g.run(); // g.bccs, g.ap, g.ae
-struct bcc {
+// usage: bcc_graph g; g.init(n); g.add(u,v); g.run(); // g.bccs, g.ap, g.ae
+struct bcc_graph {
     int n, tim;
     vector<vector<pii>> adj;
     vector<int> dfn, low, ap, st;
