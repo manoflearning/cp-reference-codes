@@ -1,54 +1,47 @@
 #include "../common/common.hpp"
 
-// Hierholzer's Algorithm
-// INPUT: Given a undirected graph.
-// OUTPUT: Print the path of the Euler circuit of the graph.
-// Euler Path is a path in a finite graph that visits every edge exactly once.
-// Similarly, an Euler Circuit is an Euler Path that starts and ends on the same vertex.
-// TIME COMPLEXITY: O(VE)
-const int MAXV = 1010;
-int n, adj[MAXV][MAXV], nxt[MAXV];
-vector<int> eulerCircult;
-void input() {
-    cin >> n;
-    for (int i = 1; i <= n; i++) {
-        for (int j = 1; j <= n; j++) {
-            cin >> adj[i][j];
+// what: Euler circuit via Hierholzer (undirected multigraph, matrix).
+// time: O(n^2+m); memory: O(n^2)
+// constraint: 1-indexed; dense/multi-edge; loops supported via add().
+// usage: ecir g; g.init(n); g.add(u,v); if (g.can()) auto path=g.run(1);
+struct ecir {
+    int n;
+    vector<vector<int>> adj;
+    vector<int> nxt, path;
+
+    void init(int n_) {
+        n = n_;
+        adj.assign(n + 1, vector<int>(n + 1));
+        nxt.assign(n + 1, 1);
+        path.clear();
+    }
+    void add(int u, int v, int c = 1) {
+        if (u == v) adj[u][u] += 2 * c; // goal: keep degree correct for loops.
+        else adj[u][v] += c, adj[v][u] += c;
+    }
+    bool can() {
+        for (int i = 1; i <= n; i++) {
+            int deg = 0;
+            for (int j = 1; j <= n; j++) deg += adj[i][j];
+            if (deg & 1) return 0;
         }
+        return 1;
     }
-}
-int doesEulerCircuitExist() {
-    // If the degree of all nodes in the graph is even, then an euler circuit exists.
-    // Otherwise, the euler circuit does not exist.
-    // We can do similar way to determine the existence of euler path.
-    // If only two vertices have odd degree, than an eular path exists. Otherwise, the euler path does not exist.
-    for (int i = 1; i <= n; i++) {
-        int deg = 0;
-        for (int j = 1; j <= n; j++) {
-            deg += adj[i][j];
+    void dfs(int v) {
+        for (int &i = nxt[v]; i <= n; i++) {
+            while (i <= n && adj[v][i]) {
+                adj[v][i]--;
+                adj[i][v]--;
+                dfs(i);
+            }
         }
-        if (deg & 1) return 0;
+        path.push_back(v);
     }
-    return 1;
-}
-void dfs(int now) {
-    for (int &x = nxt[now]; x <= n; x++) {
-        while (x <= n && adj[now][x]) {
-            adj[now][x]--;
-            adj[x][now]--;
-            dfs(x);
-        }
+    vector<int> run(int s = 1) {
+        for (int i = 1; i <= n; i++) nxt[i] = 1;
+        path.clear();
+        dfs(s);
+        reverse(all(path));
+        return path;
     }
-    eulerCircult.push_back(now);
-}
-int main() {
-    input();
-    if (!doesEulerCircuitExist()) {
-        cout << -1;
-        return 0;
-    }
-    for (int i = 1; i <= n; i++) nxt[i] = 1;
-    dfs(1);
-    for (auto i : eulerCircult)
-        cout << i << ' ';
-}
+};

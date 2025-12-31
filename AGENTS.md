@@ -17,7 +17,7 @@
 - **그 외 모든 식별자**는 **소문자 `snake_case`** 사용 (STL 스타일):
   - struct, class, namespace, function, variable, file name
   - 예시: `struct fenwick_tree`, `namespace fast_io`, `solve_case`, `add_edge`
-- **간결하지만 설명적**: 이름은 타이핑 속도를 위해 최대 7자 이내로 짧아야 함. 동시에 압박 속에서도 읽을 수 있을 정도로는 명확해야 함.
+- **간결하지만 설명적**: 이름은 타이핑 속도를 위해 최대 10자 이내로 짧아야 함. 동시에 압박 속에서도 읽을 수 있을 정도로는 명확해야 함.
   - **Good**: `cnt`, `idx`, `res`, `nxt`, `vis`, `dist`.
   - **Bad**: `number_of_elements`, `adjacency_list`, `calculated_distance`.
 

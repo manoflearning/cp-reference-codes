@@ -1,69 +1,68 @@
 #include "../common/common.hpp"
 
-// A Biconnected Component (BCC) is a subset of vertices in an undirected graph that satisfies the following conditions:
-// (1) If you delete any vertex from a subset, the remaining vertices are connected to each other.
-// (2) Adding other vertices to this subset does not satisfy (1). (This is the largest set that satisfies (1))
-// TIME COMPLEXITY: O(V + E)
+// what: biconnected components + articulation points/edges (undirected).
+// time: O(n+m); memory: O(n+m)
+// constraint: 1-indexed; recursion depth O(n).
+// usage: bcc g; g.init(n); g.add(u,v); g.run(); // g.bccs, g.ap, g.ae
+struct bcc {
+    int n, tim;
+    vector<vector<int>> adj;
+    vector<int> dfn, low, ap;
+    vector<pii> ae, st;
+    vector<vector<pii>> bccs;
 
-// A vertex at which the graph is divided into two or more components when the vertex is removed is called a 'articulation point'.
-// After decomposing the graph into BCCs, vertices belonging to two or more BCCs are articulation point.
-// Similarly, a edge at which the graph is divided into two or more components when the edge is removed is called a 'articulation edge'.
-// For all tree edges on a dfs spanning tree, if tmp > dfsn[now], the edge { now, next } is a articulation edge.
-
-const int MAXV = 101010;
-int n, m;
-vector<int> adj[MAXV];
-vector<vector<pii>> bcc;
-set<int> aPoint;
-set<pii> aEdge;
-void input() {
-    cin >> n >> m;
-    for (int i = 0; i < m; i++) {
-        int u, v;
-        cin >> u >> v;
+    void init(int n_) {
+        n = n_;
+        tim = 0;
+        adj.assign(n + 1, {});
+        dfn.assign(n + 1, -1);
+        low.assign(n + 1, 0);
+        ap.clear();
+        ae.clear();
+        st.clear();
+        bccs.clear();
+    }
+    void add(int u, int v) {
         adj[u].push_back(v);
         adj[v].push_back(u);
     }
-}
-int dfsn[MAXV], dCnt;
-stack<pii> stk;
-int dfs(int now, int prv) {
-    int ret = dfsn[now] = ++dCnt;
-    int childCnt = 0;
-    for (int next : adj[now]) {
-        if (next == prv) continue;
-        // If an edge { now, next } has not yet been visited, puts an edge on the stack.
-        if (dfsn[now] > dfsn[next]) stk.push({now, next});
-        // Back edge
-        if (dfsn[next] != -1) ret = min(ret, dfsn[next]);
-        // Tree edge
-        else {
-            childCnt++;
-            int tmp = dfs(next, now);
-            ret = min(ret, tmp);
-            if (prv != -1 && tmp >= dfsn[now])
-                aPoint.insert(now);
-            if (tmp > dfsn[now])
-                aEdge.insert({min(now, next), max(now, next)});
-            // If next cannot go to ancestor node of now, find BCC
-            if (tmp >= dfsn[now]) {
-                vector<pii> nowBCC;
-                while (true) {
-                    pii t = stk.top();
-                    stk.pop();
-                    nowBCC.push_back(t);
-                    if (t == make_pair(now, next)) break;
+    void dfs(int v, int p) {
+        dfn[v] = low[v] = ++tim;
+        int ch = 0;
+        for (int to : adj[v]) {
+            if (to == p) continue;
+            if (dfn[to] != -1) {
+                // edge: back edge to ancestor.
+                low[v] = min(low[v], dfn[to]);
+                if (dfn[to] < dfn[v]) st.push_back({v, to});
+                continue;
+            }
+            // goal: tree edge, expand subtree.
+            st.push_back({v, to});
+            ch++;
+            dfs(to, v);
+            low[v] = min(low[v], low[to]);
+            if (p != -1 && low[to] >= dfn[v]) ap.push_back(v);
+            if (low[to] > dfn[v]) ae.push_back({min(v, to), max(v, to)});
+            if (low[to] >= dfn[v]) {
+                vector<pii> comp;
+                while (1) {
+                    pii e = st.back();
+                    st.pop_back();
+                    comp.push_back(e);
+                    if (e == pii{v, to}) break;
                 }
-                bcc.push_back(nowBCC);
+                bccs.push_back(comp);
             }
         }
+        if (p == -1 && ch > 1) ap.push_back(v);
     }
-    if (prv == -1 && childCnt > 1)
-        aPoint.insert(now);
-    return ret;
-}
-void getBCC() {
-    memset(dfsn, -1, sizeof(dfsn));
-    for (int v = 1; v <= n; v++)
-        if (dfsn[v] == -1) dfs(v, -1);
-}
+    void run() {
+        for (int v = 1; v <= n; v++)
+            if (dfn[v] == -1) dfs(v, -1);
+        sort(all(ap));
+        ap.erase(unique(all(ap)), ap.end());
+        sort(all(ae));
+        ae.erase(unique(all(ae)), ae.end());
+    }
+};
