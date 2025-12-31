@@ -1,9 +1,9 @@
 #include "../common/common.hpp"
 
-// what: greedy merge on tree by exchange argument (problem-specific cost).
+// what: maximize sum w[i]*completion_time[i] under precedence "parent before child" on rooted tree.
 // time: O(n log n); memory: O(n)
-// constraint: 1-indexed tree; defaults w[i]=i, t[i]=1.
-// usage: tree_xchg tx; tx.init(n, root); tx.add(u,v); ll ans=tx.run();
+// constraint: 1-indexed tree; cw[i]=w[i]*t[i].
+// usage: tree_xchg tx; tx.init(n, root); tx.add(u,v); // set tx.ds.w/t/cw; ll ans=tx.run();
 struct tree_xchg {
     struct uf {
         vector<int> par;
