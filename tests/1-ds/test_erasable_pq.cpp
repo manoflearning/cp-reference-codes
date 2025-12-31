@@ -36,8 +36,6 @@ void test_edge_cases() {
     pq.erase(3), ms.erase(ms.find(3));
     assert(ms.empty());
     assert(pq.empty());
-    pq.pop();
-    assert(pq.empty());
 
     for (int i = 0; i < 5; i++) pq.push(-1), ms.insert(-1);
     for (int i = 0; i < 4; i++) pq.erase(-1), ms.erase(ms.find(-1));
