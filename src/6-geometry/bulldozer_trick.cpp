@@ -1,46 +1,48 @@
-#include "../common/common.hpp"
+#include "geom_base.cpp"
 
-// Bulldozer Trick
-// There are a total of O(N^2) results of sorting points on a two-dimensional plane based on an arbitrary axis.
-// The Bulldozer Trick traverses all O(N^2) results in O(N^2logN) time.
-struct Point {
-    ll x, y;
-    bool operator<(const Point &rhs) const {
-        return tie(x, y) < tie(rhs.x, rhs.y);
-    }
-};
-struct Line {
+// what: iterate all angular orders of points by rotating a line (bulldozer trick).
+// time: O(n^2 log n); memory: O(n^2)
+// constraint: points are processed in-place in p; edit the marked loop to use each order.
+// usage: bulldozer(p); // inside, use current order of p
+struct line {
     int u, v;
-    ll dx, dy; // u < v, dx >= 0;
-    bool operator<(const Line &rhs) const {
+    ll dx, dy; // dx >= 0
+    bool operator<(const line &rhs) const {
         if (dy * rhs.dx != rhs.dy * dx) return dy * rhs.dx < rhs.dy * dx;
         return tie(u, v) < tie(rhs.u, rhs.v);
     }
-    bool operator==(const Line &rhs) const {
+    bool operator==(const line &rhs) const {
         return dy * rhs.dx == rhs.dy * dx;
     }
 };
-int n, pos[2020];
-Point p[2020];
-void bulldozerTrick() {
-    sort(p + 1, p + 1 + n);
-    for (int i = 1; i <= n; i++) pos[i] = i;
-    // find the slope between every two points.
-    vector<Line> arr;
-    for (int i = 1; i <= n; i++) {
-        for (int j = i + 1; j <= n; j++) {
-            arr.push_back({i, j, p[j].x - p[i].x, p[j].y - p[i].y});
+
+void bulldozer(vector<pt> &p) {
+    int n = sz(p);
+    sort(all(p));
+    vector<int> pos(n);
+    iota(all(pos), 0);
+    vector<line> ln;
+    ln.reserve(1LL * n * (n - 1) / 2);
+    for (int i = 0; i < n; i++) {
+        for (int j = i + 1; j < n; j++) {
+            int u = i, v = j;
+            ll dx = p[v].x - p[u].x;
+            ll dy = p[v].y - p[u].y;
+            if (dx < 0 || (dx == 0 && dy < 0)) {
+                dx = -dx, dy = -dy;
+                swap(u, v);
+            }
+            ln.push_back({u, v, dx, dy});
         }
     }
-    sort(arr.begin(), arr.end());
-    // can check one of the results of sorting points at here.
-    for (int i = 0, j = 0; i < arr.size(); i = j) {
-        while (j < arr.size() && arr[j] == arr[i]) j++; // all lines in [i, j) are same
+    sort(all(ln));
+    for (int i = 0, j = 0; i < sz(ln); i = j) {
+        while (j < sz(ln) && ln[j] == ln[i]) j++;
         for (int k = i; k < j; k++) {
-            int u = arr[k].u, v = arr[k].v;
+            int u = ln[k].u, v = ln[k].v;
             swap(p[pos[u]], p[pos[v]]);
             swap(pos[u], pos[v]);
         }
-        // can check one of the results of sorting points at here.
+        // usage: handle current order of p here.
     }
 }

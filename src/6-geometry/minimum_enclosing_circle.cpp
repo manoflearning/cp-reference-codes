@@ -1,60 +1,58 @@
-#include "../common/common.hpp"
+#include "geom_base.cpp"
 
-// INPUT: Given N points in a 2D plane with integer coordinates.
-// OUTPUT: Find the center and the radius of the minimum enclosing circle.
-// A minimum enclosing circle is a circle in which all the points lie either inside the circle or on its boundaries.
-// TIME COMPLEXITY: O(N) (using random)
-struct Point {
-    long double x, y;
+// what: minimum enclosing circle of points (Welzl-style iterative).
+// time: expected O(n); memory: O(1)
+// constraint: uses fixed RNG for shuffle; works with doubles (ptd).
+// usage: circle c = min_circle(p);
+struct circle {
+    ptd c;
+    ld r;
 };
-struct Circle {
-    Point c;
-    long double r;
-};
-long double dist(const Point &a, const Point &b) {
-    return sqrt(pow(b.x - a.x, 2) + pow(b.y - a.y, 2));
+
+inline bool in_circle(const circle &c, const ptd &p) {
+    return dist(c.c, p) <= c.r + 1e-12;
 }
-Point getCircleCenter(const Point &a, const Point &b) {
-    long double A = a.x * a.x + a.y * a.y;
-    long double B = b.x * b.x + b.y * b.y;
-    long double C = a.x * b.y - a.y * b.x;
-    return {(b.y * A - a.y * B) / (2 * C), (a.x * B - b.x * A) / (2 * C)};
+
+circle circle_from(const ptd &a, const ptd &b) {
+    ptd c{(a.x + b.x) / 2.0L, (a.y + b.y) / 2.0L};
+    return {c, dist(a, b) / 2.0L};
 }
-Circle circleFrom(const Point &a, const Point &b, const Point &c) {
-    Point i = getCircleCenter({b.x - a.x, b.y - a.y}, {c.x - a.x, c.y - a.y});
-    i.x += a.x;
-    i.y += a.y;
-    return {i, dist(a, i)};
+
+circle circle_from(const ptd &a, const ptd &b, const ptd &c) {
+    ptd ab = b - a, ac = c - a;
+    if (fabsl(cross(ab, ac)) < EPS) {
+        circle c1 = circle_from(a, b);
+        circle c2 = circle_from(a, c);
+        circle c3 = circle_from(b, c);
+        circle best = c1;
+        if (c2.r > best.r) best = c2;
+        if (c3.r > best.r) best = c3;
+        return best;
+    }
+    ld A = ab.x * ab.x + ab.y * ab.y;
+    ld B = ac.x * ac.x + ac.y * ac.y;
+    ld C = cross(ab, ac);
+    ptd o{(ac.y * A - ab.y * B) / (2 * C),
+          (ab.x * B - ac.x * A) / (2 * C)};
+    o = o + a;
+    return {o, dist(o, a)};
 }
-Circle circleFrom(const Point &a, const Point &b) {
-    Point c = {(a.x + b.x) / 2.0, (a.y + b.y) / 2.0};
-    return {c, dist(a, b) / 2.0};
-}
-Circle minimumEnclosingCircle(int n, const vector<Point> &p) {
-    Circle ret = {{0, 0}, 0};
-    for (int i = 0; i < n; i++) {
-        if (dist(ret.c, p[i]) <= ret.r) continue;
-        ret.c = p[i], ret.r = 0;
+
+circle min_circle(vector<ptd> p) {
+    static mt19937 rng(712367);
+    shuffle(all(p), rng);
+    circle c{{0, 0}, -1};
+    for (int i = 0; i < sz(p); i++) {
+        if (c.r >= 0 && in_circle(c, p[i])) continue;
+        c = {p[i], 0};
         for (int j = 0; j < i; j++) {
-            if (dist(ret.c, p[j]) <= ret.r) continue;
-            ret = circleFrom(p[i], p[j]);
+            if (in_circle(c, p[j])) continue;
+            c = circle_from(p[i], p[j]);
             for (int k = 0; k < j; k++) {
-                if (dist(ret.c, p[k]) <= ret.r) continue;
-                ret = circleFrom(p[i], p[j], p[k]);
+                if (in_circle(c, p[k])) continue;
+                c = circle_from(p[i], p[j], p[k]);
             }
         }
     }
-    return ret;
-}
-int main() {
-    int n;
-    cin >> n;
-    vector<Point> p(n);
-    for (auto &i : p) cin >> i.x >> i.y;
-    random_shuffle(p.begin(), p.end());
-    Circle ans = minimumEnclosingCircle(n, p);
-    cout << fixed;
-    cout.precision(3);
-    cout << ans.c.x << ' ' << ans.c.y << '\n'
-         << ans.r;
+    return c;
 }
