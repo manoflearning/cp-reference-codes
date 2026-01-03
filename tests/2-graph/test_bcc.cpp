@@ -17,8 +17,8 @@ int ccnt(int n, const vector<pii> &ed, int sv, int se) {
         if (i == se) continue;
         int u = ed[i].fr, v = ed[i].sc;
         if (u == sv || v == sv) continue;
-        adj[u].push_back(v);
-        adj[v].push_back(u);
+        adj[u].pb(v);
+        adj[v].pb(u);
     }
     vector<int> vis(n + 1);
     int cnt = 0;
@@ -43,7 +43,7 @@ vector<int> ap_na(int n, const vector<pii> &ed) {
     int base = ccnt(n, ed, 0, -1);
     vector<int> ap;
     for (int v = 1; v <= n; v++)
-        if (ccnt(n, ed, v, -1) > base) ap.push_back(v);
+        if (ccnt(n, ed, v, -1) > base) ap.pb(v);
     return ap;
 }
 
@@ -54,7 +54,7 @@ vector<pii> ae_na(int n, const vector<pii> &ed) {
         if (ccnt(n, ed, 0, i) > base) {
             int u = ed[i].fr, v = ed[i].sc;
             if (u > v) swap(u, v);
-            ae.push_back({u, v});
+            ae.pb({u, v});
         }
     }
     sort(all(ae));
@@ -81,8 +81,8 @@ void chk_bcc(int n, const vector<pii> &ed, bcc_graph &g) {
         vector<vector<pair<int, int>>> adj(n + 1);
         for (int i = 0; i < sz(comp); i++) {
             int u = comp[i].fr, v = comp[i].sc;
-            adj[u].push_back({v, i});
-            adj[v].push_back({u, i});
+            adj[u].pb({v, i});
+            adj[v].pb({u, i});
         }
         for (int i = 0; i < sz(comp); i++) {
             int u = comp[i].fr, v = comp[i].sc;
@@ -131,7 +131,7 @@ void t_rnd() {
                 i--;
                 continue;
             }
-            ed.push_back({u, v});
+            ed.pb({u, v});
         }
         bcc_graph g;
         g.init(n);

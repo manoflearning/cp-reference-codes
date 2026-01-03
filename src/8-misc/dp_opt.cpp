@@ -35,7 +35,7 @@ struct cht_mono {
             st.pop_back();
         }
         if (st.empty()) cur.x = NEG_INF;
-        st.push_back(cur);
+        st.pb(cur);
     }
 
     ll get(ll x) const {

@@ -43,8 +43,8 @@ struct tree_xchg {
         ds.init(n);
     }
     void add(int u, int v) {
-        adj[u].push_back(v);
-        adj[v].push_back(u);
+        adj[u].pb(v);
+        adj[v].pb(u);
     }
     void dfs(int v, int p) {
         par[v] = p;

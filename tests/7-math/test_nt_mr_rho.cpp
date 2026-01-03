@@ -22,11 +22,11 @@ vector<ll> fac_ref(ll x) {
     vector<ll> f;
     for (ll p = 2; p * p <= x; p++) {
         while (x % p == 0) {
-            f.push_back(p);
+            f.pb(p);
             x /= p;
         }
     }
-    if (x > 1) f.push_back(x);
+    if (x > 1) f.pb(x);
     sort(all(f));
     return f;
 }

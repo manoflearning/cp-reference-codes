@@ -19,18 +19,18 @@ struct scc_kosa {
         ord.clear();
     }
     void add(int u, int v) {
-        g[u].push_back(v);
-        rg[v].push_back(u);
+        g[u].pb(v);
+        rg[v].pb(u);
     }
     void dfs1(int v) {
         vis[v] = 1;
         for (int to : rg[v])
             if (!vis[to]) dfs1(to);
-        ord.push_back(v);
+        ord.pb(v);
     }
     void dfs2(int v, int id) {
         comp[v] = id;
-        sccs[id].push_back(v);
+        sccs[id].pb(v);
         for (int to : g[v])
             if (comp[to] == -1) dfs2(to, id);
     }
@@ -40,7 +40,7 @@ struct scc_kosa {
         reverse(all(ord));
         for (int v : ord) {
             if (comp[v] != -1) continue;
-            sccs.push_back({});
+            sccs.pb({});
             dfs2(v, sz(sccs) - 1);
         }
         return sz(sccs);
@@ -67,10 +67,10 @@ struct scc_tarjan {
         ins.assign(n + 1, 0);
         st.clear();
     }
-    void add(int u, int v) { g[u].push_back(v); }
+    void add(int u, int v) { g[u].pb(v); }
     void dfs(int v) {
         dfn[v] = low[v] = ++tim;
-        st.push_back(v);
+        st.pb(v);
         ins[v] = 1;
         for (int to : g[v]) {
             if (dfn[to] == -1) {
@@ -81,14 +81,14 @@ struct scc_tarjan {
             }
         }
         if (low[v] != dfn[v]) return;
-        sccs.push_back({});
+        sccs.pb({});
         int id = sz(sccs) - 1;
         while (1) {
             int x = st.back();
             st.pop_back();
             ins[x] = 0;
             comp[x] = id;
-            sccs[id].push_back(x);
+            sccs[id].pb(x);
             if (x == v) break;
         }
     }
@@ -126,12 +126,12 @@ struct two_sat {
     }
     void add(int a, int b) {
         // goal: (a v b) == (!a -> b) & (!b -> a)
-        g[id(-a)].push_back(id(b));
-        g[id(-b)].push_back(id(a));
+        g[id(-a)].pb(id(b));
+        g[id(-b)].pb(id(a));
     }
     void dfs(int v) {
         dfn[v] = low[v] = ++tim;
-        st.push_back(v);
+        st.pb(v);
         ins[v] = 1;
         for (int to : g[v]) {
             if (dfn[to] == -1) {

@@ -18,8 +18,8 @@ struct lca_sparse {
         dep.assign(n + 1, 0);
     }
     void add(int u, int v) {
-        adj[u].push_back(v);
-        adj[v].push_back(u);
+        adj[u].pb(v);
+        adj[v].pb(u);
     }
     void dfs(int v, int p) {
         // goal: set parent and depth.

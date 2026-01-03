@@ -10,7 +10,7 @@ int lis_len(const vector<ll> &a) {
     vector<ll> tail;
     for (ll x : a) {
         auto it = lower_bound(tail.begin(), tail.end(), x);
-        if (it == tail.end()) tail.push_back(x);
+        if (it == tail.end()) tail.pb(x);
         else *it = x;
     }
     return sz(tail);
@@ -26,8 +26,8 @@ vector<ll> lis_seq(const vector<ll> &a) {
         ll x = a[i];
         int pos = lower_bound(tail.begin(), tail.end(), x) - tail.begin();
         if (pos == sz(tail)) {
-            tail.push_back(x);
-            tail_idx.push_back(i);
+            tail.pb(x);
+            tail_idx.pb(i);
         } else {
             tail[pos] = x;
             tail_idx[pos] = i;
@@ -37,7 +37,7 @@ vector<ll> lis_seq(const vector<ll> &a) {
     vector<ll> ret;
     int cur = tail_idx.empty() ? -1 : tail_idx.back();
     while (cur != -1) {
-        ret.push_back(a[cur]);
+        ret.pb(a[cur]);
         cur = pre[cur];
     }
     reverse(all(ret));

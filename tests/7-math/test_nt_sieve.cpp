@@ -49,8 +49,8 @@ vector<int> divisors(int x) {
     vector<int> d;
     for (int i = 1; 1LL * i * i <= x; i++) {
         if (x % i) continue;
-        d.push_back(i);
-        if (i * i != x) d.push_back(x / i);
+        d.pb(i);
+        if (i * i != x) d.pb(x / i);
     }
     return d;
 }

@@ -12,8 +12,8 @@ int rnd(int l, int r) {
 }
 
 void add_edge(vector<vector<int>> &adj, int u, int v) {
-    adj[u].push_back(v);
-    adj[v].push_back(u);
+    adj[u].pb(v);
+    adj[v].pb(u);
 }
 
 vector<vector<int>> gen_tree(int n) {
@@ -47,8 +47,8 @@ vector<int> get_nodes(int v, const vector<vector<int>> &chd) {
     while (!st.empty()) {
         int x = st.back();
         st.pop_back();
-        res.push_back(x);
-        for (int to : chd[x]) st.push_back(to);
+        res.pb(x);
+        for (int to : chd[x]) st.pb(to);
     }
     return res;
 }
@@ -121,7 +121,7 @@ void check_one(const vector<vector<int>> &adj) {
         for (int x : cd.chd[c]) {
             int lab = first[x];
             assert(lab);
-            labs.push_back(lab);
+            labs.pb(lab);
             auto nodes_x = get_nodes(x, cd.chd);
             for (int v : nodes_x) assert(first[v] == lab);
         }

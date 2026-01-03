@@ -25,9 +25,9 @@ struct trie {
             int c = ch - 'a';
             if (nxt[v][c] == -1) {
                 nxt[v][c] = sz(nxt);
-                nxt.push_back({});
+                nxt.pb({});
                 nxt.back().fill(-1);
-                term.push_back(0);
+                term.pb(0);
             }
             v = nxt[v][c];
         }

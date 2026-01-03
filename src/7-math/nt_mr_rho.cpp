@@ -63,7 +63,7 @@ struct pollard_rho {
     static void rec(ll n, vector<ll> &out) {
         if (n == 1) return;
         if (miller_rabin::is_prime(n)) {
-            out.push_back(n);
+            out.pb(n);
             return;
         }
         ll d = rho(n);

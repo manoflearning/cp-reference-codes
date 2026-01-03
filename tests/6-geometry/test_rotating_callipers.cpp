@@ -34,7 +34,7 @@ void test_diam_random() {
         int n = (int)rnd(1, 50);
         vector<pt> p;
         p.reserve(n);
-        for (int i = 0; i < n; i++) p.push_back({rnd(-30, 30), rnd(-30, 30)});
+        for (int i = 0; i < n; i++) p.pb({rnd(-30, 30), rnd(-30, 30)});
         auto h = convex_hull(p);
         if (sz(h) == 0) continue;
         auto res = hull_diam(h);

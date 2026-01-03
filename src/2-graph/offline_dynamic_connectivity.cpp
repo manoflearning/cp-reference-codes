@@ -18,7 +18,7 @@ struct dyn_conn {
             if (nr == -1) nr = flg;
             if (r < nl || nr < l) return;
             if (l <= nl && nr <= r) {
-                t[n].push_back(e);
+                t[n].pb(e);
                 return;
             }
             int mid = (nl + nr) >> 1;
@@ -48,7 +48,7 @@ struct dyn_conn {
             if (siz[a] < siz[b]) swap(a, b);
             par[b] = a;
             siz[a] += siz[b];
-            st.push_back(b);
+            st.pb(b);
             return 1;
         }
         void undo() {

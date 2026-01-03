@@ -23,8 +23,8 @@ struct hld_tree {
         in.assign(n + 1, 0);
     }
     void add(int u, int v) {
-        adj[u].push_back(v);
-        adj[v].push_back(u);
+        adj[u].pb(v);
+        adj[v].pb(u);
     }
     int dfs_sz(int v, int p) {
         // goal: compute subtree sizes and heavy child.

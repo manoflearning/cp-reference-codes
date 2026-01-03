@@ -36,8 +36,8 @@ struct dinic {
         // goal: add forward + reverse edge
         edge a{v, (int)g[v].size(), cap};
         edge b{u, (int)g[u].size(), 0};
-        g[u].push_back(a);
-        g[v].push_back(b);
+        g[u].pb(a);
+        g[v].pb(b);
         return {u, (int)g[u].size() - 1};
     }
 
@@ -126,7 +126,7 @@ struct hk {
 
     void add_edge(int l, int r) {
         // goal: add edge from left to right
-        g[l].push_back(r);
+        g[l].pb(r);
     }
 
     bool bfs() {
@@ -214,8 +214,8 @@ struct mcmf {
         // goal: add forward + reverse edge with costs
         edge a{v, (int)g[v].size(), cap, cost};
         edge b{u, (int)g[u].size(), 0, -cost};
-        g[u].push_back(a);
-        g[v].push_back(b);
+        g[u].pb(a);
+        g[v].pb(b);
         return {u, (int)g[u].size() - 1};
     }
 
@@ -340,7 +340,7 @@ struct lr_dinic {
         // goal: store lower bounds via node demands
         demand[u] -= lo;
         demand[v] += lo;
-        edges.push_back({mf.add_edge(u, v, hi - lo), lo});
+        edges.pb({mf.add_edge(u, v, hi - lo), lo});
         return (int)edges.size() - 1;
     }
 
@@ -355,10 +355,10 @@ struct lr_dinic {
         int ss = n, tt = n + 1;
         for (int i = 0; i < n; i++) {
             if (demand[i] > 0) {
-                aux.push_back(mf.add_edge(ss, i, demand[i]));
+                aux.pb(mf.add_edge(ss, i, demand[i]));
                 total += demand[i];
             } else if (demand[i] < 0) {
-                aux.push_back(mf.add_edge(i, tt, -demand[i]));
+                aux.pb(mf.add_edge(i, tt, -demand[i]));
             }
         }
         return total;
@@ -429,7 +429,7 @@ struct lr_mcmf {
         demand[u] -= lo;
         demand[v] += lo;
         base_cost += lo * cost;
-        edges.push_back({mf.add_edge(u, v, hi - lo, cost), lo});
+        edges.pb({mf.add_edge(u, v, hi - lo, cost), lo});
         return (int)edges.size() - 1;
     }
 
@@ -444,10 +444,10 @@ struct lr_mcmf {
         int ss = n, tt = n + 1;
         for (int i = 0; i < n; i++) {
             if (demand[i] > 0) {
-                aux.push_back(mf.add_edge(ss, i, demand[i], 0));
+                aux.pb(mf.add_edge(ss, i, demand[i], 0));
                 total += demand[i];
             } else if (demand[i] < 0) {
-                aux.push_back(mf.add_edge(i, tt, -demand[i], 0));
+                aux.pb(mf.add_edge(i, tt, -demand[i], 0));
             }
         }
         return total;

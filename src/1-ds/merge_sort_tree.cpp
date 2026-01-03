@@ -10,7 +10,7 @@ struct merge_seg {
     void build(const vector<int> &a) {
         // goal: build sorted lists for each node.
         for (int i = 0; i < sz(a); i++)
-            t[i + MAX_MST].push_back(a[i]);
+            t[i + MAX_MST].pb(a[i]);
         for (int i = MAX_MST - 1; i >= 1; i--) {
             t[i].resize(sz(t[i << 1]) + sz(t[i << 1 | 1]));
             merge(all(t[i << 1]), all(t[i << 1 | 1]), t[i].begin());
@@ -35,7 +35,7 @@ struct merge_seg_it {
     void build(const vector<int> &a) {
         // goal: build sorted lists for each node.
         for (int i = 0; i < sz(a); i++)
-            t[i + MAX_MST].push_back(a[i]);
+            t[i + MAX_MST].pb(a[i]);
         for (int i = MAX_MST - 1; i >= 1; i--) {
             t[i].resize(sz(t[i << 1]) + sz(t[i << 1 | 1]));
             merge(all(t[i << 1]), all(t[i << 1 | 1]), t[i].begin());

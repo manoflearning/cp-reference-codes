@@ -39,8 +39,8 @@ void t_rnd() {
         vector<vector<int>> adj(n + 1);
         for (int v = 2; v <= n; v++) {
             par[v] = rnd(1, v - 1);
-            adj[v].push_back(par[v]);
-            adj[par[v]].push_back(v);
+            adj[v].pb(par[v]);
+            adj[par[v]].pb(v);
         }
         lca_sparse l;
         l.init(n);

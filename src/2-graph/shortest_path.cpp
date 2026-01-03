@@ -14,7 +14,7 @@ struct dijkstra {
         n = n_;
         adj.assign(n + 1, {});
     }
-    void add(int u, int v, ll w) { adj[u].push_back({w, v}); }
+    void add(int u, int v, ll w) { adj[u].pb({w, v}); }
     vector<ll> run(int s) {
         // result: dist[i] = shortest distance from s to i.
         vector<ll> dist(n + 1, INF);
@@ -50,7 +50,7 @@ struct bell_ford {
         n = n_;
         ed.clear();
     }
-    void add(int u, int v, ll w) { ed.push_back({u, v, w}); }
+    void add(int u, int v, ll w) { ed.pb({u, v, w}); }
     bool run(int s, vector<ll> &dist) {
         // result: false if a negative cycle is reachable.
         dist.assign(n + 1, INF);

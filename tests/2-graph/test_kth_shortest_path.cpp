@@ -23,7 +23,7 @@ vector<ll> kth_na(int n, const vector<vector<pll>> &g, int s, int e, int k) {
         pq.pop();
         cnt[v]++;
         if (cnt[v] > k) continue;
-        if (v == e) res.push_back(d);
+        if (v == e) res.pb(d);
         if (cnt[v] <= k)
             for (auto [w, to] : g[v]) pq.push({d + w, to});
     }
@@ -33,8 +33,8 @@ vector<ll> kth_na(int n, const vector<vector<pll>> &g, int s, int e, int k) {
 void t_fix() {
     int n = 3;
     vector<vector<pll>> g(n + 1);
-    g[1].push_back({1, 2});
-    g[2].push_back({1, 3});
+    g[1].pb({1, 2});
+    g[2].pb({1, 3});
     ks.init(n);
     ks.add(1, 2, 1);
     ks.add(2, 3, 1);
@@ -52,7 +52,7 @@ void t_rnd() {
         for (int i = 0; i < m; i++) {
             int u = rnd(1, n), v = rnd(1, n);
             ll w = rnd(1, 5);
-            g[u].push_back({w, v});
+            g[u].pb({w, v});
             ks.add(u, v, w);
         }
         int s = rnd(1, n), e = rnd(1, n), k = rnd(1, 10);

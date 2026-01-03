@@ -21,7 +21,7 @@ struct mo {
         q.clear();
     }
 
-    void add_query(int l, int r, int idx) { q.push_back({l, r, idx}); }
+    void add_query(int l, int r, int idx) { q.pb({l, r, idx}); }
 
     template <class Add, class Del, class Out>
     void run(Add add, Del del, Out out) {

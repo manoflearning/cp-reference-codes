@@ -29,10 +29,10 @@ vector<int> path_nodes(int n, const vector<vector<int>> &adj, int s, int e) {
     vector<int> res;
     int v = e;
     while (v != par[v]) {
-        res.push_back(v);
+        res.pb(v);
         v = par[v];
     }
-    res.push_back(s);
+    res.pb(s);
     return res;
 }
 
@@ -40,8 +40,8 @@ void t_fix() {
     int n = 4;
     vector<vector<int>> adj(n + 1);
     auto add = [&](int u, int v) {
-        adj[u].push_back(v);
-        adj[v].push_back(u);
+        adj[u].pb(v);
+        adj[v].pb(u);
     };
     add(1, 2);
     add(2, 3);
@@ -68,8 +68,8 @@ void t_rnd() {
         vector<vector<int>> adj(n + 1);
         for (int v = 2; v <= n; v++) {
             par[v] = rnd(1, v - 1);
-            adj[v].push_back(par[v]);
-            adj[par[v]].push_back(v);
+            adj[v].pb(par[v]);
+            adj[par[v]].pb(v);
         }
         hld_tree h;
         h.init(n);

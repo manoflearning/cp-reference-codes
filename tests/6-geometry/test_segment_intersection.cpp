@@ -17,8 +17,8 @@ pt rnd_pt(ll l, ll r) {
 
 bool on_seg_ld(const pt &a, const pt &b, const ptd &p) {
     ptd pa{(ld)a.x, (ld)a.y};
-    ptd pb{(ld)b.x, (ld)b.y};
-    ptd ab = pb - pa;
+    ptd p_b{(ld)b.x, (ld)b.y};
+    ptd ab = p_b - pa;
     ptd ap = p - pa;
     if (fabsl(cross(ab, ap)) > 1e-8) return 0;
     ld lx = min((ld)a.x, (ld)b.x) - 1e-8;

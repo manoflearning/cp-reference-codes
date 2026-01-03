@@ -24,7 +24,7 @@ struct diff_cons {
 
     void add_le(int u, int v, ll w) {
         // goal: x_v - x_u <= w
-        g[u].push_back({v, w});
+        g[u].pb({v, w});
     }
 
     void add_ge(int u, int v, ll w) {

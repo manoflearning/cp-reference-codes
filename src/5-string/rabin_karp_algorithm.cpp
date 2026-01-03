@@ -46,6 +46,6 @@ vector<int> rk_match(const string &t, const string &p) {
     hp.build(p);
     pll hp0 = hp.get(0, m);
     for (int i = 0; i + m <= n; i++)
-        if (ht.get(i, i + m) == hp0) res.push_back(i);
+        if (ht.get(i, i + m) == hp0) res.pb(i);
     return res;
 }

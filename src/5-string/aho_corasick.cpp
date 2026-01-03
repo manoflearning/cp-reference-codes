@@ -26,10 +26,10 @@ struct aho_corasick {
             int c = ch - 'a';
             if (nxt[v][c] == -1) {
                 nxt[v][c] = sz(nxt);
-                nxt.push_back({});
+                nxt.pb({});
                 nxt.back().fill(-1);
-                fail.push_back(0);
-                out.push_back(0);
+                fail.pb(0);
+                out.pb(0);
             }
             v = nxt[v][c];
         }

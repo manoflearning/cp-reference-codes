@@ -25,8 +25,8 @@ struct ek_flow {
     void add_edge(int u, int v, ll cap) {
         edge a{v, (int)g[v].size(), cap};
         edge b{u, (int)g[u].size(), 0};
-        g[u].push_back(a);
-        g[v].push_back(b);
+        g[u].pb(a);
+        g[v].pb(b);
     }
     ll max_flow(int s, int t) {
         if (s == t) return 0;
@@ -90,8 +90,8 @@ struct mcmf_spfa {
     void add_edge(int u, int v, ll cap, ll cost) {
         edge a{v, (int)g[v].size(), cap, cost};
         edge b{u, (int)g[u].size(), 0, -cost};
-        g[u].push_back(a);
-        g[v].push_back(b);
+        g[u].pb(a);
+        g[v].pb(b);
     }
     pll min_cost_mf(int s, int t, ll max_f) {
         const ll INF = (1LL << 62);
@@ -210,7 +210,7 @@ void t_hk() {
         vector<vector<int>> g(n_l);
         for (int l = 0; l < n_l; l++)
             for (int r = 0; r < n_r; r++)
-                if (rnd(0, 1)) bm.add_edge(l, r), g[l].push_back(r);
+                if (rnd(0, 1)) bm.add_edge(l, r), g[l].pb(r);
         assert(bm.max_matching() == brute_match(n_l, n_r, g));
     }
 }
@@ -229,7 +229,7 @@ void t_mcmf() {
             ll cap = rnd(0, 3);
             ll cost = rnd(-5, 5);
             nonneg &= (cost >= 0);
-            es.push_back({u, v, cap, cost});
+            es.pb({u, v, cap, cost});
         }
         mcmf mf1(n), mf2(n);
         mcmf_spfa na;
@@ -260,7 +260,7 @@ void t_lr_dinic() {
             if (u == v) continue;
             int lo = rnd(0, 2);
             int hi = lo + rnd(0, 2);
-            es.push_back({u, v, lo, hi, 0});
+            es.pb({u, v, lo, hi, 0});
             f.add_edge(u, v, lo, hi);
         }
         auto exp = brute_lr(n, s, t, es);
@@ -285,7 +285,7 @@ void t_lr_mcmf() {
             int lo = rnd(0, 2);
             int hi = lo + rnd(0, 2);
             int c = rnd(0, 5);
-            es.push_back({u, v, lo, hi, c});
+            es.pb({u, v, lo, hi, c});
             f.add_edge(u, v, lo, hi, c);
         }
         auto exp = brute_lr(n, s, t, es);

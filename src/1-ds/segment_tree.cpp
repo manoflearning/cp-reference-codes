@@ -151,14 +151,14 @@ struct seg_pst {
     vector<node> t;
     vector<int> root;
 
-    void newnd() { t.push_back({-1, -1, 0}); }
+    void newnd() { t.pb({-1, -1, 0}); }
     void build(int n_, const vector<ll> &a) {
         // goal: build initial version.
         n = n_;
         t.clear();
         root.clear();
         newnd();
-        root.push_back(0);
+        root.pb(0);
         build(1, n, root[0], a);
     }
     void build(int l, int r, int v, const vector<ll> &a) {
@@ -179,7 +179,7 @@ struct seg_pst {
     void set(int p, ll val) {
         // goal: create new version with a[p] = val.
         newnd();
-        root.push_back(sz(t) - 1);
+        root.pb(sz(t) - 1);
         set(p, val, 1, n, root[sz(root) - 2], root.back());
     }
     void set(int p, ll val, int l, int r, int v1, int v2) {
@@ -246,13 +246,13 @@ struct seg_sparse {
         if (p <= mid) {
             if (t[v].l == -1) {
                 t[v].l = sz(t);
-                t.push_back({0, -1, -1});
+                t.pb({0, -1, -1});
             }
             add(p, x, t[v].l, nl, mid);
         } else {
             if (t[v].r == -1) {
                 t[v].r = sz(t);
-                t.push_back({0, -1, -1});
+                t.pb({0, -1, -1});
             }
             add(p, x, t[v].r, mid + 1, nr);
         }
@@ -331,18 +331,18 @@ struct seg2d_comp { // 0-indexed
     seg2d_comp(int n) : n(n), a(2 * n), used(2 * n) {}
     void mark_set(int x, int y) {
         // goal: record y-coordinates that will be updated.
-        for (x += n; x >= 1; x >>= 1) used[x].push_back(y);
+        for (x += n; x >= 1; x >>= 1) used[x].pb(y);
     }
     void mark_qry(int x1, int x2, int y1, int y2) {
         // goal: record y-coordinates needed for queries.
         for (x1 += n, x2 += n + 1; x1 < x2; x1 >>= 1, x2 >>= 1) {
             if (x1 & 1) {
-                used[x1].push_back(y1);
-                used[x1++].push_back(y2);
+                used[x1].pb(y1);
+                used[x1++].pb(y2);
             }
             if (x2 & 1) {
-                used[--x2].push_back(y1);
-                used[x2].push_back(y2);
+                used[--x2].pb(y1);
+                used[x2].pb(y2);
             }
         }
     }

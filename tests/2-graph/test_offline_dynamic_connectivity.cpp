@@ -15,8 +15,8 @@ int conn(int n, const set<pii> &act, int s, int e) {
     if (s == e) return 1;
     vector<vector<int>> adj(n + 1);
     for (auto [u, v] : act) {
-        adj[u].push_back(v);
-        adj[v].push_back(u);
+        adj[u].pb(v);
+        adj[v].pb(u);
     }
     vector<int> vis(n + 1);
     queue<int> q;

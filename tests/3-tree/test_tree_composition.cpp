@@ -12,8 +12,8 @@ int rnd(int l, int r) {
 }
 
 void add_edge(vector<vector<int>> &adj, int u, int v) {
-    adj[u].push_back(v);
-    adj[v].push_back(u);
+    adj[u].pb(v);
+    adj[v].pb(u);
 }
 
 vector<vector<int>> gen_tree(int n) {
@@ -64,7 +64,7 @@ vector<int> lca_closure(vector<int> vs, const vector<int> &par, const vector<int
                 int c = lca_na(vs[i], vs[j], par, dep);
                 if (!in_set[c]) {
                     in_set[c] = 1;
-                    vs.push_back(c);
+                    vs.pb(c);
                     chg = 1;
                 }
             }
@@ -140,7 +140,7 @@ void check_one(const vector<vector<int>> &adj, const vector<int> &vs) {
         st.pop_back();
         for (int to : tc.vt_adj[v]) {
             vis[to] = 1;
-            st.push_back(to);
+            st.pb(to);
         }
     }
     for (int v : exp_nodes) assert(vis[v]);
@@ -170,7 +170,7 @@ void t_rnd() {
         auto adj = gen_tree(n);
         int k = rnd(0, n);
         vector<int> vs;
-        for (int i = 0; i < k; i++) vs.push_back(rnd(1, n));
+        for (int i = 0; i < k; i++) vs.pb(rnd(1, n));
         check_one(adj, vs);
     }
 }

@@ -173,7 +173,7 @@ void test_pst_random() {
     vector<vector<ll>> ver;
     vector<ll> a(n + 1, 0);
     for (int i = 1; i <= n; i++) a[i] = rnd(-5, 5);
-    ver.push_back(a);
+    ver.pb(a);
 
     seg_pst st;
     st.build(n, a);
@@ -185,7 +185,7 @@ void test_pst_random() {
             ll v = rnd(-5, 5);
             vector<ll> nw = ver.back();
             nw[p] = v;
-            ver.push_back(nw);
+            ver.pb(nw);
             st.set(p, v);
         } else {
             int id = (int)rnd(0, (int)ver.size() - 1);
@@ -217,7 +217,7 @@ void test_pst_kth_random() {
     vector<vector<ll>> ver;
     vector<ll> a(n + 1, 0);
     for (int i = 1; i <= n; i++) a[i] = rnd(0, 3);
-    ver.push_back(a);
+    ver.pb(a);
 
     seg_pst st;
     st.build(n, a);
@@ -229,7 +229,7 @@ void test_pst_kth_random() {
             ll v = rnd(0, 5);
             vector<ll> nw = ver.back();
             nw[p] = v;
-            ver.push_back(nw);
+            ver.pb(nw);
             st.set(p, v);
         } else {
             int id = (int)rnd(0, (int)ver.size() - 1);
@@ -329,10 +329,10 @@ void test_seg2dc_basic() {
     int n = 1;
     seg2d_comp st(n);
     vector<op2d> ops;
-    ops.push_back({0, 0, 0, 0, 0, 5});
-    ops.push_back({1, 0, 0, 0, 0, 0});
-    ops.push_back({0, 0, 0, 0, 0, -2});
-    ops.push_back({1, 0, 0, 0, 0, 0});
+    ops.pb({0, 0, 0, 0, 0, 5});
+    ops.pb({1, 0, 0, 0, 0, 0});
+    ops.pb({0, 0, 0, 0, 0, -2});
+    ops.pb({1, 0, 0, 0, 0, 0});
 
     for (auto &op : ops) {
         if (op.type == 0) st.mark_set(op.x1, op.y1);
@@ -370,13 +370,13 @@ void test_seg2dc_random() {
             int x = (int)rnd(0, n - 1);
             int y = (int)rnd(0, n - 1);
             ll v = rnd(-5, 5);
-            ops.push_back({0, x, 0, y, 0, v});
+            ops.pb({0, x, 0, y, 0, v});
         } else {
             int x1 = (int)rnd(0, n - 1);
             int x2 = (int)rnd(x1, n - 1);
             int y1 = (int)rnd(0, n - 1);
             int y2 = (int)rnd(y1, n - 1);
-            ops.push_back({1, x1, x2, y1, y2, 0});
+            ops.pb({1, x1, x2, y1, y2, 0});
         }
     }
 

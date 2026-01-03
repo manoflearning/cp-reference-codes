@@ -58,7 +58,7 @@ struct euler_cir {
                 dfs(i);
             }
         }
-        path.push_back(v);
+        path.pb(v);
     }
     vector<int> run(int s = 1) {
         // result: Euler circuit starting from s (if exists).

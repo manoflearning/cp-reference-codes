@@ -19,8 +19,8 @@ bool seg_inter_p(const pt &a, const pt &b, const pt &c, const pt &d, ptd &out) {
         return 1;
     }
     ptd pa{(ld)a.x, (ld)a.y};
-    ptd pb{(ld)b.x, (ld)b.y};
+    ptd p_b{(ld)b.x, (ld)b.y};
     ptd pc{(ld)c.x, (ld)c.y};
     ptd pd{(ld)d.x, (ld)d.y};
-    return line_inter(pa, pb, pc, pd, out);
+    return line_inter(pa, p_b, pc, pd, out);
 }

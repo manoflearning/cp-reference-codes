@@ -26,9 +26,9 @@ struct era_sieve {
             for (ll j = i * i; j <= n; j += i << 1) isp[j] = 0;
         }
         primes.clear();
-        if (n >= 2) primes.push_back(2);
+        if (n >= 2) primes.pb(2);
         for (int i = 3; i <= n; i += 2)
-            if (isp[i]) primes.push_back(i);
+            if (isp[i]) primes.pb(i);
     }
 
     bool is_prime(int x) const { return x >= 2 && x <= n && isp[x]; }
@@ -57,7 +57,7 @@ struct lin_sieve {
         for (int i = 2; i <= n; i++) {
             if (!lp[i]) {
                 lp[i] = i;
-                primes.push_back(i);
+                primes.pb(i);
                 mu[i] = -1;
                 phi[i] = i - 1;
             }
@@ -83,7 +83,7 @@ struct lin_sieve {
         vector<int> ret;
         while (x > 1) {
             int p = lp[x];
-            ret.push_back(p);
+            ret.pb(p);
             x /= p;
         }
         return ret;
@@ -96,7 +96,7 @@ struct lin_sieve {
             int p = lp[x];
             int e = 0;
             while (x % p == 0) x /= p, e++;
-            ret.push_back({p, e});
+            ret.pb({p, e});
         }
         return ret;
     }

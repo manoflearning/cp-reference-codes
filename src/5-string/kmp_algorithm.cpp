@@ -23,7 +23,7 @@ vector<int> kmp_match(const string &t, const string &p) {
         while (j && t[i] != p[j]) j = pi[j - 1];
         if (t[i] != p[j]) continue;
         if (j == sz(p) - 1) {
-            res.push_back(i - (sz(p) - 1));
+            res.pb(i - (sz(p) - 1));
             j = pi[j];
         } else {
             j++;

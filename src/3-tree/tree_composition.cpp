@@ -22,8 +22,8 @@ struct tree_comp {
         tim = 0;
     }
     void add(int u, int v) {
-        adj[u].push_back(v);
-        adj[v].push_back(u);
+        adj[u].pb(v);
+        adj[v].pb(u);
     }
     void dfs(int v, int p) {
         // goal: build tin/tout, depth, and parents.
@@ -62,18 +62,18 @@ struct tree_comp {
         sort(all(vs), [&](int a, int b) { return tin[a] < tin[b]; });
         vs.erase(unique(all(vs)), vs.end());
         int m = sz(vs);
-        for (int i = 0; i + 1 < m; i++) vs.push_back(lca(vs[i], vs[i + 1]));
+        for (int i = 0; i + 1 < m; i++) vs.pb(lca(vs[i], vs[i + 1]));
         sort(all(vs), [&](int a, int b) { return tin[a] < tin[b]; });
         vs.erase(unique(all(vs)), vs.end());
         for (int v : vs) vt_adj[v].clear();
         vector<int> st;
-        st.push_back(vs[0]);
+        st.pb(vs[0]);
         for (int i = 1; i < sz(vs); i++) {
             int v = vs[i];
             // invariant: stack is ancestor chain.
             while (!is_anc(st.back(), v)) st.pop_back();
-            vt_adj[st.back()].push_back(v);
-            st.push_back(v);
+            vt_adj[st.back()].pb(v);
+            st.pb(v);
         }
         return vs;
     }

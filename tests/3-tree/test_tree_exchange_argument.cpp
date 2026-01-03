@@ -12,8 +12,8 @@ int rnd(int l, int r) {
 }
 
 void add_edge(vector<vector<int>> &adj, int u, int v) {
-    adj[u].push_back(v);
-    adj[v].push_back(u);
+    adj[u].pb(v);
+    adj[v].pb(u);
 }
 
 vector<vector<int>> gen_tree(int n) {
@@ -35,7 +35,7 @@ vector<vector<int>> get_child(int n, const vector<vector<int>> &adj, int root) {
             if (to == par[v]) continue;
             if (par[to] != -1) continue;
             par[to] = v;
-            ch[v].push_back(to);
+            ch[v].pb(to);
             q.push(to);
         }
     }
@@ -49,7 +49,7 @@ ll brute_max(int n, const vector<vector<int>> &ch, const vector<ll> &w, const ve
         for (int to : ch[v]) indeg[to]++;
     vector<int> avail;
     for (int v = 1; v <= n; v++)
-        if (!indeg[v]) avail.push_back(v);
+        if (!indeg[v]) avail.pb(v);
 
     ll best = -(1LL << 62);
     vector<int> ord;
@@ -62,7 +62,7 @@ ll brute_max(int n, const vector<vector<int>> &ch, const vector<ll> &w, const ve
         }
         for (int i = 0; i < sz(av); i++) {
             int v = av[i];
-            ord.push_back(v);
+            ord.pb(v);
             vector<int> id2 = id;
             vector<int> av2 = av;
             av2.erase(av2.begin() + i);
@@ -70,7 +70,7 @@ ll brute_max(int n, const vector<vector<int>> &ch, const vector<ll> &w, const ve
             ll cost2 = cost + w[v] * tm2;
             for (int to : ch[v]) {
                 id2[to]--;
-                if (!id2[to]) av2.push_back(to);
+                if (!id2[to]) av2.pb(to);
             }
             dfs(id2, av2, tm2, cost2);
             ord.pop_back();

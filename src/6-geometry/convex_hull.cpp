@@ -13,12 +13,12 @@ vector<pt> convex_hull(vector<pt> p) {
     vector<pt> lo, hi;
     for (auto &v : p) {
         while (sz(lo) >= 2 && cross(lo[sz(lo) - 2], lo.back(), v) <= 0) lo.pop_back();
-        lo.push_back(v);
+        lo.pb(v);
     }
     for (int i = n - 1; i >= 0; i--) {
         auto v = p[i];
         while (sz(hi) >= 2 && cross(hi[sz(hi) - 2], hi.back(), v) <= 0) hi.pop_back();
-        hi.push_back(v);
+        hi.pb(v);
     }
     lo.pop_back();
     hi.pop_back();

@@ -21,7 +21,7 @@ bool is_prime_ref(ll x) {
 vector<ll> div_ref(ll x) {
     vector<ll> d;
     for (ll i = 1; i <= x; i++)
-        if (x % i == 0) d.push_back(i);
+        if (x % i == 0) d.pb(i);
     return d;
 }
 
@@ -29,11 +29,11 @@ vector<ll> fac_ref(ll x) {
     vector<ll> p;
     for (ll i = 2; i <= x / i; i++) {
         while (x % i == 0) {
-            p.push_back(i);
+            p.pb(i);
             x /= i;
         }
     }
-    if (x > 1) p.push_back(x);
+    if (x > 1) p.pb(x);
     return p;
 }
 

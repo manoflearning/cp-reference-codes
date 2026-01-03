@@ -89,7 +89,7 @@ void test_mec_random_brute() {
         p.reserve(n);
         for (int i = 0; i < n; i++) {
             ptd v{(ld)rnd(-5, 5), (ld)rnd(-5, 5)};
-            p.push_back(v);
+            p.pb(v);
         }
         auto got = min_circle(p);
         auto exp = brute_mec(p);

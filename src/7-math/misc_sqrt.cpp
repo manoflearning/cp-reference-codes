@@ -11,8 +11,8 @@ struct sqrt_alg {
         vector<ll> d;
         for (ll i = 1; i <= x / i; i++) {
             if (x % i) continue;
-            d.push_back(i);
-            if (i * i != x) d.push_back(x / i);
+            d.pb(i);
+            if (i * i != x) d.pb(x / i);
         }
         sort(all(d));
         return d;
@@ -22,16 +22,16 @@ struct sqrt_alg {
         // result: prime factors of x (with repetition).
         vector<ll> p;
         while ((x & 1) == 0) {
-            p.push_back(2);
+            p.pb(2);
             x >>= 1;
         }
         for (ll i = 3; i <= x / i; i += 2) {
             while (x % i == 0) {
-                p.push_back(i);
+                p.pb(i);
                 x /= i;
             }
         }
-        if (x > 1) p.push_back(x);
+        if (x > 1) p.pb(x);
         return p;
     }
 };

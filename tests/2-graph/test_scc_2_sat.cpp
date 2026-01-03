@@ -68,7 +68,7 @@ void t_scc() {
         vector<vector<int>> g(n + 1);
         for (int i = 0; i < m; i++) {
             int u = rnd(1, n), v = rnd(1, n);
-            g[u].push_back(v);
+            g[u].pb(v);
         }
         auto cmp = cmp_na(n, g);
 
@@ -104,7 +104,7 @@ void t_sat() {
             int a = rnd(1, n), b = rnd(1, n);
             if (rnd(0, 1)) a = -a;
             if (rnd(0, 1)) b = -b;
-            cl.push_back({a, b});
+            cl.pb({a, b});
         }
         vector<int> val;
         bool ok2 = sat_br(n, cl, val);

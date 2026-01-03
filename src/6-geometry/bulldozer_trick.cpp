@@ -35,7 +35,7 @@ void bulldozer(vector<pt> &p, F f) {
                 dx = -dx, dy = -dy;
                 swap(u, v);
             }
-            ln.push_back({u, v, dx, dy});
+            ln.pb({u, v, dx, dy});
         }
     }
     sort(all(ln));
@@ -49,8 +49,8 @@ void bulldozer(vector<pt> &p, F f) {
         for (int k = i; k < j; k++) {
             int u = ln[k].u, v = ln[k].v;
             ll c = -dy * base[u].x + dx * base[u].y;
-            mp[c].push_back(u);
-            mp[c].push_back(v);
+            mp[c].pb(u);
+            mp[c].pb(v);
         }
         for (auto &it : mp) {
             auto &vec = it.sc;

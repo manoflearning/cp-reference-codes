@@ -42,7 +42,7 @@ void test_random() {
             int v = rnd_int(0, n - 1);
             ll w = rnd_int(-5, 5);
             dc.add_le(u, v, w);
-            edges.push_back({u, v, w});
+            edges.pb({u, v, w});
         }
         bool ok = dc.solve();
         bool neg = has_neg_cycle(n, edges);

@@ -20,7 +20,7 @@ ll naive_rec(const vector<ll> &coef, const vector<ll> &init, ll n, ll mod) {
         for (int j = 1; j <= k; j++) {
             v = mod_norm(v + (__int128)coef[j - 1] * a[i - j], mod);
         }
-        a.push_back(v);
+        a.pb(v);
     }
     return a[n];
 }
