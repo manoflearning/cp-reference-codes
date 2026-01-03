@@ -196,6 +196,54 @@ void test_pst_random() {
     }
 }
 
+void test_pst_kth_basic() {
+    int n = 5;
+    vector<ll> a = {0, 2, 0, 1, 3, 0};
+    seg_pst st;
+    st.build(n, a);
+    assert(st.kth(1, 0) == 1);
+    assert(st.kth(2, 0) == 1);
+    assert(st.kth(3, 0) == 3);
+    assert(st.kth(6, 0) == 4);
+    st.set(2, 4);
+    assert(st.kth(3, 1) == 2);
+    assert(st.kth(10, 1) == 4);
+    st.set(4, 0);
+    assert(st.kth(7, 2) == 3);
+}
+
+void test_pst_kth_random() {
+    int n = 40;
+    vector<vector<ll>> ver;
+    vector<ll> a(n + 1, 0);
+    for (int i = 1; i <= n; i++) a[i] = rnd(0, 3);
+    ver.push_back(a);
+
+    seg_pst st;
+    st.build(n, a);
+
+    for (int it = 0; it < 2000; it++) {
+        int op = (int)rnd(0, 1);
+        if (op == 0) {
+            int p = (int)rnd(1, n);
+            ll v = rnd(0, 5);
+            vector<ll> nw = ver.back();
+            nw[p] = v;
+            ver.push_back(nw);
+            st.set(p, v);
+        } else {
+            int id = (int)rnd(0, (int)ver.size() - 1);
+            ll tot = 0;
+            for (int i = 1; i <= n; i++) tot += ver[id][i];
+            if (tot == 0) continue;
+            ll k = rnd(1, tot);
+            assert(st.kth(k, id) == kth_naive_freq(ver[id], k));
+            assert(st.kth(1, id) == kth_naive_freq(ver[id], 1));
+            assert(st.kth(tot, id) == kth_naive_freq(ver[id], tot));
+        }
+    }
+}
+
 void test_dyseg_basic() {
     seg_sparse st;
     st.add(MAXL, 5);
@@ -368,6 +416,8 @@ int main() {
     test_seglz_random();
     test_pst_basic();
     test_pst_random();
+    test_pst_kth_basic();
+    test_pst_kth_random();
     test_dyseg_basic();
     test_dyseg_random();
     test_seg2d_basic();
