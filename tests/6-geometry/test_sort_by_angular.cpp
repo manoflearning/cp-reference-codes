@@ -45,7 +45,7 @@ void test_sort_ang_random() {
                 pt a = u - o, b = v - o;
                 if (cross(a, b) == 0) ok = 0;
             }
-            if (ok) p.push_back(v);
+            if (ok) p.pb(v);
         }
         assert(sz(p) == n);
 

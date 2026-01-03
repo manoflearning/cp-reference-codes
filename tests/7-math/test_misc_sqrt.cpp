@@ -18,30 +18,30 @@ bool is_prime_ref(ll x) {
     return 1;
 }
 
-vector<ll> div_ref(ll x) {
-    vector<ll> d;
+vl div_ref(ll x) {
+    vl d;
     for (ll i = 1; i <= x; i++)
-        if (x % i == 0) d.push_back(i);
+        if (x % i == 0) d.pb(i);
     return d;
 }
 
-vector<ll> fac_ref(ll x) {
-    vector<ll> p;
+vl fac_ref(ll x) {
+    vl p;
     for (ll i = 2; i <= x / i; i++) {
         while (x % i == 0) {
-            p.push_back(i);
+            p.pb(i);
             x /= i;
         }
     }
-    if (x > 1) p.push_back(x);
+    if (x > 1) p.pb(x);
     return p;
 }
 
 int main() {
-    assert(sqrt_alg::divisors(1) == vector<ll>({1}));
+    assert(sqrt_alg::divisors(1) == vl({1}));
     assert(sqrt_alg::prime_fac(1).empty());
-    assert(sqrt_alg::divisors(36) == vector<ll>({1, 2, 3, 4, 6, 9, 12, 18, 36}));
-    assert(sqrt_alg::prime_fac(36) == vector<ll>({2, 2, 3, 3}));
+    assert(sqrt_alg::divisors(36) == vl({1, 2, 3, 4, 6, 9, 12, 18, 36}));
+    assert(sqrt_alg::prime_fac(36) == vl({2, 2, 3, 3}));
     for (int it = 0; it < 1000; it++) {
         ll x = rnd_ll(1, 5000);
         auto d1 = sqrt_alg::divisors(x);

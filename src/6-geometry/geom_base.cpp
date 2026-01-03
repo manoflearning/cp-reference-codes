@@ -1,5 +1,5 @@
 #pragma once
-#include "../common/common.hpp"
+#include "../0-common/common.hpp"
 
 // what: 2D primitives and orientation/intersection helpers for integer and double points.
 // time: O(1) per op; memory: O(1)

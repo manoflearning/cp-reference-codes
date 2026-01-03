@@ -1,4 +1,4 @@
-#include "../common/common.hpp"
+#include "../0-common/common.hpp"
 
 // what: maximize/minimize a unimodal function with ternary search (int/real).
 // time: int O(log range); real O(it); memory: O(1)

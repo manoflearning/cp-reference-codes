@@ -11,8 +11,8 @@ int rnd(int l, int r) {
     return dis(rng);
 }
 
-vector<int> path_nodes(int n, const vector<vector<int>> &adj, int s, int e) {
-    vector<int> par(n + 1, -1);
+vi path_nodes(int n, const vvi &adj, int s, int e) {
+    vi par(n + 1, -1);
     queue<int> q;
     q.push(s);
     par[s] = s;
@@ -26,22 +26,22 @@ vector<int> path_nodes(int n, const vector<vector<int>> &adj, int s, int e) {
             q.push(to);
         }
     }
-    vector<int> res;
+    vi res;
     int v = e;
     while (v != par[v]) {
-        res.push_back(v);
+        res.pb(v);
         v = par[v];
     }
-    res.push_back(s);
+    res.pb(s);
     return res;
 }
 
 void t_fix() {
     int n = 4;
-    vector<vector<int>> adj(n + 1);
+    vvi adj(n + 1);
     auto add = [&](int u, int v) {
-        adj[u].push_back(v);
-        adj[v].push_back(u);
+        adj[u].pb(v);
+        adj[v].pb(u);
     };
     add(1, 2);
     add(2, 3);
@@ -53,7 +53,7 @@ void t_fix() {
         for (int v : adj[u])
             if (u < v) h.add(u, v);
     h.build(1);
-    vector<ll> val = {0, 1, 2, 3, 4};
+    vl val = {0, 1, 2, 3, 4};
     for (int i = 1; i <= n; i++) h.set(i, val[i]);
     auto p = path_nodes(n, adj, 3, 4);
     ll sum = 0;
@@ -64,18 +64,18 @@ void t_fix() {
 void t_rnd() {
     for (int it = 0; it < 200; it++) {
         int n = rnd(2, 9);
-        vector<int> par(n + 1, 0);
-        vector<vector<int>> adj(n + 1);
+        vi par(n + 1, 0);
+        vvi adj(n + 1);
         for (int v = 2; v <= n; v++) {
             par[v] = rnd(1, v - 1);
-            adj[v].push_back(par[v]);
-            adj[par[v]].push_back(v);
+            adj[v].pb(par[v]);
+            adj[par[v]].pb(v);
         }
         hld_tree h;
         h.init(n);
         for (int v = 2; v <= n; v++) h.add(v, par[v]);
         h.build(1);
-        vector<ll> val(n + 1);
+        vl val(n + 1);
         for (int i = 1; i <= n; i++) {
             val[i] = rnd(-5, 5);
             h.set(i, val[i]);

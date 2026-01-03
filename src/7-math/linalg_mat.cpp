@@ -1,5 +1,5 @@
 #pragma once
-#include "../common/common.hpp"
+#include "../0-common/common.hpp"
 
 // what: small matrix helper for modular multiply and fast exponentiation.
 // time: multiply O(n*m*k); power O(log e * n^3); memory: O(n*m)
@@ -7,16 +7,14 @@
 // usage: matrix a(n,n,mod); auto r=matrix::power(a, e);
 struct matrix {
     ll mod;
-    vector<vector<ll>> a;
+    vvl a;
 
-    matrix(int n = 0, int m = 0, ll mod_ = 1) : mod(mod_), a(n, vector<ll>(m, 0)) {}
-
+    matrix(int n = 0, int m = 0, ll mod_ = 1) : mod(mod_), a(n, vl(m, 0)) {}
     static matrix ident(int n, ll mod) {
         matrix r(n, n, mod);
         for (int i = 0; i < n; i++) r.a[i][i] = 1 % mod;
         return r;
     }
-
     matrix operator*(const matrix &o) const {
         int n = sz(a);
         int m = sz(o.a[0]);
@@ -34,7 +32,6 @@ struct matrix {
         }
         return r;
     }
-
     static matrix power(matrix base, ll exp) {
         // goal: fast exponentiation.
         matrix res = ident(sz(base.a), base.mod);

@@ -1,4 +1,4 @@
-#include "../common/common.hpp"
+#include "../0-common/common.hpp"
 #include <immintrin.h>
 
 // what: AVX2 usage snippets (i32 add/sum/min/count, f32 dot/add).
@@ -19,7 +19,6 @@ struct simd_i32 {
         }
         for (; i < n; i++) c[i] = a[i] + b[i];
     }
-
     static ll sum(const int *a, int n) {
         // goal: sum all values with 64-bit accumulation
         int i = 0;
@@ -40,7 +39,6 @@ struct simd_i32 {
         for (; i < n; i++) res += a[i];
         return res;
     }
-
     static int range_min(const int *a, int l, int r) {
         // goal: min in [l, r]
         int i = l;
@@ -56,7 +54,6 @@ struct simd_i32 {
         for (; i <= r; i++) res = min(res, a[i]);
         return res;
     }
-
     static int count_eq(const int *a, int n, int v) {
         // goal: count occurrences of v
         int i = 0;
@@ -84,7 +81,6 @@ struct simd_f32 {
         }
         for (; i < n; i++) a[i] += b[i];
     }
-
     static float dot(const float *a, const float *b, int n) {
         // goal: dot product
         int i = 0;

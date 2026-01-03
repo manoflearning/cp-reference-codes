@@ -45,12 +45,12 @@ int phi_ref(int x) {
     return ret;
 }
 
-vector<int> divisors(int x) {
-    vector<int> d;
+vi divisors(int x) {
+    vi d;
     for (int i = 1; 1LL * i * i <= x; i++) {
         if (x % i) continue;
-        d.push_back(i);
-        if (i * i != x) d.push_back(x / i);
+        d.pb(i);
+        if (i * i != x) d.pb(x / i);
     }
     return d;
 }

@@ -1,4 +1,4 @@
-#include "../common/common.hpp"
+#include "../0-common/common.hpp"
 
 // what: solve difference constraints x_v - x_u <= w with Bellman-Ford.
 // time: O(nm) via Bellman-Ford; memory: O(n+m)
@@ -12,26 +12,22 @@ struct diff_cons {
 
     int n;
     vector<vector<edge>> g;
-    vector<ll> dist;
+    vl dist;
 
     diff_cons(int n_ = 0) { init(n_); }
-
     void init(int n_) {
         n = n_;
         g.assign(n, {});
         dist.assign(n, 0);
     }
-
     void add_le(int u, int v, ll w) {
         // goal: x_v - x_u <= w
-        g[u].push_back({v, w});
+        g[u].pb({v, w});
     }
-
     void add_ge(int u, int v, ll w) {
         // goal: x_v - x_u >= w  <=>  x_u - x_v <= -w
         add_le(v, u, -w);
     }
-
     void add_eq(int u, int v, ll w) {
         // goal: x_v - x_u = w
         add_le(u, v, w);
@@ -60,6 +56,5 @@ struct diff_cons {
         }
         return true;
     }
-
-    vector<ll> val() const { return dist; }
+    vl val() const { return dist; }
 };

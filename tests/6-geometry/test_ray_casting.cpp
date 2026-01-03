@@ -43,7 +43,7 @@ void test_in_poly_random_convex() {
         int n = (int)rnd(3, 40);
         vector<pt> p;
         p.reserve(n);
-        for (int i = 0; i < n; i++) p.push_back({rnd(-20, 20), rnd(-20, 20)});
+        for (int i = 0; i < n; i++) p.pb({rnd(-20, 20), rnd(-20, 20)});
         auto h = convex_hull(p);
         if (sz(h) < 3) continue;
 

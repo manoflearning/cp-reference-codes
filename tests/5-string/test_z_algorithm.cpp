@@ -12,13 +12,13 @@ int rnd(int l, int r) {
 }
 string rnd_s(int n) {
     string s;
-    for (int i = 0; i < n; i++) s.push_back('a' + rnd(0, 2));
+    for (int i = 0; i < n; i++) s.pb('a' + rnd(0, 2));
     return s;
 }
 
-vector<int> na_z(const string &s) {
+vi na_z(const string &s) {
     int n = sz(s);
-    vector<int> z(n);
+    vi z(n);
     for (int i = 0; i < n; i++) {
         int k = 0;
         while (i + k < n && s[k] == s[i + k]) k++;

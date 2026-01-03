@@ -1,4 +1,4 @@
-#include "../common/common.hpp"
+#include "../0-common/common.hpp"
 
 // what: mt19937_64 quick usage snippet (time-seeded + rand range + shuffle).
 // time: O(1) per draw; memory: O(1)

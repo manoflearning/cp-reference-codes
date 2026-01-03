@@ -13,30 +13,30 @@ int rnd_int(int l, int r) {
 
 void test_distinct() {
     int n = 200, qn = 200;
-    vector<int> a(n);
+    vi a(n);
     for (int i = 0; i < n; i++) a[i] = rnd_int(0, 30);
 
-    vector<pair<int, int>> qs(qn);
+    vector<pii> qs(qn);
     for (int i = 0; i < qn; i++) {
         int l = rnd_int(0, n - 1);
         int r = rnd_int(l, n - 1);
         qs[i] = {l, r};
     }
 
-    vector<int> naive(qn, 0), ans(qn, 0);
+    vi naive(qn, 0), ans(qn, 0);
     for (int i = 0; i < qn; i++) {
-        vector<int> cnt(31, 0);
+        vi cnt(31, 0);
         int cur = 0;
-        for (int j = qs[i].first; j <= qs[i].second; j++) {
+        for (int j = qs[i].fr; j <= qs[i].sc; j++) {
             if (cnt[a[j]]++ == 0) cur++;
         }
         naive[i] = cur;
     }
 
     mo solver(n);
-    for (int i = 0; i < qn; i++) solver.add_query(qs[i].first, qs[i].second, i);
+    for (int i = 0; i < qn; i++) solver.add_query(qs[i].fr, qs[i].sc, i);
 
-    vector<int> cnt(31, 0);
+    vi cnt(31, 0);
     int cur = 0;
     auto add = [&](int idx) {
         if (cnt[a[idx]]++ == 0) cur++;

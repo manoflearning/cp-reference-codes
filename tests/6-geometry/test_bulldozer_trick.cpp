@@ -15,33 +15,33 @@ vector<ld> uniq_ang(vector<ld> v) {
     sort(all(v));
     vector<ld> u;
     for (auto &x : v) {
-        if (u.empty() || fabsl(u.back() - x) > 1e-12) u.push_back(x);
+        if (u.empty() || fabsl(u.back() - x) > 1e-12) u.pb(x);
     }
     return u;
 }
 
-vector<int> perm(const vector<pt> &p, map<pll, int> &id) {
-    vector<int> res;
+vi perm(const vector<pt> &p, map<pll, int> &id) {
+    vi res;
     res.reserve(sz(p));
-    for (auto &v : p) res.push_back(id[{v.x, v.y}]);
+    for (auto &v : p) res.pb(id[{v.x, v.y}]);
     return res;
 }
 
-vector<int> proj_ord(const vector<pt> &p, map<pll, int> &id, ld ang) {
+vi proj_ord(const vector<pt> &p, map<pll, int> &id, ld ang) {
     ld cs = cosl(ang), sn = sinl(ang);
     vector<pair<ld, int>> arr;
     arr.reserve(sz(p));
     for (auto &v : p) {
         ld pr = (ld)v.x * cs + (ld)v.y * sn;
-        arr.push_back({pr, id[{v.x, v.y}]});
+        arr.pb({pr, id[{v.x, v.y}]});
     }
     sort(all(arr), [&](auto &a, auto &b) {
         if (fabsl(a.fr - b.fr) > 1e-18) return a.fr < b.fr;
         return a.sc < b.sc;
     });
-    vector<int> ord;
+    vi ord;
     ord.reserve(sz(p));
-    for (auto &x : arr) ord.push_back(x.sc);
+    for (auto &x : arr) ord.pb(x.sc);
     return ord;
 }
 
@@ -55,12 +55,12 @@ void test_bulldozer_small() {
             pt v{rnd(-10, 10), rnd(-10, 10)};
             if (id.count({v.x, v.y})) continue;
             id[{v.x, v.y}] = sz(pts);
-            pts.push_back(v);
+            pts.pb(v);
         }
 
-        vector<vector<int>> got;
+        vvi got;
         vector<pt> cur = pts;
-        bulldozer(cur, [&](const vector<pt> &p) { got.push_back(perm(p, id)); });
+        bulldozer(cur, [&](const vector<pt> &p) { got.pb(perm(p, id)); });
 
         vector<ld> th;
         for (int i = 0; i < n; i++) {
@@ -72,25 +72,25 @@ void test_bulldozer_small() {
                 ld t = a + PI / 2;
                 t = fmodl(t, PI);
                 if (t < 0) t += PI;
-                th.push_back(t);
+                th.pb(t);
             }
         }
         th = uniq_ang(th);
 
         vector<ld> bnd;
-        bnd.push_back(0);
+        bnd.pb(0);
         for (auto &t : th) {
-            if (t > 1e-12 && t < PI - 1e-12) bnd.push_back(t);
+            if (t > 1e-12 && t < PI - 1e-12) bnd.pb(t);
         }
-        bnd.push_back(PI);
+        bnd.pb(PI);
         bnd = uniq_ang(bnd);
 
-        vector<vector<int>> exp;
+        vvi exp;
         vector<pt> st = pts;
         sort(all(st));
         for (int i = 0; i + 1 < sz(bnd); i++) {
             ld mid = (bnd[i] + bnd[i + 1]) / 2;
-            exp.push_back(proj_ord(st, id, mid));
+            exp.pb(proj_ord(st, id, mid));
         }
         assert(got == exp);
     }

@@ -23,16 +23,16 @@ struct ek_flow {
         g.assign(n, {});
     }
     void add_edge(int u, int v, ll cap) {
-        edge a{v, (int)g[v].size(), cap};
-        edge b{u, (int)g[u].size(), 0};
-        g[u].push_back(a);
-        g[v].push_back(b);
+        edge a{v, sz(g[v]), cap};
+        edge b{u, sz(g[u]), 0};
+        g[u].pb(a);
+        g[v].pb(b);
     }
     ll max_flow(int s, int t) {
         if (s == t) return 0;
         ll flow = 0;
         while (1) {
-            vector<int> pv(n, -1), pe(n, -1);
+            vi pv(n, -1), pe(n, -1);
             queue<int> q;
             q.push(s);
             pv[s] = s;
@@ -62,8 +62,8 @@ struct ek_flow {
     }
 };
 
-int brute_match(int n_l, int n_r, const vector<vector<int>> &g) {
-    vector<vector<int>> dp(n_l + 1, vector<int>(1 << n_r, -1));
+int brute_match(int n_l, int n_r, const vvi &g) {
+    vvi dp(n_l + 1, vi(1 << n_r, -1));
     function<int(int, int)> go = [&](int i, int mask) {
         if (i == n_l) return 0;
         int &ret = dp[i][mask];
@@ -88,17 +88,17 @@ struct mcmf_spfa {
         g.assign(n, {});
     }
     void add_edge(int u, int v, ll cap, ll cost) {
-        edge a{v, (int)g[v].size(), cap, cost};
-        edge b{u, (int)g[u].size(), 0, -cost};
-        g[u].push_back(a);
-        g[v].push_back(b);
+        edge a{v, sz(g[v]), cap, cost};
+        edge b{u, sz(g[u]), 0, -cost};
+        g[u].pb(a);
+        g[v].pb(b);
     }
     pll min_cost_mf(int s, int t, ll max_f) {
         const ll INF = (1LL << 62);
         ll flow = 0, cost = 0;
         while (flow < max_f) {
-            vector<ll> dist(n, INF);
-            vector<int> pv(n, -1), pe(n, -1);
+            vl dist(n, INF);
+            vi pv(n, -1), pe(n, -1);
             queue<int> q;
             vector<char> in_q(n, 0);
             dist[s] = 0;
@@ -145,11 +145,11 @@ struct lr_res {
 
 lr_res brute_lr(int n, int s, int t, const vector<tuple<int, int, int, int, int>> &es) {
     int m = sz(es);
-    vector<int> f(m, 0);
+    vi f(m, 0);
     ll best_f = -(1LL << 62), best_c = (1LL << 62);
     function<void(int)> dfs = [&](int i) {
         if (i == m) {
-            vector<int> bal(n, 0);
+            vi bal(n, 0);
             ll cost = 0;
             for (int k = 0; k < m; k++) {
                 auto [u, v, lo, hi, c] = es[k];
@@ -207,10 +207,10 @@ void t_hk() {
     for (int it = 0; it < 300; it++) {
         int n_l = rnd(0, 10), n_r = rnd(0, 10);
         hk bm(n_l, n_r);
-        vector<vector<int>> g(n_l);
+        vvi g(n_l);
         for (int l = 0; l < n_l; l++)
             for (int r = 0; r < n_r; r++)
-                if (rnd(0, 1)) bm.add_edge(l, r), g[l].push_back(r);
+                if (rnd(0, 1)) bm.add_edge(l, r), g[l].pb(r);
         assert(bm.max_matching() == brute_match(n_l, n_r, g));
     }
 }
@@ -229,7 +229,7 @@ void t_mcmf() {
             ll cap = rnd(0, 3);
             ll cost = rnd(-5, 5);
             nonneg &= (cost >= 0);
-            es.push_back({u, v, cap, cost});
+            es.pb({u, v, cap, cost});
         }
         mcmf mf1(n), mf2(n);
         mcmf_spfa na;
@@ -260,7 +260,7 @@ void t_lr_dinic() {
             if (u == v) continue;
             int lo = rnd(0, 2);
             int hi = lo + rnd(0, 2);
-            es.push_back({u, v, lo, hi, 0});
+            es.pb({u, v, lo, hi, 0});
             f.add_edge(u, v, lo, hi);
         }
         auto exp = brute_lr(n, s, t, es);
@@ -285,7 +285,7 @@ void t_lr_mcmf() {
             int lo = rnd(0, 2);
             int hi = lo + rnd(0, 2);
             int c = rnd(0, 5);
-            es.push_back({u, v, lo, hi, c});
+            es.pb({u, v, lo, hi, c});
             f.add_edge(u, v, lo, hi, c);
         }
         auto exp = brute_lr(n, s, t, es);

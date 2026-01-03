@@ -27,10 +27,10 @@ bool in_hp(const hp_line &l, const ptd &p) {
 
 void test_hpi_square() {
     vector<hp_line> ln;
-    ln.push_back({{0, 1}, {0, 0}}); // x >= 0
-    ln.push_back({{1, 0}, {1, 1}}); // x <= 1
-    ln.push_back({{0, 0}, {1, 0}}); // y >= 0
-    ln.push_back({{1, 1}, {0, 1}}); // y <= 1
+    ln.pb({{0, 1}, {0, 0}}); // x >= 0
+    ln.pb({{1, 0}, {1, 1}}); // x <= 1
+    ln.pb({{0, 0}, {1, 0}}); // y >= 0
+    ln.pb({{1, 1}, {0, 1}}); // y <= 1
     auto poly = hpi(ln);
     assert(sz(poly) == 4);
     assert(fabsl(area_poly(poly) - 1.0L) < 1e-7);
@@ -41,9 +41,9 @@ void test_hpi_square() {
 
 void test_hpi_triangle() {
     vector<hp_line> ln;
-    ln.push_back({{0, 1}, {0, 0}}); // x >= 0
-    ln.push_back({{0, 0}, {1, 0}}); // y >= 0
-    ln.push_back({{1, 0}, {0, 1}}); // x + y <= 1
+    ln.pb({{0, 1}, {0, 0}}); // x >= 0
+    ln.pb({{0, 0}, {1, 0}}); // y >= 0
+    ln.pb({{1, 0}, {0, 1}}); // x + y <= 1
     auto poly = hpi(ln);
     assert(sz(poly) == 3);
     assert(fabsl(area_poly(poly) - 0.5L) < 1e-7);
@@ -54,8 +54,8 @@ void test_hpi_triangle() {
 
 void test_hpi_empty() {
     vector<hp_line> ln;
-    ln.push_back({{0, 1}, {0, 0}});   // x >= 0
-    ln.push_back({{-1, 0}, {-1, 1}}); // x <= -1
+    ln.pb({{0, 1}, {0, 0}});   // x >= 0
+    ln.pb({{-1, 0}, {-1, 1}}); // x <= -1
     auto poly = hpi(ln);
     assert(poly.empty());
 }
@@ -65,15 +65,15 @@ void test_hpi_random_convex() {
         int n = (int)rnd(10, 30);
         vector<pt> p;
         p.reserve(n);
-        for (int i = 0; i < n; i++) p.push_back({rnd(-20, 20), rnd(-20, 20)});
+        for (int i = 0; i < n; i++) p.pb({rnd(-20, 20), rnd(-20, 20)});
         auto h = convex_hull(p);
         if (sz(h) < 3) continue;
 
         vector<ptd> hp;
-        for (auto &v : h) hp.push_back({(ld)v.x, (ld)v.y});
+        for (auto &v : h) hp.pb({(ld)v.x, (ld)v.y});
         vector<hp_line> ln;
         for (int i = 0; i < sz(hp); i++) {
-            ln.push_back({hp[i], hp[(i + 1) % sz(hp)]});
+            ln.pb({hp[i], hp[(i + 1) % sz(hp)]});
         }
         auto poly = hpi(ln);
         assert(sz(poly) == sz(hp));

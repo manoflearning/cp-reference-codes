@@ -11,8 +11,8 @@ int rnd(int l, int r) {
     return dis(rng);
 }
 
-int lca_na(int n, const vector<vector<int>> &adj, int root, int a, int b) {
-    vector<int> par(n + 1, 0), dep(n + 1, 0);
+int lca_na(int n, const vvi &adj, int root, int a, int b) {
+    vi par(n + 1, 0), dep(n + 1, 0);
     queue<int> q;
     q.push(root);
     par[root] = root;
@@ -35,12 +35,12 @@ int lca_na(int n, const vector<vector<int>> &adj, int root, int a, int b) {
 void t_rnd() {
     for (int it = 0; it < 200; it++) {
         int n = rnd(2, 20);
-        vector<int> par(n + 1, 0);
-        vector<vector<int>> adj(n + 1);
+        vi par(n + 1, 0);
+        vvi adj(n + 1);
         for (int v = 2; v <= n; v++) {
             par[v] = rnd(1, v - 1);
-            adj[v].push_back(par[v]);
-            adj[par[v]].push_back(v);
+            adj[v].pb(par[v]);
+            adj[par[v]].pb(v);
         }
         lca_sparse l;
         l.init(n);

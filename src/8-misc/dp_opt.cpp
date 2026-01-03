@@ -1,4 +1,4 @@
-#include "../common/common.hpp"
+#include "../0-common/common.hpp"
 
 // what: collection of DP optimizations (CHT, Knuth, DnC, slope trick).
 // time: see each component; memory: see each component.
@@ -21,7 +21,6 @@ struct cht_mono {
     ld isect(const line &a, const line &b) const {
         return (ld)(b.b - a.b) / (a.m - b.m);
     }
-
     void add_line(ll m, ll b) {
         // goal: maintain lower hull with decreasing slopes
         if (!st.empty() && st.back().m == m) {
@@ -35,9 +34,8 @@ struct cht_mono {
             st.pop_back();
         }
         if (st.empty()) cur.x = NEG_INF;
-        st.push_back(cur);
+        st.pb(cur);
     }
-
     ll get(ll x) const {
         // invariant: st is sorted by x; pick last with x_i <= x
         int l = 0, r = sz(st) - 1;
@@ -59,15 +57,15 @@ struct cht_mono {
 struct knuth_opt {
     static constexpr ll INF = (1LL << 62);
     int n;
-    vector<vector<ll>> dp;
-    vector<vector<int>> opt;
+    vvl dp;
+    vvi opt;
 
     template <class F>
     void build(int n_, F cost) {
         // goal: fill dp/opt for 0..n-1
         n = n_;
-        dp.assign(n, vector<ll>(n, 0));
-        opt.assign(n, vector<int>(n, 0));
+        dp.assign(n, vl(n, 0));
+        opt.assign(n, vi(n, 0));
         for (int i = 0; i < n; i++) opt[i][i] = i;
         for (int len = 2; len <= n; len++) {
             for (int i = 0; i + len - 1 < n; i++) {
@@ -96,21 +94,20 @@ struct knuth_opt {
 // usage: dnc_opt dc; dc.run(k, n, base, cost); auto ans = dc.dp();
 struct dnc_opt {
     static constexpr ll INF = (1LL << 62);
-    vector<ll> prv, cur;
+    vl prv, cur;
 
     template <class F>
-    void run(int k, int n, const vector<ll> &base, F cost) {
+    void run(int k, int n, const vl &base, F cost) {
         // goal: compute dp for k layers, starting from base
         prv = base;
         cur.assign(n, INF);
         for (int g = 1; g <= k; g++) {
-            fill(cur.begin(), cur.end(), INF);
+            fill(all(cur), INF);
             solve(0, n - 1, 0, n - 1, cost);
             prv.swap(cur);
         }
     }
-
-    const vector<ll> &dp() const { return prv; }
+    const vl &dp() const { return prv; }
 
     template <class F>
     void solve(int l, int r, int opt_l, int opt_r, F cost) {
@@ -134,7 +131,7 @@ struct dnc_opt {
 // time: O(n log n); memory: O(n)
 // constraint: values fit in ll.
 // usage: ll ops = slope_trick(a);
-ll slope_trick(vector<ll> a) {
+ll slope_trick(vl a) {
     ll ret = 0;
     priority_queue<ll> pq;
     for (int i = 0; i < sz(a); i++) {

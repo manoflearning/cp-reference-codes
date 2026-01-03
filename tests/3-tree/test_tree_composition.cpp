@@ -11,18 +11,18 @@ int rnd(int l, int r) {
     return dis(rng);
 }
 
-void add_edge(vector<vector<int>> &adj, int u, int v) {
-    adj[u].push_back(v);
-    adj[v].push_back(u);
+void add_edge(vvi &adj, int u, int v) {
+    adj[u].pb(v);
+    adj[v].pb(u);
 }
 
-vector<vector<int>> gen_tree(int n) {
-    vector<vector<int>> adj(n + 1);
+vvi gen_tree(int n) {
+    vvi adj(n + 1);
     for (int v = 2; v <= n; v++) add_edge(adj, v, rnd(1, v - 1));
     return adj;
 }
 
-void root_tree(int n, const vector<vector<int>> &adj, int root, vector<int> &par, vector<int> &dep) {
+void root_tree(int n, const vvi &adj, int root, vi &par, vi &dep) {
     par.assign(n + 1, -1);
     dep.assign(n + 1, 0);
     queue<int> q;
@@ -42,14 +42,14 @@ void root_tree(int n, const vector<vector<int>> &adj, int root, vector<int> &par
     for (int v = 1; v <= n; v++) assert(par[v] != -1);
 }
 
-int lca_na(int a, int b, const vector<int> &par, const vector<int> &dep) {
+int lca_na(int a, int b, const vi &par, const vi &dep) {
     while (dep[a] > dep[b]) a = par[a];
     while (dep[b] > dep[a]) b = par[b];
     while (a != b) a = par[a], b = par[b];
     return a;
 }
 
-vector<int> lca_closure(vector<int> vs, const vector<int> &par, const vector<int> &dep) {
+vi lca_closure(vi vs, const vi &par, const vi &dep) {
     int n = sz(par) - 1;
     sort(all(vs));
     vs.erase(unique(all(vs)), vs.end());
@@ -64,7 +64,7 @@ vector<int> lca_closure(vector<int> vs, const vector<int> &par, const vector<int
                 int c = lca_na(vs[i], vs[j], par, dep);
                 if (!in_set[c]) {
                     in_set[c] = 1;
-                    vs.push_back(c);
+                    vs.pb(c);
                     chg = 1;
                 }
             }
@@ -76,9 +76,9 @@ vector<int> lca_closure(vector<int> vs, const vector<int> &par, const vector<int
     return vs;
 }
 
-void check_one(const vector<vector<int>> &adj, const vector<int> &vs) {
+void check_one(const vvi &adj, const vi &vs) {
     int n = sz(adj) - 1;
-    vector<int> par, dep;
+    vi par, dep;
     root_tree(n, adj, 1, par, dep);
 
     tree_comp tc;
@@ -102,7 +102,7 @@ void check_one(const vector<vector<int>> &adj, const vector<int> &vs) {
     vector<char> in_set(n + 1, 0);
     for (int v : exp_nodes) in_set[v] = 1;
 
-    vector<int> in_cnt(n + 1, 0), par_vt(n + 1, 0);
+    vi in_cnt(n + 1, 0), par_vt(n + 1, 0);
     int edges = 0;
     for (int v : exp_nodes)
         for (int to : tc.vt_adj[v]) {
@@ -132,15 +132,15 @@ void check_one(const vector<vector<int>> &adj, const vector<int> &vs) {
         }
     }
 
-    vector<int> vis(n + 1);
-    vector<int> st = {root};
+    vi vis(n + 1);
+    vi st = {root};
     vis[root] = 1;
     while (!st.empty()) {
         int v = st.back();
         st.pop_back();
         for (int to : tc.vt_adj[v]) {
             vis[to] = 1;
-            st.push_back(to);
+            st.pb(to);
         }
     }
     for (int v : exp_nodes) assert(vis[v]);
@@ -149,13 +149,13 @@ void check_one(const vector<vector<int>> &adj, const vector<int> &vs) {
 void t_fix() {
     {
         int n = 1;
-        vector<vector<int>> adj(n + 1);
+        vvi adj(n + 1);
         check_one(adj, {});
         check_one(adj, {1});
     }
     {
         int n = 5;
-        vector<vector<int>> adj(n + 1);
+        vvi adj(n + 1);
         for (int i = 1; i < n; i++) add_edge(adj, i, i + 1);
         check_one(adj, {3});
         check_one(adj, {2, 4});
@@ -169,8 +169,8 @@ void t_rnd() {
         int n = rnd(2, 30);
         auto adj = gen_tree(n);
         int k = rnd(0, n);
-        vector<int> vs;
-        for (int i = 0; i < k; i++) vs.push_back(rnd(1, n));
+        vi vs;
+        for (int i = 0; i < k; i++) vs.pb(rnd(1, n));
         check_one(adj, vs);
     }
 }

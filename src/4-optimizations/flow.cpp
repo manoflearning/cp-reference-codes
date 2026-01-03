@@ -1,4 +1,4 @@
-#include "../common/common.hpp"
+#include "../0-common/common.hpp"
 
 // what: collection of flow solvers (max flow, min-cost flow, matching, bounds).
 // time: see each struct; memory: O(E)
@@ -23,30 +23,26 @@ struct dinic {
 
     int n;
     vector<vector<edge>> g;
-    vector<int> level, work;
+    vi level, work;
 
     dinic(int n = 0) { init(n); }
-
     void init(int n_) {
         n = n_;
         g.assign(n, {});
     }
-
     edge_ref add_edge(int u, int v, ll cap) {
         // goal: add forward + reverse edge
-        edge a{v, (int)g[v].size(), cap};
-        edge b{u, (int)g[u].size(), 0};
-        g[u].push_back(a);
-        g[v].push_back(b);
-        return {u, (int)g[u].size() - 1};
+        edge a{v, sz(g[v]), cap};
+        edge b{u, sz(g[u]), 0};
+        g[u].pb(a);
+        g[v].pb(b);
+        return {u, sz(g[u]) - 1};
     }
-
     ll edge_flow(edge_ref e) const {
         // goal: current flow on original edge
         const edge &ed = g[e.u][e.idx];
         return g[ed.to][ed.rev].cap;
     }
-
     void clear_edge(edge_ref e) {
         // goal: remove edge from residual graph
         edge &ed = g[e.u][e.idx];
@@ -72,10 +68,9 @@ struct dinic {
         }
         return level[t] != -1;
     }
-
     ll dfs(int v, int t, ll f) {
         if (v == t || f == 0) return f;
-        for (int &i = work[v]; i < (int)g[v].size(); i++) {
+        for (int &i = work[v]; i < sz(g[v]); i++) {
             edge &e = g[v][i];
             if (e.cap == 0 || level[e.to] != level[v] + 1) continue;
             // invariant: level strictly increases along augmenting path
@@ -87,7 +82,6 @@ struct dinic {
         }
         return 0;
     }
-
     ll max_flow(int s, int t, ll limit = INF) {
         if (s == t) return 0; // edge: no flow needed
         ll flow = 0;
@@ -110,11 +104,10 @@ struct dinic {
 // usage: hk bm(n_l, n_r); bm.add_edge(l, r); int m = bm.max_matching();
 struct hk {
     int n_l, n_r;
-    vector<vector<int>> g;
-    vector<int> dist, match_l, match_r;
+    vvi g;
+    vi dist, match_l, match_r;
 
     hk(int n_l_ = 0, int n_r_ = 0) { init(n_l_, n_r_); }
-
     void init(int n_l_, int n_r_) {
         n_l = n_l_;
         n_r = n_r_;
@@ -123,16 +116,15 @@ struct hk {
         match_l.assign(n_l, -1);
         match_r.assign(n_r, -1);
     }
-
     void add_edge(int l, int r) {
         // goal: add edge from left to right
-        g[l].push_back(r);
+        g[l].pb(r);
     }
 
     bool bfs() {
         // goal: build layers for shortest augmenting paths
         queue<int> q;
-        fill(dist.begin(), dist.end(), -1);
+        fill(all(dist), -1);
         for (int i = 0; i < n_l; i++) {
             if (match_l[i] == -1) {
                 dist[i] = 0;
@@ -155,7 +147,6 @@ struct hk {
         }
         return found;
     }
-
     bool dfs(int v) {
         for (int r : g[v]) {
             int u = match_r[r];
@@ -168,11 +159,10 @@ struct hk {
         dist[v] = -1;
         return false;
     }
-
     int max_matching() {
         // goal: compute maximum matching size
-        fill(match_l.begin(), match_l.end(), -1);
-        fill(match_r.begin(), match_r.end(), -1);
+        fill(all(match_l), -1);
+        fill(all(match_r), -1);
         int match = 0;
         while (bfs()) {
             for (int i = 0; i < n_l; i++) {
@@ -204,27 +194,23 @@ struct mcmf {
     vector<vector<edge>> g;
 
     mcmf(int n = 0) { init(n); }
-
     void init(int n_) {
         n = n_;
         g.assign(n, {});
     }
-
     edge_ref add_edge(int u, int v, ll cap, ll cost) {
         // goal: add forward + reverse edge with costs
-        edge a{v, (int)g[v].size(), cap, cost};
-        edge b{u, (int)g[u].size(), 0, -cost};
-        g[u].push_back(a);
-        g[v].push_back(b);
-        return {u, (int)g[u].size() - 1};
+        edge a{v, sz(g[v]), cap, cost};
+        edge b{u, sz(g[u]), 0, -cost};
+        g[u].pb(a);
+        g[v].pb(b);
+        return {u, sz(g[u]) - 1};
     }
-
     ll edge_flow(edge_ref e) const {
         // goal: current flow on original edge
         const edge &ed = g[e.u][e.idx];
         return g[ed.to][ed.rev].cap;
     }
-
     void clear_edge(edge_ref e) {
         // goal: remove edge from residual graph
         edge &ed = g[e.u][e.idx];
@@ -235,12 +221,12 @@ struct mcmf {
 
     pll min_cost_mf(int s, int t, ll max_f = INF, bool init_pot = true) {
         ll flow = 0, cost = 0;
-        vector<ll> pot(n, 0), dist(n);
-        vector<int> pv(n), pe(n);
+        vl pot(n, 0), dist(n);
+        vi pv(n), pe(n);
 
         if (init_pot) {
             // goal: initial potentials for negative costs
-            vector<ll> d(n, INF);
+            vl d(n, INF);
             vector<char> in_q(n, 0);
             queue<int> q;
             d[s] = 0;
@@ -264,10 +250,9 @@ struct mcmf {
             for (int i = 0; i < n; i++)
                 if (d[i] < INF) pot[i] = d[i];
         }
-
         while (flow < max_f) {
             // goal: shortest path in reduced costs
-            fill(dist.begin(), dist.end(), INF);
+            fill(all(dist), INF);
             dist[s] = 0;
             priority_queue<pair<ll, int>, vector<pair<ll, int>>, greater<pair<ll, int>>> pq;
             pq.push({0, s});
@@ -275,7 +260,7 @@ struct mcmf {
                 auto [d, v] = pq.top();
                 pq.pop();
                 if (d != dist[v]) continue;
-                for (int i = 0; i < (int)g[v].size(); i++) {
+                for (int i = 0; i < sz(g[v]); i++) {
                     const auto &e = g[v][i];
                     if (e.cap == 0) continue;
                     ll nd = d + e.cost + pot[v] - pot[e.to];
@@ -324,41 +309,37 @@ struct lr_dinic {
 
     int n;
     dinic mf;
-    vector<ll> demand;
+    vl demand;
     vector<edge_info> edges;
 
     lr_dinic(int n = 0) { init(n); }
-
     void init(int n_) {
         n = n_;
         mf.init(n + 2);
         demand.assign(n, 0);
         edges.clear();
     }
-
     int add_edge(int u, int v, ll lo, ll hi) {
         // goal: store lower bounds via node demands
         demand[u] -= lo;
         demand[v] += lo;
-        edges.push_back({mf.add_edge(u, v, hi - lo), lo});
-        return (int)edges.size() - 1;
+        edges.pb({mf.add_edge(u, v, hi - lo), lo});
+        return sz(edges) - 1;
     }
-
     ll edge_flow(int id) const {
         // goal: actual flow with lower bound restored
         return edges[id].lo + mf.edge_flow(edges[id].ref);
     }
-
     ll add_demands(vector<dinic::edge_ref> &aux) {
         // goal: connect ss/tt for feasible circulation
         ll total = 0;
         int ss = n, tt = n + 1;
         for (int i = 0; i < n; i++) {
             if (demand[i] > 0) {
-                aux.push_back(mf.add_edge(ss, i, demand[i]));
+                aux.pb(mf.add_edge(ss, i, demand[i]));
                 total += demand[i];
             } else if (demand[i] < 0) {
-                aux.push_back(mf.add_edge(i, tt, -demand[i]));
+                aux.pb(mf.add_edge(i, tt, -demand[i]));
             }
         }
         return total;
@@ -373,7 +354,6 @@ struct lr_dinic {
         for (auto ref : aux) mf.clear_edge(ref);
         return flow == total;
     }
-
     pair<bool, ll> max_flow(int s, int t) {
         if (s == t) return {feasible(), 0}; // edge: trivial s == t
         vector<dinic::edge_ref> aux;
@@ -410,12 +390,11 @@ struct lr_mcmf {
 
     int n;
     mcmf mf;
-    vector<ll> demand;
+    vl demand;
     vector<edge_info> edges;
     ll base_cost;
 
     lr_mcmf(int n = 0) { init(n); }
-
     void init(int n_) {
         n = n_;
         mf.init(n + 2);
@@ -423,31 +402,28 @@ struct lr_mcmf {
         edges.clear();
         base_cost = 0;
     }
-
     int add_edge(int u, int v, ll lo, ll hi, ll cost) {
         // goal: store lower bounds via node demands
         demand[u] -= lo;
         demand[v] += lo;
         base_cost += lo * cost;
-        edges.push_back({mf.add_edge(u, v, hi - lo, cost), lo});
-        return (int)edges.size() - 1;
+        edges.pb({mf.add_edge(u, v, hi - lo, cost), lo});
+        return sz(edges) - 1;
     }
-
     ll edge_flow(int id) const {
         // goal: actual flow with lower bound restored
         return edges[id].lo + mf.edge_flow(edges[id].ref);
     }
-
     ll add_demands(vector<mcmf::edge_ref> &aux) {
         // goal: connect ss/tt for feasible circulation
         ll total = 0;
         int ss = n, tt = n + 1;
         for (int i = 0; i < n; i++) {
             if (demand[i] > 0) {
-                aux.push_back(mf.add_edge(ss, i, demand[i], 0));
+                aux.pb(mf.add_edge(ss, i, demand[i], 0));
                 total += demand[i];
             } else if (demand[i] < 0) {
-                aux.push_back(mf.add_edge(i, tt, -demand[i], 0));
+                aux.pb(mf.add_edge(i, tt, -demand[i], 0));
             }
         }
         return total;
@@ -463,7 +439,6 @@ struct lr_mcmf {
         if (res.fr != total) return {false, 0};
         return {true, res.sc + base_cost};
     }
-
     pair<bool, pll> max_flow(int s, int t, bool init_pot = true) {
         if (s == t) {
             auto r = feasible(init_pot);

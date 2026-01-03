@@ -1,13 +1,13 @@
-#include "../common/common.hpp"
+#include "../0-common/common.hpp"
 
 // what: compute prefix match lengths for each position in a string.
 // time: O(n); memory: O(n)
 // constraint: z[0]=n, 0-indexed string.
 // usage: auto z = z_func(s);
-vector<int> z_func(const string &s) {
+vi z_func(const string &s) {
     // result: z[i] = longest prefix length matching s[i..].
     int n = sz(s);
-    vector<int> z(n);
+    vi z(n);
     if (!n) return z;
     z[0] = n;
     for (int i = 1, l = 0, r = 0; i < n; i++) {

@@ -13,7 +13,6 @@ struct crt {
         if (a.fr < 0) a.fr += a.sc;
         return a;
     }
-
     static pll merge(pll a, pll b) {
         // result: x = ret.fr (mod ret.sc), or {-1,-1} if no solution.
         a = norm(a);
@@ -39,7 +38,6 @@ struct crt {
         if (r < 0) r += l;
         return {r, l};
     }
-
     static pll merge_all(const vector<pll> &cs) {
         pll cur = {0, 1};
         for (auto c : cs) cur = merge(cur, c);

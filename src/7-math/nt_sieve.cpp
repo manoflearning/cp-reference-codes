@@ -1,5 +1,5 @@
 #pragma once
-#include "../common/common.hpp"
+#include "../0-common/common.hpp"
 
 // what: precompute primality table and prime list with Eratosthenes sieve.
 // time: O(n log log n); memory: O(n)
@@ -8,12 +8,11 @@
 struct era_sieve {
     int n;
     vector<char> isp;
-    vector<int> primes;
+    vi primes;
 
     era_sieve(int n_ = 0) {
         if (n_ >= 0) init(n_);
     }
-
     void init(int n_) {
         // goal: build isp/primes for [0..n]
         n = n_;
@@ -26,11 +25,10 @@ struct era_sieve {
             for (ll j = i * i; j <= n; j += i << 1) isp[j] = 0;
         }
         primes.clear();
-        if (n >= 2) primes.push_back(2);
+        if (n >= 2) primes.pb(2);
         for (int i = 3; i <= n; i += 2)
-            if (isp[i]) primes.push_back(i);
+            if (isp[i]) primes.pb(i);
     }
-
     bool is_prime(int x) const { return x >= 2 && x <= n && isp[x]; }
 };
 
@@ -40,12 +38,11 @@ struct era_sieve {
 // usage: lin_sieve sv(n); auto fc=sv.factor_cnt(x); int mu=sv.mu[x];
 struct lin_sieve {
     int n;
-    vector<int> lp, primes, mu, phi;
+    vi lp, primes, mu, phi;
 
     lin_sieve(int n_ = 0) {
         if (n_ >= 0) init(n_);
     }
-
     void init(int n_) {
         // goal: fill lp/primes/mu/phi for [0..n]
         n = n_;
@@ -57,7 +54,7 @@ struct lin_sieve {
         for (int i = 2; i <= n; i++) {
             if (!lp[i]) {
                 lp[i] = i;
-                primes.push_back(i);
+                primes.pb(i);
                 mu[i] = -1;
                 phi[i] = i - 1;
             }
@@ -75,20 +72,17 @@ struct lin_sieve {
             }
         }
     }
-
     bool is_prime(int x) const { return x >= 2 && x <= n && lp[x] == x; }
-
-    vector<int> factor(int x) const {
+    vi factor(int x) const {
         // result: prime factors of x (with repetition), in nondecreasing order
-        vector<int> ret;
+        vi ret;
         while (x > 1) {
             int p = lp[x];
-            ret.push_back(p);
+            ret.pb(p);
             x /= p;
         }
         return ret;
     }
-
     vector<pii> factor_cnt(int x) const {
         // result: {{p, e}} s.t. x = prod p^e, increasing p
         vector<pii> ret;
@@ -96,7 +90,7 @@ struct lin_sieve {
             int p = lp[x];
             int e = 0;
             while (x % p == 0) x /= p, e++;
-            ret.push_back({p, e});
+            ret.pb({p, e});
         }
         return ret;
     }
@@ -106,7 +100,7 @@ struct lin_sieve {
 // time: O(n); memory: O(n)
 // constraint: n >= 0.
 // usage: auto mu = mobius(n); if(mu[x]) ...
-inline vector<int> mobius(int n) {
+inline vi mobius(int n) {
     lin_sieve sv(n);
     return sv.mu;
 }
@@ -128,8 +122,7 @@ struct euler_phi {
         if (x > 1) ret = ret / x * (x - 1);
         return ret;
     }
-
-    static vector<int> phi_upto(int n) {
+    static vi phi_upto(int n) {
         lin_sieve sv(n);
         return sv.phi;
     }

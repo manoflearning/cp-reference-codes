@@ -23,18 +23,17 @@ struct comb_lr {
 // usage: comb_dp cb; cb.init(n); ll v=cb.ncr(n,r);
 struct comb_dp {
     int n;
-    vector<vector<ll>> dp;
+    vvl dp;
 
     void init(int n_) {
         // goal: build dp up to n.
         n = n_;
-        dp.assign(n + 1, vector<ll>(n + 1, 0));
+        dp.assign(n + 1, vl(n + 1, 0));
         for (int i = 0; i <= n; i++) {
             dp[i][0] = dp[i][i] = 1;
             for (int j = 1; j < i; j++) dp[i][j] = dp[i - 1][j - 1] + dp[i - 1][j];
         }
     }
-
     ll ncr(int n_, int r) const {
         if (r < 0 || n_ < r || n_ > n) return 0;
         return dp[n_][r];
@@ -48,7 +47,7 @@ struct comb_dp {
 struct comb_mod {
     int n;
     ll mod;
-    vector<ll> fac, ifac;
+    vl fac, ifac;
 
     void init(int n_, ll mod_) {
         // goal: precompute fac/ifac up to n.
@@ -60,7 +59,6 @@ struct comb_mod {
         ifac[n] = pow_mod(fac[n], mod - 2, mod);
         for (int i = n; i >= 1; i--) ifac[i - 1] = (ll)((__int128)ifac[i] * i % mod);
     }
-
     ll ncr(int n_, int r) const {
         if (r < 0 || n_ < r || n_ > n) return 0;
         ll ret = (ll)((__int128)fac[n_] * ifac[r] % mod);

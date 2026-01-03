@@ -1,4 +1,4 @@
-#include "../common/common.hpp"
+#include "../0-common/common.hpp"
 
 // what: answer edge add/remove connectivity queries offline using segment tree + rollback DSU.
 // time: O((n+q)log q); memory: O(n+q)
@@ -18,7 +18,7 @@ struct dyn_conn {
             if (nr == -1) nr = flg;
             if (r < nl || nr < l) return;
             if (l <= nl && nr <= r) {
-                t[n].push_back(e);
+                t[n].pb(e);
                 return;
             }
             int mid = (nl + nr) >> 1;
@@ -28,7 +28,7 @@ struct dyn_conn {
     } sg;
 
     struct dsu {
-        vector<int> par, siz, st;
+        vi par, siz, st;
         void init(int n) {
             // goal: reset to n isolated nodes.
             par.resize(n + 1);
@@ -48,7 +48,7 @@ struct dyn_conn {
             if (siz[a] < siz[b]) swap(a, b);
             par[b] = a;
             siz[a] += siz[b];
-            st.push_back(b);
+            st.pb(b);
             return 1;
         }
         void undo() {
@@ -64,7 +64,7 @@ struct dyn_conn {
     int n, q;
     map<pii, int> mp;
     vector<pii> qry;
-    vector<int> ans;
+    vi ans;
 
     void init(int n_, int q_) {
         // goal: initialize with n nodes and q operations.
@@ -84,7 +84,7 @@ struct dyn_conn {
         } else if (op == 2) {
             auto it = mp.find({u, v});
             if (it == mp.end()) return;
-            sg.add(it->second, i - 1, {u, v});
+            sg.add(it->sc, i - 1, {u, v});
             mp.erase(it);
         } else if (op == 3) {
             qry[i] = {u, v};

@@ -12,7 +12,7 @@ int rnd(int l, int r) {
 }
 string rnd_s(int n) {
     string s;
-    for (int i = 0; i < n; i++) s.push_back('a' + rnd(0, 2));
+    for (int i = 0; i < n; i++) s.pb('a' + rnd(0, 2));
     return s;
 }
 
@@ -39,11 +39,11 @@ void check_one(const string &s) {
         assert(sa.lcp.empty());
         return;
     }
-    vector<int> exp(n);
+    vi exp(n);
     iota(all(exp), 0);
     sort(all(exp), [&](int i, int j) { return suf_lt(s, i, j); });
     assert(sa.sa == exp);
-    vector<int> exp_lcp(n, 0);
+    vi exp_lcp(n, 0);
     for (int i = 1; i < n; i++) exp_lcp[i] = lcp2(s, exp[i], exp[i - 1]);
     assert(sa.lcp == exp_lcp);
 }

@@ -18,10 +18,8 @@ struct modint {
         return x;
     }
     static ll mul(ll a, ll b) { return (ll)((__int128)a * b % MOD); }
-
     modint(ll x = 0) : v(norm(x)) {}
     static ll mod() { return MOD; }
-
     modint &operator+=(const modint &o) {
         v += o.v;
         if (v >= MOD) v -= MOD;
@@ -37,9 +35,7 @@ struct modint {
         return *this;
     }
     modint &operator/=(const modint &o) { return (*this) *= o.inv(); }
-
     modint operator-() const { return modint(v ? MOD - v : 0); }
-
     friend modint operator+(modint a, const modint &b) { return a += b; }
     friend modint operator-(modint a, const modint &b) { return a -= b; }
     friend modint operator*(modint a, const modint &b) { return a *= b; }
@@ -47,12 +43,9 @@ struct modint {
 
     bool operator==(const modint &o) const { return v == o.v; }
     bool operator!=(const modint &o) const { return v != o.v; }
-
     modint pow(ll e) const { return pow_mod(v, e, MOD); }
     modint inv() const { return euclid::inv_mod(v, MOD); }
-
     explicit operator ll() const { return v; }
-
     friend ostream &operator<<(ostream &os, const modint &x) { return os << x.v; }
     friend istream &operator>>(istream &is, modint &x) {
         ll t;
@@ -78,11 +71,9 @@ struct dyn_modint {
         return x;
     }
     static ll mul(ll a, ll b) { return (ll)((__int128)a * b % mod_); }
-
     dyn_modint(ll x = 0) : v(norm(x)) {}
     static void set_mod(ll m) { mod_ = m; }
     static ll mod() { return mod_; }
-
     dyn_modint &operator+=(const dyn_modint &o) {
         v += o.v;
         if (v >= mod_) v -= mod_;
@@ -98,9 +89,7 @@ struct dyn_modint {
         return *this;
     }
     dyn_modint &operator/=(const dyn_modint &o) { return (*this) *= o.inv(); }
-
     dyn_modint operator-() const { return dyn_modint(v ? mod_ - v : 0); }
-
     friend dyn_modint operator+(dyn_modint a, const dyn_modint &b) { return a += b; }
     friend dyn_modint operator-(dyn_modint a, const dyn_modint &b) { return a -= b; }
     friend dyn_modint operator*(dyn_modint a, const dyn_modint &b) { return a *= b; }
@@ -108,12 +97,9 @@ struct dyn_modint {
 
     bool operator==(const dyn_modint &o) const { return v == o.v; }
     bool operator!=(const dyn_modint &o) const { return v != o.v; }
-
     dyn_modint pow(ll e) const { return pow_mod(v, e, mod_); }
     dyn_modint inv() const { return euclid::inv_mod(v, mod_); }
-
     explicit operator ll() const { return v; }
-
     friend ostream &operator<<(ostream &os, const dyn_modint &x) { return os << x.v; }
     friend istream &operator>>(istream &is, dyn_modint &x) {
         ll t;

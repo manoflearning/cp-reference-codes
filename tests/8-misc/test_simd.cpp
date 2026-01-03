@@ -13,7 +13,7 @@ int rnd_int(int l, int r) {
 
 void test_i32() {
     int n = 257;
-    vector<int> a(n), b(n), c(n), d(n);
+    vi a(n), b(n), c(n), d(n);
     for (int i = 0; i < n; i++) {
         a[i] = rnd_int(-1000, 1000);
         b[i] = rnd_int(-1000, 1000);

@@ -1,4 +1,4 @@
-#include "../common/common.hpp"
+#include "../0-common/common.hpp"
 
 // what: find biconnected components and articulation points/bridges in an undirected graph.
 // time: O(n+m); memory: O(n+m)
@@ -7,7 +7,7 @@
 struct bcc_graph {
     int n, tim;
     vector<vector<pii>> adj;
-    vector<int> dfn, low, ap, st;
+    vi dfn, low, ap, st;
     vector<pii> ed, ae;
     vector<vector<pii>> bccs;
 
@@ -25,9 +25,9 @@ struct bcc_graph {
     }
     void add(int u, int v) {
         int id = sz(ed);
-        ed.push_back({u, v});
-        adj[u].push_back({v, id});
-        adj[v].push_back({u, id});
+        ed.pb({u, v});
+        adj[u].pb({v, id});
+        adj[v].pb({u, id});
     }
     void dfs(int v, int pe) {
         dfn[v] = low[v] = ++tim;
@@ -37,27 +37,27 @@ struct bcc_graph {
             if (dfn[to] != -1) {
                 // edge: back edge to ancestor.
                 low[v] = min(low[v], dfn[to]);
-                if (dfn[to] < dfn[v]) st.push_back(id);
+                if (dfn[to] < dfn[v]) st.pb(id);
                 continue;
             }
-            st.push_back(id);
+            st.pb(id);
             ch++;
             dfs(to, id);
             low[v] = min(low[v], low[to]);
-            if (pe != -1 && low[to] >= dfn[v]) ap.push_back(v);
-            if (low[to] > dfn[v]) ae.push_back({min(v, to), max(v, to)});
+            if (pe != -1 && low[to] >= dfn[v]) ap.pb(v);
+            if (low[to] > dfn[v]) ae.pb({min(v, to), max(v, to)});
             if (low[to] >= dfn[v]) {
                 vector<pii> comp;
                 while (1) {
                     int eid = st.back();
                     st.pop_back();
-                    comp.push_back(ed[eid]);
+                    comp.pb(ed[eid]);
                     if (eid == id) break;
                 }
-                bccs.push_back(comp);
+                bccs.pb(comp);
             }
         }
-        if (pe == -1 && ch > 1) ap.push_back(v);
+        if (pe == -1 && ch > 1) ap.pb(v);
     }
     void run() {
         for (int v = 1; v <= n; v++)

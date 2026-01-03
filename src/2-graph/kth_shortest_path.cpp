@@ -1,4 +1,4 @@
-#include "../common/common.hpp"
+#include "../0-common/common.hpp"
 
 // what: enumerate k-th shortest walk from s to t with non-negative weights (Eppstein-style).
 // time: O((n+m)log m + klog k); memory: O(n+m+heap)
@@ -19,7 +19,7 @@ struct kth_walk {
         vector<nd> h;
         void init() { h.assign(1, {{0, 0}, 0, 0, 0}); }
         int mk(pll x) {
-            h.push_back({x, 0, 0, 1});
+            h.pb({x, 0, 0, 1});
             return sz(h) - 1;
         }
         void norm(int x) {
@@ -43,13 +43,13 @@ struct kth_walk {
         hp.init();
     }
     void add(int u, int v, ll w) {
-        g[u].push_back({w, v});
-        rg[v].push_back({w, u});
+        g[u].pb({w, v});
+        rg[v].pb({w, u});
     }
 
-    vector<ll> run(int s, int e, int k) {
-        vector<int> nxt(n + 1, -1), ord, vis(n + 1);
-        vector<ll> dist(n + 1, INF);
+    vl run(int s, int e, int k) {
+        vi nxt(n + 1, -1), ord, vis(n + 1);
+        vl dist(n + 1, INF);
 
         // goal: shortest path tree from e on reversed graph.
         dist[e] = 0;
@@ -62,7 +62,7 @@ struct kth_walk {
             if (vis[x]) continue;
             vis[x] = 1;
             nxt[x] = p;
-            ord.push_back(x);
+            ord.pb(x);
             for (auto [c, y] : rg[x]) {
                 if (!vis[y] && dist[y] > d + c) {
                     dist[y] = d + c;
@@ -72,7 +72,7 @@ struct kth_walk {
         }
         if (dist[s] >= INF) return {};
 
-        vector<int> rt(n + 1), chk(n + 1);
+        vi rt(n + 1), chk(n + 1);
         for (int x : ord)
             if (dist[x] < INF) {
                 if (nxt[x] != -1) rt[x] = rt[nxt[x]];
@@ -86,13 +86,13 @@ struct kth_walk {
                 }
             }
 
-        vector<ll> ans = {dist[s]};
+        vl ans = {dist[s]};
         priority_queue<pll, vector<pll>, greater<pll>> pq2;
         if (rt[s]) pq2.push({hp.h[rt[s]].x.fr, rt[s]});
         while (sz(ans) < k && !pq2.empty()) {
             auto [d, x] = pq2.top();
             pq2.pop();
-            ans.push_back(dist[s] + d);
+            ans.pb(dist[s] + d);
             int y = hp.h[x].x.sc;
             if (rt[y]) pq2.push({d + hp.h[rt[y]].x.fr, rt[y]});
             if (hp.h[x].l) pq2.push({d - hp.h[x].x.fr + hp.h[hp.h[x].l].x.fr, hp.h[x].l});

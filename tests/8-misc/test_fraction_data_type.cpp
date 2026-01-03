@@ -11,7 +11,7 @@ ll rnd(ll l, ll r) {
     return dis(rng);
 }
 
-pair<ll, ll> norm_pair(ll n, ll d) {
+pll norm_pair(ll n, ll d) {
     if (d < 0) n = -n, d = -d;
     ll g = fraction::gcd_ll(n, d);
     if (g) n /= g, d /= g;
@@ -48,10 +48,10 @@ void test_ops_random() {
         fraction xsub = x - y;
         fraction xmul = x * y;
         fraction xdiv = x / y;
-        assert(xadd.n == add.first && xadd.d == add.second);
-        assert(xsub.n == sub.first && xsub.d == sub.second);
-        assert(xmul.n == mul.first && xmul.d == mul.second);
-        assert(xdiv.n == div.first && xdiv.d == div.second);
+        assert(xadd.n == add.fr && xadd.d == add.sc);
+        assert(xsub.n == sub.fr && xsub.d == sub.sc);
+        assert(xmul.n == mul.fr && xmul.d == mul.sc);
+        assert(xdiv.n == div.fr && xdiv.d == div.sc);
         bool lt = (__int128)xn * yd < (__int128)yn * xd;
         assert((x < y) == lt);
     }

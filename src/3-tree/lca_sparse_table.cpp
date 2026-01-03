@@ -1,4 +1,4 @@
-#include "../common/common.hpp"
+#include "../0-common/common.hpp"
 
 // what: LCA via binary lifting for rooted tree.
 // time: build O(n log n), query O(log n); memory: O(n log n)
@@ -6,20 +6,20 @@
 // usage: lca_sparse l; l.init(n); l.add(u,v); l.build(1); int w=l.lca(u,v);
 struct lca_sparse {
     int n, lg;
-    vector<vector<int>> adj, up;
-    vector<int> dep;
+    vvi adj, up;
+    vi dep;
 
     void init(int n_) {
         n = n_;
         lg = 1;
         while ((1 << lg) <= n) lg++;
         adj.assign(n + 1, {});
-        up.assign(lg, vector<int>(n + 1, 0));
+        up.assign(lg, vi(n + 1, 0));
         dep.assign(n + 1, 0);
     }
     void add(int u, int v) {
-        adj[u].push_back(v);
-        adj[v].push_back(u);
+        adj[u].pb(v);
+        adj[v].pb(u);
     }
     void dfs(int v, int p) {
         // goal: set parent and depth.

@@ -37,7 +37,7 @@ vector<pt> jarvis(vector<pt> p) {
     vector<pt> h;
     int cur = st;
     while (1) {
-        h.push_back(p[cur]);
+        h.pb(p[cur]);
         int nxt = (cur == 0 ? 1 : 0);
         for (int i = 0; i < n; i++)
             if (i != cur) {
@@ -92,7 +92,7 @@ void test_hull_random() {
         int n = (int)rnd(1, 50);
         vector<pt> p;
         p.reserve(n);
-        for (int i = 0; i < n; i++) p.push_back({rnd(-20, 20), rnd(-20, 20)});
+        for (int i = 0; i < n; i++) p.pb({rnd(-20, 20), rnd(-20, 20)});
         auto h1 = convex_hull(p);
         auto h2 = jarvis(p);
         auto s1 = uniq_pts(h1);

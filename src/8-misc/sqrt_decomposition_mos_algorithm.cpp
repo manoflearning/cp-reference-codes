@@ -1,4 +1,4 @@
-#include "../common/common.hpp"
+#include "../0-common/common.hpp"
 
 // what: reorder offline range queries to minimize add/del operations (Mo's algorithm).
 // time: O((n+q) * sqrt(n)); memory: O(q)
@@ -13,20 +13,17 @@ struct mo {
     vector<qry> q;
 
     mo(int n_ = 0) { init(n_); }
-
     void init(int n_) {
         // goal: set array size and reset queries.
         n = n_;
         bs = max(1, (int)sqrt(n));
         q.clear();
     }
-
-    void add_query(int l, int r, int idx) { q.push_back({l, r, idx}); }
-
+    void add_query(int l, int r, int idx) { q.pb({l, r, idx}); }
     template <class Add, class Del, class Out>
     void run(Add add, Del del, Out out) {
         // goal: process queries in Mo order with callbacks.
-        sort(q.begin(), q.end(), [&](const qry &a, const qry &b) {
+        sort(all(q), [&](const qry &a, const qry &b) {
             int ba = a.l / bs, bb = b.l / bs;
             if (ba != bb) return ba < bb;
             return (ba & 1) ? a.r > b.r : a.r < b.r;

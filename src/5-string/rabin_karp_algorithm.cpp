@@ -1,4 +1,4 @@
-#include "../common/common.hpp"
+#include "../0-common/common.hpp"
 
 // what: probabilistic substring matching using double rolling hash.
 // time: build O(n), get O(1), match O(n); memory: O(n)
@@ -8,7 +8,7 @@ struct rabin_karp {
     static constexpr ll MOD1 = 1000000007;
     static constexpr ll MOD2 = 1000000009;
     static constexpr ll BASE = 911382323;
-    vector<ll> p1, p2, h1, h2;
+    vl p1, p2, h1, h2;
 
     void build(const string &s) {
         // goal: precompute prefix hashes and powers.
@@ -25,7 +25,6 @@ struct rabin_karp {
             h2[i + 1] = (h2[i] * BASE + x) % MOD2;
         }
     }
-
     pll get(int l, int r) const { // [l, r)
         // result: hash of s[l..r).
         ll x1 = (h1[r] - h1[l] * p1[r - l]) % MOD1;
@@ -36,9 +35,9 @@ struct rabin_karp {
     }
 };
 
-vector<int> rk_match(const string &t, const string &p) {
+vi rk_match(const string &t, const string &p) {
     // result: all positions where p matches t (by hash).
-    vector<int> res;
+    vi res;
     int n = sz(t), m = sz(p);
     if (!m || n < m) return res;
     rabin_karp ht, hp;
@@ -46,6 +45,6 @@ vector<int> rk_match(const string &t, const string &p) {
     hp.build(p);
     pll hp0 = hp.get(0, m);
     for (int i = 0; i + m <= n; i++)
-        if (ht.get(i, i + m) == hp0) res.push_back(i);
+        if (ht.get(i, i + m) == hp0) res.pb(i);
     return res;
 }

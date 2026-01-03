@@ -11,13 +11,13 @@ ll rnd(ll l, ll r) {
     return dis(rng);
 }
 
-ll sum_range(const vector<ll> &a, int l, int r) {
+ll sum_range(const vl &a, int l, int r) {
     ll ret = 0;
     for (int i = l; i <= r; i++) ret += a[i];
     return ret;
 }
 
-int kth_naive_freq(const vector<ll> &a, ll k) {
+int kth_naive_freq(const vl &a, ll k) {
     ll cur = 0;
     for (int i = 1; i < sz(a); i++) {
         cur += a[i];
@@ -27,7 +27,7 @@ int kth_naive_freq(const vector<ll> &a, ll k) {
 }
 
 void test_segt_basic() {
-    vector<ll> a = {0, 3};
+    vl a = {0, 3};
     seg_tree st;
     st.build(a);
     assert(st.query(1, 1) == 3);
@@ -37,7 +37,7 @@ void test_segt_basic() {
 
 void test_segt_random() {
     int n = 50;
-    vector<ll> a(n + 1, 0);
+    vl a(n + 1, 0);
     for (int i = 1; i <= n; i++) a[i] = rnd(-5, 5);
 
     seg_tree st;
@@ -59,7 +59,7 @@ void test_segt_random() {
 }
 
 void test_segti_basic() {
-    vector<ll> a = {4};
+    vl a = {4};
     seg_tree_it st;
     st.build(a);
     assert(st.query(0, 1) == 4);
@@ -69,7 +69,7 @@ void test_segti_basic() {
 
 void test_segti_random() {
     int n = 50;
-    vector<ll> a(n, 0);
+    vl a(n, 0);
     for (int i = 0; i < n; i++) a[i] = rnd(-5, 5);
 
     seg_tree_it st;
@@ -105,7 +105,7 @@ void test_segk_basic() {
 
 void test_segk_random() {
     int n = 40;
-    vector<ll> a(n + 1, 0);
+    vl a(n + 1, 0);
     seg_tree_kth st;
     st.init(n);
 
@@ -127,7 +127,7 @@ void test_segk_random() {
 }
 
 void test_seglz_basic() {
-    vector<ll> a = {0, 1, 2};
+    vl a = {0, 1, 2};
     seg_tree_lz st;
     st.build(a);
     st.add(1, 2, 3);
@@ -136,7 +136,7 @@ void test_seglz_basic() {
 
 void test_seglz_random() {
     int n = 40;
-    vector<ll> a(n + 1, 0);
+    vl a(n + 1, 0);
     for (int i = 1; i <= n; i++) a[i] = rnd(-5, 5);
 
     seg_tree_lz st;
@@ -160,7 +160,7 @@ void test_seglz_random() {
 
 void test_pst_basic() {
     int n = 3;
-    vector<ll> a = {0, 1, 2, 3};
+    vl a = {0, 1, 2, 3};
     seg_pst st;
     st.build(n, a);
     st.set(2, 5);
@@ -170,10 +170,10 @@ void test_pst_basic() {
 
 void test_pst_random() {
     int n = 20;
-    vector<vector<ll>> ver;
-    vector<ll> a(n + 1, 0);
+    vvl ver;
+    vl a(n + 1, 0);
     for (int i = 1; i <= n; i++) a[i] = rnd(-5, 5);
-    ver.push_back(a);
+    ver.pb(a);
 
     seg_pst st;
     st.build(n, a);
@@ -183,12 +183,12 @@ void test_pst_random() {
         if (op == 0) {
             int p = (int)rnd(1, n);
             ll v = rnd(-5, 5);
-            vector<ll> nw = ver.back();
+            vl nw = ver.back();
             nw[p] = v;
-            ver.push_back(nw);
+            ver.pb(nw);
             st.set(p, v);
         } else {
-            int id = (int)rnd(0, (int)ver.size() - 1);
+            int id = (int)rnd(0, sz(ver) - 1);
             int l = (int)rnd(1, n);
             int r = (int)rnd(l, n);
             assert(st.query(l, r, id) == sum_range(ver[id], l, r));
@@ -198,7 +198,7 @@ void test_pst_random() {
 
 void test_pst_kth_basic() {
     int n = 5;
-    vector<ll> a = {0, 2, 0, 1, 3, 0};
+    vl a = {0, 2, 0, 1, 3, 0};
     seg_pst st;
     st.build(n, a);
     assert(st.kth(1, 0) == 1);
@@ -214,10 +214,10 @@ void test_pst_kth_basic() {
 
 void test_pst_kth_random() {
     int n = 40;
-    vector<vector<ll>> ver;
-    vector<ll> a(n + 1, 0);
+    vvl ver;
+    vl a(n + 1, 0);
     for (int i = 1; i <= n; i++) a[i] = rnd(0, 3);
-    ver.push_back(a);
+    ver.pb(a);
 
     seg_pst st;
     st.build(n, a);
@@ -227,12 +227,12 @@ void test_pst_kth_random() {
         if (op == 0) {
             int p = (int)rnd(1, n);
             ll v = rnd(0, 5);
-            vector<ll> nw = ver.back();
+            vl nw = ver.back();
             nw[p] = v;
-            ver.push_back(nw);
+            ver.pb(nw);
             st.set(p, v);
         } else {
-            int id = (int)rnd(0, (int)ver.size() - 1);
+            int id = (int)rnd(0, sz(ver) - 1);
             ll tot = 0;
             for (int i = 1; i <= n; i++) tot += ver[id][i];
             if (tot == 0) continue;
@@ -270,13 +270,13 @@ void test_dyseg_random() {
             int r = (int)rnd(l, hi);
             ll ret = 0;
             for (auto &kv : mp)
-                if (l <= kv.first && kv.first <= r) ret += kv.second;
+                if (l <= kv.fr && kv.fr <= r) ret += kv.sc;
             assert(st.query(l, r) == ret);
         }
     }
 }
 
-ll sum_rect(const vector<vector<ll>> &a, int x1, int y1, int x2, int y2) {
+ll sum_rect(const vvl &a, int x1, int y1, int x2, int y2) {
     ll ret = 0;
     for (int i = x1; i <= x2; i++)
         for (int j = y1; j <= y2; j++) ret += a[i][j];
@@ -284,7 +284,7 @@ ll sum_rect(const vector<vector<ll>> &a, int x1, int y1, int x2, int y2) {
 }
 
 void test_seg2d_basic() {
-    vector<vector<ll>> a = {{7}};
+    vvl a = {{7}};
     seg_2d st;
     st.build(a);
     assert(st.query(0, 0, 0, 0) == 7);
@@ -294,7 +294,7 @@ void test_seg2d_basic() {
 
 void test_seg2d_random() {
     int n = 7;
-    vector<vector<ll>> a(n, vector<ll>(n, 0));
+    vvl a(n, vl(n, 0));
     for (int i = 0; i < n; i++)
         for (int j = 0; j < n; j++) a[i][j] = rnd(-3, 3);
 
@@ -329,10 +329,10 @@ void test_seg2dc_basic() {
     int n = 1;
     seg2d_comp st(n);
     vector<op2d> ops;
-    ops.push_back({0, 0, 0, 0, 0, 5});
-    ops.push_back({1, 0, 0, 0, 0, 0});
-    ops.push_back({0, 0, 0, 0, 0, -2});
-    ops.push_back({1, 0, 0, 0, 0, 0});
+    ops.pb({0, 0, 0, 0, 0, 5});
+    ops.pb({1, 0, 0, 0, 0, 0});
+    ops.pb({0, 0, 0, 0, 0, -2});
+    ops.pb({1, 0, 0, 0, 0, 0});
 
     for (auto &op : ops) {
         if (op.type == 0) st.mark_set(op.x1, op.y1);
@@ -340,7 +340,7 @@ void test_seg2dc_basic() {
     }
     st.prep();
 
-    vector<vector<ll>> a(n, vector<ll>(n, 0));
+    vvl a(n, vl(n, 0));
     for (auto &op : ops) {
         if (op.type == 0) {
             a[op.x1][op.y1] = op.val;
@@ -370,13 +370,13 @@ void test_seg2dc_random() {
             int x = (int)rnd(0, n - 1);
             int y = (int)rnd(0, n - 1);
             ll v = rnd(-5, 5);
-            ops.push_back({0, x, 0, y, 0, v});
+            ops.pb({0, x, 0, y, 0, v});
         } else {
             int x1 = (int)rnd(0, n - 1);
             int x2 = (int)rnd(x1, n - 1);
             int y1 = (int)rnd(0, n - 1);
             int y2 = (int)rnd(y1, n - 1);
-            ops.push_back({1, x1, x2, y1, y2, 0});
+            ops.pb({1, x1, x2, y1, y2, 0});
         }
     }
 
@@ -386,7 +386,7 @@ void test_seg2dc_random() {
     }
     st.prep();
 
-    vector<vector<ll>> a(n, vector<ll>(n, 0));
+    vvl a(n, vl(n, 0));
     for (auto &op : ops) {
         if (op.type == 0) {
             a[op.x1][op.y1] = op.val;

@@ -1,43 +1,43 @@
-#include "../common/common.hpp"
+#include "../0-common/common.hpp"
 
 // what: compute LIS length and reconstruct one increasing subsequence.
 // time: O(n log n); memory: O(n)
 // constraint: use lower_bound for strict; use upper_bound for non-decreasing.
 // usage: int len = lis_len(a); auto seq = lis_seq(a);
 
-int lis_len(const vector<ll> &a) {
+int lis_len(const vl &a) {
     // result: length of LIS.
-    vector<ll> tail;
+    vl tail;
     for (ll x : a) {
-        auto it = lower_bound(tail.begin(), tail.end(), x);
-        if (it == tail.end()) tail.push_back(x);
+        auto it = lower_bound(all(tail), x);
+        if (it == tail.end()) tail.pb(x);
         else *it = x;
     }
     return sz(tail);
 }
 
-vector<ll> lis_seq(const vector<ll> &a) {
+vl lis_seq(const vl &a) {
     // result: one LIS sequence.
     int n = sz(a);
-    vector<ll> tail;
-    vector<int> tail_idx;
-    vector<int> pre(n, -1);
+    vl tail;
+    vi tail_idx;
+    vi pre(n, -1);
     for (int i = 0; i < n; i++) {
         ll x = a[i];
-        int pos = lower_bound(tail.begin(), tail.end(), x) - tail.begin();
+        int pos = lower_bound(all(tail), x) - tail.begin();
         if (pos == sz(tail)) {
-            tail.push_back(x);
-            tail_idx.push_back(i);
+            tail.pb(x);
+            tail_idx.pb(i);
         } else {
             tail[pos] = x;
             tail_idx[pos] = i;
         }
         if (pos > 0) pre[i] = tail_idx[pos - 1];
     }
-    vector<ll> ret;
+    vl ret;
     int cur = tail_idx.empty() ? -1 : tail_idx.back();
     while (cur != -1) {
-        ret.push_back(a[cur]);
+        ret.pb(a[cur]);
         cur = pre[cur];
     }
     reverse(all(ret));

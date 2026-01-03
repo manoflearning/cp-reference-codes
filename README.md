@@ -2,6 +2,8 @@
 My implementations of various data structures and algorithms for competitive programming.
 
 ## Contents (GitHub links, `main`)
+- [0-common](https://github.com/manoflearning/cp-reference-codes/tree/main/src/0-common)
+  - [`common.hpp`](https://github.com/manoflearning/cp-reference-codes/blob/main/src/0-common/common.hpp)
 - [1-ds](https://github.com/manoflearning/cp-reference-codes/tree/main/src/1-ds)
   - [`erasable_pq.cpp`](https://github.com/manoflearning/cp-reference-codes/blob/main/src/1-ds/erasable_pq.cpp)
   - [`fenwick_tree.cpp`](https://github.com/manoflearning/cp-reference-codes/blob/main/src/1-ds/fenwick_tree.cpp)
@@ -69,5 +71,3 @@ My implementations of various data structures and algorithms for competitive pro
   - [`stress_test.py`](https://github.com/manoflearning/cp-reference-codes/blob/main/src/8-misc/stress_test.py)
   - [`system_of_difference_constraints.cpp`](https://github.com/manoflearning/cp-reference-codes/blob/main/src/8-misc/system_of_difference_constraints.cpp)
   - [`ternary_search.cpp`](https://github.com/manoflearning/cp-reference-codes/blob/main/src/8-misc/ternary_search.cpp)
-- [common](https://github.com/manoflearning/cp-reference-codes/tree/main/src/common)
-  - [`common.hpp`](https://github.com/manoflearning/cp-reference-codes/blob/main/src/common/common.hpp)

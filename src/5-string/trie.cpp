@@ -1,4 +1,4 @@
-#include "../common/common.hpp"
+#include "../0-common/common.hpp"
 
 // what: store a set of lowercase strings for fast prefix traversal and lookup.
 // time: add/has O(|s|); memory: O(nodes*ALPHA)
@@ -10,14 +10,12 @@ struct trie {
     vector<char> term;
 
     trie() { init(); }
-
     void init() {
         // goal: reset to empty trie.
         nxt.assign(1, {});
         nxt[0].fill(-1);
         term.assign(1, 0);
     }
-
     int add(const string &s) {
         // goal: insert a string and mark its terminal node.
         int v = 0;
@@ -25,16 +23,15 @@ struct trie {
             int c = ch - 'a';
             if (nxt[v][c] == -1) {
                 nxt[v][c] = sz(nxt);
-                nxt.push_back({});
+                nxt.pb({});
                 nxt.back().fill(-1);
-                term.push_back(0);
+                term.pb(0);
             }
             v = nxt[v][c];
         }
         term[v] = 1;
         return v;
     }
-
     bool has(const string &s) const {
         // result: true if s exists as a full word.
         int v = 0;

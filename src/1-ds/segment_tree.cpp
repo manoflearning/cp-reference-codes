@@ -1,4 +1,4 @@
-#include "../common/common.hpp"
+#include "../0-common/common.hpp"
 
 // what: point update + range sum on a fixed-size array using a tree.
 // time: build O(n), update/query O(log n); memory: O(n)
@@ -6,8 +6,8 @@
 // usage: seg_tree st; st.build(a); st.set(p, v); st.query(l, r);
 struct seg_tree {
     int flag;
-    vector<ll> t;
-    void build(const vector<ll> &a) {
+    vl t;
+    void build(const vl &a) {
         // goal: build tree from 1-indexed array.
         int n = sz(a) - 1;
         flag = 1;
@@ -36,8 +36,8 @@ struct seg_tree {
 // usage: seg_tree_it st; st.build(a); st.set(p, v); st.query(l, r);
 struct seg_tree_it { // 0-indexed
     int n;
-    vector<ll> t;
-    void build(const vector<ll> &a) {
+    vl t;
+    void build(const vl &a) {
         // goal: build tree from 0-indexed array.
         n = sz(a);
         t.assign(2 * n, 0);
@@ -65,7 +65,7 @@ struct seg_tree_it { // 0-indexed
 // usage: seg_tree_kth st; st.init(n); st.add(p, v); st.kth(k);
 struct seg_tree_kth {
     int flag;
-    vector<ll> t;
+    vl t;
     void init(int n) {
         // goal: allocate tree for size n.
         flag = 1;
@@ -91,8 +91,8 @@ struct seg_tree_kth {
 // usage: seg_tree_lz st; st.build(a); st.add(l, r, v); st.query(l, r);
 struct seg_tree_lz {
     int flag;
-    vector<ll> t, lz;
-    void build(const vector<ll> &a) {
+    vl t, lz;
+    void build(const vl &a) {
         // goal: build tree and clear lazy tags.
         int n = sz(a) - 1;
         flag = 1;
@@ -149,19 +149,19 @@ struct seg_pst {
     };
     int n;
     vector<node> t;
-    vector<int> root;
+    vi root;
 
-    void newnd() { t.push_back({-1, -1, 0}); }
-    void build(int n_, const vector<ll> &a) {
+    void newnd() { t.pb({-1, -1, 0}); }
+    void build(int n_, const vl &a) {
         // goal: build initial version.
         n = n_;
         t.clear();
         root.clear();
         newnd();
-        root.push_back(0);
+        root.pb(0);
         build(1, n, root[0], a);
     }
-    void build(int l, int r, int v, const vector<ll> &a) {
+    void build(int l, int r, int v, const vl &a) {
         // goal: build node v for range [l, r].
         if (l == r) {
             t[v].val = a[l];
@@ -179,7 +179,7 @@ struct seg_pst {
     void set(int p, ll val) {
         // goal: create new version with a[p] = val.
         newnd();
-        root.push_back(sz(t) - 1);
+        root.pb(sz(t) - 1);
         set(p, val, 1, n, root[sz(root) - 2], root.back());
     }
     void set(int p, ll val, int l, int r, int v1, int v2) {
@@ -246,13 +246,13 @@ struct seg_sparse {
         if (p <= mid) {
             if (t[v].l == -1) {
                 t[v].l = sz(t);
-                t.push_back({0, -1, -1});
+                t.pb({0, -1, -1});
             }
             add(p, x, t[v].l, nl, mid);
         } else {
             if (t[v].r == -1) {
                 t[v].r = sz(t);
-                t.push_back({0, -1, -1});
+                t.pb({0, -1, -1});
             }
             add(p, x, t[v].r, mid + 1, nr);
         }
@@ -275,11 +275,11 @@ struct seg_sparse {
 // usage: seg_2d st; st.build(a); st.set(x, y, v); st.query(x1, x2, y1, y2);
 struct seg_2d { // 0-indexed
     int n;
-    vector<vector<ll>> t;
-    void build(const vector<vector<ll>> &a) {
+    vvl t;
+    void build(const vvl &a) {
         // goal: build 2D tree from initial grid.
         n = sz(a);
-        t.assign(2 * n, vector<ll>(2 * n, 0));
+        t.assign(2 * n, vl(2 * n, 0));
         for (int i = 0; i < n; i++)
             for (int j = 0; j < n; j++)
                 t[i + n][j + n] = a[i][j];
@@ -325,24 +325,24 @@ struct seg_2d { // 0-indexed
 // usage: seg2d_comp st(n); st.mark_set(x, y); st.mark_qry(x1, x2, y1, y2); st.prep(); st.set(x, y, v); st.query(x1, x2, y1, y2);
 struct seg2d_comp { // 0-indexed
     int n;
-    vector<vector<ll>> a;
-    vector<vector<int>> used;
+    vvl a;
+    vvi used;
     unordered_map<ll, ll> mp;
     seg2d_comp(int n) : n(n), a(2 * n), used(2 * n) {}
     void mark_set(int x, int y) {
         // goal: record y-coordinates that will be updated.
-        for (x += n; x >= 1; x >>= 1) used[x].push_back(y);
+        for (x += n; x >= 1; x >>= 1) used[x].pb(y);
     }
     void mark_qry(int x1, int x2, int y1, int y2) {
         // goal: record y-coordinates needed for queries.
         for (x1 += n, x2 += n + 1; x1 < x2; x1 >>= 1, x2 >>= 1) {
             if (x1 & 1) {
-                used[x1].push_back(y1);
-                used[x1++].push_back(y2);
+                used[x1].pb(y1);
+                used[x1++].pb(y2);
             }
             if (x2 & 1) {
-                used[--x2].push_back(y1);
-                used[x2].push_back(y2);
+                used[--x2].pb(y1);
+                used[x2].pb(y2);
             }
         }
     }
