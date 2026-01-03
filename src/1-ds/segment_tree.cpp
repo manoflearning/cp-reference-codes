@@ -138,10 +138,10 @@ struct seg_tree_lz {
     }
 };
 
-// what: keep all versions of point updates with range sum queries.
+// what: keep all versions of point updates with range sum queries, plus kth by prefix sum.
 // time: build O(n), update/query O(log n); memory: O(n log n)
-// constraint: 1-indexed [1, n]; a[0] unused.
-// usage: seg_pst st; st.build(n, a); st.set(p, v); st.query(l, r, ver);
+// constraint: 1-indexed [1, n]; a[0] unused; kth needs all values >= 0.
+// usage: seg_pst st; st.build(n, a); st.set(p, v); st.query(l, r, ver); st.kth(k, ver);
 struct seg_pst {
     struct node {
         int l, r;
@@ -214,6 +214,16 @@ struct seg_pst {
         return query(l, r, t[v].l, nl, mid) + query(l, r, t[v].r, mid + 1, nr);
     }
     ll query(int l, int r, int ver) const { return query(l, r, root[ver], 1, n); }
+    int kth(ll k, int v, int nl, int nr) const {
+        // result: smallest idx with prefix sum >= k (in this subtree).
+        assert(k > 0 && t[v].val >= k);
+        if (nl == nr) return nl;
+        int mid = (nl + nr) >> 1;
+        ll lv = t[t[v].l].val;
+        if (k <= lv) return kth(k, t[v].l, nl, mid);
+        return kth(k - lv, t[v].r, mid + 1, nr);
+    }
+    int kth(ll k, int ver) const { return kth(k, root[ver], 1, n); }
 };
 
 // what: sparse segment tree for large coordinate range (point add, range sum).
