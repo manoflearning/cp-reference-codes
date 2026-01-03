@@ -84,7 +84,7 @@ struct dyn_conn {
         } else if (op == 2) {
             auto it = mp.find({u, v});
             if (it == mp.end()) return;
-            sg.add(it->second, i - 1, {u, v});
+            sg.add(it->sc, i - 1, {u, v});
             mp.erase(it);
         } else if (op == 3) {
             qry[i] = {u, v};

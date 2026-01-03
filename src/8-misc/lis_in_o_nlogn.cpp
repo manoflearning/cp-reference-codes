@@ -9,7 +9,7 @@ int lis_len(const vector<ll> &a) {
     // result: length of LIS.
     vector<ll> tail;
     for (ll x : a) {
-        auto it = lower_bound(tail.begin(), tail.end(), x);
+        auto it = lower_bound(all(tail), x);
         if (it == tail.end()) tail.pb(x);
         else *it = x;
     }
@@ -24,7 +24,7 @@ vector<ll> lis_seq(const vector<ll> &a) {
     vector<int> pre(n, -1);
     for (int i = 0; i < n; i++) {
         ll x = a[i];
-        int pos = lower_bound(tail.begin(), tail.end(), x) - tail.begin();
+        int pos = lower_bound(all(tail), x) - tail.begin();
         if (pos == sz(tail)) {
             tail.pb(x);
             tail_idx.pb(i);

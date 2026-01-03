@@ -7,7 +7,7 @@
 template <class T, class cmp = less<T>>
 struct erase_pq {
     priority_queue<T, vector<T>, cmp> q, del;
-    int size() { return (int)q.size() - (int)del.size(); }
+    int size() { return sz(q) - sz(del); }
     bool empty() { return size() == 0; }
     const T &top() { return (fix(), q.top()); } // result: current extreme element.
     void push(const T &x) { q.push(x); }

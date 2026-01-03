@@ -34,11 +34,11 @@ struct dinic {
 
     edge_ref add_edge(int u, int v, ll cap) {
         // goal: add forward + reverse edge
-        edge a{v, (int)g[v].size(), cap};
-        edge b{u, (int)g[u].size(), 0};
+        edge a{v, sz(g[v]), cap};
+        edge b{u, sz(g[u]), 0};
         g[u].pb(a);
         g[v].pb(b);
-        return {u, (int)g[u].size() - 1};
+        return {u, sz(g[u]) - 1};
     }
 
     ll edge_flow(edge_ref e) const {
@@ -75,7 +75,7 @@ struct dinic {
 
     ll dfs(int v, int t, ll f) {
         if (v == t || f == 0) return f;
-        for (int &i = work[v]; i < (int)g[v].size(); i++) {
+        for (int &i = work[v]; i < sz(g[v]); i++) {
             edge &e = g[v][i];
             if (e.cap == 0 || level[e.to] != level[v] + 1) continue;
             // invariant: level strictly increases along augmenting path
@@ -132,7 +132,7 @@ struct hk {
     bool bfs() {
         // goal: build layers for shortest augmenting paths
         queue<int> q;
-        fill(dist.begin(), dist.end(), -1);
+        fill(all(dist), -1);
         for (int i = 0; i < n_l; i++) {
             if (match_l[i] == -1) {
                 dist[i] = 0;
@@ -171,8 +171,8 @@ struct hk {
 
     int max_matching() {
         // goal: compute maximum matching size
-        fill(match_l.begin(), match_l.end(), -1);
-        fill(match_r.begin(), match_r.end(), -1);
+        fill(all(match_l), -1);
+        fill(all(match_r), -1);
         int match = 0;
         while (bfs()) {
             for (int i = 0; i < n_l; i++) {
@@ -212,11 +212,11 @@ struct mcmf {
 
     edge_ref add_edge(int u, int v, ll cap, ll cost) {
         // goal: add forward + reverse edge with costs
-        edge a{v, (int)g[v].size(), cap, cost};
-        edge b{u, (int)g[u].size(), 0, -cost};
+        edge a{v, sz(g[v]), cap, cost};
+        edge b{u, sz(g[u]), 0, -cost};
         g[u].pb(a);
         g[v].pb(b);
-        return {u, (int)g[u].size() - 1};
+        return {u, sz(g[u]) - 1};
     }
 
     ll edge_flow(edge_ref e) const {
@@ -267,7 +267,7 @@ struct mcmf {
 
         while (flow < max_f) {
             // goal: shortest path in reduced costs
-            fill(dist.begin(), dist.end(), INF);
+            fill(all(dist), INF);
             dist[s] = 0;
             priority_queue<pair<ll, int>, vector<pair<ll, int>>, greater<pair<ll, int>>> pq;
             pq.push({0, s});
@@ -275,7 +275,7 @@ struct mcmf {
                 auto [d, v] = pq.top();
                 pq.pop();
                 if (d != dist[v]) continue;
-                for (int i = 0; i < (int)g[v].size(); i++) {
+                for (int i = 0; i < sz(g[v]); i++) {
                     const auto &e = g[v][i];
                     if (e.cap == 0) continue;
                     ll nd = d + e.cost + pot[v] - pot[e.to];
@@ -341,7 +341,7 @@ struct lr_dinic {
         demand[u] -= lo;
         demand[v] += lo;
         edges.pb({mf.add_edge(u, v, hi - lo), lo});
-        return (int)edges.size() - 1;
+        return sz(edges) - 1;
     }
 
     ll edge_flow(int id) const {
@@ -430,7 +430,7 @@ struct lr_mcmf {
         demand[v] += lo;
         base_cost += lo * cost;
         edges.pb({mf.add_edge(u, v, hi - lo, cost), lo});
-        return (int)edges.size() - 1;
+        return sz(edges) - 1;
     }
 
     ll edge_flow(int id) const {

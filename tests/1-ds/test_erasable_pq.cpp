@@ -12,7 +12,7 @@ ll rnd(ll l, ll r) {
 }
 
 ll pick_multiset(multiset<ll> &ms) {
-    int idx = (int)rnd(0, (int)ms.size() - 1);
+    int idx = (int)rnd(0, sz(ms) - 1);
     auto it = ms.begin();
     advance(it, idx);
     return *it;
@@ -59,7 +59,7 @@ void test_randomized() {
         } else {
             assert(pq.top() == *prev(ms.end()));
         }
-        assert(pq.size() == (int)ms.size());
+        assert(pq.size() == sz(ms));
         if (ms.empty()) {
             assert(pq.empty());
         } else {

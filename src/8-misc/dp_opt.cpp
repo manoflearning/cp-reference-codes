@@ -104,7 +104,7 @@ struct dnc_opt {
         prv = base;
         cur.assign(n, INF);
         for (int g = 1; g <= k; g++) {
-            fill(cur.begin(), cur.end(), INF);
+            fill(all(cur), INF);
             solve(0, n - 1, 0, n - 1, cost);
             prv.swap(cur);
         }

@@ -23,8 +23,8 @@ struct ek_flow {
         g.assign(n, {});
     }
     void add_edge(int u, int v, ll cap) {
-        edge a{v, (int)g[v].size(), cap};
-        edge b{u, (int)g[u].size(), 0};
+        edge a{v, sz(g[v]), cap};
+        edge b{u, sz(g[u]), 0};
         g[u].pb(a);
         g[v].pb(b);
     }
@@ -88,8 +88,8 @@ struct mcmf_spfa {
         g.assign(n, {});
     }
     void add_edge(int u, int v, ll cap, ll cost) {
-        edge a{v, (int)g[v].size(), cap, cost};
-        edge b{u, (int)g[u].size(), 0, -cost};
+        edge a{v, sz(g[v]), cap, cost};
+        edge b{u, sz(g[u]), 0, -cost};
         g[u].pb(a);
         g[v].pb(b);
     }

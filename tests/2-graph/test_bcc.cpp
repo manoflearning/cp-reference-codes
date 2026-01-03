@@ -78,7 +78,7 @@ void chk_bcc(int n, const vector<pii> &ed, bcc_graph &g) {
 
     for (auto &comp : g.bccs) {
         if (sz(comp) <= 1) continue;
-        vector<vector<pair<int, int>>> adj(n + 1);
+        vector<vector<pii>> adj(n + 1);
         for (int i = 0; i < sz(comp); i++) {
             int u = comp[i].fr, v = comp[i].sc;
             adj[u].pb({v, i});

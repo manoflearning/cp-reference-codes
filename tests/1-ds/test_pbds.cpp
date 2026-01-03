@@ -45,14 +45,14 @@ void test_oset_random() {
             st.insert(x);
         } else if (op == 1) {
             if (st.empty()) continue;
-            ll x = kth_set(st, (int)rnd(0, (ll)st.size() - 1));
+            ll x = kth_set(st, (int)rnd(0, sz(st) - 1));
             s.erase(x);
             st.erase(x);
         } else {
             ll x = rnd(-10, 10);
             assert((int)s.order_of_key(x) == (int)distance(st.begin(), st.lower_bound(x)));
             if (!st.empty()) {
-                int k = (int)rnd(0, (ll)st.size() - 1);
+                int k = (int)rnd(0, sz(st) - 1);
                 assert(*s.find_by_order(k) == kth_set(st, k));
             }
         }
@@ -83,14 +83,14 @@ void test_omset_random() {
             ms.insert(x);
         } else if (op == 1) {
             if (ms.empty()) continue;
-            ll x = kth_multiset(ms, (int)rnd(0, (ll)ms.size() - 1));
+            ll x = kth_multiset(ms, (int)rnd(0, sz(ms) - 1));
             m_erase(s, x);
             ms.erase(ms.find(x));
         } else {
             ll x = rnd(-5, 5);
             assert(m_order(s, x) == (int)distance(ms.begin(), ms.lower_bound(x)));
             if (!ms.empty()) {
-                int k = (int)rnd(0, (ll)ms.size() - 1);
+                int k = (int)rnd(0, sz(ms) - 1);
                 assert(m_kth(s, k) == kth_multiset(ms, k));
             }
         }

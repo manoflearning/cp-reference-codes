@@ -26,7 +26,7 @@ struct mo {
     template <class Add, class Del, class Out>
     void run(Add add, Del del, Out out) {
         // goal: process queries in Mo order with callbacks.
-        sort(q.begin(), q.end(), [&](const qry &a, const qry &b) {
+        sort(all(q), [&](const qry &a, const qry &b) {
             int ba = a.l / bs, bb = b.l / bs;
             if (ba != bb) return ba < bb;
             return (ba & 1) ? a.r > b.r : a.r < b.r;

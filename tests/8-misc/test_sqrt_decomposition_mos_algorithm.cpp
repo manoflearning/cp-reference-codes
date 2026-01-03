@@ -16,7 +16,7 @@ void test_distinct() {
     vector<int> a(n);
     for (int i = 0; i < n; i++) a[i] = rnd_int(0, 30);
 
-    vector<pair<int, int>> qs(qn);
+    vector<pii> qs(qn);
     for (int i = 0; i < qn; i++) {
         int l = rnd_int(0, n - 1);
         int r = rnd_int(l, n - 1);
@@ -27,14 +27,14 @@ void test_distinct() {
     for (int i = 0; i < qn; i++) {
         vector<int> cnt(31, 0);
         int cur = 0;
-        for (int j = qs[i].first; j <= qs[i].second; j++) {
+        for (int j = qs[i].fr; j <= qs[i].sc; j++) {
             if (cnt[a[j]]++ == 0) cur++;
         }
         naive[i] = cur;
     }
 
     mo solver(n);
-    for (int i = 0; i < qn; i++) solver.add_query(qs[i].first, qs[i].second, i);
+    for (int i = 0; i < qn; i++) solver.add_query(qs[i].fr, qs[i].sc, i);
 
     vector<int> cnt(31, 0);
     int cur = 0;

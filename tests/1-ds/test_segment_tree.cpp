@@ -188,7 +188,7 @@ void test_pst_random() {
             ver.pb(nw);
             st.set(p, v);
         } else {
-            int id = (int)rnd(0, (int)ver.size() - 1);
+            int id = (int)rnd(0, sz(ver) - 1);
             int l = (int)rnd(1, n);
             int r = (int)rnd(l, n);
             assert(st.query(l, r, id) == sum_range(ver[id], l, r));
@@ -232,7 +232,7 @@ void test_pst_kth_random() {
             ver.pb(nw);
             st.set(p, v);
         } else {
-            int id = (int)rnd(0, (int)ver.size() - 1);
+            int id = (int)rnd(0, sz(ver) - 1);
             ll tot = 0;
             for (int i = 1; i <= n; i++) tot += ver[id][i];
             if (tot == 0) continue;
@@ -270,7 +270,7 @@ void test_dyseg_random() {
             int r = (int)rnd(l, hi);
             ll ret = 0;
             for (auto &kv : mp)
-                if (l <= kv.first && kv.first <= r) ret += kv.second;
+                if (l <= kv.fr && kv.fr <= r) ret += kv.sc;
             assert(st.query(l, r) == ret);
         }
     }

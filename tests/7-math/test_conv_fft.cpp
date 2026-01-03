@@ -85,7 +85,7 @@ void test_ntt() {
         for (int i = 0; i < m; i++) b[i] = rnd_int(0, mod - 1);
         auto ref = conv_mod_ref(a, b, mod);
         auto got = ntt_conv::mul(a, b);
-        assert(got.size() == ref.size());
+        assert(sz(got) == sz(ref));
         for (int i = 0; i < sz(ref); i++) assert(got[i] == ref[i]);
     }
 }
@@ -100,7 +100,7 @@ void test_ntt_any() {
             for (int i = 0; i < m; i++) b[i] = rnd_int(0, 1000);
             auto ref = conv_mod_ref(a, b, mod);
             auto got = ntt_any::mul(a, b, mod);
-            assert(got.size() == ref.size());
+            assert(sz(got) == sz(ref));
             for (int i = 0; i < sz(ref); i++) assert(got[i] == ref[i]);
         }
     }
