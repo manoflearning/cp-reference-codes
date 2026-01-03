@@ -1,4 +1,4 @@
-#include "../common/common.hpp"
+#include "../0-common/common.hpp"
 
 // what: answer edge add/remove connectivity queries offline using segment tree + rollback DSU.
 // time: O((n+q)log q); memory: O(n+q)

@@ -1,6 +1,6 @@
 #pragma once
 
-#include "../common/common.hpp"
+#include "../0-common/common.hpp"
 
 // what: gcd/egcd/inverse helpers and modular exponentiation.
 // time: O(log n); memory: O(1)

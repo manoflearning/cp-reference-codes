@@ -1,4 +1,4 @@
-#include "../common/common.hpp"
+#include "../0-common/common.hpp"
 
 // what: probabilistic substring matching using double rolling hash.
 // time: build O(n), get O(1), match O(n); memory: O(n)
@@ -25,7 +25,6 @@ struct rabin_karp {
             h2[i + 1] = (h2[i] * BASE + x) % MOD2;
         }
     }
-
     pll get(int l, int r) const { // [l, r)
         // result: hash of s[l..r).
         ll x1 = (h1[r] - h1[l] * p1[r - l]) % MOD1;

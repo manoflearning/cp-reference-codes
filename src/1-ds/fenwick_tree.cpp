@@ -1,4 +1,4 @@
-#include "../common/common.hpp"
+#include "../0-common/common.hpp"
 
 // what: maintain prefix sums with point updates and range sum queries.
 // time: build O(n), update/query O(log n); memory: O(n)

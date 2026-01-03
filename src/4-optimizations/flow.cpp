@@ -1,4 +1,4 @@
-#include "../common/common.hpp"
+#include "../0-common/common.hpp"
 
 // what: collection of flow solvers (max flow, min-cost flow, matching, bounds).
 // time: see each struct; memory: O(E)
@@ -82,7 +82,6 @@ struct dinic {
         }
         return 0;
     }
-
     ll max_flow(int s, int t, ll limit = INF) {
         if (s == t) return 0; // edge: no flow needed
         ll flow = 0;
@@ -160,7 +159,6 @@ struct hk {
         dist[v] = -1;
         return false;
     }
-
     int max_matching() {
         // goal: compute maximum matching size
         fill(all(match_l), -1);
@@ -356,7 +354,6 @@ struct lr_dinic {
         for (auto ref : aux) mf.clear_edge(ref);
         return flow == total;
     }
-
     pair<bool, ll> max_flow(int s, int t) {
         if (s == t) return {feasible(), 0}; // edge: trivial s == t
         vector<dinic::edge_ref> aux;
@@ -442,7 +439,6 @@ struct lr_mcmf {
         if (res.fr != total) return {false, 0};
         return {true, res.sc + base_cost};
     }
-
     pair<bool, pll> max_flow(int s, int t, bool init_pot = true) {
         if (s == t) {
             auto r = feasible(init_pot);

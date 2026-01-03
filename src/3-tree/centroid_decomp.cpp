@@ -1,4 +1,4 @@
-#include "../common/common.hpp"
+#include "../0-common/common.hpp"
 
 // what: centroid decomposition for tree, builds centroid parent/children for path queries.
 // time: O(n log n); memory: O(n)

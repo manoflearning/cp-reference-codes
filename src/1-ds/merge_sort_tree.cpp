@@ -1,4 +1,4 @@
-#include "../common/common.hpp"
+#include "../0-common/common.hpp"
 constexpr int MAX_MST = 1 << 17;
 
 // what: static range count queries by storing sorted lists on a segment tree.

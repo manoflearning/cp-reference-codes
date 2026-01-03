@@ -1,4 +1,4 @@
-#include "../common/common.hpp"
+#include "../0-common/common.hpp"
 
 // what: maintain dynamic connectivity with union-find and size queries.
 // time: init O(n), join/find amortized a(n); memory: O(n)

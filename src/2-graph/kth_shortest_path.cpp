@@ -1,4 +1,4 @@
-#include "../common/common.hpp"
+#include "../0-common/common.hpp"
 
 // what: enumerate k-th shortest walk from s to t with non-negative weights (Eppstein-style).
 // time: O((n+m)log m + klog k); memory: O(n+m+heap)

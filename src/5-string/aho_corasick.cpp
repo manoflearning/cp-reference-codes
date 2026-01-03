@@ -1,4 +1,4 @@
-#include "../common/common.hpp"
+#include "../0-common/common.hpp"
 
 // what: build automaton to find many lowercase patterns inside a text.
 // time: add O(|p|), build O(nodes*ALPHA), query O(|t|); memory: O(nodes*ALPHA)
@@ -34,7 +34,6 @@ struct aho_corasick {
         out[v]++;
         return v;
     }
-
     void build() {
         // goal: compute failure links and output counts.
         queue<int> q;

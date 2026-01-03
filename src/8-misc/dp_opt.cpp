@@ -1,4 +1,4 @@
-#include "../common/common.hpp"
+#include "../0-common/common.hpp"
 
 // what: collection of DP optimizations (CHT, Knuth, DnC, slope trick).
 // time: see each component; memory: see each component.

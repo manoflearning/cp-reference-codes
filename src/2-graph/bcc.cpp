@@ -1,4 +1,4 @@
-#include "../common/common.hpp"
+#include "../0-common/common.hpp"
 
 // what: find biconnected components and articulation points/bridges in an undirected graph.
 // time: O(n+m); memory: O(n+m)

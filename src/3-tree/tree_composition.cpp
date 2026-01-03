@@ -1,4 +1,4 @@
-#include "../common/common.hpp"
+#include "../0-common/common.hpp"
 
 // what: virtual tree builder for subset DP using LCA and dfs order.
 // time: build O(n log n), make O(k log k); memory: O(n log n)

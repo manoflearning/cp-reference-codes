@@ -1,4 +1,4 @@
-#include "../common/common.hpp"
+#include "../0-common/common.hpp"
 
 // what: build lexicographic suffix order and LCP for fast substring comparisons.
 // time: build_sa O(n log n), build_lcp O(n); memory: O(n)

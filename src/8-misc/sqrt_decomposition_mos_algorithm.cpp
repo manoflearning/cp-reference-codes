@@ -1,4 +1,4 @@
-#include "../common/common.hpp"
+#include "../0-common/common.hpp"
 
 // what: reorder offline range queries to minimize add/del operations (Mo's algorithm).
 // time: O((n+q) * sqrt(n)); memory: O(q)
@@ -20,7 +20,6 @@ struct mo {
         q.clear();
     }
     void add_query(int l, int r, int idx) { q.pb({l, r, idx}); }
-
     template <class Add, class Del, class Out>
     void run(Add add, Del del, Out out) {
         // goal: process queries in Mo order with callbacks.

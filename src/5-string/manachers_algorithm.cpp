@@ -1,4 +1,4 @@
-#include "../common/common.hpp"
+#include "../0-common/common.hpp"
 
 // what: compute longest palindrome radius at every center (odd/even).
 // time: O(n); memory: O(n)

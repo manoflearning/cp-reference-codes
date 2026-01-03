@@ -1,4 +1,4 @@
-#include "../common/common.hpp"
+#include "../0-common/common.hpp"
 
 // what: compute n-th term of a linear recurrence using Kitamasa.
 // time: O(k^2 log n); memory: O(k^2)

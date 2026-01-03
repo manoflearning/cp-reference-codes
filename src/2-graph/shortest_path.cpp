@@ -1,4 +1,4 @@
-#include "../common/common.hpp"
+#include "../0-common/common.hpp"
 
 // what: compute single-source shortest paths with non-negative edges (Dijkstra).
 // time: O((n+m)log n); memory: O(n+m)

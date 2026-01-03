@@ -1,4 +1,4 @@
-#include "../common/common.hpp"
+#include "../0-common/common.hpp"
 
 // what: compute SCCs in a directed graph using Kosaraju's algorithm.
 // time: O(n+m); memory: O(n+m)

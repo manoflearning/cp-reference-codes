@@ -1,4 +1,4 @@
-#include "../common/common.hpp"
+#include "../0-common/common.hpp"
 
 // what: normalized rational type with exact arithmetic and comparisons.
 // time: O(log max(|n|,|d|)) per op; memory: O(1)
@@ -38,7 +38,6 @@ struct fraction {
     bool operator>(const fraction &rhs) const { return rhs < *this; }
     bool operator<=(const fraction &rhs) const { return !(rhs < *this); }
     bool operator>=(const fraction &rhs) const { return !(*this < rhs); }
-
     fraction operator+(const fraction &rhs) const {
         fraction ret;
         ret.n = n * rhs.d + rhs.n * d;

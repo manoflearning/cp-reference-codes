@@ -1,4 +1,4 @@
-#include "../common/common.hpp"
+#include "../0-common/common.hpp"
 
 // what: maximize sum w[i]*completion_time[i] under precedence "parent before child" on rooted tree.
 // time: O(n log n); memory: O(n)

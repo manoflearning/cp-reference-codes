@@ -1,4 +1,4 @@
-#include "../common/common.hpp"
+#include "../0-common/common.hpp"
 
 // what: find all occurrences of a pattern using prefix-function (KMP).
 // time: O(|t|+|p|); memory: O(|p|)

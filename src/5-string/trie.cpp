@@ -1,4 +1,4 @@
-#include "../common/common.hpp"
+#include "../0-common/common.hpp"
 
 // what: store a set of lowercase strings for fast prefix traversal and lookup.
 // time: add/has O(|s|); memory: O(nodes*ALPHA)
@@ -32,7 +32,6 @@ struct trie {
         term[v] = 1;
         return v;
     }
-
     bool has(const string &s) const {
         // result: true if s exists as a full word.
         int v = 0;

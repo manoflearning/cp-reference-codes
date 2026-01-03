@@ -1,5 +1,5 @@
 #pragma once
-#include "../common/common.hpp"
+#include "../0-common/common.hpp"
 #include "num.hpp"
 
 // what: multiply integer sequences using FFT (optionally via split for mod).

@@ -1,5 +1,5 @@
 #pragma once
-#include "../common/common.hpp"
+#include "../0-common/common.hpp"
 
 // what: small matrix helper for modular multiply and fast exponentiation.
 // time: multiply O(n*m*k); power O(log e * n^3); memory: O(n*m)

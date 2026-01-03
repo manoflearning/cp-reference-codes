@@ -1,4 +1,4 @@
-#include "../common/common.hpp"
+#include "../0-common/common.hpp"
 
 // what: point update + range sum on a fixed-size array using a tree.
 // time: build O(n), update/query O(log n); memory: O(n)

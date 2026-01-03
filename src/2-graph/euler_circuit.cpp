@@ -1,4 +1,4 @@
-#include "../common/common.hpp"
+#include "../0-common/common.hpp"
 
 // what: build an Eulerian circuit in an undirected multigraph (adjacency matrix).
 // time: O(n^2+m); memory: O(n^2)

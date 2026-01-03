@@ -1,4 +1,4 @@
-#include "../common/common.hpp"
+#include "../0-common/common.hpp"
 
 // what: maintain max of lines on a fixed x-range with online add + point query.
 // time: add/query O(log X); memory: O(n)

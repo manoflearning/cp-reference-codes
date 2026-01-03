@@ -1,4 +1,4 @@
-#include "../common/common.hpp"
+#include "../0-common/common.hpp"
 
 // what: compute LIS length and reconstruct one increasing subsequence.
 // time: O(n log n); memory: O(n)

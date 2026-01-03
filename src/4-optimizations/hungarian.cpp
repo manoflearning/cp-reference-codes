@@ -1,4 +1,4 @@
-#include "../common/common.hpp"
+#include "../0-common/common.hpp"
 
 // what: solve rectangular assignment problem (min-cost matching) via Hungarian.
 // time: O(n m^2); memory: O(n+m)

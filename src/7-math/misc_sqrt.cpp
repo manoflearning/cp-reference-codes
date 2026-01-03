@@ -1,5 +1,5 @@
 #pragma once
-#include "../common/common.hpp"
+#include "../0-common/common.hpp"
 
 // what: list all divisors and prime factors of a single integer by sqrt trial division.
 // time: O(sqrt x); memory: O(1) extra

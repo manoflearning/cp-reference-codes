@@ -1,5 +1,5 @@
 #pragma once
-#include "../common/common.hpp"
+#include "../0-common/common.hpp"
 
 // what: precompute primality table and prime list with Eratosthenes sieve.
 // time: O(n log log n); memory: O(n)

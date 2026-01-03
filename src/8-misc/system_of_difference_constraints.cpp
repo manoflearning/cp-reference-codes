@@ -1,4 +1,4 @@
-#include "../common/common.hpp"
+#include "../0-common/common.hpp"
 
 // what: solve difference constraints x_v - x_u <= w with Bellman-Ford.
 // time: O(nm) via Bellman-Ford; memory: O(n+m)

@@ -1,4 +1,4 @@
-#include "../common/common.hpp"
+#include "../0-common/common.hpp"
 
 // what: compute prefix match lengths for each position in a string.
 // time: O(n); memory: O(n)

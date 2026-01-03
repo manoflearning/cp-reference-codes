@@ -1,4 +1,4 @@
-#include "../common/common.hpp"
+#include "../0-common/common.hpp"
 #include <immintrin.h>
 
 // what: AVX2 usage snippets (i32 add/sum/min/count, f32 dot/add).

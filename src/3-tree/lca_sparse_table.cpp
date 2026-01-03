@@ -1,4 +1,4 @@
-#include "../common/common.hpp"
+#include "../0-common/common.hpp"
 
 // what: LCA via binary lifting for rooted tree.
 // time: build O(n log n), query O(log n); memory: O(n log n)
