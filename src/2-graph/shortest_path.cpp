@@ -15,9 +15,9 @@ struct dijkstra {
         adj.assign(n + 1, {});
     }
     void add(int u, int v, ll w) { adj[u].pb({w, v}); }
-    vector<ll> run(int s) {
+    vl run(int s) {
         // result: dist[i] = shortest distance from s to i.
-        vector<ll> dist(n + 1, INF);
+        vl dist(n + 1, INF);
         priority_queue<pll, vector<pll>, greater<pll>> pq;
         dist[s] = 0;
         pq.push({0, s});
@@ -51,7 +51,7 @@ struct bell_ford {
         ed.clear();
     }
     void add(int u, int v, ll w) { ed.pb({u, v, w}); }
-    bool run(int s, vector<ll> &dist) {
+    bool run(int s, vl &dist) {
         // result: false if a negative cycle is reachable.
         dist.assign(n + 1, INF);
         dist[s] = 0;
@@ -78,12 +78,12 @@ struct bell_ford {
 struct floyd {
     static const ll INF = (1LL << 62);
     int n;
-    vector<vector<ll>> d;
+    vvl d;
 
     void init(int n_) {
         // goal: initialize distance matrix.
         n = n_;
-        d.assign(n + 1, vector<ll>(n + 1, INF));
+        d.assign(n + 1, vl(n + 1, INF));
         for (int i = 1; i <= n; i++) d[i][i] = 0;
     }
     void add(int u, int v, ll w) { d[u][v] = min(d[u][v], w); }

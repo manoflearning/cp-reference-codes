@@ -18,8 +18,8 @@ bool is_prime_ref(ll x) {
     return 1;
 }
 
-vector<ll> fac_ref(ll x) {
-    vector<ll> f;
+vl fac_ref(ll x) {
+    vl f;
     for (ll p = 2; p * p <= x; p++) {
         while (x % p == 0) {
             f.pb(p);
@@ -56,15 +56,15 @@ void test_factor() {
     assert(pollard_rho::factor(1).empty());
     assert(pollard_rho::factor(0).empty());
     auto fneg = pollard_rho::factor(-12);
-    assert(fneg == vector<ll>({2, 2, 3}));
+    assert(fneg == vl({2, 2, 3}));
     auto fp = pollard_rho::factor(1000000007LL);
-    assert(fp == vector<ll>({1000000007LL}));
+    assert(fp == vl({1000000007LL}));
     ll p = 1000003, q = 1000033;
     auto fs = pollard_rho::factor(p * q);
-    assert(fs == vector<ll>({p, q}));
+    assert(fs == vl({p, q}));
     ll big = 1000000007LL * 1000000009LL;
     auto fb = pollard_rho::factor(big);
-    assert(fb == vector<ll>({1000000007LL, 1000000009LL}));
+    assert(fb == vl({1000000007LL, 1000000009LL}));
 }
 
 int main() {

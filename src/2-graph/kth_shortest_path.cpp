@@ -47,9 +47,9 @@ struct kth_walk {
         rg[v].pb({w, u});
     }
 
-    vector<ll> run(int s, int e, int k) {
-        vector<int> nxt(n + 1, -1), ord, vis(n + 1);
-        vector<ll> dist(n + 1, INF);
+    vl run(int s, int e, int k) {
+        vi nxt(n + 1, -1), ord, vis(n + 1);
+        vl dist(n + 1, INF);
 
         // goal: shortest path tree from e on reversed graph.
         dist[e] = 0;
@@ -72,7 +72,7 @@ struct kth_walk {
         }
         if (dist[s] >= INF) return {};
 
-        vector<int> rt(n + 1), chk(n + 1);
+        vi rt(n + 1), chk(n + 1);
         for (int x : ord)
             if (dist[x] < INF) {
                 if (nxt[x] != -1) rt[x] = rt[nxt[x]];
@@ -86,7 +86,7 @@ struct kth_walk {
                 }
             }
 
-        vector<ll> ans = {dist[s]};
+        vl ans = {dist[s]};
         priority_queue<pll, vector<pll>, greater<pll>> pq2;
         if (rt[s]) pq2.push({hp.h[rt[s]].x.fr, rt[s]});
         while (sz(ans) < k && !pq2.empty()) {

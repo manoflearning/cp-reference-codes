@@ -23,7 +23,7 @@ struct dinic {
 
     int n;
     vector<vector<edge>> g;
-    vector<int> level, work;
+    vi level, work;
 
     dinic(int n = 0) { init(n); }
 
@@ -110,8 +110,8 @@ struct dinic {
 // usage: hk bm(n_l, n_r); bm.add_edge(l, r); int m = bm.max_matching();
 struct hk {
     int n_l, n_r;
-    vector<vector<int>> g;
-    vector<int> dist, match_l, match_r;
+    vvi g;
+    vi dist, match_l, match_r;
 
     hk(int n_l_ = 0, int n_r_ = 0) { init(n_l_, n_r_); }
 
@@ -235,12 +235,12 @@ struct mcmf {
 
     pll min_cost_mf(int s, int t, ll max_f = INF, bool init_pot = true) {
         ll flow = 0, cost = 0;
-        vector<ll> pot(n, 0), dist(n);
-        vector<int> pv(n), pe(n);
+        vl pot(n, 0), dist(n);
+        vi pv(n), pe(n);
 
         if (init_pot) {
             // goal: initial potentials for negative costs
-            vector<ll> d(n, INF);
+            vl d(n, INF);
             vector<char> in_q(n, 0);
             queue<int> q;
             d[s] = 0;
@@ -324,7 +324,7 @@ struct lr_dinic {
 
     int n;
     dinic mf;
-    vector<ll> demand;
+    vl demand;
     vector<edge_info> edges;
 
     lr_dinic(int n = 0) { init(n); }
@@ -410,7 +410,7 @@ struct lr_mcmf {
 
     int n;
     mcmf mf;
-    vector<ll> demand;
+    vl demand;
     vector<edge_info> edges;
     ll base_cost;
 

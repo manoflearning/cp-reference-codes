@@ -11,18 +11,18 @@ int rnd(int l, int r) {
     return dis(rng);
 }
 
-void add_edge(vector<vector<int>> &adj, int u, int v) {
+void add_edge(vvi &adj, int u, int v) {
     adj[u].pb(v);
     adj[v].pb(u);
 }
 
-vector<vector<int>> gen_tree(int n) {
-    vector<vector<int>> adj(n + 1);
+vvi gen_tree(int n) {
+    vvi adj(n + 1);
     for (int v = 2; v <= n; v++) add_edge(adj, v, rnd(1, v - 1));
     return adj;
 }
 
-int get_root(int n, const vector<int> &par) {
+int get_root(int n, const vi &par) {
     int root = 0;
     for (int v = 1; v <= n; v++)
         if (!par[v]) {
@@ -33,7 +33,7 @@ int get_root(int n, const vector<int> &par) {
     return root;
 }
 
-void get_sub(int v, const vector<vector<int>> &chd, vector<int> &sub) {
+void get_sub(int v, const vvi &chd, vi &sub) {
     sub[v] = 1;
     for (int to : chd[v]) {
         get_sub(to, chd, sub);
@@ -41,9 +41,9 @@ void get_sub(int v, const vector<vector<int>> &chd, vector<int> &sub) {
     }
 }
 
-vector<int> get_nodes(int v, const vector<vector<int>> &chd) {
-    vector<int> res;
-    vector<int> st = {v};
+vi get_nodes(int v, const vvi &chd) {
+    vi res;
+    vi st = {v};
     while (!st.empty()) {
         int x = st.back();
         st.pop_back();
@@ -53,7 +53,7 @@ vector<int> get_nodes(int v, const vector<vector<int>> &chd) {
     return res;
 }
 
-void check_one(const vector<vector<int>> &adj) {
+void check_one(const vvi &adj) {
     int n = sz(adj) - 1;
     cen_decomp cd;
     cd.init(n);
@@ -65,7 +65,7 @@ void check_one(const vector<vector<int>> &adj) {
     int root = get_root(n, cd.par);
 
     // check: centroid tree is a rooted tree on [1..n].
-    vector<int> vis(n + 1);
+    vi vis(n + 1);
     queue<int> q;
     q.push(root);
     vis[root] = 1;
@@ -85,7 +85,7 @@ void check_one(const vector<vector<int>> &adj) {
     assert(cnt == n);
     assert(edges == n - 1);
 
-    vector<int> sub(n + 1);
+    vi sub(n + 1);
     get_sub(root, cd.chd, sub);
 
     // check: centroid property (each child component size <= half).
@@ -98,7 +98,7 @@ void check_one(const vector<vector<int>> &adj) {
         vector<char> in_c(n + 1, 0);
         for (int v : nodes_c) in_c[v] = 1;
 
-        vector<int> first(n + 1, 0);
+        vi first(n + 1, 0);
         queue<int> qq;
         for (int nb : adj[c]) {
             if (!in_c[nb]) continue;
@@ -117,7 +117,7 @@ void check_one(const vector<vector<int>> &adj) {
         for (int v : nodes_c)
             if (v != c) assert(first[v]);
 
-        vector<int> labs;
+        vi labs;
         for (int x : cd.chd[c]) {
             int lab = first[x];
             assert(lab);
@@ -134,24 +134,24 @@ void check_one(const vector<vector<int>> &adj) {
 void t_fix() {
     {
         int n = 1;
-        vector<vector<int>> adj(n + 1);
+        vvi adj(n + 1);
         check_one(adj);
     }
     {
         int n = 2;
-        vector<vector<int>> adj(n + 1);
+        vvi adj(n + 1);
         add_edge(adj, 1, 2);
         check_one(adj);
     }
     {
         int n = 7;
-        vector<vector<int>> adj(n + 1);
+        vvi adj(n + 1);
         for (int i = 1; i < n; i++) add_edge(adj, i, i + 1);
         check_one(adj);
     }
     {
         int n = 9;
-        vector<vector<int>> adj(n + 1);
+        vvi adj(n + 1);
         for (int i = 2; i <= n; i++) add_edge(adj, 1, i);
         check_one(adj);
     }

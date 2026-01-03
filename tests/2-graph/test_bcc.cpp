@@ -12,7 +12,7 @@ int rnd(int l, int r) {
 }
 
 int ccnt(int n, const vector<pii> &ed, int sv, int se) {
-    vector<vector<int>> adj(n + 1);
+    vvi adj(n + 1);
     for (int i = 0; i < sz(ed); i++) {
         if (i == se) continue;
         int u = ed[i].fr, v = ed[i].sc;
@@ -20,7 +20,7 @@ int ccnt(int n, const vector<pii> &ed, int sv, int se) {
         adj[u].pb(v);
         adj[v].pb(u);
     }
-    vector<int> vis(n + 1);
+    vi vis(n + 1);
     int cnt = 0;
     for (int v = 1; v <= n; v++) {
         if (v == sv || vis[v]) continue;
@@ -39,9 +39,9 @@ int ccnt(int n, const vector<pii> &ed, int sv, int se) {
     return cnt;
 }
 
-vector<int> ap_na(int n, const vector<pii> &ed) {
+vi ap_na(int n, const vector<pii> &ed) {
     int base = ccnt(n, ed, 0, -1);
-    vector<int> ap;
+    vi ap;
     for (int v = 1; v <= n; v++)
         if (ccnt(n, ed, v, -1) > base) ap.pb(v);
     return ap;
@@ -86,7 +86,7 @@ void chk_bcc(int n, const vector<pii> &ed, bcc_graph &g) {
         }
         for (int i = 0; i < sz(comp); i++) {
             int u = comp[i].fr, v = comp[i].sc;
-            vector<int> vis(n + 1);
+            vi vis(n + 1);
             queue<int> q;
             q.push(u);
             vis[u] = 1;
@@ -115,7 +115,7 @@ void t_fix() {
     auto ae = g.ae;
     sort(all(ap));
     sort(all(ae));
-    assert(ap == vector<int>({2}));
+    assert(ap == vi({2}));
     assert(ae == vector<pii>({{1, 2}, {2, 3}}));
     chk_bcc(n, ed, g);
 }

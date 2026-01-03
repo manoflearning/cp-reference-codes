@@ -6,15 +6,15 @@
 // usage: lca_sparse l; l.init(n); l.add(u,v); l.build(1); int w=l.lca(u,v);
 struct lca_sparse {
     int n, lg;
-    vector<vector<int>> adj, up;
-    vector<int> dep;
+    vvi adj, up;
+    vi dep;
 
     void init(int n_) {
         n = n_;
         lg = 1;
         while ((1 << lg) <= n) lg++;
         adj.assign(n + 1, {});
-        up.assign(lg, vector<int>(n + 1, 0));
+        up.assign(lg, vi(n + 1, 0));
         dep.assign(n + 1, 0);
     }
     void add(int u, int v) {

@@ -38,8 +38,8 @@ void test_gauss_real() {
 void test_gauss_mod() {
     int n = 6, m = 6;
     int mod = 101;
-    vector<vector<int>> A(n, vector<int>(m));
-    vector<int> x(m), b(n);
+    vvi A(n, vi(m));
+    vi x(m), b(n);
     for (int i = 0; i < m; i++) x[i] = rnd_int(0, mod - 1);
     for (int i = 0; i < n; i++)
         for (int j = 0; j < m; j++) A[i][j] = rnd_int(0, mod - 1);
@@ -48,7 +48,7 @@ void test_gauss_mod() {
         for (int j = 0; j < m; j++) sum += (ll)A[i][j] * x[j];
         b[i] = sum % mod;
     }
-    vector<vector<int>> aug(n, vector<int>(m + 1));
+    vvi aug(n, vi(m + 1));
     for (int i = 0; i < n; i++) {
         for (int j = 0; j < m; j++) aug[i][j] = A[i][j];
         aug[i][m] = b[i];
@@ -61,7 +61,7 @@ void test_gauss_mod() {
         assert(sum % mod == b[i]);
     }
 
-    vector<vector<int>> bad = {
+    vvi bad = {
         {1, 0, 0},
         {1, 0, 1},
     };
@@ -71,7 +71,7 @@ void test_gauss_mod() {
 
 void test_gauss_xor() {
     int n = 40, m = 20;
-    vector<int> x(m);
+    vi x(m);
     for (int i = 0; i < m; i++) x[i] = rnd_int(0, 1);
     vector<bitset<GAUSS_BSZ>> aug(n);
     for (int i = 0; i < n; i++) {

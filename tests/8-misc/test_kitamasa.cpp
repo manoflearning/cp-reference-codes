@@ -11,9 +11,9 @@ ll rnd(ll l, ll r) {
     return dis(rng);
 }
 
-ll naive_rec(const vector<ll> &coef, const vector<ll> &init, ll n, ll mod) {
+ll naive_rec(const vl &coef, const vl &init, ll n, ll mod) {
     int k = sz(coef);
-    vector<ll> a = init;
+    vl a = init;
     if (n < k) return mod_norm(a[n], mod);
     for (ll i = k; i <= n; i++) {
         ll v = 0;
@@ -29,7 +29,7 @@ void test_random() {
     const ll mod = 1000000007LL;
     for (int it = 0; it < 200; it++) {
         int k = (int)rnd(1, 6);
-        vector<ll> coef(k), init(k);
+        vl coef(k), init(k);
         for (int i = 0; i < k; i++) {
             coef[i] = rnd(0, mod - 1);
             init[i] = rnd(0, mod - 1);

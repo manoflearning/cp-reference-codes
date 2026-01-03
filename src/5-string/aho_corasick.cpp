@@ -7,7 +7,7 @@
 struct aho_corasick {
     static constexpr int ALPHA = 26;
     vector<array<int, ALPHA>> nxt;
-    vector<int> fail, out;
+    vi fail, out;
 
     aho_corasick() { init(); }
 

@@ -13,7 +13,7 @@ ll rnd(ll l, ll r) {
 
 void test_cht() {
     int n = 200, q = 200;
-    vector<ll> m(n), b(n);
+    vl m(n), b(n);
     ll cur = 1000;
     for (int i = 0; i < n; i++) {
         cur -= rnd(0, 5);
@@ -32,13 +32,13 @@ void test_cht() {
 
 void test_knuth() {
     int n = 40;
-    vector<ll> a(n);
+    vl a(n);
     for (int i = 0; i < n; i++) a[i] = rnd(0, 10);
-    vector<ll> ps(n + 1, 0);
+    vl ps(n + 1, 0);
     for (int i = 0; i < n; i++) ps[i + 1] = ps[i] + a[i];
     auto cost = [&](int i, int j) { return ps[j + 1] - ps[i]; };
     const ll INF = (1LL << 62);
-    vector<vector<ll>> dp(n, vector<ll>(n, 0));
+    vvl dp(n, vl(n, 0));
     for (int len = 2; len <= n; len++) {
         for (int i = 0; i + len - 1 < n; i++) {
             int j = i + len - 1;
@@ -56,7 +56,7 @@ void test_knuth() {
 
 void test_dnc() {
     int n = 50, k = 4;
-    vector<ll> base(n, 0);
+    vl base(n, 0);
     auto cost = [&](int j, int i) {
         ll d = i - j;
         return d * d;
@@ -64,7 +64,7 @@ void test_dnc() {
     dnc_opt dc;
     dc.run(k, n, base, cost);
     const ll INF = (1LL << 62);
-    vector<vector<ll>> dp(k + 1, vector<ll>(n, INF));
+    vvl dp(k + 1, vl(n, INF));
     dp[0] = base;
     for (int g = 1; g <= k; g++) {
         for (int i = 0; i < n; i++) {
@@ -73,17 +73,17 @@ void test_dnc() {
             }
         }
     }
-    const vector<ll> &got = dc.dp();
+    const vl &got = dc.dp();
     for (int i = 0; i < n; i++) assert(got[i] == dp[k][i]);
 }
 
-ll slope_naive(const vector<ll> &a) {
+ll slope_naive(const vl &a) {
     int n = sz(a);
     ll mn = *min_element(all(a)) - n;
     ll mx = *max_element(all(a)) + n;
     int m = (int)(mx - mn + 1);
     const ll INF = (1LL << 62);
-    vector<ll> dp_prev(m, INF), dp_cur(m, INF);
+    vl dp_prev(m, INF), dp_cur(m, INF);
     for (int v = 0; v < m; v++) dp_prev[v] = llabs(a[0] - (mn + v));
     for (int i = 1; i < n; i++) {
         ll best = INF;
@@ -99,7 +99,7 @@ ll slope_naive(const vector<ll> &a) {
 void test_slope_trick() {
     for (int it = 0; it < 200; it++) {
         int n = (int)rnd(1, 8);
-        vector<ll> a(n);
+        vl a(n);
         for (int i = 0; i < n; i++) a[i] = rnd(-5, 5);
         assert(slope_trick(a) == slope_naive(a));
     }

@@ -6,8 +6,8 @@
 // usage: seg_tree st; st.build(a); st.set(p, v); st.query(l, r);
 struct seg_tree {
     int flag;
-    vector<ll> t;
-    void build(const vector<ll> &a) {
+    vl t;
+    void build(const vl &a) {
         // goal: build tree from 1-indexed array.
         int n = sz(a) - 1;
         flag = 1;
@@ -36,8 +36,8 @@ struct seg_tree {
 // usage: seg_tree_it st; st.build(a); st.set(p, v); st.query(l, r);
 struct seg_tree_it { // 0-indexed
     int n;
-    vector<ll> t;
-    void build(const vector<ll> &a) {
+    vl t;
+    void build(const vl &a) {
         // goal: build tree from 0-indexed array.
         n = sz(a);
         t.assign(2 * n, 0);
@@ -65,7 +65,7 @@ struct seg_tree_it { // 0-indexed
 // usage: seg_tree_kth st; st.init(n); st.add(p, v); st.kth(k);
 struct seg_tree_kth {
     int flag;
-    vector<ll> t;
+    vl t;
     void init(int n) {
         // goal: allocate tree for size n.
         flag = 1;
@@ -91,8 +91,8 @@ struct seg_tree_kth {
 // usage: seg_tree_lz st; st.build(a); st.add(l, r, v); st.query(l, r);
 struct seg_tree_lz {
     int flag;
-    vector<ll> t, lz;
-    void build(const vector<ll> &a) {
+    vl t, lz;
+    void build(const vl &a) {
         // goal: build tree and clear lazy tags.
         int n = sz(a) - 1;
         flag = 1;
@@ -149,10 +149,10 @@ struct seg_pst {
     };
     int n;
     vector<node> t;
-    vector<int> root;
+    vi root;
 
     void newnd() { t.pb({-1, -1, 0}); }
-    void build(int n_, const vector<ll> &a) {
+    void build(int n_, const vl &a) {
         // goal: build initial version.
         n = n_;
         t.clear();
@@ -161,7 +161,7 @@ struct seg_pst {
         root.pb(0);
         build(1, n, root[0], a);
     }
-    void build(int l, int r, int v, const vector<ll> &a) {
+    void build(int l, int r, int v, const vl &a) {
         // goal: build node v for range [l, r].
         if (l == r) {
             t[v].val = a[l];
@@ -275,11 +275,11 @@ struct seg_sparse {
 // usage: seg_2d st; st.build(a); st.set(x, y, v); st.query(x1, x2, y1, y2);
 struct seg_2d { // 0-indexed
     int n;
-    vector<vector<ll>> t;
-    void build(const vector<vector<ll>> &a) {
+    vvl t;
+    void build(const vvl &a) {
         // goal: build 2D tree from initial grid.
         n = sz(a);
-        t.assign(2 * n, vector<ll>(2 * n, 0));
+        t.assign(2 * n, vl(2 * n, 0));
         for (int i = 0; i < n; i++)
             for (int j = 0; j < n; j++)
                 t[i + n][j + n] = a[i][j];
@@ -325,8 +325,8 @@ struct seg_2d { // 0-indexed
 // usage: seg2d_comp st(n); st.mark_set(x, y); st.mark_qry(x1, x2, y1, y2); st.prep(); st.set(x, y, v); st.query(x1, x2, y1, y2);
 struct seg2d_comp { // 0-indexed
     int n;
-    vector<vector<ll>> a;
-    vector<vector<int>> used;
+    vvl a;
+    vvi used;
     unordered_map<ll, ll> mp;
     seg2d_comp(int n) : n(n), a(2 * n), used(2 * n) {}
     void mark_set(int x, int y) {

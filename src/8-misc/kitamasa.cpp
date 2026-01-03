@@ -4,7 +4,7 @@
 // time: O(k^2 log n); memory: O(k^2)
 // constraint: coef.size() == init.size(); mod >= 1.
 // usage: coef[i] for A_{n-1-i}; ll an = kitamasa(coef, init, n, mod);
-using poly = vector<ll>;
+using poly = vl;
 
 ll mod_norm(ll x, ll mod) {
     x %= mod;
@@ -36,7 +36,7 @@ poly poly_div(const poly &a, const poly &f, ll mod) {
     return ret;
 }
 
-ll kitamasa(const vector<ll> &coef, const vector<ll> &init, ll n, ll mod) {
+ll kitamasa(const vl &coef, const vl &init, ll n, ll mod) {
     int k = sz(coef);
     assert(k == sz(init));
     if (n < k) return mod_norm(init[n], mod);

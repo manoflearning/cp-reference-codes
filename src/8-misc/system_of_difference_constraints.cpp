@@ -12,7 +12,7 @@ struct diff_cons {
 
     int n;
     vector<vector<edge>> g;
-    vector<ll> dist;
+    vl dist;
 
     diff_cons(int n_ = 0) { init(n_); }
 
@@ -61,5 +61,5 @@ struct diff_cons {
         return true;
     }
 
-    vector<ll> val() const { return dist; }
+    vl val() const { return dist; }
 };

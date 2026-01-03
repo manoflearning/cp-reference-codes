@@ -11,9 +11,9 @@ int rnd(int l, int r) {
     return dis(rng);
 }
 
-vector<vector<ll>> floy(int n, const vector<tuple<int, int, ll>> &ed) {
+vvl floy(int n, const vector<tuple<int, int, ll>> &ed) {
     const ll INF = (1LL << 60);
-    vector<vector<ll>> d(n + 1, vector<ll>(n + 1, INF));
+    vvl d(n + 1, vl(n + 1, INF));
     for (int i = 1; i <= n; i++) d[i][i] = 0;
     for (auto [u, v, w] : ed) d[u][v] = min(d[u][v], w);
     for (int k = 1; k <= n; k++)
@@ -70,7 +70,7 @@ void t_bell() {
         bool neg = 0;
         for (int v = 1; v <= n; v++)
             if (d[s][v] < INF / 2 && d[v][v] < 0) neg = 1;
-        vector<ll> dist;
+        vl dist;
         bool ok = bl.run(s, dist);
         if (neg) {
             assert(!ok);

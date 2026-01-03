@@ -20,14 +20,14 @@ vector<ld> uniq_ang(vector<ld> v) {
     return u;
 }
 
-vector<int> perm(const vector<pt> &p, map<pll, int> &id) {
-    vector<int> res;
+vi perm(const vector<pt> &p, map<pll, int> &id) {
+    vi res;
     res.reserve(sz(p));
     for (auto &v : p) res.pb(id[{v.x, v.y}]);
     return res;
 }
 
-vector<int> proj_ord(const vector<pt> &p, map<pll, int> &id, ld ang) {
+vi proj_ord(const vector<pt> &p, map<pll, int> &id, ld ang) {
     ld cs = cosl(ang), sn = sinl(ang);
     vector<pair<ld, int>> arr;
     arr.reserve(sz(p));
@@ -39,7 +39,7 @@ vector<int> proj_ord(const vector<pt> &p, map<pll, int> &id, ld ang) {
         if (fabsl(a.fr - b.fr) > 1e-18) return a.fr < b.fr;
         return a.sc < b.sc;
     });
-    vector<int> ord;
+    vi ord;
     ord.reserve(sz(p));
     for (auto &x : arr) ord.pb(x.sc);
     return ord;
@@ -58,7 +58,7 @@ void test_bulldozer_small() {
             pts.pb(v);
         }
 
-        vector<vector<int>> got;
+        vvi got;
         vector<pt> cur = pts;
         bulldozer(cur, [&](const vector<pt> &p) { got.pb(perm(p, id)); });
 
@@ -85,7 +85,7 @@ void test_bulldozer_small() {
         bnd.pb(PI);
         bnd = uniq_ang(bnd);
 
-        vector<vector<int>> exp;
+        vvi exp;
         vector<pt> st = pts;
         sort(all(st));
         for (int i = 0; i + 1 < sz(bnd); i++) {

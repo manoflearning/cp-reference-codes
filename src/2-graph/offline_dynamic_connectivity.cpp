@@ -28,7 +28,7 @@ struct dyn_conn {
     } sg;
 
     struct dsu {
-        vector<int> par, siz, st;
+        vi par, siz, st;
         void init(int n) {
             // goal: reset to n isolated nodes.
             par.resize(n + 1);
@@ -64,7 +64,7 @@ struct dyn_conn {
     int n, q;
     map<pii, int> mp;
     vector<pii> qry;
-    vector<int> ans;
+    vi ans;
 
     void init(int n_, int q_) {
         // goal: initialize with n nodes and q operations.

@@ -13,11 +13,11 @@ int rnd(int l, int r) {
 
 kth_walk ks;
 
-vector<ll> kth_na(int n, const vector<vector<pll>> &g, int s, int e, int k) {
-    vector<int> cnt(n + 1);
+vl kth_na(int n, const vector<vector<pll>> &g, int s, int e, int k) {
+    vi cnt(n + 1);
     priority_queue<pll, vector<pll>, greater<pll>> pq;
     pq.push({0, s});
-    vector<ll> res;
+    vl res;
     while (!pq.empty() && sz(res) < k) {
         auto [d, v] = pq.top();
         pq.pop();

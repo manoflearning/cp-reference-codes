@@ -12,8 +12,8 @@ ll rnd(ll l, ll r) {
 }
 
 struct naive_dsu {
-    vector<int> comp;
-    vector<int> siz;
+    vi comp;
+    vi siz;
 
     void init(int n) {
         comp.resize(n);

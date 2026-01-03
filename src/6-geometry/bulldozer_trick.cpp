@@ -22,7 +22,7 @@ void bulldozer(vector<pt> &p, F f) {
     int n = sz(p);
     sort(all(p));
     vector<pt> base = p;
-    vector<int> pos(n);
+    vi pos(n);
     iota(all(pos), 0);
     vector<bd_line> ln;
     ln.reserve(1LL * n * (n - 1) / 2);
@@ -44,7 +44,7 @@ void bulldozer(vector<pt> &p, F f) {
         while (j < sz(ln) && ln[j] == ln[i]) j++;
         ll dx = ln[i].dx, dy = ln[i].dy;
         if (dx == 0) break;
-        unordered_map<ll, vector<int>> mp;
+        unordered_map<ll, vi> mp;
         mp.reserve((j - i) * 2 + 1);
         for (int k = i; k < j; k++) {
             int u = ln[k].u, v = ln[k].v;

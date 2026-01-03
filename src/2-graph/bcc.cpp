@@ -7,7 +7,7 @@
 struct bcc_graph {
     int n, tim;
     vector<vector<pii>> adj;
-    vector<int> dfn, low, ap, st;
+    vi dfn, low, ap, st;
     vector<pii> ed, ae;
     vector<vector<pii>> bccs;
 

@@ -6,8 +6,8 @@ constexpr int MAX_MST = 1 << 17;
 // constraint: MAX_MST >= n; values fit in int; 0-indexed [l, r]; build once.
 // usage: merge_seg st; st.build(a); st.query(l, r, k);
 struct merge_seg {
-    vector<int> t[MAX_MST << 1];
-    void build(const vector<int> &a) {
+    vi t[MAX_MST << 1];
+    void build(const vi &a) {
         // goal: build sorted lists for each node.
         for (int i = 0; i < sz(a); i++)
             t[i + MAX_MST].pb(a[i]);
@@ -31,8 +31,8 @@ struct merge_seg {
 // constraint: MAX_MST >= n; values fit in int; 0-indexed [l, r]; build once.
 // usage: merge_seg_it st; st.build(a); st.query(l, r, k);
 struct merge_seg_it {
-    vector<int> t[MAX_MST << 1];
-    void build(const vector<int> &a) {
+    vi t[MAX_MST << 1];
+    void build(const vi &a) {
         // goal: build sorted lists for each node.
         for (int i = 0; i < sz(a); i++)
             t[i + MAX_MST].pb(a[i]);

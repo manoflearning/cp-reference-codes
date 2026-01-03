@@ -8,7 +8,7 @@ struct rabin_karp {
     static constexpr ll MOD1 = 1000000007;
     static constexpr ll MOD2 = 1000000009;
     static constexpr ll BASE = 911382323;
-    vector<ll> p1, p2, h1, h2;
+    vl p1, p2, h1, h2;
 
     void build(const string &s) {
         // goal: precompute prefix hashes and powers.
@@ -36,9 +36,9 @@ struct rabin_karp {
     }
 };
 
-vector<int> rk_match(const string &t, const string &p) {
+vi rk_match(const string &t, const string &p) {
     // result: all positions where p matches t (by hash).
-    vector<int> res;
+    vi res;
     int n = sz(t), m = sz(p);
     if (!m || n < m) return res;
     rabin_karp ht, hp;

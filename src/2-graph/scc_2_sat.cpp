@@ -6,8 +6,8 @@
 // usage: scc_kosa s; s.init(n); s.add(u,v); int c=s.run();
 struct scc_kosa {
     int n;
-    vector<vector<int>> g, rg, sccs;
-    vector<int> vis, comp, ord;
+    vvi g, rg, sccs;
+    vi vis, comp, ord;
 
     void init(int n_) {
         n = n_;
@@ -53,8 +53,8 @@ struct scc_kosa {
 // usage: scc_tarjan s; s.init(n); s.add(u,v); int c=s.run();
 struct scc_tarjan {
     int n, tim;
-    vector<vector<int>> g, sccs;
-    vector<int> dfn, low, comp, st, ins;
+    vvi g, sccs;
+    vi dfn, low, comp, st, ins;
 
     void init(int n_) {
         n = n_;
@@ -105,8 +105,8 @@ struct scc_tarjan {
 // usage: two_sat s; s.init(n); s.add(a,b); bool ok=s.run(); // s.val
 struct two_sat {
     int n, tim, cid;
-    vector<vector<int>> g;
-    vector<int> dfn, low, comp, st, ins, val;
+    vvi g;
+    vi dfn, low, comp, st, ins, val;
 
     void init(int n_) {
         n = n_;

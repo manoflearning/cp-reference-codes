@@ -32,7 +32,7 @@ struct ek_flow {
         if (s == t) return 0;
         ll flow = 0;
         while (1) {
-            vector<int> pv(n, -1), pe(n, -1);
+            vi pv(n, -1), pe(n, -1);
             queue<int> q;
             q.push(s);
             pv[s] = s;
@@ -62,8 +62,8 @@ struct ek_flow {
     }
 };
 
-int brute_match(int n_l, int n_r, const vector<vector<int>> &g) {
-    vector<vector<int>> dp(n_l + 1, vector<int>(1 << n_r, -1));
+int brute_match(int n_l, int n_r, const vvi &g) {
+    vvi dp(n_l + 1, vi(1 << n_r, -1));
     function<int(int, int)> go = [&](int i, int mask) {
         if (i == n_l) return 0;
         int &ret = dp[i][mask];
@@ -97,8 +97,8 @@ struct mcmf_spfa {
         const ll INF = (1LL << 62);
         ll flow = 0, cost = 0;
         while (flow < max_f) {
-            vector<ll> dist(n, INF);
-            vector<int> pv(n, -1), pe(n, -1);
+            vl dist(n, INF);
+            vi pv(n, -1), pe(n, -1);
             queue<int> q;
             vector<char> in_q(n, 0);
             dist[s] = 0;
@@ -145,11 +145,11 @@ struct lr_res {
 
 lr_res brute_lr(int n, int s, int t, const vector<tuple<int, int, int, int, int>> &es) {
     int m = sz(es);
-    vector<int> f(m, 0);
+    vi f(m, 0);
     ll best_f = -(1LL << 62), best_c = (1LL << 62);
     function<void(int)> dfs = [&](int i) {
         if (i == m) {
-            vector<int> bal(n, 0);
+            vi bal(n, 0);
             ll cost = 0;
             for (int k = 0; k < m; k++) {
                 auto [u, v, lo, hi, c] = es[k];
@@ -207,7 +207,7 @@ void t_hk() {
     for (int it = 0; it < 300; it++) {
         int n_l = rnd(0, 10), n_r = rnd(0, 10);
         hk bm(n_l, n_r);
-        vector<vector<int>> g(n_l);
+        vvi g(n_l);
         for (int l = 0; l < n_l; l++)
             for (int r = 0; r < n_r; r++)
                 if (rnd(0, 1)) bm.add_edge(l, r), g[l].pb(r);

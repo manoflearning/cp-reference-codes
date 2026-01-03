@@ -6,9 +6,9 @@
 // constraint: x >= 1 and fits in ll.
 // usage: auto d=sqrt_alg::divisors(x); auto pf=sqrt_alg::prime_fac(x);
 struct sqrt_alg {
-    static vector<ll> divisors(ll x) {
+    static vl divisors(ll x) {
         // result: sorted divisors of x.
-        vector<ll> d;
+        vl d;
         for (ll i = 1; i <= x / i; i++) {
             if (x % i) continue;
             d.pb(i);
@@ -18,9 +18,9 @@ struct sqrt_alg {
         return d;
     }
 
-    static vector<ll> prime_fac(ll x) {
+    static vl prime_fac(ll x) {
         // result: prime factors of x (with repetition).
-        vector<ll> p;
+        vl p;
         while ((x & 1) == 0) {
             p.pb(2);
             x >>= 1;

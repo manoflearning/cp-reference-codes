@@ -45,8 +45,8 @@ int phi_ref(int x) {
     return ret;
 }
 
-vector<int> divisors(int x) {
-    vector<int> d;
+vi divisors(int x) {
+    vi d;
     for (int i = 1; 1LL * i * i <= x; i++) {
         if (x % i) continue;
         d.pb(i);

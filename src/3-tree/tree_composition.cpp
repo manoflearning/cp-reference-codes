@@ -6,15 +6,15 @@
 // usage: tree_comp tc; tc.init(n); tc.add(u,v); tc.build(root); auto nodes=tc.make(vs); // use tc.vt_adj
 struct tree_comp {
     int n, lg, tim;
-    vector<vector<int>> adj, up, vt_adj;
-    vector<int> tin, tout, dep;
+    vvi adj, up, vt_adj;
+    vi tin, tout, dep;
 
     void init(int n_) {
         n = n_;
         lg = 1;
         while ((1 << lg) <= n) lg++;
         adj.assign(n + 1, {});
-        up.assign(lg, vector<int>(n + 1, 0));
+        up.assign(lg, vi(n + 1, 0));
         vt_adj.assign(n + 1, {});
         tin.assign(n + 1, 0);
         tout.assign(n + 1, 0);
@@ -57,7 +57,7 @@ struct tree_comp {
         }
         return up[0][a];
     }
-    vector<int> make(vector<int> vs) {
+    vi make(vi vs) {
         if (vs.empty()) return {};
         sort(all(vs), [&](int a, int b) { return tin[a] < tin[b]; });
         vs.erase(unique(all(vs)), vs.end());
@@ -66,7 +66,7 @@ struct tree_comp {
         sort(all(vs), [&](int a, int b) { return tin[a] < tin[b]; });
         vs.erase(unique(all(vs)), vs.end());
         for (int v : vs) vt_adj[v].clear();
-        vector<int> st;
+        vi st;
         st.pb(vs[0]);
         for (int i = 1; i < sz(vs); i++) {
             int v = vs[i];

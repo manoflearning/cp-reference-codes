@@ -8,7 +8,7 @@
 struct era_sieve {
     int n;
     vector<char> isp;
-    vector<int> primes;
+    vi primes;
 
     era_sieve(int n_ = 0) {
         if (n_ >= 0) init(n_);
@@ -40,7 +40,7 @@ struct era_sieve {
 // usage: lin_sieve sv(n); auto fc=sv.factor_cnt(x); int mu=sv.mu[x];
 struct lin_sieve {
     int n;
-    vector<int> lp, primes, mu, phi;
+    vi lp, primes, mu, phi;
 
     lin_sieve(int n_ = 0) {
         if (n_ >= 0) init(n_);
@@ -78,9 +78,9 @@ struct lin_sieve {
 
     bool is_prime(int x) const { return x >= 2 && x <= n && lp[x] == x; }
 
-    vector<int> factor(int x) const {
+    vi factor(int x) const {
         // result: prime factors of x (with repetition), in nondecreasing order
-        vector<int> ret;
+        vi ret;
         while (x > 1) {
             int p = lp[x];
             ret.pb(p);
@@ -106,7 +106,7 @@ struct lin_sieve {
 // time: O(n); memory: O(n)
 // constraint: n >= 0.
 // usage: auto mu = mobius(n); if(mu[x]) ...
-inline vector<int> mobius(int n) {
+inline vi mobius(int n) {
     lin_sieve sv(n);
     return sv.mu;
 }
@@ -129,7 +129,7 @@ struct euler_phi {
         return ret;
     }
 
-    static vector<int> phi_upto(int n) {
+    static vi phi_upto(int n) {
         lin_sieve sv(n);
         return sv.phi;
     }

@@ -8,8 +8,8 @@ struct hld_tree {
     seg_tree seg;
 
     int n, tim;
-    vector<vector<int>> adj;
-    vector<int> par, dep, siz, heavy, top, in;
+    vvi adj;
+    vi par, dep, siz, heavy, top, in;
 
     void init(int n_) {
         n = n_;
@@ -51,7 +51,7 @@ struct hld_tree {
     void build(int root = 1) {
         dfs_sz(root, 0);
         dfs_hld(root, root);
-        vector<ll> a(n + 1, 0);
+        vl a(n + 1, 0);
         seg.build(a);
     }
     void set(int v, ll val) { seg.set(in[v], val); }

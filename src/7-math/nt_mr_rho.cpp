@@ -60,7 +60,7 @@ struct pollard_rho {
         }
     }
 
-    static void rec(ll n, vector<ll> &out) {
+    static void rec(ll n, vl &out) {
         if (n == 1) return;
         if (miller_rabin::is_prime(n)) {
             out.pb(n);
@@ -71,9 +71,9 @@ struct pollard_rho {
         rec(n / d, out);
     }
 
-    static vector<ll> factor(ll n) {
+    static vl factor(ll n) {
         // result: prime factors of |n| with repetition, sorted.
-        vector<ll> out;
+        vl out;
         if (n < 0) n = -n;
         if (n == 0) return out;
         rec(n, out);

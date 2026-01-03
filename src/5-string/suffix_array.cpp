@@ -4,12 +4,12 @@
 // time: build_sa O(n log n), build_lcp O(n); memory: O(n)
 // constraint: s is 0-indexed string, sa is 0-indexed positions.
 // usage: suffix_array sa; sa.build(s); // sa.sa, sa.lcp (lcp[i]=lcp(sa[i], sa[i-1]))
-vector<int> build_sa(const string &s) {
+vi build_sa(const string &s) {
     // result: sa[i] = starting index of i-th suffix in sorted order.
     int n = sz(s);
     if (!n) return {};
     int m = max(256, n) + 1;
-    vector<int> sa(n), r(2 * n), nr(2 * n), cnt(m), idx(n);
+    vi sa(n), r(2 * n), nr(2 * n), cnt(m), idx(n);
     for (int i = 0; i < n; i++) sa[i] = i, r[i] = (unsigned char)s[i];
     for (int d = 1; d < n; d <<= 1) {
         auto cmp = [&](int i, int j) {
@@ -32,10 +32,10 @@ vector<int> build_sa(const string &s) {
     return sa;
 }
 
-vector<int> build_lcp(const string &s, const vector<int> &sa) {
+vi build_lcp(const string &s, const vi &sa) {
     // result: lcp[i] = LCP of sa[i] and sa[i-1].
     int n = sz(s);
-    vector<int> lcp(n), rk(n);
+    vi lcp(n), rk(n);
     for (int i = 0; i < n; i++) rk[sa[i]] = i;
     for (int i = 0, k = 0; i < n; i++) {
         int r = rk[i];
@@ -49,7 +49,7 @@ vector<int> build_lcp(const string &s, const vector<int> &sa) {
 }
 
 struct suffix_array {
-    vector<int> sa, lcp;
+    vi sa, lcp;
     void build(const string &s) {
         // goal: fill sa and lcp for string s.
         sa = build_sa(s);

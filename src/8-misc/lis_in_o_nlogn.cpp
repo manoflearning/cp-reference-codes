@@ -5,9 +5,9 @@
 // constraint: use lower_bound for strict; use upper_bound for non-decreasing.
 // usage: int len = lis_len(a); auto seq = lis_seq(a);
 
-int lis_len(const vector<ll> &a) {
+int lis_len(const vl &a) {
     // result: length of LIS.
-    vector<ll> tail;
+    vl tail;
     for (ll x : a) {
         auto it = lower_bound(all(tail), x);
         if (it == tail.end()) tail.pb(x);
@@ -16,12 +16,12 @@ int lis_len(const vector<ll> &a) {
     return sz(tail);
 }
 
-vector<ll> lis_seq(const vector<ll> &a) {
+vl lis_seq(const vl &a) {
     // result: one LIS sequence.
     int n = sz(a);
-    vector<ll> tail;
-    vector<int> tail_idx;
-    vector<int> pre(n, -1);
+    vl tail;
+    vi tail_idx;
+    vi pre(n, -1);
     for (int i = 0; i < n; i++) {
         ll x = a[i];
         int pos = lower_bound(all(tail), x) - tail.begin();
@@ -34,7 +34,7 @@ vector<ll> lis_seq(const vector<ll> &a) {
         }
         if (pos > 0) pre[i] = tail_idx[pos - 1];
     }
-    vector<ll> ret;
+    vl ret;
     int cur = tail_idx.empty() ? -1 : tail_idx.back();
     while (cur != -1) {
         ret.pb(a[cur]);

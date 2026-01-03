@@ -21,9 +21,9 @@ ll fib_ref(int n, ll mod) {
     return a;
 }
 
-vector<vector<ll>> mul_ref(const vector<vector<ll>> &a, const vector<vector<ll>> &b, ll mod) {
+vvl mul_ref(const vvl &a, const vvl &b, ll mod) {
     int n = sz(a), m = sz(b[0]), k = sz(a[0]);
-    vector<vector<ll>> r(n, vector<ll>(m, 0));
+    vvl r(n, vl(m, 0));
     for (int i = 0; i < n; i++)
         for (int t = 0; t < k; t++)
             for (int j = 0; j < m; j++) {

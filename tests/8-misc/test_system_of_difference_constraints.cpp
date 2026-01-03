@@ -13,7 +13,7 @@ int rnd_int(int l, int r) {
 
 bool has_neg_cycle(int n, const vector<tuple<int, int, ll>> &edges) {
     const ll INF = (1LL << 60);
-    vector<vector<ll>> d(n, vector<ll>(n, INF));
+    vvl d(n, vl(n, INF));
     for (int i = 0; i < n; i++) d[i][i] = 0;
     for (auto [u, v, w] : edges) d[u][v] = min(d[u][v], w);
     for (int k = 0; k < n; k++) {
@@ -48,7 +48,7 @@ void test_random() {
         bool neg = has_neg_cycle(n, edges);
         assert(ok == !neg);
         if (ok) {
-            vector<ll> x = dc.val();
+            vl x = dc.val();
             for (auto [u, v, w] : edges) {
                 assert(x[v] <= x[u] + w);
             }

@@ -5,15 +5,15 @@
 // constraint: 1 <= n <= m, 1-indexed cost a[1..n][1..m] (minimization).
 // usage: hungarian hu; auto [cost, match_l] = hu.run(n, m, a); // match_l[i]=j
 struct hungarian {
-    pair<ll, vector<int>> run(int n, int m, const vector<vector<ll>> &a) {
+    pair<ll, vi> run(int n, int m, const vvl &a) {
         // result: {min_cost, match_l} with match_l[i]=assigned column.
         const ll INF = (1LL << 62);
-        vector<ll> u(n + 1), v(m + 1);
-        vector<int> p(m + 1), way(m + 1);
+        vl u(n + 1), v(m + 1);
+        vi p(m + 1), way(m + 1);
         for (int i = 1; i <= n; i++) {
             p[0] = i;
             int j0 = 0;
-            vector<ll> minv(m + 1, INF);
+            vl minv(m + 1, INF);
             vector<char> used(m + 1, 0);
             do {
                 used[j0] = 1;
@@ -41,7 +41,7 @@ struct hungarian {
                 j0 = j1;
             } while (j0);
         }
-        vector<int> match_l(n + 1, 0);
+        vi match_l(n + 1, 0);
         for (int j = 1; j <= m; j++)
             if (p[j]) match_l[p[j]] = j;
         return {-v[0], match_l};

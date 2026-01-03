@@ -6,8 +6,8 @@
 // usage: cen_decomp cd; cd.init(n); cd.add(u,v); cd.build(); int p=cd.par[v];
 struct cen_decomp {
     int n;
-    vector<vector<int>> adj, chd;
-    vector<int> par, siz;
+    vvi adj, chd;
+    vi par, siz;
     vector<char> used;
 
     void init(int n_) {
