@@ -20,18 +20,15 @@ void m_insert(omset &os, ll val) {
     // goal: insert one occurrence of val.
     os.insert({val, om_uid++});
 }
-
 void m_erase(omset &os, ll val) {
     // goal: erase one occurrence of val.
     auto it = os.lower_bound({val, LLONG_MIN});
     os.erase(it);
 }
-
 int m_order(const omset &os, ll val) {
     // result: number of elements strictly less than val.
     return os.order_of_key({val, LLONG_MIN});
 }
-
 ll m_kth(const omset &os, int k) {
     // result: k-th value (0-indexed) by order.
     return os.find_by_order(k)->fr;

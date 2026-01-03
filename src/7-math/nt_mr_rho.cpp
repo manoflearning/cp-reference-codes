@@ -8,7 +8,6 @@
 struct miller_rabin {
     static ll mul(ll a, ll b, ll mod) { return (ll)((__int128)a * b % mod); }
     static ll pow_mod(ll a, ll e, ll mod) { return ::pow_mod(a, e, mod); }
-
     static bool is_prime(ll n) {
         if (n < 2) return 0;
         for (ll p : {2, 3, 5, 7, 11, 13, 17, 19, 23, 29, 31, 37}) {
@@ -43,7 +42,6 @@ struct miller_rabin {
 // usage: auto f=pollard_rho::factor(n);
 struct pollard_rho {
     static ll f(ll x, ll c, ll mod) { return (miller_rabin::mul(x, x, mod) + c) % mod; }
-
     static ll rho(ll n) {
         if ((n & 1) == 0) return 2;
         static mt19937_64 rng(712367);
@@ -59,7 +57,6 @@ struct pollard_rho {
             if (d != n) return d;
         }
     }
-
     static void rec(ll n, vl &out) {
         if (n == 1) return;
         if (miller_rabin::is_prime(n)) {
@@ -70,7 +67,6 @@ struct pollard_rho {
         rec(d, out);
         rec(n / d, out);
     }
-
     static vl factor(ll n) {
         // result: prime factors of |n| with repetition, sorted.
         vl out;

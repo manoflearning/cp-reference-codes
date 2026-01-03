@@ -13,14 +13,12 @@ struct mo {
     vector<qry> q;
 
     mo(int n_ = 0) { init(n_); }
-
     void init(int n_) {
         // goal: set array size and reset queries.
         n = n_;
         bs = max(1, (int)sqrt(n));
         q.clear();
     }
-
     void add_query(int l, int r, int idx) { q.pb({l, r, idx}); }
 
     template <class Add, class Del, class Out>

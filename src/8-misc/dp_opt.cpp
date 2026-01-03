@@ -21,7 +21,6 @@ struct cht_mono {
     ld isect(const line &a, const line &b) const {
         return (ld)(b.b - a.b) / (a.m - b.m);
     }
-
     void add_line(ll m, ll b) {
         // goal: maintain lower hull with decreasing slopes
         if (!st.empty() && st.back().m == m) {
@@ -37,7 +36,6 @@ struct cht_mono {
         if (st.empty()) cur.x = NEG_INF;
         st.pb(cur);
     }
-
     ll get(ll x) const {
         // invariant: st is sorted by x; pick last with x_i <= x
         int l = 0, r = sz(st) - 1;
@@ -109,7 +107,6 @@ struct dnc_opt {
             prv.swap(cur);
         }
     }
-
     const vl &dp() const { return prv; }
 
     template <class F>

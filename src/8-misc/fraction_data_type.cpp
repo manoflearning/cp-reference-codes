@@ -8,7 +8,6 @@ struct fraction {
     ll n, d;
 
     fraction(ll n_ = 0, ll d_ = 1) { set(n_, d_); }
-
     static ll gcd_ll(ll a, ll b) {
         if (a < 0) a = -a;
         if (b < 0) b = -b;
@@ -19,14 +18,12 @@ struct fraction {
         }
         return a;
     }
-
     void set(ll n_, ll d_) {
         // goal: normalize sign + reduce
         n = n_;
         d = d_;
         norm();
     }
-
     void norm() {
         if (d < 0) n = -n, d = -d;
         ll g = gcd_ll(n, d);

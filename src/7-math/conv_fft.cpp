@@ -100,7 +100,6 @@ struct ntt_mod {
         if (x < 0) x += MOD;
         return x;
     }
-
     static ll mod_pow(ll b, ll e) {
         ll ans = 1;
         while (e) {

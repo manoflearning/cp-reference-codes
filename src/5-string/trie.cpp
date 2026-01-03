@@ -10,14 +10,12 @@ struct trie {
     vector<char> term;
 
     trie() { init(); }
-
     void init() {
         // goal: reset to empty trie.
         nxt.assign(1, {});
         nxt[0].fill(-1);
         term.assign(1, 0);
     }
-
     int add(const string &s) {
         // goal: insert a string and mark its terminal node.
         int v = 0;

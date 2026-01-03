@@ -10,7 +10,6 @@ struct aho_corasick {
     vi fail, out;
 
     aho_corasick() { init(); }
-
     void init() {
         // goal: reset to a single root node.
         nxt.assign(1, {});
@@ -18,7 +17,6 @@ struct aho_corasick {
         fail.assign(1, 0);
         out.assign(1, 0);
     }
-
     int add(const string &s) {
         // goal: insert a pattern and return its terminal node.
         int v = 0;
@@ -66,7 +64,6 @@ struct aho_corasick {
     }
 
     int step(int v, char ch) const { return nxt[v][ch - 'a']; }
-
     bool match_any(const string &t) const {
         // result: true if any pattern appears in t.
         int v = 0;
@@ -76,7 +73,6 @@ struct aho_corasick {
         }
         return false;
     }
-
     ll count(const string &t) const {
         // result: total number of pattern occurrences in t.
         ll res = 0;

@@ -14,7 +14,6 @@ struct catalan_mod {
         mod = mod_;
         cb.init(2 * n, mod);
     }
-
     ll catalan(int n) const {
         ll ret = cb.ncr(2 * n, n);
         ll inv = euclid::inv_mod(n + 1, mod);
@@ -42,6 +41,5 @@ struct derange_mod {
             dp[i] = (ll)((__int128)(i - 1) * sum % mod);
         }
     }
-
     ll get(int n) const { return dp[n]; }
 };

@@ -15,23 +15,19 @@ struct diff_cons {
     vl dist;
 
     diff_cons(int n_ = 0) { init(n_); }
-
     void init(int n_) {
         n = n_;
         g.assign(n, {});
         dist.assign(n, 0);
     }
-
     void add_le(int u, int v, ll w) {
         // goal: x_v - x_u <= w
         g[u].pb({v, w});
     }
-
     void add_ge(int u, int v, ll w) {
         // goal: x_v - x_u >= w  <=>  x_u - x_v <= -w
         add_le(v, u, -w);
     }
-
     void add_eq(int u, int v, ll w) {
         // goal: x_v - x_u = w
         add_le(u, v, w);
@@ -60,6 +56,5 @@ struct diff_cons {
         }
         return true;
     }
-
     vl val() const { return dist; }
 };

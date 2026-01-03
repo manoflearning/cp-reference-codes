@@ -13,7 +13,6 @@ struct era_sieve {
     era_sieve(int n_ = 0) {
         if (n_ >= 0) init(n_);
     }
-
     void init(int n_) {
         // goal: build isp/primes for [0..n]
         n = n_;
@@ -30,7 +29,6 @@ struct era_sieve {
         for (int i = 3; i <= n; i += 2)
             if (isp[i]) primes.pb(i);
     }
-
     bool is_prime(int x) const { return x >= 2 && x <= n && isp[x]; }
 };
 
@@ -45,7 +43,6 @@ struct lin_sieve {
     lin_sieve(int n_ = 0) {
         if (n_ >= 0) init(n_);
     }
-
     void init(int n_) {
         // goal: fill lp/primes/mu/phi for [0..n]
         n = n_;
@@ -75,9 +72,7 @@ struct lin_sieve {
             }
         }
     }
-
     bool is_prime(int x) const { return x >= 2 && x <= n && lp[x] == x; }
-
     vi factor(int x) const {
         // result: prime factors of x (with repetition), in nondecreasing order
         vi ret;
@@ -88,7 +83,6 @@ struct lin_sieve {
         }
         return ret;
     }
-
     vector<pii> factor_cnt(int x) const {
         // result: {{p, e}} s.t. x = prod p^e, increasing p
         vector<pii> ret;
@@ -128,7 +122,6 @@ struct euler_phi {
         if (x > 1) ret = ret / x * (x - 1);
         return ret;
     }
-
     static vi phi_upto(int n) {
         lin_sieve sv(n);
         return sv.phi;

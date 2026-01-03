@@ -23,7 +23,6 @@ struct euclid {
         if (v < 0) v = -v;
         return v;
     }
-
     static pair<pll, ll> egcd(ll a, ll b) {
         // result: {{x, y}, g} s.t. a*x + b*y = g = gcd(a, b)
         ll s = 0, os = 1;
@@ -48,7 +47,6 @@ struct euclid {
         }
         return {{os, ot}, orr};
     }
-
     static ll inv_mod(ll a, ll mod) {
         // result: x in [0, mod) s.t. a*x = 1 (mod mod), or -1 if not invertible.
         a %= mod;
@@ -59,7 +57,6 @@ struct euclid {
         if (x < 0) x += mod;
         return x;
     }
-
     static ll lin_cong(ll a, ll b, ll mod) {
         // what: solve linear congruence a*x = b (mod mod).
         // result: one x in [0, mod) if exists, else -1.
