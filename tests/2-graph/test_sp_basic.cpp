@@ -37,7 +37,7 @@ void t_dijk() {
             int u = rnd(1, n), v = rnd(1, n);
             ll w = rnd(0, 9);
             ed.push_back({u, v, w});
-            dj.add(u, v, w);
+            dj.add_edge(u, v, w);
         }
         auto d = floy(n, ed);
         int s = rnd(1, n);
@@ -63,7 +63,7 @@ void t_bell() {
             int u = rnd(1, n), v = rnd(1, n);
             ll w = rnd(-5, 9);
             ed.push_back({u, v, w});
-            bl.add(u, v, w);
+            bl.add_edge(u, v, w);
         }
         auto d = floy(n, ed);
         int s = rnd(1, n);
@@ -98,7 +98,7 @@ void t_floy() {
             int u = rnd(1, n), v = rnd(1, n);
             ll w = rnd(-5, 9);
             ed.push_back({u, v, w});
-            fl.add(u, v, w);
+            fl.add_edge(u, v, w);
         }
         auto d = floy(n, ed);
         bool neg = 0;

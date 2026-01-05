@@ -235,8 +235,8 @@ struct seg_2d { // 1-indexed
 
 // what: 2D segment tree with coordinate compression for sparse updates/queries.
 // time: prep O(q log q), update/query O(log^2 n); memory: O(q log q)
-// constraint: x is 1-indexed [1..n]; y is coordinate value; call mark_set/mark_qry first, then prep, then set/query.
-// usage: seg2d_comp st(n); st.mark_set(x, y); st.mark_qry(x1, x2, y1, y2); st.prep(); st.set(x, y, v); st.query(x1, x2, y1, y2);
+// constraint: x is 1-indexed [1..n]; y is coordinate value; call mark_set/mark_query first, then prep, then set/query.
+// usage: seg2d_comp st(n); st.mark_set(x, y); st.mark_query(x1, x2, y1, y2); st.prep(); st.set(x, y, v); st.query(x1, x2, y1, y2);
 struct seg2d_comp { // x: 1-indexed
     int n;
     vector<vector<ll>> a;
@@ -247,7 +247,7 @@ struct seg2d_comp { // x: 1-indexed
         // goal: record y-coordinates that will be updated.
         for (x += n - 1; x >= 1; x >>= 1) used[x].push_back(y);
     }
-    void mark_qry(int x1, int x2, int y1, int y2) {
+    void mark_query(int x1, int x2, int y1, int y2) {
         // goal: record y-coordinates needed for queries.
         for (x1 += n - 1, x2 += n; x1 < x2; x1 >>= 1, x2 >>= 1) {
             if (x1 & 1) {

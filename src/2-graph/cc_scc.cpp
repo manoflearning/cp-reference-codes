@@ -3,7 +3,7 @@
 // what: compute SCCs in a directed graph using Kosaraju's algorithm.
 // time: O(n+m); memory: O(n+m)
 // constraint: directed; 1-indexed; recursion depth O(n).
-// usage: scc_kosa s; s.init(n); s.add(u,v); int c=s.run();
+// usage: scc_kosa s; s.init(n); s.add_edge(u,v); int c=s.run();
 struct scc_kosa {
     int n;
     vector<vector<int>> g, rg, sccs;
@@ -18,7 +18,7 @@ struct scc_kosa {
         comp.assign(n + 1, -1);
         ord.clear();
     }
-    void add(int u, int v) {
+    void add_edge(int u, int v) {
         g[u].push_back(v);
         rg[v].push_back(u);
     }
@@ -50,7 +50,7 @@ struct scc_kosa {
 // what: compute SCCs in a directed graph using Tarjan's algorithm.
 // time: O(n+m); memory: O(n+m)
 // constraint: directed; 1-indexed; recursion depth O(n).
-// usage: scc_tarjan s; s.init(n); s.add(u,v); int c=s.run();
+// usage: scc_tarjan s; s.init(n); s.add_edge(u,v); int c=s.run();
 struct scc_tarjan {
     int n, tim;
     vector<vector<int>> g, sccs;
@@ -67,7 +67,7 @@ struct scc_tarjan {
         ins.assign(n + 1, 0);
         st.clear();
     }
-    void add(int u, int v) { g[u].push_back(v); }
+    void add_edge(int u, int v) { g[u].push_back(v); }
     void dfs(int v) {
         dfn[v] = low[v] = ++tim;
         st.push_back(v);

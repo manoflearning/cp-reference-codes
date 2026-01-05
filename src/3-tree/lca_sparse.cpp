@@ -3,7 +3,7 @@
 // what: LCA via binary lifting for rooted tree.
 // time: build O(n log n), query O(log n); memory: O(n log n)
 // constraint: 1-indexed tree.
-// usage: lca_sparse l; l.init(n); l.add(u,v); l.build(1); int w=l.lca(u,v);
+// usage: lca_sparse l; l.init(n); l.add_edge(u,v); l.build(1); int w=l.lca(u,v);
 struct lca_sparse {
     int n, lg;
     vector<vector<int>> adj, up;
@@ -17,7 +17,7 @@ struct lca_sparse {
         up.assign(lg, vector<int>(n + 1, 0));
         dep.assign(n + 1, 0);
     }
-    void add(int u, int v) {
+    void add_edge(int u, int v) {
         adj[u].push_back(v);
         adj[v].push_back(u);
     }

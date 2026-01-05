@@ -3,7 +3,7 @@
 // what: centroid decomposition for tree, builds centroid parent/children for path queries.
 // time: O(n log n); memory: O(n)
 // constraint: 1-indexed tree.
-// usage: cen_decomp cd; cd.init(n); cd.add(u,v); cd.build(); int p=cd.par[v];
+// usage: cen_decomp cd; cd.init(n); cd.add_edge(u,v); cd.build(); int p=cd.par[v];
 struct cen_decomp {
     int n;
     vector<vector<int>> adj, chd;
@@ -18,7 +18,7 @@ struct cen_decomp {
         siz.assign(n + 1, 0);
         used.assign(n + 1, 0);
     }
-    void add(int u, int v) {
+    void add_edge(int u, int v) {
         adj[u].push_back(v);
         adj[v].push_back(u);
     }

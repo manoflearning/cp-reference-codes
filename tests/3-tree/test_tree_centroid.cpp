@@ -59,7 +59,7 @@ void check_one(const vector<vector<int>> &adj) {
     cd.init(n);
     for (int u = 1; u <= n; u++)
         for (int v : adj[u])
-            if (u < v) cd.add(u, v);
+            if (u < v) cd.add_edge(u, v);
     cd.build(1);
 
     int root = get_root(n, cd.par);

@@ -54,7 +54,7 @@ bool can_na(int n, const vector<vector<int>> &cnt) {
 }
 
 void add_ed(euler_cir &g, vector<vector<int>> &cnt, int u, int v) {
-    g.add(u, v);
+    g.add_edge(u, v);
     if (u == v) cnt[u][u]++;
     else cnt[u][v]++, cnt[v][u]++;
 }

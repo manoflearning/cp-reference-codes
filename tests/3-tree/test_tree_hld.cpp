@@ -51,14 +51,14 @@ void t_fix() {
     h.init(n);
     for (int u = 1; u <= n; u++)
         for (int v : adj[u])
-            if (u < v) h.add(u, v);
+            if (u < v) h.add_edge(u, v);
     h.build(1);
     vector<ll> val = {0, 1, 2, 3, 4};
     for (int i = 1; i <= n; i++) h.set(i, val[i]);
     auto p = path_nodes(n, adj, 3, 4);
     ll sum = 0;
     for (int v : p) sum += val[v];
-    assert(h.qry(3, 4) == sum);
+    assert(h.query(3, 4) == sum);
 }
 
 void t_rnd() {
@@ -73,7 +73,7 @@ void t_rnd() {
         }
         hld_tree h;
         h.init(n);
-        for (int v = 2; v <= n; v++) h.add(v, par[v]);
+        for (int v = 2; v <= n; v++) h.add_edge(v, par[v]);
         h.build(1);
         vector<ll> val(n + 1);
         for (int i = 1; i <= n; i++) {
@@ -85,7 +85,7 @@ void t_rnd() {
             auto p = path_nodes(n, adj, a, b);
             ll sum = 0;
             for (int v : p) sum += val[v];
-            assert(h.qry(a, b) == sum);
+            assert(h.query(a, b) == sum);
         }
     }
 }

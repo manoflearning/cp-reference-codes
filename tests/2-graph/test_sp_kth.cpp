@@ -36,8 +36,8 @@ void t_fix() {
     g[1].push_back({1, 2});
     g[2].push_back({1, 3});
     ks.init(n);
-    ks.add(1, 2, 1);
-    ks.add(2, 3, 1);
+    ks.add_edge(1, 2, 1);
+    ks.add_edge(2, 3, 1);
     auto a = kth_na(n, g, 1, 3, 3);
     auto b = ks.run(1, 3, 3);
     assert(a == b);
@@ -53,7 +53,7 @@ void t_rnd() {
             int u = rnd(1, n), v = rnd(1, n);
             ll w = rnd(1, 5);
             g[u].push_back({w, v});
-            ks.add(u, v, w);
+            ks.add_edge(u, v, w);
         }
         int s = rnd(1, n), e = rnd(1, n), k = rnd(1, 10);
         auto a = kth_na(n, g, s, e, k);

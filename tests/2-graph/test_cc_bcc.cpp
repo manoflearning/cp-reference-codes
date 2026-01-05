@@ -109,7 +109,7 @@ void t_fix() {
     vector<pii> ed = {{1, 2}, {2, 3}};
     bcc_graph g;
     g.init(n);
-    for (auto [u, v] : ed) g.add(u, v);
+    for (auto [u, v] : ed) g.add_edge(u, v);
     g.run();
     auto ap = g.ap;
     auto ae = g.ae;
@@ -135,7 +135,7 @@ void t_rnd() {
         }
         bcc_graph g;
         g.init(n);
-        for (auto [u, v] : ed) g.add(u, v);
+        for (auto [u, v] : ed) g.add_edge(u, v);
         g.run();
         auto ap = g.ap;
         auto ae = g.ae;

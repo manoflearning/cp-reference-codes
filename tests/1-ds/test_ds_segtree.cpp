@@ -248,7 +248,7 @@ void test_seg2dc_basic() {
 
     for (auto &op : ops) {
         if (op.type == 0) st.mark_set(op.x1, op.y1);
-        else st.mark_qry(op.x1, op.x2, op.y1, op.y2);
+        else st.mark_query(op.x1, op.x2, op.y1, op.y2);
     }
     st.prep();
 
@@ -294,7 +294,7 @@ void test_seg2dc_random() {
 
     for (auto &op : ops) {
         if (op.type == 0) st.mark_set(op.x1, op.y1);
-        else st.mark_qry(op.x1, op.x2, op.y1, op.y2);
+        else st.mark_query(op.x1, op.x2, op.y1, op.y2);
     }
     st.prep();
 
