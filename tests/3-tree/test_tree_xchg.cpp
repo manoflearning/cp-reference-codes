@@ -89,7 +89,7 @@ void check_one(const vector<vector<int>> &adj, int root, const vector<ll> &w, co
     tx.init(n, root);
     for (int u = 1; u <= n; u++)
         for (int v : adj[u])
-            if (u < v) tx.add(u, v);
+            if (u < v) tx.add_edge(u, v);
     for (int i = 1; i <= n; i++) {
         tx.ds.w[i] = w[i];
         tx.ds.t[i] = t[i];

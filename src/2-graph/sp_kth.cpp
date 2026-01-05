@@ -3,7 +3,7 @@
 // what: enumerate k-th shortest walk from s to t with non-negative weights (Eppstein-style).
 // time: O((n+m)log m + klog k); memory: O(n+m+heap)
 // constraint: 1-indexed; w >= 0; n <= MAXN-1; recursion depth O(log m).
-// usage: kth_walk g; g.init(n); g.add(u,v,w); auto v=g.run(s,e,k);
+// usage: kth_walk g; g.init(n); g.add_edge(u,v,w); auto v=g.run(s,e,k);
 struct kth_walk {
     static const int MAXN = 303030;
     static const ll INF = (ll)1e18;
@@ -42,7 +42,7 @@ struct kth_walk {
         for (int i = 1; i <= n; i++) g[i].clear(), rg[i].clear();
         hp.init();
     }
-    void add(int u, int v, ll w) {
+    void add_edge(int u, int v, ll w) {
         g[u].push_back({w, v});
         rg[v].push_back({w, u});
     }

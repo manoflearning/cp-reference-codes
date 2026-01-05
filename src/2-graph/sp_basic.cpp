@@ -3,7 +3,7 @@
 // what: compute single-source shortest paths with non-negative edges (Dijkstra).
 // time: O((n+m)log n); memory: O(n+m)
 // constraint: directed; 1-indexed; w >= 0.
-// usage: dijkstra g; g.init(n); g.add(u,v,w); auto dist=g.run(s);
+// usage: dijkstra g; g.init(n); g.add_edge(u,v,w); auto dist=g.run(s);
 struct dijkstra {
     static const ll INF = (1LL << 62);
     int n;
@@ -14,7 +14,7 @@ struct dijkstra {
         n = n_;
         adj.assign(n + 1, {});
     }
-    void add(int u, int v, ll w) { adj[u].push_back({w, v}); }
+    void add_edge(int u, int v, ll w) { adj[u].push_back({w, v}); }
     vector<ll> run(int s) {
         // result: dist[i] = shortest distance from s to i.
         vector<ll> dist(n + 1, INF);
@@ -39,7 +39,7 @@ struct dijkstra {
 // what: compute single-source shortest paths with possible negative edges.
 // time: O(nm); memory: O(n+m)
 // constraint: directed; 1-indexed; detects negative cycle reachable from s.
-// usage: bell_ford g; g.init(n); g.add(u,v,w); bool ok=g.run(s, dist);
+// usage: bell_ford g; g.init(n); g.add_edge(u,v,w); bool ok=g.run(s, dist);
 struct bell_ford {
     static const ll INF = (1LL << 62);
     int n;
@@ -50,7 +50,7 @@ struct bell_ford {
         n = n_;
         ed.clear();
     }
-    void add(int u, int v, ll w) { ed.push_back({u, v, w}); }
+    void add_edge(int u, int v, ll w) { ed.push_back({u, v, w}); }
     bool run(int s, vector<ll> &dist) {
         // result: false if a negative cycle is reachable.
         dist.assign(n + 1, INF);
@@ -74,7 +74,7 @@ struct bell_ford {
 // what: compute all-pairs shortest paths with dynamic programming.
 // time: O(n^3); memory: O(n^2)
 // constraint: directed; 1-indexed; watch overflow on INF.
-// usage: floyd g; g.init(n); g.add(u,v,w); g.run(); auto &d=g.d;
+// usage: floyd g; g.init(n); g.add_edge(u,v,w); g.run(); auto &d=g.d;
 struct floyd {
     static const ll INF = (1LL << 62);
     int n;
@@ -86,7 +86,7 @@ struct floyd {
         d.assign(n + 1, vector<ll>(n + 1, INF));
         for (int i = 1; i <= n; i++) d[i][i] = 0;
     }
-    void add(int u, int v, ll w) { d[u][v] = min(d[u][v], w); }
+    void add_edge(int u, int v, ll w) { d[u][v] = min(d[u][v], w); }
     void run() {
         // goal: relax all pairs via intermediate nodes.
         for (int k = 1; k <= n; k++) {

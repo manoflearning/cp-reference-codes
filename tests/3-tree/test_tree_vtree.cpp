@@ -85,7 +85,7 @@ void check_one(const vector<vector<int>> &adj, const vector<int> &vs) {
     tc.init(n);
     for (int u = 1; u <= n; u++)
         for (int v : adj[u])
-            if (u < v) tc.add(u, v);
+            if (u < v) tc.add_edge(u, v);
     tc.build(1);
 
     if (vs.empty()) {

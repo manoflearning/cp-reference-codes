@@ -44,7 +44,7 @@ void t_rnd() {
         }
         lca_sparse l;
         l.init(n);
-        for (int v = 2; v <= n; v++) l.add(v, par[v]);
+        for (int v = 2; v <= n; v++) l.add_edge(v, par[v]);
         l.build(1);
         for (int q = 0; q < 50; q++) {
             int a = rnd(1, n), b = rnd(1, n);

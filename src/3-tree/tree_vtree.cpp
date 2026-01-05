@@ -3,7 +3,7 @@
 // what: virtual tree builder for subset DP using LCA and dfs order.
 // time: build O(n log n), make O(k log k); memory: O(n log n)
 // constraint: 1-indexed tree.
-// usage: tree_comp tc; tc.init(n); tc.add(u,v); tc.build(root); auto nodes=tc.make(vs); // use tc.vt_adj
+// usage: tree_comp tc; tc.init(n); tc.add_edge(u,v); tc.build(root); auto nodes=tc.make(vs); // use tc.vt_adj
 struct tree_comp {
     int n, lg, tim;
     vector<vector<int>> adj, up, vt_adj;
@@ -21,7 +21,7 @@ struct tree_comp {
         dep.assign(n + 1, 0);
         tim = 0;
     }
-    void add(int u, int v) {
+    void add_edge(int u, int v) {
         adj[u].push_back(v);
         adj[v].push_back(u);
     }

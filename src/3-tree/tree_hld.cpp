@@ -3,7 +3,7 @@
 // what: heavy-light decomposition for path sum on tree (node values).
 // time: build O(n), update/query O(log^2 n); memory: O(n)
 // constraint: 1-indexed tree.
-// usage: hld_tree h; h.init(n); h.add(u,v); h.build(1); h.set(v,x); ll s=h.qry(u,v);
+// usage: hld_tree h; h.init(n); h.add_edge(u,v); h.build(1); h.set(v,x); ll s=h.query(u,v);
 struct hld_tree {
     seg_tree seg;
 
@@ -22,7 +22,7 @@ struct hld_tree {
         top.assign(n + 1, 0);
         in.assign(n + 1, 0);
     }
-    void add(int u, int v) {
+    void add_edge(int u, int v) {
         adj[u].push_back(v);
         adj[v].push_back(u);
     }
@@ -55,7 +55,7 @@ struct hld_tree {
         seg.build(a);
     }
     void set(int v, ll val) { seg.set(in[v], val); }
-    ll qry(int a, int b) const {
+    ll query(int a, int b) const {
         ll ret = 0;
         while (top[a] != top[b]) {
             if (dep[top[a]] < dep[top[b]]) swap(a, b);

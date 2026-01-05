@@ -3,7 +3,7 @@
 // what: maximize sum w[i]*completion_time[i] under precedence "parent before child" on rooted tree.
 // time: O(n log n); memory: O(n)
 // constraint: 1-indexed tree; cw[i]=w[i]*t[i].
-// usage: tree_xchg tx; tx.init(n, root); tx.add(u,v); // set tx.ds.w/t/cw; ll ans=tx.run();
+// usage: tree_xchg tx; tx.init(n, root); tx.add_edge(u,v); // set tx.ds.w/t/cw; ll ans=tx.run();
 struct tree_xchg {
     struct uf {
         vector<int> par;
@@ -42,7 +42,7 @@ struct tree_xchg {
         par.assign(n + 1, 0);
         ds.init(n);
     }
-    void add(int u, int v) {
+    void add_edge(int u, int v) {
         adj[u].push_back(v);
         adj[v].push_back(u);
     }

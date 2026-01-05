@@ -3,7 +3,7 @@
 // what: find biconnected components and articulation points/bridges in an undirected graph.
 // time: O(n+m); memory: O(n+m)
 // constraint: 1-indexed; no self-loops; recursion depth O(n).
-// usage: bcc_graph g; g.init(n); g.add(u,v); g.run(); // g.bccs, g.ap, g.ae
+// usage: bcc_graph g; g.init(n); g.add_edge(u,v); g.run(); // g.bccs, g.ap, g.ae
 struct bcc_graph {
     int n, tim;
     vector<vector<pii>> adj;
@@ -23,7 +23,7 @@ struct bcc_graph {
         ed.clear();
         bccs.clear();
     }
-    void add(int u, int v) {
+    void add_edge(int u, int v) {
         int id = sz(ed);
         ed.push_back({u, v});
         adj[u].push_back({v, id});

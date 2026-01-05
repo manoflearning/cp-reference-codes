@@ -3,7 +3,7 @@
 // what: build an Eulerian circuit in an undirected multigraph (adjacency matrix).
 // time: O(n^2+m); memory: O(n^2)
 // constraint: 1-indexed; all nonzero-degree nodes connected.
-// usage: euler_cir g; g.init(n); g.add(u,v); if (g.can()) auto path=g.run(1);
+// usage: euler_cir g; g.init(n); g.add_edge(u,v); if (g.can()) auto path=g.run(1);
 struct euler_cir {
     int n;
     vector<vector<int>> adj;
@@ -16,7 +16,7 @@ struct euler_cir {
         nxt.assign(n + 1, 1);
         path.clear();
     }
-    void add(int u, int v, int c = 1) {
+    void add_edge(int u, int v, int c = 1) {
         // goal: add c parallel edges between u and v.
         if (u == v) adj[u][u] += 2 * c;
         else adj[u][v] += c, adj[v][u] += c;
