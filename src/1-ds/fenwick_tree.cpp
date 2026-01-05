@@ -6,14 +6,14 @@
 // usage: fenwick fw; fw.build(a); fw.add(p, x); fw.sum(l, r); fw.kth(k);
 struct fenwick {
     int n;
-    vl a, t;
+    vector<ll> a, t;
     void init(int n_) {
         // goal: allocate arrays for size n.
         n = n_;
         a.assign(n, 0);
         t.assign(n, 0);
     }
-    void build(const vl &v) {
+    void build(const vector<ll> &v) {
         // goal: build fenwick in O(n) from initial array.
         n = sz(v);
         a = v;
@@ -60,7 +60,7 @@ struct fenwick {
 // usage: fenw_range fw; fw.init(n); fw.add(l, r, x); ll v = fw.get(p);
 struct fenw_range { // 1-indexed
     int n;
-    vl t;
+    vector<ll> t;
     void init(int n_) {
         // goal: allocate internal tree (1-indexed).
         n = n_;
@@ -85,19 +85,19 @@ struct fenw_range { // 1-indexed
 // usage: fenw_2d fw; fw.build(a); fw.add(x, y, v); fw.sum(x1, y1, x2, y2);
 struct fenw_2d { // 0-indexed
     int n, m;
-    vvl a, t;
+    vector<vector<ll>> a, t;
     void init(int n_, int m_) {
         // goal: allocate arrays for n x m.
         n = n_, m = m_;
-        a.assign(n, vl(m, 0));
-        t.assign(n, vl(m, 0));
+        a.assign(n, vector<ll>(m, 0));
+        t.assign(n, vector<ll>(m, 0));
     }
-    void build(const vvl &v) {
+    void build(const vector<vector<ll>> &v) {
         // goal: build 2D fenwick in O(n*m).
         n = sz(v);
         m = n ? sz(v[0]) : 0;
         a = v;
-        t.assign(n, vl(m, 0));
+        t.assign(n, vector<ll>(m, 0));
         for (int i = 0; i < n; i++) {
             for (int j = 0; j < m; j++) {
                 t[i][j] += a[i][j];

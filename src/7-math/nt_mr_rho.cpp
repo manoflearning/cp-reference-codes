@@ -57,19 +57,19 @@ struct pollard_rho {
             if (d != n) return d;
         }
     }
-    static void rec(ll n, vl &out) {
+    static void rec(ll n, vector<ll> &out) {
         if (n == 1) return;
         if (miller_rabin::is_prime(n)) {
-            out.pb(n);
+            out.push_back(n);
             return;
         }
         ll d = rho(n);
         rec(d, out);
         rec(n / d, out);
     }
-    static vl factor(ll n) {
+    static vector<ll> factor(ll n) {
         // result: prime factors of |n| with repetition, sorted.
-        vl out;
+        vector<ll> out;
         if (n < 0) n = -n;
         if (n == 0) return out;
         rec(n, out);

@@ -6,8 +6,8 @@
 // usage: tree_xchg tx; tx.init(n, root); tx.add(u,v); // set tx.ds.w/t/cw; ll ans=tx.run();
 struct tree_xchg {
     struct uf {
-        vi par;
-        vl cw, w, t;
+        vector<int> par;
+        vector<ll> cw, w, t;
         void init(int n) {
             par.assign(n + 1, -1);
             cw.resize(n + 1);
@@ -32,8 +32,8 @@ struct tree_xchg {
     };
 
     int n, root;
-    vvi adj;
-    vi par;
+    vector<vector<int>> adj;
+    vector<int> par;
 
     void init(int n_, int r) {
         n = n_;
@@ -43,8 +43,8 @@ struct tree_xchg {
         ds.init(n);
     }
     void add(int u, int v) {
-        adj[u].pb(v);
-        adj[v].pb(u);
+        adj[u].push_back(v);
+        adj[v].push_back(u);
     }
     void dfs(int v, int p) {
         par[v] = p;

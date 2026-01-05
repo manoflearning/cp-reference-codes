@@ -11,14 +11,14 @@ ll rnd(ll l, ll r) {
     return dis(rng);
 }
 
-int count_greater(const vi &a, int l, int r, int k) {
+int count_greater(const vector<int> &a, int l, int r, int k) {
     int ret = 0;
     for (int i = l; i <= r; i++) ret += (a[i] > k);
     return ret;
 }
 
 void test_merge_sort_tree_basic() {
-    vi a = {5};
+    vector<int> a = {5};
     merge_seg st;
     st.build(a);
     assert(st.query(0, 0, 4) == 1);
@@ -27,7 +27,7 @@ void test_merge_sort_tree_basic() {
 
 void test_merge_sort_tree_random() {
     int n = 60;
-    vi a(n);
+    vector<int> a(n);
     for (int i = 0; i < n; i++) a[i] = (int)rnd(-10, 10);
 
     merge_seg st;
@@ -42,7 +42,7 @@ void test_merge_sort_tree_random() {
 }
 
 void test_merge_sort_tree_iter_basic() {
-    vi a = {2};
+    vector<int> a = {2};
     merge_seg_it st;
     st.build(a);
     assert(st.query(0, 0, 1) == 1);
@@ -51,7 +51,7 @@ void test_merge_sort_tree_iter_basic() {
 
 void test_merge_sort_tree_iter_random() {
     int n = 60;
-    vi a(n);
+    vector<int> a(n);
     for (int i = 0; i < n; i++) a[i] = (int)rnd(-10, 10);
 
     merge_seg_it st;

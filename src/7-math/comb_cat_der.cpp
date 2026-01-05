@@ -27,7 +27,7 @@ struct catalan_mod {
 // usage: derange_mod de; de.init(n, mod); ll v=de.get(k);
 struct derange_mod {
     ll mod;
-    vl dp;
+    vector<ll> dp;
 
     void init(int n, ll mod_) {
         // goal: precompute derangements up to n.

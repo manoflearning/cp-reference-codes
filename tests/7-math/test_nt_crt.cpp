@@ -57,7 +57,7 @@ void test_merge_all() {
         for (int i = 0; i < k; i++) {
             ll m = rnd(1, 30);
             ll r = rnd(-30, 30);
-            cs.pb({r, m});
+            cs.push_back({r, m});
         }
         pll ans = crt::merge_all(cs);
         ll brute = brute_crt(cs);

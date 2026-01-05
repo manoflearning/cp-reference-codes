@@ -12,15 +12,15 @@ int rnd(int l, int r) {
 }
 string rnd_s(int n) {
     string s;
-    for (int i = 0; i < n; i++) s.pb('a' + rnd(0, 2));
+    for (int i = 0; i < n; i++) s.push_back('a' + rnd(0, 2));
     return s;
 }
 
-vi na_match(const string &t, const string &p) {
-    vi res;
+vector<int> na_match(const string &t, const string &p) {
+    vector<int> res;
     if (p.empty()) return res;
     for (int i = 0; i + sz(p) <= sz(t); i++)
-        if (!t.compare(i, sz(p), p)) res.pb(i);
+        if (!t.compare(i, sz(p), p)) res.push_back(i);
     return res;
 }
 

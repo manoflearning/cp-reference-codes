@@ -12,7 +12,7 @@ int rnd(int l, int r) {
 }
 string rnd_s(int n) {
     string s;
-    for (int i = 0; i < n; i++) s.pb('a' + rnd(0, 2));
+    for (int i = 0; i < n; i++) s.push_back('a' + rnd(0, 2));
     return s;
 }
 

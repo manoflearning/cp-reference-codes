@@ -8,7 +8,7 @@
 struct era_sieve {
     int n;
     vector<char> isp;
-    vi primes;
+    vector<int> primes;
 
     era_sieve(int n_ = 0) {
         if (n_ >= 0) init(n_);
@@ -25,9 +25,9 @@ struct era_sieve {
             for (ll j = i * i; j <= n; j += i << 1) isp[j] = 0;
         }
         primes.clear();
-        if (n >= 2) primes.pb(2);
+        if (n >= 2) primes.push_back(2);
         for (int i = 3; i <= n; i += 2)
-            if (isp[i]) primes.pb(i);
+            if (isp[i]) primes.push_back(i);
     }
     bool is_prime(int x) const { return x >= 2 && x <= n && isp[x]; }
 };
@@ -38,7 +38,7 @@ struct era_sieve {
 // usage: lin_sieve sv(n); auto fc=sv.factor_cnt(x); int mu=sv.mu[x];
 struct lin_sieve {
     int n;
-    vi lp, primes, mu, phi;
+    vector<int> lp, primes, mu, phi;
 
     lin_sieve(int n_ = 0) {
         if (n_ >= 0) init(n_);
@@ -54,7 +54,7 @@ struct lin_sieve {
         for (int i = 2; i <= n; i++) {
             if (!lp[i]) {
                 lp[i] = i;
-                primes.pb(i);
+                primes.push_back(i);
                 mu[i] = -1;
                 phi[i] = i - 1;
             }
@@ -73,12 +73,12 @@ struct lin_sieve {
         }
     }
     bool is_prime(int x) const { return x >= 2 && x <= n && lp[x] == x; }
-    vi factor(int x) const {
+    vector<int> factor(int x) const {
         // result: prime factors of x (with repetition), in nondecreasing order
-        vi ret;
+        vector<int> ret;
         while (x > 1) {
             int p = lp[x];
-            ret.pb(p);
+            ret.push_back(p);
             x /= p;
         }
         return ret;
@@ -90,7 +90,7 @@ struct lin_sieve {
             int p = lp[x];
             int e = 0;
             while (x % p == 0) x /= p, e++;
-            ret.pb({p, e});
+            ret.push_back({p, e});
         }
         return ret;
     }
@@ -100,7 +100,7 @@ struct lin_sieve {
 // time: O(n); memory: O(n)
 // constraint: n >= 0.
 // usage: auto mu = mobius(n); if(mu[x]) ...
-inline vi mobius(int n) {
+inline vector<int> mobius(int n) {
     lin_sieve sv(n);
     return sv.mu;
 }
@@ -122,7 +122,7 @@ struct euler_phi {
         if (x > 1) ret = ret / x * (x - 1);
         return ret;
     }
-    static vi phi_upto(int n) {
+    static vector<int> phi_upto(int n) {
         lin_sieve sv(n);
         return sv.phi;
     }

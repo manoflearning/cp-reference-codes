@@ -8,8 +8,8 @@ struct hld_tree {
     seg_tree seg;
 
     int n, tim;
-    vvi adj;
-    vi par, dep, siz, heavy, top, in;
+    vector<vector<int>> adj;
+    vector<int> par, dep, siz, heavy, top, in;
 
     void init(int n_) {
         n = n_;
@@ -23,8 +23,8 @@ struct hld_tree {
         in.assign(n + 1, 0);
     }
     void add(int u, int v) {
-        adj[u].pb(v);
-        adj[v].pb(u);
+        adj[u].push_back(v);
+        adj[v].push_back(u);
     }
     int dfs_sz(int v, int p) {
         // goal: compute subtree sizes and heavy child.
@@ -51,7 +51,7 @@ struct hld_tree {
     void build(int root = 1) {
         dfs_sz(root, 0);
         dfs_hld(root, root);
-        vl a(n + 1, 0);
+        vector<ll> a(n + 1, 0);
         seg.build(a);
     }
     void set(int v, ll val) { seg.set(in[v], val); }

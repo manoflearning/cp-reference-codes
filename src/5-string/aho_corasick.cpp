@@ -7,7 +7,7 @@
 struct aho_corasick {
     static constexpr int ALPHA = 26;
     vector<array<int, ALPHA>> nxt;
-    vi fail, out;
+    vector<int> fail, out;
 
     aho_corasick() { init(); }
     void init() {
@@ -24,10 +24,10 @@ struct aho_corasick {
             int c = ch - 'a';
             if (nxt[v][c] == -1) {
                 nxt[v][c] = sz(nxt);
-                nxt.pb({});
+                nxt.push_back({});
                 nxt.back().fill(-1);
-                fail.pb(0);
-                out.pb(0);
+                fail.push_back(0);
+                out.push_back(0);
             }
             v = nxt[v][c];
         }

@@ -42,12 +42,12 @@ vector<ptd> hpi(vector<hp_line> ln) {
     vector<hp_line> v;
     for (auto &l : ln) {
         if (v.empty()) {
-            v.pb(l);
+            v.push_back(l);
             continue;
         }
         ptd da = dir(v.back()), db = dir(l);
         if (!eq(cross(da, db), 0)) {
-            v.pb(l);
+            v.push_back(l);
             continue;
         }
         if (cross(da, l.s - v.back().s) > 0) v.back() = l;
@@ -56,7 +56,7 @@ vector<ptd> hpi(vector<hp_line> ln) {
     for (auto &l : v) {
         while (sz(dq) >= 2 && bad(dq[sz(dq) - 2], dq.back(), l)) dq.pop_back();
         while (sz(dq) >= 2 && bad(dq[0], dq[1], l)) dq.pop_front();
-        dq.pb(l);
+        dq.push_back(l);
     }
     while (sz(dq) >= 3 && bad(dq[sz(dq) - 2], dq.back(), dq[0])) dq.pop_back();
     while (sz(dq) >= 3 && bad(dq[0], dq[1], dq.back())) dq.pop_front();
@@ -66,7 +66,7 @@ vector<ptd> hpi(vector<hp_line> ln) {
             ptd p;
             if (line_inter(dq[i].s, dq[i].t, dq[(i + 1) % sz(dq)].s,
                            dq[(i + 1) % sz(dq)].t, p)) {
-                poly.pb(p);
+                poly.push_back(p);
             }
         }
     }

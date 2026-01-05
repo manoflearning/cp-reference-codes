@@ -6,8 +6,8 @@
 // usage: scc_kosa s; s.init(n); s.add(u,v); int c=s.run();
 struct scc_kosa {
     int n;
-    vvi g, rg, sccs;
-    vi vis, comp, ord;
+    vector<vector<int>> g, rg, sccs;
+    vector<int> vis, comp, ord;
 
     void init(int n_) {
         n = n_;
@@ -19,18 +19,18 @@ struct scc_kosa {
         ord.clear();
     }
     void add(int u, int v) {
-        g[u].pb(v);
-        rg[v].pb(u);
+        g[u].push_back(v);
+        rg[v].push_back(u);
     }
     void dfs1(int v) {
         vis[v] = 1;
         for (int to : rg[v])
             if (!vis[to]) dfs1(to);
-        ord.pb(v);
+        ord.push_back(v);
     }
     void dfs2(int v, int id) {
         comp[v] = id;
-        sccs[id].pb(v);
+        sccs[id].push_back(v);
         for (int to : g[v])
             if (comp[to] == -1) dfs2(to, id);
     }
@@ -40,7 +40,7 @@ struct scc_kosa {
         reverse(all(ord));
         for (int v : ord) {
             if (comp[v] != -1) continue;
-            sccs.pb({});
+            sccs.push_back({});
             dfs2(v, sz(sccs) - 1);
         }
         return sz(sccs);
@@ -53,8 +53,8 @@ struct scc_kosa {
 // usage: scc_tarjan s; s.init(n); s.add(u,v); int c=s.run();
 struct scc_tarjan {
     int n, tim;
-    vvi g, sccs;
-    vi dfn, low, comp, st, ins;
+    vector<vector<int>> g, sccs;
+    vector<int> dfn, low, comp, st, ins;
 
     void init(int n_) {
         n = n_;
@@ -67,10 +67,10 @@ struct scc_tarjan {
         ins.assign(n + 1, 0);
         st.clear();
     }
-    void add(int u, int v) { g[u].pb(v); }
+    void add(int u, int v) { g[u].push_back(v); }
     void dfs(int v) {
         dfn[v] = low[v] = ++tim;
-        st.pb(v);
+        st.push_back(v);
         ins[v] = 1;
         for (int to : g[v]) {
             if (dfn[to] == -1) {
@@ -81,14 +81,14 @@ struct scc_tarjan {
             }
         }
         if (low[v] != dfn[v]) return;
-        sccs.pb({});
+        sccs.push_back({});
         int id = sz(sccs) - 1;
         while (1) {
             int x = st.back();
             st.pop_back();
             ins[x] = 0;
             comp[x] = id;
-            sccs[id].pb(x);
+            sccs[id].push_back(x);
             if (x == v) break;
         }
     }
@@ -105,8 +105,8 @@ struct scc_tarjan {
 // usage: two_sat s; s.init(n); s.add(a,b); bool ok=s.run(); // s.val
 struct two_sat {
     int n, tim, cid;
-    vvi g;
-    vi dfn, low, comp, st, ins, val;
+    vector<vector<int>> g;
+    vector<int> dfn, low, comp, st, ins, val;
 
     void init(int n_) {
         n = n_;
@@ -126,12 +126,12 @@ struct two_sat {
     }
     void add(int a, int b) {
         // goal: (a v b) == (!a -> b) & (!b -> a)
-        g[id(-a)].pb(id(b));
-        g[id(-b)].pb(id(a));
+        g[id(-a)].push_back(id(b));
+        g[id(-b)].push_back(id(a));
     }
     void dfs(int v) {
         dfn[v] = low[v] = ++tim;
-        st.pb(v);
+        st.push_back(v);
         ins[v] = 1;
         for (int to : g[v]) {
             if (dfn[to] == -1) {

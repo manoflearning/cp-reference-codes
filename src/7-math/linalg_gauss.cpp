@@ -46,10 +46,10 @@ struct gauss_real {
 // constraint: mod is prime; matrix is n x (m+1) augmented.
 // usage: auto x=gauss_mod::solve(a, mod); // empty if no solution
 struct gauss_mod {
-    static vi solve(vvi a, int mod) {
+    static vector<int> solve(vector<vector<int>> a, int mod) {
         int n = sz(a);
         int m = sz(a[0]) - 1;
-        vi where(m, -1);
+        vector<int> where(m, -1);
         int r = 0;
         for (int c = 0; c < m && r < n; c++) {
             int p = r;
@@ -83,7 +83,7 @@ struct gauss_mod {
                 }
             if (all0 && a[i][m]) return {};
         }
-        vi ans(m, 0);
+        vector<int> ans(m, 0);
         for (int i = 0; i < m; i++)
             if (where[i] != -1) ans[i] = a[where[i]][m];
         return ans;
@@ -95,9 +95,9 @@ struct gauss_mod {
 // constraint: each row is size >= m+1; last bit is RHS.
 // usage: auto x=gauss_xor::solve(a, m); // empty if no solution
 struct gauss_xor {
-    static vi solve(vector<bitset<GAUSS_BSZ>> a, int m) {
+    static vector<int> solve(vector<bitset<GAUSS_BSZ>> a, int m) {
         int n = sz(a);
-        vi where(m, -1);
+        vector<int> where(m, -1);
         int r = 0;
         for (int c = 0; c < m && r < n; c++) {
             int p = -1;
@@ -122,7 +122,7 @@ struct gauss_xor {
                 }
             if (all0 && a[i][m]) return {};
         }
-        vi ans(m, 0);
+        vector<int> ans(m, 0);
         for (int i = 0; i < m; i++)
             if (where[i] != -1) ans[i] = a[where[i]][m];
         return ans;
