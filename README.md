@@ -1,10 +1,6 @@
 # CP Reference Codes
 My implementations of various data structures and algorithms for competitive programming.
 
-## Indexing convention
-- Default: **1-indexed** indices/vertices and **inclusive** ranges `[l, r]`.
-- Exceptions: `src/5-string/*`, `src/1-ds/ds_pbds.cpp` are **0-indexed**; low-level pointer snippets (e.g. `src/8-misc/simd.cpp`) are 0-indexed.
-
 ## Contents (GitHub links, `main`)
 - [0-common](https://github.com/manoflearning/cp-reference-codes/tree/main/src/0-common)
   - [`common.hpp`](https://github.com/manoflearning/cp-reference-codes/blob/main/src/0-common/common.hpp)
