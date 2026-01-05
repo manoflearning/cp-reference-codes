@@ -32,26 +32,26 @@ struct seg_tree {
 
 // what: iterative segment tree for point update and range sum.
 // time: build O(n), update/query O(log n); memory: O(n)
-// constraint: 0-indexed [l, r).
+// constraint: 1-indexed [1, n]; a[0] unused.
 // usage: seg_tree_it st; st.build(a); st.set(p, v); st.query(l, r);
-struct seg_tree_it { // 0-indexed
+struct seg_tree_it { // 1-indexed
     int n;
     vector<ll> t;
     void build(const vector<ll> &a) {
-        // goal: build tree from 0-indexed array.
-        n = sz(a);
+        // goal: build tree from 1-indexed array.
+        n = sz(a) - 1;
         t.assign(2 * n, 0);
-        for (int i = 0; i < n; i++) t[n + i] = a[i];
+        for (int i = 1; i <= n; i++) t[n + i - 1] = a[i];
         for (int i = n - 1; i >= 1; i--) t[i] = t[i << 1] + t[i << 1 | 1];
     }
     void set(int p, ll val) {
         // goal: set a[p] = val.
-        for (t[p += n] = val; p > 1; p >>= 1) t[p >> 1] = t[p] + t[p ^ 1];
+        for (t[p += n - 1] = val; p > 1; p >>= 1) t[p >> 1] = t[p] + t[p ^ 1];
     }
     ll query(int l, int r) const {
-        // result: sum on [l, r).
+        // result: sum on [l, r].
         ll ret = 0;
-        for (l += n, r += n; l < r; l >>= 1, r >>= 1) {
+        for (l += n - 1, r += n; l < r; l >>= 1, r >>= 1) {
             if (l & 1) ret += t[l++];
             if (r & 1) ret += t[--r];
         }
@@ -183,18 +183,18 @@ struct seg_sparse {
 
 // what: 2D point updates with rectangle sum queries on a square grid.
 // time: build O(n^2), update/query O(log^2 n); memory: O(n^2)
-// constraint: 0-indexed square n x n.
+// constraint: 1-indexed square [1..n] x [1..n]; a[0][*], a[*][0] unused.
 // usage: seg_2d st; st.build(a); st.set(x, y, v); st.query(x1, x2, y1, y2);
-struct seg_2d { // 0-indexed
+struct seg_2d { // 1-indexed
     int n;
     vector<vector<ll>> t;
     void build(const vector<vector<ll>> &a) {
         // goal: build 2D tree from initial grid.
-        n = sz(a);
+        n = sz(a) - 1;
         t.assign(2 * n, vector<ll>(2 * n, 0));
-        for (int i = 0; i < n; i++)
-            for (int j = 0; j < n; j++)
-                t[i + n][j + n] = a[i][j];
+        for (int i = 1; i <= n; i++)
+            for (int j = 1; j <= n; j++)
+                t[i + n - 1][j + n - 1] = a[i][j];
         for (int i = n; i < 2 * n; i++)
             for (int j = n - 1; j > 0; j--)
                 t[i][j] = t[i][j << 1] + t[i][j << 1 | 1];
@@ -204,6 +204,7 @@ struct seg_2d { // 0-indexed
     }
     void set(int x, int y, ll val) {
         // goal: set a[x][y] = val.
+        x--, y--;
         t[x + n][y + n] = val;
         for (int j = y + n; j > 1; j >>= 1)
             t[x + n][j >> 1] = t[x + n][j] + t[x + n][j ^ 1];
@@ -222,6 +223,7 @@ struct seg_2d { // 0-indexed
     }
     ll query(int x1, int x2, int y1, int y2) const {
         // result: sum on rectangle [x1..x2] x [y1..y2].
+        x1--, x2--, y1--, y2--;
         ll ret = 0;
         for (x1 += n, x2 += n + 1; x1 < x2; x1 >>= 1, x2 >>= 1) {
             if (x1 & 1) ret += qry1d(x1++, y1, y2);
@@ -233,9 +235,9 @@ struct seg_2d { // 0-indexed
 
 // what: 2D segment tree with coordinate compression for sparse updates/queries.
 // time: prep O(q log q), update/query O(log^2 n); memory: O(q log q)
-// constraint: call mark_set/mark_qry first, then prep, then set/query.
+// constraint: x is 1-indexed [1..n]; y is coordinate value; call mark_set/mark_qry first, then prep, then set/query.
 // usage: seg2d_comp st(n); st.mark_set(x, y); st.mark_qry(x1, x2, y1, y2); st.prep(); st.set(x, y, v); st.query(x1, x2, y1, y2);
-struct seg2d_comp { // 0-indexed
+struct seg2d_comp { // x: 1-indexed
     int n;
     vector<vector<ll>> a;
     vector<vector<int>> used;
@@ -243,11 +245,11 @@ struct seg2d_comp { // 0-indexed
     seg2d_comp(int n) : n(n), a(2 * n), used(2 * n) {}
     void mark_set(int x, int y) {
         // goal: record y-coordinates that will be updated.
-        for (x += n; x >= 1; x >>= 1) used[x].push_back(y);
+        for (x += n - 1; x >= 1; x >>= 1) used[x].push_back(y);
     }
     void mark_qry(int x1, int x2, int y1, int y2) {
         // goal: record y-coordinates needed for queries.
-        for (x1 += n, x2 += n + 1; x1 < x2; x1 >>= 1, x2 >>= 1) {
+        for (x1 += n - 1, x2 += n; x1 < x2; x1 >>= 1, x2 >>= 1) {
             if (x1 & 1) {
                 used[x1].push_back(y1);
                 used[x1++].push_back(y2);
@@ -274,7 +276,7 @@ struct seg2d_comp { // 0-indexed
         ll k = (ll)x << 32 | (unsigned)y;
         ll d = v - mp[k];
         mp[k] = v;
-        for (x += n; x >= 1; x >>= 1) {
+        for (x += n - 1; x >= 1; x >>= 1) {
             int i = lower_bound(all(used[x]), y) - used[x].begin() + sz(used[x]);
             for (a[x][i] += d; i > 1; i >>= 1)
                 a[x][i >> 1] = a[x][i] + a[x][i ^ 1];
@@ -294,7 +296,7 @@ struct seg2d_comp { // 0-indexed
     ll query(int x1, int x2, int y1, int y2) const {
         // result: sum on rectangle [x1..x2] x [y1..y2].
         ll ret = 0;
-        for (x1 += n, x2 += n + 1; x1 < x2; x1 >>= 1, x2 >>= 1) {
+        for (x1 += n - 1, x2 += n; x1 < x2; x1 >>= 1, x2 >>= 1) {
             if (x1 & 1) ret += qry1d(x1++, y1, y2);
             if (x2 & 1) ret += qry1d(--x2, y1, y2);
         }

@@ -104,8 +104,8 @@ lr_res brute_lr(int n, int s, int t, const vector<tuple<int, int, int, int, int>
 void t_dinic() {
     {
         dinic mf(2);
-        mf.add_edge(0, 1, 3);
-        assert(mf.max_flow(0, 1) == 3);
+        mf.add_edge(1, 2, 3);
+        assert(mf.max_flow(1, 2) == 3);
     }
     for (int it = 0; it < 200; it++) {
         int n = rnd(2, 10);
@@ -118,12 +118,12 @@ void t_dinic() {
             int u = rnd(0, n - 1), v = rnd(0, n - 1);
             if (u == v) continue;
             ll cap = rnd(0, 7);
-            mf.add_edge(u, v, cap);
+            mf.add_edge(u + 1, v + 1, cap);
             na.add_edge(u, v, cap);
         }
         ll exp = na.max_flow(s, t);
         ll lim = rnd(0, 10);
-        assert(mf.max_flow(s, t, lim) == min(exp, lim));
+        assert(mf.max_flow(s + 1, t + 1, lim) == min(exp, lim));
     }
 }
 
@@ -142,10 +142,10 @@ void t_lr_dinic() {
             int lo = rnd(0, 2);
             int hi = lo + rnd(0, 2);
             es.push_back({u, v, lo, hi, 0});
-            f.add_edge(u, v, lo, hi);
+            f.add_edge(u + 1, v + 1, lo, hi);
         }
         auto exp = brute_lr(n, s, t, es);
-        auto got = f.max_flow(s, t);
+        auto got = f.max_flow(s + 1, t + 1);
         assert(got.fr == exp.ok);
         if (exp.ok) assert(got.sc == exp.flow);
     }

@@ -59,18 +59,18 @@ void test_segt_random() {
 }
 
 void test_segti_basic() {
-    vector<ll> a = {4};
+    vector<ll> a = {0, 4};
     seg_tree_it st;
     st.build(a);
-    assert(st.query(0, 1) == 4);
-    st.set(0, 1);
-    assert(st.query(0, 1) == 1);
+    assert(st.query(1, 1) == 4);
+    st.set(1, 1);
+    assert(st.query(1, 1) == 1);
 }
 
 void test_segti_random() {
     int n = 50;
-    vector<ll> a(n, 0);
-    for (int i = 0; i < n; i++) a[i] = rnd(-5, 5);
+    vector<ll> a(n + 1, 0);
+    for (int i = 1; i <= n; i++) a[i] = rnd(-5, 5);
 
     seg_tree_it st;
     st.build(a);
@@ -78,16 +78,14 @@ void test_segti_random() {
     for (int it = 0; it < 5000; it++) {
         int op = (int)rnd(0, 1);
         if (op == 0) {
-            int p = (int)rnd(0, n - 1);
+            int p = (int)rnd(1, n);
             ll v = rnd(-5, 5);
             a[p] = v;
             st.set(p, v);
         } else {
-            int l = (int)rnd(0, n - 1);
-            int r = (int)rnd(l, n - 1);
-            ll ret = 0;
-            for (int i = l; i <= r; i++) ret += a[i];
-            assert(st.query(l, r + 1) == ret);
+            int l = (int)rnd(1, n);
+            int r = (int)rnd(l, n);
+            assert(st.query(l, r) == sum_range(a, l, r));
         }
     }
 }
@@ -198,19 +196,19 @@ ll sum_rect(const vector<vector<ll>> &a, int x1, int y1, int x2, int y2) {
 }
 
 void test_seg2d_basic() {
-    vector<vector<ll>> a = {{7}};
+    vector<vector<ll>> a = {{0, 0}, {0, 7}};
     seg_2d st;
     st.build(a);
-    assert(st.query(0, 0, 0, 0) == 7);
-    st.set(0, 0, -1);
-    assert(st.query(0, 0, 0, 0) == -1);
+    assert(st.query(1, 1, 1, 1) == 7);
+    st.set(1, 1, -1);
+    assert(st.query(1, 1, 1, 1) == -1);
 }
 
 void test_seg2d_random() {
     int n = 7;
-    vector<vector<ll>> a(n, vector<ll>(n, 0));
-    for (int i = 0; i < n; i++)
-        for (int j = 0; j < n; j++) a[i][j] = rnd(-3, 3);
+    vector<vector<ll>> a(n + 1, vector<ll>(n + 1, 0));
+    for (int i = 1; i <= n; i++)
+        for (int j = 1; j <= n; j++) a[i][j] = rnd(-3, 3);
 
     seg_2d st;
     st.build(a);
@@ -218,16 +216,16 @@ void test_seg2d_random() {
     for (int it = 0; it < 3000; it++) {
         int op = (int)rnd(0, 1);
         if (op == 0) {
-            int x = (int)rnd(0, n - 1);
-            int y = (int)rnd(0, n - 1);
+            int x = (int)rnd(1, n);
+            int y = (int)rnd(1, n);
             ll v = rnd(-5, 5);
             a[x][y] = v;
             st.set(x, y, v);
         } else {
-            int x1 = (int)rnd(0, n - 1);
-            int x2 = (int)rnd(x1, n - 1);
-            int y1 = (int)rnd(0, n - 1);
-            int y2 = (int)rnd(y1, n - 1);
+            int x1 = (int)rnd(1, n);
+            int x2 = (int)rnd(x1, n);
+            int y1 = (int)rnd(1, n);
+            int y2 = (int)rnd(y1, n);
             assert(st.query(x1, x2, y1, y2) == sum_rect(a, x1, y1, x2, y2));
         }
     }
@@ -243,10 +241,10 @@ void test_seg2dc_basic() {
     int n = 1;
     seg2d_comp st(n);
     vector<op2d> ops;
-    ops.push_back({0, 0, 0, 0, 0, 5});
-    ops.push_back({1, 0, 0, 0, 0, 0});
-    ops.push_back({0, 0, 0, 0, 0, -2});
-    ops.push_back({1, 0, 0, 0, 0, 0});
+    ops.push_back({0, 1, 0, 1, 0, 5});
+    ops.push_back({1, 1, 1, 1, 1, 0});
+    ops.push_back({0, 1, 0, 1, 0, -2});
+    ops.push_back({1, 1, 1, 1, 1, 0});
 
     for (auto &op : ops) {
         if (op.type == 0) st.mark_set(op.x1, op.y1);
@@ -254,7 +252,7 @@ void test_seg2dc_basic() {
     }
     st.prep();
 
-    vector<vector<ll>> a(n, vector<ll>(n, 0));
+    vector<vector<ll>> a(n + 1, vector<ll>(n + 1, 0));
     for (auto &op : ops) {
         if (op.type == 0) {
             a[op.x1][op.y1] = op.val;
@@ -281,15 +279,15 @@ void test_seg2dc_random() {
     for (int i = 0; i < q; i++) {
         int type = (int)rnd(0, 1);
         if (type == 0) {
-            int x = (int)rnd(0, n - 1);
-            int y = (int)rnd(0, n - 1);
+            int x = (int)rnd(1, n);
+            int y = (int)rnd(1, n);
             ll v = rnd(-5, 5);
             ops.push_back({0, x, 0, y, 0, v});
         } else {
-            int x1 = (int)rnd(0, n - 1);
-            int x2 = (int)rnd(x1, n - 1);
-            int y1 = (int)rnd(0, n - 1);
-            int y2 = (int)rnd(y1, n - 1);
+            int x1 = (int)rnd(1, n);
+            int x2 = (int)rnd(x1, n);
+            int y1 = (int)rnd(1, n);
+            int y2 = (int)rnd(y1, n);
             ops.push_back({1, x1, x2, y1, y2, 0});
         }
     }
@@ -300,7 +298,7 @@ void test_seg2dc_random() {
     }
     st.prep();
 
-    vector<vector<ll>> a(n, vector<ll>(n, 0));
+    vector<vector<ll>> a(n + 1, vector<ll>(n + 1, 0));
     for (auto &op : ops) {
         if (op.type == 0) {
             a[op.x1][op.y1] = op.val;
