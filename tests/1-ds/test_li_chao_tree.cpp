@@ -23,12 +23,12 @@ void test_li_chao_basic() {
     li_chao lc;
     lc.init(-5, 5);
     vector<lc_line> lns;
-    lns.pb({2, 1});
+    lns.push_back({2, 1});
     lc.add(lns.back());
     assert(lc.query(-5) == max_naive(lns, -5));
     assert(lc.query(5) == max_naive(lns, 5));
 
-    lns.pb({2, -3});
+    lns.push_back({2, -3});
     lc.add(lns.back());
     assert(lc.query(0) == max_naive(lns, 0));
 }
@@ -44,7 +44,7 @@ void test_li_chao_random() {
         if (op == 0) {
             ll a = rnd(-5, 5);
             ll b = rnd(-20, 20);
-            lns.pb({a, b});
+            lns.push_back({a, b});
             lc.add(lns.back());
         } else {
             ll x = rnd(xl, xr);

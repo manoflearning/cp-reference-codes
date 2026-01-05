@@ -11,13 +11,13 @@ ll rnd(ll l, ll r) {
     return dis(rng);
 }
 
-ll sum_1d(const vl &a, int l, int r) {
+ll sum_1d(const vector<ll> &a, int l, int r) {
     ll ret = 0;
     for (int i = l; i <= r; i++) ret += a[i];
     return ret;
 }
 
-int kth_naive(const vl &a, ll k) {
+int kth_naive(const vector<ll> &a, ll k) {
     ll cur = 0;
     for (int i = 0; i < sz(a); i++) {
         cur += a[i];
@@ -26,7 +26,7 @@ int kth_naive(const vl &a, ll k) {
     return -1;
 }
 
-ll sum_2d(const vvl &a, int x1, int y1, int x2, int y2) {
+ll sum_2d(const vector<vector<ll>> &a, int x1, int y1, int x2, int y2) {
     ll ret = 0;
     for (int i = x1; i <= x2; i++)
         for (int j = y1; j <= y2; j++) ret += a[i][j];
@@ -35,7 +35,7 @@ ll sum_2d(const vvl &a, int x1, int y1, int x2, int y2) {
 
 void test_fenwick_basic() {
     fenwick fw;
-    vl a = {5};
+    vector<ll> a = {5};
     fw.build(a);
     assert(fw.sum(0, 0) == 5);
     assert(fw.kth(1) == 0);
@@ -47,7 +47,7 @@ void test_fenwick_basic() {
 
 void test_fenwick_random() {
     int n = 50;
-    vl a(n);
+    vector<ll> a(n);
     for (int i = 0; i < n; i++) a[i] = rnd(0, 5);
 
     fenwick fw;
@@ -88,7 +88,7 @@ void test_fenwick_rp_basic() {
 
 void test_fenwick_rp_random() {
     int n = 40;
-    vl a(n + 1, 0);
+    vector<ll> a(n + 1, 0);
     fenw_range fw;
     fw.init(n);
 
@@ -109,7 +109,7 @@ void test_fenwick_rp_random() {
 
 void test_fenwick_2d_basic() {
     fenw_2d fw;
-    vvl a = {{3}};
+    vector<vector<ll>> a = {{3}};
     fw.build(a);
     assert(fw.sum(0, 0, 0, 0) == 3);
     fw.set(0, 0, -2);
@@ -118,7 +118,7 @@ void test_fenwick_2d_basic() {
 
 void test_fenwick_2d_random() {
     int n = 8, m = 7;
-    vvl a(n, vl(m, 0));
+    vector<vector<ll>> a(n, vector<ll>(m, 0));
     for (int i = 0; i < n; i++)
         for (int j = 0; j < m; j++) a[i][j] = rnd(-3, 3);
 

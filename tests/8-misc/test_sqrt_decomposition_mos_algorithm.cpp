@@ -13,7 +13,7 @@ int rnd_int(int l, int r) {
 
 void test_distinct() {
     int n = 200, qn = 200;
-    vi a(n);
+    vector<int> a(n);
     for (int i = 0; i < n; i++) a[i] = rnd_int(0, 30);
 
     vector<pii> qs(qn);
@@ -23,9 +23,9 @@ void test_distinct() {
         qs[i] = {l, r};
     }
 
-    vi naive(qn, 0), ans(qn, 0);
+    vector<int> naive(qn, 0), ans(qn, 0);
     for (int i = 0; i < qn; i++) {
-        vi cnt(31, 0);
+        vector<int> cnt(31, 0);
         int cur = 0;
         for (int j = qs[i].fr; j <= qs[i].sc; j++) {
             if (cnt[a[j]]++ == 0) cur++;
@@ -36,7 +36,7 @@ void test_distinct() {
     mo solver(n);
     for (int i = 0; i < qn; i++) solver.add_query(qs[i].fr, qs[i].sc, i);
 
-    vi cnt(31, 0);
+    vector<int> cnt(31, 0);
     int cur = 0;
     auto add = [&](int idx) {
         if (cnt[a[idx]]++ == 0) cur++;

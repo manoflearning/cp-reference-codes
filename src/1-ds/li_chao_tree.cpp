@@ -22,7 +22,7 @@ struct li_chao {
     void init(ll xl, ll xr) {
         // goal: set x-range and clear tree.
         t.clear();
-        t.pb({xl, xr, -1, -1, LINE_E});
+        t.push_back({xl, xr, -1, -1, LINE_E});
     }
     void add(lc_line nw, int v = 0) {
         // goal: insert a new line into the segment.
@@ -40,14 +40,14 @@ struct li_chao {
             t[v].ln = hi;
             if (t[v].r == -1) {
                 t[v].r = sz(t);
-                t.pb({mid + 1, xr, -1, -1, LINE_E});
+                t.push_back({mid + 1, xr, -1, -1, LINE_E});
             }
             add(lo, t[v].r);
         } else {
             t[v].ln = lo;
             if (t[v].l == -1) {
                 t[v].l = sz(t);
-                t.pb({xl, mid, -1, -1, LINE_E});
+                t.push_back({xl, mid, -1, -1, LINE_E});
             }
             add(hi, t[v].l);
         }

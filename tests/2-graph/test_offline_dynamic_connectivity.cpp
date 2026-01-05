@@ -13,12 +13,12 @@ int rnd(int l, int r) {
 
 int conn(int n, const set<pii> &act, int s, int e) {
     if (s == e) return 1;
-    vvi adj(n + 1);
+    vector<vector<int>> adj(n + 1);
     for (auto [u, v] : act) {
-        adj[u].pb(v);
-        adj[v].pb(u);
+        adj[u].push_back(v);
+        adj[v].push_back(u);
     }
-    vi vis(n + 1);
+    vector<int> vis(n + 1);
     queue<int> q;
     q.push(s);
     vis[s] = 1;
@@ -34,7 +34,7 @@ int conn(int n, const set<pii> &act, int s, int e) {
 
 void t_fix() {
     int n = 4, q = 6;
-    vi op(q + 1), u(q + 1), v(q + 1), ans(q + 1);
+    vector<int> op(q + 1), u(q + 1), v(q + 1), ans(q + 1);
     op[1] = 1, u[1] = 1, v[1] = 2;
     op[2] = 3, u[2] = 1, v[2] = 3;
     op[3] = 1, u[3] = 2, v[3] = 3;
@@ -64,7 +64,7 @@ void t_rnd() {
     for (int it = 0; it < 200; it++) {
         int n = rnd(2, 8);
         int q = rnd(1, 40);
-        vi op(q + 1), u(q + 1), v(q + 1), ans(q + 1);
+        vector<int> op(q + 1), u(q + 1), v(q + 1), ans(q + 1);
         set<pii> act;
         for (int i = 1; i <= q; i++) {
             int t = rnd(0, 9);

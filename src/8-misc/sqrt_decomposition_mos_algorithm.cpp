@@ -19,7 +19,7 @@ struct mo {
         bs = max(1, (int)sqrt(n));
         q.clear();
     }
-    void add_query(int l, int r, int idx) { q.pb({l, r, idx}); }
+    void add_query(int l, int r, int idx) { q.push_back({l, r, idx}); }
     template <class Add, class Del, class Out>
     void run(Add add, Del del, Out out) {
         // goal: process queries in Mo order with callbacks.

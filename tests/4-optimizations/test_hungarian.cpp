@@ -11,10 +11,10 @@ int rnd(int l, int r) {
     return dis(rng);
 }
 
-pair<ll, vi> brute(int n, int m, const vvl &a) {
+pair<ll, vector<int>> brute(int n, int m, const vector<vector<ll>> &a) {
     ll best = (1LL << 62);
-    vi best_m(n + 1, 0);
-    vi cur(n + 1, 0);
+    vector<int> best_m(n + 1, 0);
+    vector<int> cur(n + 1, 0);
     vector<char> used(m + 1, 0);
     function<void(int, ll)> dfs = [&](int i, ll cost) {
         if (i == n + 1) {
@@ -35,7 +35,7 @@ pair<ll, vi> brute(int n, int m, const vvl &a) {
 
 void t_fix() {
     int n = 1, m = 1;
-    vvl a(n + 1, vl(m + 1, 0));
+    vector<vector<ll>> a(n + 1, vector<ll>(m + 1, 0));
     a[1][1] = 7;
     hungarian hu;
     auto [cost, match_l] = hu.run(n, m, a);
@@ -47,7 +47,7 @@ void t_rnd() {
     for (int it = 0; it < 200; it++) {
         int n = rnd(1, 6);
         int m = rnd(n, 7);
-        vvl a(n + 1, vl(m + 1, 0));
+        vector<vector<ll>> a(n + 1, vector<ll>(m + 1, 0));
         for (int i = 1; i <= n; i++)
             for (int j = 1; j <= m; j++) a[i][j] = rnd(-5, 7);
         hungarian hu;

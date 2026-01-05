@@ -7,7 +7,7 @@
 struct bcc_graph {
     int n, tim;
     vector<vector<pii>> adj;
-    vi dfn, low, ap, st;
+    vector<int> dfn, low, ap, st;
     vector<pii> ed, ae;
     vector<vector<pii>> bccs;
 
@@ -25,9 +25,9 @@ struct bcc_graph {
     }
     void add(int u, int v) {
         int id = sz(ed);
-        ed.pb({u, v});
-        adj[u].pb({v, id});
-        adj[v].pb({u, id});
+        ed.push_back({u, v});
+        adj[u].push_back({v, id});
+        adj[v].push_back({u, id});
     }
     void dfs(int v, int pe) {
         dfn[v] = low[v] = ++tim;
@@ -37,27 +37,27 @@ struct bcc_graph {
             if (dfn[to] != -1) {
                 // edge: back edge to ancestor.
                 low[v] = min(low[v], dfn[to]);
-                if (dfn[to] < dfn[v]) st.pb(id);
+                if (dfn[to] < dfn[v]) st.push_back(id);
                 continue;
             }
-            st.pb(id);
+            st.push_back(id);
             ch++;
             dfs(to, id);
             low[v] = min(low[v], low[to]);
-            if (pe != -1 && low[to] >= dfn[v]) ap.pb(v);
-            if (low[to] > dfn[v]) ae.pb({min(v, to), max(v, to)});
+            if (pe != -1 && low[to] >= dfn[v]) ap.push_back(v);
+            if (low[to] > dfn[v]) ae.push_back({min(v, to), max(v, to)});
             if (low[to] >= dfn[v]) {
                 vector<pii> comp;
                 while (1) {
                     int eid = st.back();
                     st.pop_back();
-                    comp.pb(ed[eid]);
+                    comp.push_back(ed[eid]);
                     if (eid == id) break;
                 }
-                bccs.pb(comp);
+                bccs.push_back(comp);
             }
         }
-        if (pe == -1 && ch > 1) ap.pb(v);
+        if (pe == -1 && ch > 1) ap.push_back(v);
     }
     void run() {
         for (int v = 1; v <= n; v++)

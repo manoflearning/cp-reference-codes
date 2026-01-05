@@ -23,7 +23,7 @@ struct dinic {
 
     int n;
     vector<vector<edge>> g;
-    vi level, work;
+    vector<int> level, work;
 
     dinic(int n = 0) { init(n); }
     void init(int n_) {
@@ -34,8 +34,8 @@ struct dinic {
         // goal: add forward + reverse edge
         edge a{v, sz(g[v]), cap};
         edge b{u, sz(g[u]), 0};
-        g[u].pb(a);
-        g[v].pb(b);
+        g[u].push_back(a);
+        g[v].push_back(b);
         return {u, sz(g[u]) - 1};
     }
     ll edge_flow(edge_ref e) const {
@@ -104,8 +104,8 @@ struct dinic {
 // usage: hk bm(n_l, n_r); bm.add_edge(l, r); int m = bm.max_matching();
 struct hk {
     int n_l, n_r;
-    vvi g;
-    vi dist, match_l, match_r;
+    vector<vector<int>> g;
+    vector<int> dist, match_l, match_r;
 
     hk(int n_l_ = 0, int n_r_ = 0) { init(n_l_, n_r_); }
     void init(int n_l_, int n_r_) {
@@ -118,7 +118,7 @@ struct hk {
     }
     void add_edge(int l, int r) {
         // goal: add edge from left to right
-        g[l].pb(r);
+        g[l].push_back(r);
     }
 
     bool bfs() {
@@ -202,8 +202,8 @@ struct mcmf {
         // goal: add forward + reverse edge with costs
         edge a{v, sz(g[v]), cap, cost};
         edge b{u, sz(g[u]), 0, -cost};
-        g[u].pb(a);
-        g[v].pb(b);
+        g[u].push_back(a);
+        g[v].push_back(b);
         return {u, sz(g[u]) - 1};
     }
     ll edge_flow(edge_ref e) const {
@@ -221,12 +221,12 @@ struct mcmf {
 
     pll min_cost_mf(int s, int t, ll max_f = INF, bool init_pot = true) {
         ll flow = 0, cost = 0;
-        vl pot(n, 0), dist(n);
-        vi pv(n), pe(n);
+        vector<ll> pot(n, 0), dist(n);
+        vector<int> pv(n), pe(n);
 
         if (init_pot) {
             // goal: initial potentials for negative costs
-            vl d(n, INF);
+            vector<ll> d(n, INF);
             vector<char> in_q(n, 0);
             queue<int> q;
             d[s] = 0;
@@ -309,7 +309,7 @@ struct lr_dinic {
 
     int n;
     dinic mf;
-    vl demand;
+    vector<ll> demand;
     vector<edge_info> edges;
 
     lr_dinic(int n = 0) { init(n); }
@@ -323,7 +323,7 @@ struct lr_dinic {
         // goal: store lower bounds via node demands
         demand[u] -= lo;
         demand[v] += lo;
-        edges.pb({mf.add_edge(u, v, hi - lo), lo});
+        edges.push_back({mf.add_edge(u, v, hi - lo), lo});
         return sz(edges) - 1;
     }
     ll edge_flow(int id) const {
@@ -336,10 +336,10 @@ struct lr_dinic {
         int ss = n, tt = n + 1;
         for (int i = 0; i < n; i++) {
             if (demand[i] > 0) {
-                aux.pb(mf.add_edge(ss, i, demand[i]));
+                aux.push_back(mf.add_edge(ss, i, demand[i]));
                 total += demand[i];
             } else if (demand[i] < 0) {
-                aux.pb(mf.add_edge(i, tt, -demand[i]));
+                aux.push_back(mf.add_edge(i, tt, -demand[i]));
             }
         }
         return total;
@@ -390,7 +390,7 @@ struct lr_mcmf {
 
     int n;
     mcmf mf;
-    vl demand;
+    vector<ll> demand;
     vector<edge_info> edges;
     ll base_cost;
 
@@ -407,7 +407,7 @@ struct lr_mcmf {
         demand[u] -= lo;
         demand[v] += lo;
         base_cost += lo * cost;
-        edges.pb({mf.add_edge(u, v, hi - lo, cost), lo});
+        edges.push_back({mf.add_edge(u, v, hi - lo, cost), lo});
         return sz(edges) - 1;
     }
     ll edge_flow(int id) const {
@@ -420,10 +420,10 @@ struct lr_mcmf {
         int ss = n, tt = n + 1;
         for (int i = 0; i < n; i++) {
             if (demand[i] > 0) {
-                aux.pb(mf.add_edge(ss, i, demand[i], 0));
+                aux.push_back(mf.add_edge(ss, i, demand[i], 0));
                 total += demand[i];
             } else if (demand[i] < 0) {
-                aux.pb(mf.add_edge(i, tt, -demand[i], 0));
+                aux.push_back(mf.add_edge(i, tt, -demand[i], 0));
             }
         }
         return total;

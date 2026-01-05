@@ -6,15 +6,15 @@
 // usage: tree_comp tc; tc.init(n); tc.add(u,v); tc.build(root); auto nodes=tc.make(vs); // use tc.vt_adj
 struct tree_comp {
     int n, lg, tim;
-    vvi adj, up, vt_adj;
-    vi tin, tout, dep;
+    vector<vector<int>> adj, up, vt_adj;
+    vector<int> tin, tout, dep;
 
     void init(int n_) {
         n = n_;
         lg = 1;
         while ((1 << lg) <= n) lg++;
         adj.assign(n + 1, {});
-        up.assign(lg, vi(n + 1, 0));
+        up.assign(lg, vector<int>(n + 1, 0));
         vt_adj.assign(n + 1, {});
         tin.assign(n + 1, 0);
         tout.assign(n + 1, 0);
@@ -22,8 +22,8 @@ struct tree_comp {
         tim = 0;
     }
     void add(int u, int v) {
-        adj[u].pb(v);
-        adj[v].pb(u);
+        adj[u].push_back(v);
+        adj[v].push_back(u);
     }
     void dfs(int v, int p) {
         // goal: build tin/tout, depth, and parents.
@@ -57,23 +57,23 @@ struct tree_comp {
         }
         return up[0][a];
     }
-    vi make(vi vs) {
+    vector<int> make(vector<int> vs) {
         if (vs.empty()) return {};
         sort(all(vs), [&](int a, int b) { return tin[a] < tin[b]; });
         vs.erase(unique(all(vs)), vs.end());
         int m = sz(vs);
-        for (int i = 0; i + 1 < m; i++) vs.pb(lca(vs[i], vs[i + 1]));
+        for (int i = 0; i + 1 < m; i++) vs.push_back(lca(vs[i], vs[i + 1]));
         sort(all(vs), [&](int a, int b) { return tin[a] < tin[b]; });
         vs.erase(unique(all(vs)), vs.end());
         for (int v : vs) vt_adj[v].clear();
-        vi st;
-        st.pb(vs[0]);
+        vector<int> st;
+        st.push_back(vs[0]);
         for (int i = 1; i < sz(vs); i++) {
             int v = vs[i];
             // invariant: stack is ancestor chain.
             while (!is_anc(st.back(), v)) st.pop_back();
-            vt_adj[st.back()].pb(v);
-            st.pb(v);
+            vt_adj[st.back()].push_back(v);
+            st.push_back(v);
         }
         return vs;
     }

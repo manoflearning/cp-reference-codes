@@ -11,7 +11,7 @@ int rnd(int l, int r) {
     return dis(rng);
 }
 
-int ecnt(int n, const vvi &cnt) {
+int ecnt(int n, const vector<vector<int>> &cnt) {
     int m = 0;
     for (int i = 1; i <= n; i++) m += cnt[i][i];
     for (int i = 1; i <= n; i++)
@@ -19,8 +19,8 @@ int ecnt(int n, const vvi &cnt) {
     return m;
 }
 
-bool can_na(int n, const vvi &cnt) {
-    vi deg(n + 1);
+bool can_na(int n, const vector<vector<int>> &cnt) {
+    vector<int> deg(n + 1);
     for (int i = 1; i <= n; i++) {
         deg[i] += 2 * cnt[i][i];
         for (int j = 1; j <= n; j++)
@@ -35,7 +35,7 @@ bool can_na(int n, const vvi &cnt) {
             break;
         }
     if (!s) return 1;
-    vi vis(n + 1);
+    vector<int> vis(n + 1);
     queue<int> q;
     q.push(s);
     vis[s] = 1;
@@ -53,13 +53,13 @@ bool can_na(int n, const vvi &cnt) {
     return 1;
 }
 
-void add_ed(euler_cir &g, vvi &cnt, int u, int v) {
+void add_ed(euler_cir &g, vector<vector<int>> &cnt, int u, int v) {
     g.add(u, v);
     if (u == v) cnt[u][u]++;
     else cnt[u][v]++, cnt[v][u]++;
 }
 
-void chk_run(int n, const vvi &cnt, const vi &path) {
+void chk_run(int n, const vector<vector<int>> &cnt, const vector<int> &path) {
     int m = ecnt(n, cnt);
     if (m == 0) {
         assert(sz(path) == 1);
@@ -86,7 +86,7 @@ void t_fix() {
     int n = 3;
     euler_cir g;
     g.init(n);
-    vvi cnt(n + 1, vi(n + 1));
+    vector<vector<int>> cnt(n + 1, vector<int>(n + 1));
     add_ed(g, cnt, 1, 2);
     add_ed(g, cnt, 2, 3);
     add_ed(g, cnt, 3, 1);
@@ -95,7 +95,7 @@ void t_fix() {
     chk_run(n, cnt, path);
 
     g.init(n);
-    cnt.assign(n + 1, vi(n + 1));
+    cnt.assign(n + 1, vector<int>(n + 1));
     add_ed(g, cnt, 1, 2);
     add_ed(g, cnt, 2, 3);
     assert(!g.can());
@@ -107,7 +107,7 @@ void t_rnd() {
         int m = rnd(0, 8);
         euler_cir g;
         g.init(n);
-        vvi cnt(n + 1, vi(n + 1));
+        vector<vector<int>> cnt(n + 1, vector<int>(n + 1));
         for (int i = 0; i < m; i++) {
             int u = rnd(1, n), v = rnd(1, n);
             add_ed(g, cnt, u, v);
@@ -117,7 +117,7 @@ void t_rnd() {
         assert(ok1 == ok2);
         if (ok1) {
             int s = 1;
-            vi deg(n + 1);
+            vector<int> deg(n + 1);
             for (int i = 1; i <= n; i++) {
                 deg[i] += 2 * cnt[i][i];
                 for (int j = 1; j <= n; j++)

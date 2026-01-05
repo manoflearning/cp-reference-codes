@@ -6,8 +6,8 @@
 // usage: cen_decomp cd; cd.init(n); cd.add(u,v); cd.build(); int p=cd.par[v];
 struct cen_decomp {
     int n;
-    vvi adj, chd;
-    vi par, siz;
+    vector<vector<int>> adj, chd;
+    vector<int> par, siz;
     vector<char> used;
 
     void init(int n_) {
@@ -19,8 +19,8 @@ struct cen_decomp {
         used.assign(n + 1, 0);
     }
     void add(int u, int v) {
-        adj[u].pb(v);
-        adj[v].pb(u);
+        adj[u].push_back(v);
+        adj[v].push_back(u);
     }
     int get_sz(int v, int p) {
         // goal: subtree sizes for centroid search.
@@ -43,7 +43,7 @@ struct cen_decomp {
         int tot = get_sz(v, p);
         int c = get_cent(v, p, tot);
         par[c] = p;
-        if (p) chd[p].pb(c);
+        if (p) chd[p].push_back(c);
         used[c] = 1;
         for (int to : adj[c])
             if (!used[to]) build(to, c);

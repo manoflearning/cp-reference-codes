@@ -7,9 +7,9 @@
 // usage: matrix a(n,n,mod); auto r=matrix::power(a, e);
 struct matrix {
     ll mod;
-    vvl a;
+    vector<vector<ll>> a;
 
-    matrix(int n = 0, int m = 0, ll mod_ = 1) : mod(mod_), a(n, vl(m, 0)) {}
+    matrix(int n = 0, int m = 0, ll mod_ = 1) : mod(mod_), a(n, vector<ll>(m, 0)) {}
     static matrix ident(int n, ll mod) {
         matrix r(n, n, mod);
         for (int i = 0; i < n; i++) r.a[i][i] = 1 % mod;

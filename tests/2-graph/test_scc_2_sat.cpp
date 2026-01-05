@@ -11,8 +11,8 @@ int rnd(int l, int r) {
     return dis(rng);
 }
 
-vvi rch(int n, const vvi &g) {
-    vvi r(n + 1, vi(n + 1));
+vector<vector<int>> rch(int n, const vector<vector<int>> &g) {
+    vector<vector<int>> r(n + 1, vector<int>(n + 1));
     for (int s = 1; s <= n; s++) {
         queue<int> q;
         q.push(s);
@@ -28,9 +28,9 @@ vvi rch(int n, const vvi &g) {
     return r;
 }
 
-vi cmp_na(int n, const vvi &g) {
+vector<int> cmp_na(int n, const vector<vector<int>> &g) {
     auto r = rch(n, g);
-    vi cmp(n + 1, -1);
+    vector<int> cmp(n + 1, -1);
     int cid = 0;
     for (int i = 1; i <= n; i++) {
         if (cmp[i] != -1) continue;
@@ -41,7 +41,7 @@ vi cmp_na(int n, const vvi &g) {
     return cmp;
 }
 
-bool sat_br(int n, const vector<pii> &cl, vi &val) {
+bool sat_br(int n, const vector<pii> &cl, vector<int> &val) {
     int lim = 1 << n;
     for (int mask = 0; mask < lim; mask++) {
         bool ok = 1;
@@ -65,10 +65,10 @@ void t_scc() {
     for (int it = 0; it < 200; it++) {
         int n = rnd(1, 7);
         int m = rnd(0, n * (n - 1));
-        vvi g(n + 1);
+        vector<vector<int>> g(n + 1);
         for (int i = 0; i < m; i++) {
             int u = rnd(1, n), v = rnd(1, n);
-            g[u].pb(v);
+            g[u].push_back(v);
         }
         auto cmp = cmp_na(n, g);
 
@@ -104,9 +104,9 @@ void t_sat() {
             int a = rnd(1, n), b = rnd(1, n);
             if (rnd(0, 1)) a = -a;
             if (rnd(0, 1)) b = -b;
-            cl.pb({a, b});
+            cl.push_back({a, b});
         }
-        vi val;
+        vector<int> val;
         bool ok2 = sat_br(n, cl, val);
 
         two_sat ts;

@@ -12,7 +12,7 @@ int rnd(int l, int r) {
 }
 string rnd_s(int n) {
     string s;
-    for (int i = 0; i < n; i++) s.pb('a' + rnd(0, 2));
+    for (int i = 0; i < n; i++) s.push_back('a' + rnd(0, 2));
     return s;
 }
 
@@ -41,7 +41,7 @@ void t_rnd() {
         aho_corasick ac;
         for (int i = 0; i < n; i++) {
             string p = rnd_s(rnd(1, 6));
-            ps.pb(p);
+            ps.push_back(p);
             ac.add(p);
         }
         ac.build();

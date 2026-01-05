@@ -12,15 +12,15 @@ int rnd(int l, int r) {
 }
 
 int ccnt(int n, const vector<pii> &ed, int sv, int se) {
-    vvi adj(n + 1);
+    vector<vector<int>> adj(n + 1);
     for (int i = 0; i < sz(ed); i++) {
         if (i == se) continue;
         int u = ed[i].fr, v = ed[i].sc;
         if (u == sv || v == sv) continue;
-        adj[u].pb(v);
-        adj[v].pb(u);
+        adj[u].push_back(v);
+        adj[v].push_back(u);
     }
-    vi vis(n + 1);
+    vector<int> vis(n + 1);
     int cnt = 0;
     for (int v = 1; v <= n; v++) {
         if (v == sv || vis[v]) continue;
@@ -39,11 +39,11 @@ int ccnt(int n, const vector<pii> &ed, int sv, int se) {
     return cnt;
 }
 
-vi ap_na(int n, const vector<pii> &ed) {
+vector<int> ap_na(int n, const vector<pii> &ed) {
     int base = ccnt(n, ed, 0, -1);
-    vi ap;
+    vector<int> ap;
     for (int v = 1; v <= n; v++)
-        if (ccnt(n, ed, v, -1) > base) ap.pb(v);
+        if (ccnt(n, ed, v, -1) > base) ap.push_back(v);
     return ap;
 }
 
@@ -54,7 +54,7 @@ vector<pii> ae_na(int n, const vector<pii> &ed) {
         if (ccnt(n, ed, 0, i) > base) {
             int u = ed[i].fr, v = ed[i].sc;
             if (u > v) swap(u, v);
-            ae.pb({u, v});
+            ae.push_back({u, v});
         }
     }
     sort(all(ae));
@@ -81,12 +81,12 @@ void chk_bcc(int n, const vector<pii> &ed, bcc_graph &g) {
         vector<vector<pii>> adj(n + 1);
         for (int i = 0; i < sz(comp); i++) {
             int u = comp[i].fr, v = comp[i].sc;
-            adj[u].pb({v, i});
-            adj[v].pb({u, i});
+            adj[u].push_back({v, i});
+            adj[v].push_back({u, i});
         }
         for (int i = 0; i < sz(comp); i++) {
             int u = comp[i].fr, v = comp[i].sc;
-            vi vis(n + 1);
+            vector<int> vis(n + 1);
             queue<int> q;
             q.push(u);
             vis[u] = 1;
@@ -115,7 +115,7 @@ void t_fix() {
     auto ae = g.ae;
     sort(all(ap));
     sort(all(ae));
-    assert(ap == vi({2}));
+    assert(ap == vector<int>({2}));
     assert(ae == vector<pii>({{1, 2}, {2, 3}}));
     chk_bcc(n, ed, g);
 }
@@ -131,7 +131,7 @@ void t_rnd() {
                 i--;
                 continue;
             }
-            ed.pb({u, v});
+            ed.push_back({u, v});
         }
         bcc_graph g;
         g.init(n);

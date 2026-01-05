@@ -35,7 +35,7 @@ struct fft_conv {
             for (int i = 0; i < n; i++) a[i] /= n;
     }
 
-    static vl mul(const vl &a, const vl &b) {
+    static vector<ll> mul(const vector<ll> &a, const vector<ll> &b) {
         // result: integer convolution of a and b.
         if (a.empty() || b.empty()) return {};
         int n = 1;
@@ -47,12 +47,12 @@ struct fft_conv {
         fft(fb);
         for (int i = 0; i < n; i++) fa[i] *= fb[i];
         fft(fa, 1);
-        vl ret(n);
+        vector<ll> ret(n);
         for (int i = 0; i < n; i++) ret[i] = llround(fa[i].real());
         return ret;
     }
 
-    static vl mul_mod(const vl &a, const vl &b, ll mod) {
+    static vector<ll> mul_mod(const vector<ll> &a, const vector<ll> &b, ll mod) {
         // result: convolution of a and b modulo mod.
         if (a.empty() || b.empty()) return {};
         int n = 1;
@@ -73,7 +73,7 @@ struct fft_conv {
         }
         fft(r1, 1);
         fft(r2, 1);
-        vl ret(n);
+        vector<ll> ret(n);
         for (int i = 0; i < n; i++) {
             ll av = llround(r1[i].real()) % mod;
             ll bv = (llround(r1[i].imag()) + llround(r2[i].real())) % mod;
@@ -110,16 +110,16 @@ struct ntt_mod {
         return ans;
     }
 
-    static void ntt(vl &a) {
+    static void ntt(vector<ll> &a) {
         // goal: inplace NTT of a.
         int n = sz(a), lg = 31 - __builtin_clz(n);
-        static vl rt(2, 1);
+        static vector<ll> rt(2, 1);
         for (static int k = 2, s = 2; k < n; k <<= 1, s++) {
             rt.resize(n);
             ll z[] = {1, mod_pow(ROOT, MOD >> s)};
             for (int i = k; i < 2 * k; i++) rt[i] = rt[i / 2] * z[i & 1] % MOD;
         }
-        vl rev(n);
+        vector<ll> rev(n);
         for (int i = 0; i < n; i++) rev[i] = (rev[i / 2] | (i & 1) << lg) / 2;
         for (int i = 0; i < n; i++)
             if (i < rev[i]) swap(a[i], a[rev[i]]);
@@ -133,14 +133,14 @@ struct ntt_mod {
                 }
     }
 
-    static vl mul(const vl &a, const vl &b) {
+    static vector<ll> mul(const vector<ll> &a, const vector<ll> &b) {
         // result: convolution under MOD.
         if (a.empty() || b.empty()) return {};
         int s = sz(a) + sz(b) - 1;
         int n = 1;
         while (n < s) n <<= 1;
         int inv = mod_pow(n, MOD - 2);
-        vl l(n, 0), r(n, 0), out(n);
+        vector<ll> l(n, 0), r(n, 0), out(n);
         for (int i = 0; i < sz(a); i++) l[i] = norm(a[i]);
         for (int i = 0; i < sz(b); i++) r[i] = norm(b[i]);
         ntt(l);
@@ -167,7 +167,7 @@ struct ntt_any {
     static constexpr ll M2 = 469762049;
     static constexpr ll M3 = 1224736769;
 
-    static vl mul(const vl &a, const vl &b, ll mod) {
+    static vector<ll> mul(const vector<ll> &a, const vector<ll> &b, ll mod) {
         // result: convolution under arbitrary mod via CRT.
         if (a.empty() || b.empty()) return {};
         using ntt1 = ntt_mod<M1, 3>;
@@ -183,7 +183,7 @@ struct ntt_any {
         const ll INV_M1M2_M3 = euclid::inv_mod(M1M2 % M3, M3);
 
         int n = sz(c1);
-        vl ret(n);
+        vector<ll> ret(n);
         for (int i = 0; i < n; i++) {
             ll x1 = c1[i];
             ll x2 = c2[i] - x1;

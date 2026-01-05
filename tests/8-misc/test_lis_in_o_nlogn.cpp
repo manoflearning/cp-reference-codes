@@ -11,9 +11,9 @@ ll rnd(ll l, ll r) {
     return dis(rng);
 }
 
-int lis_naive(const vl &a) {
+int lis_naive(const vector<ll> &a) {
     int n = sz(a);
-    vi dp(n, 1);
+    vector<int> dp(n, 1);
     int best = 0;
     for (int i = 0; i < n; i++) {
         for (int j = 0; j < i; j++) {
@@ -24,7 +24,7 @@ int lis_naive(const vl &a) {
     return best;
 }
 
-bool is_subseq(const vl &a, const vl &b) {
+bool is_subseq(const vector<ll> &a, const vector<ll> &b) {
     int i = 0, j = 0;
     while (i < sz(a) && j < sz(b)) {
         if (a[i] == b[j]) j++;
@@ -33,7 +33,7 @@ bool is_subseq(const vl &a, const vl &b) {
     return j == sz(b);
 }
 
-bool is_strict_inc(const vl &a) {
+bool is_strict_inc(const vector<ll> &a) {
     for (int i = 1; i < sz(a); i++)
         if (a[i - 1] >= a[i]) return false;
     return true;
@@ -42,11 +42,11 @@ bool is_strict_inc(const vl &a) {
 void test_random() {
     for (int it = 0; it < 200; it++) {
         int n = (int)rnd(1, 60);
-        vl a(n);
+        vector<ll> a(n);
         for (int i = 0; i < n; i++) a[i] = rnd(-10, 10);
         int exp = lis_naive(a);
         assert(lis_len(a) == exp);
-        vl seq = lis_seq(a);
+        vector<ll> seq = lis_seq(a);
         assert(sz(seq) == exp);
         assert(is_subseq(a, seq));
         assert(is_strict_inc(seq));
