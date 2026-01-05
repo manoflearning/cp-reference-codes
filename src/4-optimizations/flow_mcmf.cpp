@@ -2,7 +2,7 @@
 
 // what: compute min-cost max-flow using potentials and Dijkstra.
 // time: O(F E log V); memory: O(E)
-// constraint: 0-based; cap >= 0; no negative cycle reachable from s.
+// constraint: 1-indexed [1..n]; cap >= 0; no negative cycle reachable from s.
 // usage: mcmf mf(n); mf.add_edge(u, v, cap, cost); pll r = mf.min_cost_mf(s, t);
 // usage: init_pot = false if all costs >= 0 (faster)
 struct mcmf {
@@ -22,7 +22,7 @@ struct mcmf {
     mcmf(int n = 0) { init(n); }
     void init(int n_) {
         n = n_;
-        g.assign(n, {});
+        g.assign(n + 1, {});
     }
     edge_ref add_edge(int u, int v, ll cap, ll cost) {
         // goal: add forward + reverse edge with costs
@@ -47,13 +47,13 @@ struct mcmf {
 
     pll min_cost_mf(int s, int t, ll max_f = INF, bool init_pot = true) {
         ll flow = 0, cost = 0;
-        vector<ll> pot(n, 0), dist(n);
-        vector<int> pv(n), pe(n);
+        vector<ll> pot(n + 1, 0), dist(n + 1);
+        vector<int> pv(n + 1), pe(n + 1);
 
         if (init_pot) {
             // goal: initial potentials for negative costs
-            vector<ll> d(n, INF);
-            vector<char> in_q(n, 0);
+            vector<ll> d(n + 1, INF);
+            vector<char> in_q(n + 1, 0);
             queue<int> q;
             d[s] = 0;
             q.push(s);
@@ -73,7 +73,7 @@ struct mcmf {
                     }
                 }
             }
-            for (int i = 0; i < n; i++)
+            for (int i = 1; i <= n; i++)
                 if (d[i] < INF) pot[i] = d[i];
         }
         while (flow < max_f) {
@@ -99,7 +99,7 @@ struct mcmf {
                 }
             }
             if (dist[t] == INF) break; // edge: no more augmenting paths
-            for (int i = 0; i < n; i++)
+            for (int i = 1; i <= n; i++)
                 if (dist[i] < INF) pot[i] += dist[i];
 
             ll add = max_f - flow;
@@ -122,7 +122,7 @@ struct mcmf {
 
 // what: find min-cost flow with lower/upper bounds via transformation.
 // time: dominated by mcmf; memory: O(E)
-// constraint: 0-based; 0 <= lo <= hi; no negative cycle; single-use (call init(n) to reuse).
+// constraint: 1-indexed [1..n]; 0 <= lo <= hi; no negative cycle; single-use (call init(n) to reuse).
 // usage: lr_mcmf f(n); f.add_edge(u, v, lo, hi, cost); auto [ok, r] = f.max_flow(s, t);
 struct lr_mcmf {
     static constexpr ll INF = mcmf::INF;
@@ -142,7 +142,7 @@ struct lr_mcmf {
     void init(int n_) {
         n = n_;
         mf.init(n + 2);
-        demand.assign(n, 0);
+        demand.assign(n + 1, 0);
         edges.clear();
         base_cost = 0;
     }
@@ -161,8 +161,8 @@ struct lr_mcmf {
     ll add_demands(vector<mcmf::edge_ref> &aux) {
         // goal: connect ss/tt for feasible circulation
         ll total = 0;
-        int ss = n, tt = n + 1;
-        for (int i = 0; i < n; i++) {
+        int ss = n + 1, tt = n + 2;
+        for (int i = 1; i <= n; i++) {
             if (demand[i] > 0) {
                 aux.push_back(mf.add_edge(ss, i, demand[i], 0));
                 total += demand[i];
@@ -177,7 +177,7 @@ struct lr_mcmf {
         vector<mcmf::edge_ref> aux;
         aux.reserve(n);
         ll total = add_demands(aux);
-        int ss = n, tt = n + 1;
+        int ss = n + 1, tt = n + 2;
         pll res = mf.min_cost_mf(ss, tt, total, init_pot);
         for (auto ref : aux) mf.clear_edge(ref);
         if (res.fr != total) return {false, 0};
@@ -190,7 +190,7 @@ struct lr_mcmf {
         }
         vector<mcmf::edge_ref> aux;
         aux.reserve(n + 1);
-        int ss = n, tt = n + 1;
+        int ss = n + 1, tt = n + 2;
         auto ts = mf.add_edge(t, s, INF, 0);
         ll total = add_demands(aux);
         pll res = mf.min_cost_mf(ss, tt, total, init_pot);

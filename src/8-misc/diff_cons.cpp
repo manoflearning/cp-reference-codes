@@ -2,7 +2,7 @@
 
 // what: solve difference constraints x_v - x_u <= w with Bellman-Ford.
 // time: O(nm) via Bellman-Ford; memory: O(n+m)
-// constraint: 0-indexed vars; no overflow in relaxations.
+// constraint: 1-indexed vars [1..n]; no overflow in relaxations.
 // usage: diff_cons dc(n); dc.add_le(u,v,w); bool ok=dc.solve(); auto x=dc.val();
 struct diff_cons {
     struct edge {
@@ -17,8 +17,8 @@ struct diff_cons {
     diff_cons(int n_ = 0) { init(n_); }
     void init(int n_) {
         n = n_;
-        g.assign(n, {});
-        dist.assign(n, 0);
+        g.assign(n + 1, {});
+        dist.assign(n + 1, 0);
     }
     void add_le(int u, int v, ll w) {
         // goal: x_v - x_u <= w
@@ -36,10 +36,10 @@ struct diff_cons {
 
     bool solve() {
         // invariant: dist is current potential, all nodes reachable from super source
-        dist.assign(n, 0);
-        for (int it = 0; it < n; it++) {
+        dist.assign(n + 1, 0);
+        for (int it = 1; it <= n; it++) {
             bool upd = false;
-            for (int v = 0; v < n; v++) {
+            for (int v = 1; v <= n; v++) {
                 for (const auto &e : g[v]) {
                     if (dist[e.to] > dist[v] + e.w) {
                         dist[e.to] = dist[v] + e.w;
@@ -49,7 +49,7 @@ struct diff_cons {
             }
             if (!upd) return true;
         }
-        for (int v = 0; v < n; v++) {
+        for (int v = 1; v <= n; v++) {
             for (const auto &e : g[v]) {
                 if (dist[e.to] > dist[v] + e.w) return false;
             }

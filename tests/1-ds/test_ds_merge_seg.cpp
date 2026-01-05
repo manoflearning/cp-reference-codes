@@ -18,48 +18,48 @@ int count_greater(const vector<int> &a, int l, int r, int k) {
 }
 
 void test_merge_sort_tree_basic() {
-    vector<int> a = {5};
+    vector<int> a = {0, 5};
     merge_seg st;
     st.build(a);
-    assert(st.query(0, 0, 4) == 1);
-    assert(st.query(0, 0, 5) == 0);
+    assert(st.query(1, 1, 4) == 1);
+    assert(st.query(1, 1, 5) == 0);
 }
 
 void test_merge_sort_tree_random() {
     int n = 60;
-    vector<int> a(n);
-    for (int i = 0; i < n; i++) a[i] = (int)rnd(-10, 10);
+    vector<int> a(n + 1, 0);
+    for (int i = 1; i <= n; i++) a[i] = (int)rnd(-10, 10);
 
     merge_seg st;
     st.build(a);
 
     for (int it = 0; it < 4000; it++) {
-        int l = (int)rnd(0, n - 1);
-        int r = (int)rnd(l, n - 1);
+        int l = (int)rnd(1, n);
+        int r = (int)rnd(l, n);
         int k = (int)rnd(-10, 10);
         assert(st.query(l, r, k) == count_greater(a, l, r, k));
     }
 }
 
 void test_merge_sort_tree_iter_basic() {
-    vector<int> a = {2};
+    vector<int> a = {0, 2};
     merge_seg_it st;
     st.build(a);
-    assert(st.query(0, 0, 1) == 1);
-    assert(st.query(0, 0, 2) == 0);
+    assert(st.query(1, 1, 1) == 1);
+    assert(st.query(1, 1, 2) == 0);
 }
 
 void test_merge_sort_tree_iter_random() {
     int n = 60;
-    vector<int> a(n);
-    for (int i = 0; i < n; i++) a[i] = (int)rnd(-10, 10);
+    vector<int> a(n + 1, 0);
+    for (int i = 1; i <= n; i++) a[i] = (int)rnd(-10, 10);
 
     merge_seg_it st;
     st.build(a);
 
     for (int it = 0; it < 4000; it++) {
-        int l = (int)rnd(0, n - 1);
-        int r = (int)rnd(l, n - 1);
+        int l = (int)rnd(1, n);
+        int r = (int)rnd(l, n);
         int k = (int)rnd(-10, 10);
         assert(st.query(l, r, k) == count_greater(a, l, r, k));
     }

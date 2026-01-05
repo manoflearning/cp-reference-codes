@@ -2,7 +2,7 @@
 
 // what: reorder offline range queries to minimize add/del operations (Mo's algorithm).
 // time: O((n+q) * sqrt(n)); memory: O(q)
-// constraint: 0-indexed, inclusive [l, r]; add/del by index.
+// constraint: 1-indexed, inclusive [l, r]; add/del by index.
 // usage: mo solver(n); solver.add_query(l, r, idx); solver.run(add, del, out);
 struct mo {
     struct qry {
@@ -24,11 +24,11 @@ struct mo {
     void run(Add add, Del del, Out out) {
         // goal: process queries in Mo order with callbacks.
         sort(all(q), [&](const qry &a, const qry &b) {
-            int ba = a.l / bs, bb = b.l / bs;
+            int ba = (a.l - 1) / bs, bb = (b.l - 1) / bs;
             if (ba != bb) return ba < bb;
             return (ba & 1) ? a.r > b.r : a.r < b.r;
         });
-        int l = 0, r = -1;
+        int l = 1, r = 0;
         for (const auto &qr : q) {
             while (l > qr.l) add(--l);
             while (r < qr.r) add(++r);

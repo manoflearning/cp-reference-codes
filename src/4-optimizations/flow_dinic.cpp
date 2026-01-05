@@ -2,7 +2,7 @@
 
 // what: compute maximum flow in a directed graph (Dinic).
 // time: O(E V^2) worst; memory: O(E)
-// constraint: 0-based; cap >= 0.
+// constraint: 1-indexed [1..n]; cap >= 0.
 // usage: dinic mf(n); mf.add_edge(u, v, cap); ll f = mf.max_flow(s, t);
 struct dinic {
     static constexpr ll INF = (1LL << 62);
@@ -22,7 +22,7 @@ struct dinic {
     dinic(int n = 0) { init(n); }
     void init(int n_) {
         n = n_;
-        g.assign(n, {});
+        g.assign(n + 1, {});
     }
     edge_ref add_edge(int u, int v, ll cap) {
         // goal: add forward + reverse edge
@@ -47,7 +47,7 @@ struct dinic {
 
     bool bfs(int s, int t) {
         // goal: build level graph
-        level.assign(n, -1);
+        level.assign(n + 1, -1);
         queue<int> q;
         level[s] = 0;
         q.push(s);
@@ -80,7 +80,7 @@ struct dinic {
         if (s == t) return 0; // edge: no flow needed
         ll flow = 0;
         while (flow < limit && bfs(s, t)) {
-            work.assign(n, 0);
+            work.assign(n + 1, 0);
             while (flow < limit) {
                 ll pushed = dfs(s, t, limit - flow);
                 if (pushed == 0) break;
@@ -93,7 +93,7 @@ struct dinic {
 
 // what: find feasible max flow with lower/upper bounds via transformation.
 // time: dominated by dinic; memory: O(E)
-// constraint: 0-based; 0 <= lo <= hi; single-use (call init(n) to reuse).
+// constraint: 1-indexed [1..n]; 0 <= lo <= hi; single-use (call init(n) to reuse).
 // usage: lr_dinic f(n); f.add_edge(u, v, lo, hi); auto [ok, fl] = f.max_flow(s, t);
 struct lr_dinic {
     static constexpr ll INF = dinic::INF;
@@ -112,7 +112,7 @@ struct lr_dinic {
     void init(int n_) {
         n = n_;
         mf.init(n + 2);
-        demand.assign(n, 0);
+        demand.assign(n + 1, 0);
         edges.clear();
     }
     int add_edge(int u, int v, ll lo, ll hi) {
@@ -129,8 +129,8 @@ struct lr_dinic {
     ll add_demands(vector<dinic::edge_ref> &aux) {
         // goal: connect ss/tt for feasible circulation
         ll total = 0;
-        int ss = n, tt = n + 1;
-        for (int i = 0; i < n; i++) {
+        int ss = n + 1, tt = n + 2;
+        for (int i = 1; i <= n; i++) {
             if (demand[i] > 0) {
                 aux.push_back(mf.add_edge(ss, i, demand[i]));
                 total += demand[i];
@@ -145,7 +145,7 @@ struct lr_dinic {
         vector<dinic::edge_ref> aux;
         aux.reserve(n);
         ll total = add_demands(aux);
-        int ss = n, tt = n + 1;
+        int ss = n + 1, tt = n + 2;
         ll flow = mf.max_flow(ss, tt);
         for (auto ref : aux) mf.clear_edge(ref);
         return flow == total;
@@ -154,7 +154,7 @@ struct lr_dinic {
         if (s == t) return {feasible(), 0}; // edge: trivial s == t
         vector<dinic::edge_ref> aux;
         aux.reserve(n + 1);
-        int ss = n, tt = n + 1;
+        int ss = n + 1, tt = n + 2;
         auto ts = mf.add_edge(t, s, INF);
         ll total = add_demands(aux);
         ll flow = mf.max_flow(ss, tt);

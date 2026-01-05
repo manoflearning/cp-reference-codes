@@ -132,14 +132,14 @@ void t_mcmf() {
         mcmf_spfa na;
         na.init(n);
         for (auto [u, v, cap, cost] : es) {
-            mf1.add_edge(u, v, cap, cost);
-            mf2.add_edge(u, v, cap, cost);
+            mf1.add_edge(u + 1, v + 1, cap, cost);
+            mf2.add_edge(u + 1, v + 1, cap, cost);
             na.add_edge(u, v, cap, cost);
         }
         ll max_f = rnd(0, 8);
         auto exp = na.min_cost_mf(s, t, max_f);
-        assert(mf1.min_cost_mf(s, t, max_f, true) == exp);
-        if (nonneg) assert(mf2.min_cost_mf(s, t, max_f, false) == exp);
+        assert(mf1.min_cost_mf(s + 1, t + 1, max_f, true) == exp);
+        if (nonneg) assert(mf2.min_cost_mf(s + 1, t + 1, max_f, false) == exp);
     }
 }
 
@@ -159,10 +159,10 @@ void t_lr_mcmf() {
             int hi = lo + rnd(0, 2);
             int c = rnd(0, 5);
             es.push_back({u, v, lo, hi, c});
-            f.add_edge(u, v, lo, hi, c);
+            f.add_edge(u + 1, v + 1, lo, hi, c);
         }
         auto exp = brute_lr(n, s, t, es);
-        auto got = f.max_flow(s, t, true);
+        auto got = f.max_flow(s + 1, t + 1, true);
         assert(got.fr == exp.ok);
         if (exp.ok) assert(got.sc.fr == exp.flow), assert(got.sc.sc == exp.cost);
     }

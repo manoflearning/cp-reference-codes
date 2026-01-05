@@ -32,7 +32,7 @@ void t_hk() {
         vector<vector<int>> g(n_l);
         for (int l = 0; l < n_l; l++)
             for (int r = 0; r < n_r; r++)
-                if (rnd(0, 1)) bm.add_edge(l, r), g[l].push_back(r);
+                if (rnd(0, 1)) bm.add_edge(l + 1, r + 1), g[l].push_back(r);
         assert(bm.max_matching() == brute_match(n_l, n_r, g));
     }
 }

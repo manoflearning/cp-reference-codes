@@ -13,13 +13,13 @@ int rnd_int(int l, int r) {
 
 void test_distinct() {
     int n = 200, qn = 200;
-    vector<int> a(n);
-    for (int i = 0; i < n; i++) a[i] = rnd_int(0, 30);
+    vector<int> a(n + 1, 0);
+    for (int i = 1; i <= n; i++) a[i] = rnd_int(0, 30);
 
     vector<pii> qs(qn);
     for (int i = 0; i < qn; i++) {
-        int l = rnd_int(0, n - 1);
-        int r = rnd_int(l, n - 1);
+        int l = rnd_int(1, n);
+        int r = rnd_int(l, n);
         qs[i] = {l, r};
     }
 

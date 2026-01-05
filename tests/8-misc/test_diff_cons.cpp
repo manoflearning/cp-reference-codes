@@ -13,20 +13,20 @@ int rnd_int(int l, int r) {
 
 bool has_neg_cycle(int n, const vector<tuple<int, int, ll>> &edges) {
     const ll INF = (1LL << 60);
-    vector<vector<ll>> d(n, vector<ll>(n, INF));
-    for (int i = 0; i < n; i++) d[i][i] = 0;
+    vector<vector<ll>> d(n + 1, vector<ll>(n + 1, INF));
+    for (int i = 1; i <= n; i++) d[i][i] = 0;
     for (auto [u, v, w] : edges) d[u][v] = min(d[u][v], w);
-    for (int k = 0; k < n; k++) {
-        for (int i = 0; i < n; i++) {
+    for (int k = 1; k <= n; k++) {
+        for (int i = 1; i <= n; i++) {
             if (d[i][k] == INF) continue;
-            for (int j = 0; j < n; j++) {
+            for (int j = 1; j <= n; j++) {
                 if (d[k][j] == INF) continue;
                 ll nv = d[i][k] + d[k][j];
                 if (nv < d[i][j]) d[i][j] = nv;
             }
         }
     }
-    for (int i = 0; i < n; i++)
+    for (int i = 1; i <= n; i++)
         if (d[i][i] < 0) return true;
     return false;
 }
@@ -38,8 +38,8 @@ void test_random() {
         diff_cons dc(n);
         vector<tuple<int, int, ll>> edges;
         for (int i = 0; i < m; i++) {
-            int u = rnd_int(0, n - 1);
-            int v = rnd_int(0, n - 1);
+            int u = rnd_int(1, n);
+            int v = rnd_int(1, n);
             ll w = rnd_int(-5, 5);
             dc.add_le(u, v, w);
             edges.push_back({u, v, w});
