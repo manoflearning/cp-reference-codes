@@ -1,9 +1,9 @@
 #include "../0-common/common.hpp"
 
-// what: point update + range sum on a fixed-size array using a tree.
-// time: init O(n), update/query O(log n); memory: O(n)
-// constraint: 1-indexed [1, n]; a[0] unused.
-// usage: seg_tree st; st.init(n); st.set(p, v); st.query(l, r);
+// what: point update + range sum on a fixed-size array, plus kth by prefix sum.
+// time: init O(n), update/query/kth O(log n); memory: O(n)
+// constraint: 1-indexed [1, n]; a[0] unused; kth needs all values >= 0.
+// usage: seg_tree st; st.init(n); st.set(p, v); st.query(l, r); st.kth(k);
 struct seg_tree {
     int flag;
     vector<ll> t;
@@ -24,6 +24,16 @@ struct seg_tree {
         if (l <= nl && nr <= r) return t[v];
         int mid = (nl + nr) >> 1;
         return query(l, r, v << 1, nl, mid) + query(l, r, v << 1 | 1, mid + 1, nr);
+    }
+    int kth(ll k) const {
+        // result: smallest idx with prefix sum >= k.
+        assert(k > 0 && t[1] >= k);
+        int v = 1;
+        while (v < flag) {
+            if (k <= t[v << 1]) v <<= 1;
+            else k -= t[v << 1], v = v << 1 | 1;
+        }
+        return v - flag + 1;
     }
 };
 
@@ -51,32 +61,6 @@ struct seg_tree_it { // 1-indexed
             if (r & 1) ret += t[--r];
         }
         return ret;
-    }
-};
-
-// what: find k-th element by prefix sum on a frequency array.
-// time: update/query O(log n); memory: O(n)
-// constraint: 1-indexed [1, n], values >= 0.
-// usage: seg_tree_kth st; st.init(n); st.add(p, v); st.kth(k);
-struct seg_tree_kth {
-    int flag;
-    vector<ll> t;
-    void init(int n) {
-        // goal: allocate tree for size n.
-        flag = 1;
-        while (flag < n) flag <<= 1;
-        t.assign(flag << 1, 0);
-    }
-    void add(int p, ll val) {
-        // goal: add val to frequency at p.
-        for (t[p += flag - 1] += val; p > 1; p >>= 1) t[p >> 1] = t[p] + t[p ^ 1];
-    }
-    ll kth(ll k, int v = 1) const {
-        // result: smallest index with prefix sum >= k.
-        assert(t[v] >= k);
-        if (v >= flag) return v - flag + 1;
-        if (k <= t[v << 1]) return kth(k, v << 1);
-        return kth(k - t[v << 1], v << 1 | 1);
     }
 };
 

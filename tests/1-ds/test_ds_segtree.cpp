@@ -1,6 +1,6 @@
 #include "../../src/1-ds/ds_segtree.cpp"
 
-// what: tests for seg_tree, seg_tree_it, seg_tree_kth, seg_tree_lz, seg_sparse, seg_2d, seg2d_comp.
+// what: tests for seg_tree, seg_tree_it, seg_tree_lz, seg_sparse, seg_2d, seg2d_comp.
 // time: random + edge cases; memory: O(n log n)
 // constraint: uses assert, fixed seed.
 // usage: g++ -std=c++17 test_ds_segtree.cpp && ./a.out
@@ -94,10 +94,10 @@ void test_segti_random() {
 
 void test_segk_basic() {
     int n = 3;
-    seg_tree_kth st;
+    seg_tree st;
     st.init(n);
-    st.add(1, 2);
-    st.add(3, 1);
+    st.set(1, 2);
+    st.set(3, 1);
     assert(st.kth(1) == 1);
     assert(st.kth(2) == 1);
     assert(st.kth(3) == 3);
@@ -106,16 +106,17 @@ void test_segk_basic() {
 void test_segk_random() {
     int n = 40;
     vector<ll> a(n + 1, 0);
-    seg_tree_kth st;
+    seg_tree st;
     st.init(n);
 
     for (int it = 0; it < 4000; it++) {
         int op = (int)rnd(0, 1);
         if (op == 0) {
             int p = (int)rnd(1, n);
-            ll v = rnd(0, 3);
+            ll v = rnd(-3, 3);
+            if (a[p] + v < 0) continue;
             a[p] += v;
-            st.add(p, v);
+            st.set(p, a[p]);
         } else {
             ll tot = 0;
             for (int i = 1; i <= n; i++) tot += a[i];
