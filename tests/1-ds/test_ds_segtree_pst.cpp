@@ -28,23 +28,22 @@ int kth_naive_freq(const vector<ll> &a, ll k) {
 
 void test_pst_basic() {
     int n = 3;
-    vector<ll> a = {0, 1, 2, 3};
     seg_pst st;
-    st.build(n, a);
+    st.init(n);
+    st.set(1, 1);
+    st.set(2, 2);
+    st.set(3, 3);
     st.set(2, 5);
-    assert(st.query(1, 3, 0) == 6);
-    assert(st.query(1, 3, 1) == 9);
+    assert(st.query(1, 3, 3) == 6);
+    assert(st.query(1, 3, 4) == 9);
 }
 
 void test_pst_random() {
     int n = 20;
     vector<vector<ll>> ver;
-    vector<ll> a(n + 1, 0);
-    for (int i = 1; i <= n; i++) a[i] = rnd(-5, 5);
-    ver.push_back(a);
-
     seg_pst st;
-    st.build(n, a);
+    st.init(n);
+    ver.push_back(vector<ll>(n + 1, 0));
 
     for (int it = 0; it < 2000; it++) {
         int op = (int)rnd(0, 1);
@@ -66,29 +65,28 @@ void test_pst_random() {
 
 void test_pst_kth_basic() {
     int n = 5;
-    vector<ll> a = {0, 2, 0, 1, 3, 0};
     seg_pst st;
-    st.build(n, a);
-    assert(st.kth(1, 0) == 1);
-    assert(st.kth(2, 0) == 1);
-    assert(st.kth(3, 0) == 3);
-    assert(st.kth(6, 0) == 4);
+    st.init(n);
+    st.set(1, 2);
+    st.set(3, 1);
+    st.set(4, 3);
+    assert(st.kth(1, 3) == 1);
+    assert(st.kth(2, 3) == 1);
+    assert(st.kth(3, 3) == 3);
+    assert(st.kth(6, 3) == 4);
     st.set(2, 4);
-    assert(st.kth(3, 1) == 2);
-    assert(st.kth(10, 1) == 4);
+    assert(st.kth(3, 4) == 2);
+    assert(st.kth(10, 4) == 4);
     st.set(4, 0);
-    assert(st.kth(7, 2) == 3);
+    assert(st.kth(7, 5) == 3);
 }
 
 void test_pst_kth_random() {
     int n = 40;
     vector<vector<ll>> ver;
-    vector<ll> a(n + 1, 0);
-    for (int i = 1; i <= n; i++) a[i] = rnd(0, 3);
-    ver.push_back(a);
-
     seg_pst st;
-    st.build(n, a);
+    st.init(n);
+    ver.push_back(vector<ll>(n + 1, 0));
 
     for (int it = 0; it < 2000; it++) {
         int op = (int)rnd(0, 1);

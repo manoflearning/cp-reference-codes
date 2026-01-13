@@ -51,8 +51,7 @@ struct hld_tree {
     void build(int root = 1) {
         dfs_sz(root, 0);
         dfs_hld(root, root);
-        vector<ll> a(n + 1, 0);
-        seg.build(a);
+        seg.init(n);
     }
     void set(int v, ll val) { seg.set(in[v], val); }
     ll query(int a, int b) const {
