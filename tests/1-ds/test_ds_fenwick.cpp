@@ -35,8 +35,8 @@ ll sum_2d(const vector<vector<ll>> &a, int x1, int y1, int x2, int y2) {
 
 void test_fenwick_basic() {
     fenwick fw;
-    vector<ll> a = {0, 5};
-    fw.build(a);
+    fw.init(1);
+    fw.set(1, 5);
     assert(fw.sum(1, 1) == 5);
     assert(fw.kth(1) == 1);
     fw.set(1, 0);
@@ -51,7 +51,8 @@ void test_fenwick_random() {
     for (int i = 1; i <= n; i++) a[i] = rnd(0, 5);
 
     fenwick fw;
-    fw.build(a);
+    fw.init(n);
+    for (int i = 1; i <= n; i++) fw.add(i, a[i]);
 
     for (int it = 0; it < 5000; it++) {
         int op = (int)rnd(0, 3);
@@ -109,8 +110,8 @@ void test_fenwick_rp_random() {
 
 void test_fenwick_2d_basic() {
     fenw_2d fw;
-    vector<vector<ll>> a = {{0, 0}, {0, 3}};
-    fw.build(a);
+    fw.init(1, 1);
+    fw.set(1, 1, 3);
     assert(fw.sum(1, 1, 1, 1) == 3);
     fw.set(1, 1, -2);
     assert(fw.sum(1, 1, 1, 1) == -2);
@@ -123,7 +124,9 @@ void test_fenwick_2d_random() {
         for (int j = 1; j <= m; j++) a[i][j] = rnd(-3, 3);
 
     fenw_2d fw;
-    fw.build(a);
+    fw.init(n, m);
+    for (int i = 1; i <= n; i++)
+        for (int j = 1; j <= m; j++) fw.add(i, j, a[i][j]);
 
     for (int it = 0; it < 4000; it++) {
         int op = (int)rnd(0, 2);

@@ -1,20 +1,17 @@
 #include "../0-common/common.hpp"
 
 // what: point update + range sum on a fixed-size array using a tree.
-// time: build O(n), update/query O(log n); memory: O(n)
+// time: init O(n), update/query O(log n); memory: O(n)
 // constraint: 1-indexed [1, n]; a[0] unused.
-// usage: seg_tree st; st.build(a); st.set(p, v); st.query(l, r);
+// usage: seg_tree st; st.init(n); st.set(p, v); st.query(l, r);
 struct seg_tree {
     int flag;
     vector<ll> t;
-    void build(const vector<ll> &a) {
-        // goal: build tree from 1-indexed array.
-        int n = sz(a) - 1;
+    void init(int n) {
+        // goal: allocate tree for size n (all zeros).
         flag = 1;
         while (flag < n) flag <<= 1;
         t.assign(2 * flag, 0);
-        for (int i = 1; i <= n; i++) t[flag + i - 1] = a[i];
-        for (int i = flag - 1; i >= 1; i--) t[i] = t[i << 1] + t[i << 1 | 1];
     }
     void set(int p, ll val) {
         // goal: set a[p] = val.
@@ -31,18 +28,16 @@ struct seg_tree {
 };
 
 // what: iterative segment tree for point update and range sum.
-// time: build O(n), update/query O(log n); memory: O(n)
+// time: init O(n), update/query O(log n); memory: O(n)
 // constraint: 1-indexed [1, n]; a[0] unused.
-// usage: seg_tree_it st; st.build(a); st.set(p, v); st.query(l, r);
+// usage: seg_tree_it st; st.init(n); st.set(p, v); st.query(l, r);
 struct seg_tree_it { // 1-indexed
     int n;
     vector<ll> t;
-    void build(const vector<ll> &a) {
-        // goal: build tree from 1-indexed array.
-        n = sz(a) - 1;
+    void init(int n_) {
+        // goal: allocate tree for size n (all zeros).
+        n = n_;
         t.assign(2 * n, 0);
-        for (int i = 1; i <= n; i++) t[n + i - 1] = a[i];
-        for (int i = n - 1; i >= 1; i--) t[i] = t[i << 1] + t[i << 1 | 1];
     }
     void set(int p, ll val) {
         // goal: set a[p] = val.
@@ -86,21 +81,18 @@ struct seg_tree_kth {
 };
 
 // what: range add and range sum with lazy propagation.
-// time: update/query O(log n); memory: O(n)
+// time: init O(n), update/query O(log n); memory: O(n)
 // constraint: 1-indexed [1, n]; a[0] unused.
-// usage: seg_tree_lz st; st.build(a); st.add(l, r, v); st.query(l, r);
+// usage: seg_tree_lz st; st.init(n); st.add(l, r, v); st.query(l, r);
 struct seg_tree_lz {
     int flag;
     vector<ll> t, lz;
-    void build(const vector<ll> &a) {
-        // goal: build tree and clear lazy tags.
-        int n = sz(a) - 1;
+    void init(int n) {
+        // goal: allocate tree and clear lazy tags (all zeros).
         flag = 1;
         while (flag < n) flag <<= 1;
         t.assign(2 * flag, 0);
         lz.assign(2 * flag, 0);
-        for (int i = 1; i <= n; i++) t[flag + i - 1] = a[i];
-        for (int i = flag - 1; i >= 1; i--) t[i] = t[i << 1] + t[i << 1 | 1];
     }
     void add(int l, int r, ll val) { add(l, r, val, 1, 1, flag); }
     ll query(int l, int r) { return query(l, r, 1, 1, flag); }
@@ -182,25 +174,16 @@ struct seg_sparse {
 };
 
 // what: 2D point updates with rectangle sum queries on a square grid.
-// time: build O(n^2), update/query O(log^2 n); memory: O(n^2)
+// time: init O(n^2), update/query O(log^2 n); memory: O(n^2)
 // constraint: 1-indexed square [1..n] x [1..n]; a[0][*], a[*][0] unused.
-// usage: seg_2d st; st.build(a); st.set(x, y, v); st.query(x1, x2, y1, y2);
+// usage: seg_2d st; st.init(n); st.set(x, y, v); st.query(x1, x2, y1, y2);
 struct seg_2d { // 1-indexed
     int n;
     vector<vector<ll>> t;
-    void build(const vector<vector<ll>> &a) {
-        // goal: build 2D tree from initial grid.
-        n = sz(a) - 1;
+    void init(int n_) {
+        // goal: allocate 2D tree (all zeros).
+        n = n_;
         t.assign(2 * n, vector<ll>(2 * n, 0));
-        for (int i = 1; i <= n; i++)
-            for (int j = 1; j <= n; j++)
-                t[i + n - 1][j + n - 1] = a[i][j];
-        for (int i = n; i < 2 * n; i++)
-            for (int j = n - 1; j > 0; j--)
-                t[i][j] = t[i][j << 1] + t[i][j << 1 | 1];
-        for (int i = n - 1; i > 0; i--)
-            for (int j = 1; j < 2 * n; j++)
-                t[i][j] = t[i << 1][j] + t[i << 1 | 1][j];
     }
     void set(int x, int y, ll val) {
         // goal: set a[x][y] = val.

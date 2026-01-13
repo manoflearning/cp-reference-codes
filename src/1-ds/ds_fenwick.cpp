@@ -1,9 +1,9 @@
 #include "../0-common/common.hpp"
 
 // what: maintain prefix sums with point updates and range sum queries.
-// time: build O(n), update/query O(log n); memory: O(n)
+// time: init O(n), update/query O(log n); memory: O(n)
 // constraint: 1-indexed [1, n]; a[0] unused; kth needs all values >= 0.
-// usage: fenwick fw; fw.build(a); fw.add(p, x); fw.sum(l, r); fw.kth(k);
+// usage: fenwick fw; fw.init(n); fw.add(p, x); fw.set(p, v); fw.sum(l, r); fw.kth(k);
 struct fenwick {
     int n;
     vector<ll> a, t;
@@ -12,16 +12,6 @@ struct fenwick {
         n = n_;
         a.assign(n + 1, 0);
         t.assign(n + 1, 0);
-    }
-    void build(const vector<ll> &v) {
-        // goal: build fenwick in O(n) from initial array.
-        n = sz(v) - 1;
-        a = v;
-        t = a;
-        for (int i = 1; i <= n; i++) {
-            int j = i + (i & -i);
-            if (j <= n) t[j] += t[i];
-        }
     }
     void add(int p, ll val) {
         // goal: a[p] += val.
@@ -79,9 +69,9 @@ struct fenw_range { // 1-indexed
 };
 
 // what: 2D point updates with axis-aligned rectangle sum queries.
-// time: build O(n m), update/query O(log n log m); memory: O(n m)
+// time: init O(n m), update/query O(log n log m); memory: O(n m)
 // constraint: 1-indexed [1..n] x [1..m]; a[0][*], a[*][0] unused; no bounds check.
-// usage: fenw_2d fw; fw.build(a); fw.add(x, y, v); fw.sum(x1, y1, x2, y2);
+// usage: fenw_2d fw; fw.init(n, m); fw.add(x, y, v); fw.set(x, y, val); fw.sum(x1, y1, x2, y2);
 struct fenw_2d { // 1-indexed
     int n, m;
     vector<vector<ll>> a, t;
@@ -90,23 +80,6 @@ struct fenw_2d { // 1-indexed
         n = n_, m = m_;
         a.assign(n + 1, vector<ll>(m + 1, 0));
         t.assign(n + 1, vector<ll>(m + 1, 0));
-    }
-    void build(const vector<vector<ll>> &v) {
-        // goal: build 2D fenwick in O(n*m).
-        n = sz(v) - 1;
-        m = n ? sz(v[1]) - 1 : 0;
-        a = v;
-        t = a;
-        for (int i = 1; i <= n; i++)
-            for (int j = 1; j <= m; j++) {
-                int nj = j + (j & -j);
-                if (nj <= m) t[i][nj] += t[i][j];
-            }
-        for (int j = 1; j <= m; j++)
-            for (int i = 1; i <= n; i++) {
-                int ni = i + (i & -i);
-                if (ni <= n) t[ni][j] += t[i][j];
-            }
     }
     void add(int x, int y, ll val) {
         // goal: a[x][y] += val.

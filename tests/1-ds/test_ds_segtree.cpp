@@ -27,9 +27,9 @@ int kth_naive_freq(const vector<ll> &a, ll k) {
 }
 
 void test_segt_basic() {
-    vector<ll> a = {0, 3};
     seg_tree st;
-    st.build(a);
+    st.init(1);
+    st.set(1, 3);
     assert(st.query(1, 1) == 3);
     st.set(1, -2);
     assert(st.query(1, 1) == -2);
@@ -41,7 +41,8 @@ void test_segt_random() {
     for (int i = 1; i <= n; i++) a[i] = rnd(-5, 5);
 
     seg_tree st;
-    st.build(a);
+    st.init(n);
+    for (int i = 1; i <= n; i++) st.set(i, a[i]);
 
     for (int it = 0; it < 5000; it++) {
         int op = (int)rnd(0, 1);
@@ -59,9 +60,9 @@ void test_segt_random() {
 }
 
 void test_segti_basic() {
-    vector<ll> a = {0, 4};
     seg_tree_it st;
-    st.build(a);
+    st.init(1);
+    st.set(1, 4);
     assert(st.query(1, 1) == 4);
     st.set(1, 1);
     assert(st.query(1, 1) == 1);
@@ -73,7 +74,8 @@ void test_segti_random() {
     for (int i = 1; i <= n; i++) a[i] = rnd(-5, 5);
 
     seg_tree_it st;
-    st.build(a);
+    st.init(n);
+    for (int i = 1; i <= n; i++) st.set(i, a[i]);
 
     for (int it = 0; it < 5000; it++) {
         int op = (int)rnd(0, 1);
@@ -125,9 +127,10 @@ void test_segk_random() {
 }
 
 void test_seglz_basic() {
-    vector<ll> a = {0, 1, 2};
     seg_tree_lz st;
-    st.build(a);
+    st.init(2);
+    st.add(1, 1, 1);
+    st.add(2, 2, 2);
     st.add(1, 2, 3);
     assert(st.query(1, 2) == 1 + 2 + 6);
 }
@@ -138,7 +141,8 @@ void test_seglz_random() {
     for (int i = 1; i <= n; i++) a[i] = rnd(-5, 5);
 
     seg_tree_lz st;
-    st.build(a);
+    st.init(n);
+    for (int i = 1; i <= n; i++) st.add(i, i, a[i]);
 
     for (int it = 0; it < 4000; it++) {
         int op = (int)rnd(0, 1);
@@ -196,9 +200,9 @@ ll sum_rect(const vector<vector<ll>> &a, int x1, int y1, int x2, int y2) {
 }
 
 void test_seg2d_basic() {
-    vector<vector<ll>> a = {{0, 0}, {0, 7}};
     seg_2d st;
-    st.build(a);
+    st.init(1);
+    st.set(1, 1, 7);
     assert(st.query(1, 1, 1, 1) == 7);
     st.set(1, 1, -1);
     assert(st.query(1, 1, 1, 1) == -1);
@@ -211,7 +215,9 @@ void test_seg2d_random() {
         for (int j = 1; j <= n; j++) a[i][j] = rnd(-3, 3);
 
     seg_2d st;
-    st.build(a);
+    st.init(n);
+    for (int i = 1; i <= n; i++)
+        for (int j = 1; j <= n; j++) st.set(i, j, a[i][j]);
 
     for (int it = 0; it < 3000; it++) {
         int op = (int)rnd(0, 1);
