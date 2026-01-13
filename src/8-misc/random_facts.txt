@@ -1,0 +1,22 @@
+Random Facts (ICPC Team Note)
+
+- Tiny identities / tricks (no code), meant to be printed and skimmed quickly.
+- Keep each item short: setup -> formulas -> use -> pitfall.
+
+-------------------------------------------------------------------------------
+
+GEOMETRY
+
+45deg transform: Manhattan <-> Chebyshev on Z^2
+  Setup: u = x + y, v = x - y.
+  L1: |dx| + |dy| = max(|du|, |dv|).
+  L∞: max(|dx|, |dy|) = (|du| + |dv|) / 2.
+  Use: max Manhattan over points = max( max(u)-min(u), max(v)-min(v) ).
+  Note: du, dv have same parity -> (|du|+|dv|) is even -> /2 is integer.
+  Why: max(|a+b|,|a-b|)=|a|+|b| and |a+b|+|a-b|=2max(|a|,|b|).
+
+GRAPH
+
+Complete bipartite K_{n,m}: number of spanning trees
+  Formula: tau(K_{n,m}) = n^{m-1} * m^{n-1}.
+  Why: Matrix-Tree theorem (Kirchhoff).
